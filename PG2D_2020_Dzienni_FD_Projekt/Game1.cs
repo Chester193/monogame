@@ -11,11 +11,17 @@ namespace PG2D_2020_Dzienni_FD_Projekt
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        
+
+        public TiledMap tiledMap = new TiledMap();
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            ResolutionManager.Init(ref graphics);
+            ResolutionManager.SetVirtualResolution(1280, 800);
+            ResolutionManager.SetResolution(1280, 800, false);
         }
 
         /// <summary>
@@ -27,7 +33,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            Camera.Initialize(zoomLevel: 0.5f);
             base.Initialize();
         }
 
@@ -41,6 +47,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            tiledMap.Load(Content, @"Tilemaps/small_town.tmx");
         }
 
         /// <summary>
@@ -63,6 +70,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 Exit();
 
             // TODO: Add your update logic here
+            UpdateCamera(new Vector2(1600, 1000));
 
             base.Update(gameTime);
         }
@@ -76,8 +84,20 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            ResolutionManager.BeginDraw();
+
+            var transformMatrix = Camera.GetTransformMatrix();
+
+            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.LinearClamp, null, null, null, transformMatrix);
+            tiledMap.Draw(spriteBatch);
+            spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        private void UpdateCamera(Vector2 followPosition)
+        {
+            Camera.Update(followPosition);
         }
     }
 }
