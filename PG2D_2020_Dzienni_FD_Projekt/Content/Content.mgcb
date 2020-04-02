@@ -13,3 +13,66 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Tilemaps/exampleTileset.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Tilemaps/exampleTileset.png
+
+#begin Tilemaps/exampleTileset.tsx
+/copy:Tilemaps/exampleTileset.tsx
+
+#begin Tilemaps/Grassland@128x128.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Tilemaps/Grassland@128x128.png
+
+#begin Tilemaps/Grassland@128x128.tsx
+/copy:Tilemaps/Grassland@128x128.tsx
+
+#begin Tilemaps/small_town.tmx
+/copy:Tilemaps/small_town.tmx
+
+#begin Tilemaps/TownColor2@128x128.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Tilemaps/TownColor2@128x128.png
+
+#begin Tilemaps/TownColor2@128x128.tsx
+/copy:Tilemaps/TownColor2@128x128.tsx
+
+#begin Tilemaps/WaterfallColor3@128x128.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Tilemaps/WaterfallColor3@128x128.png
+
+#begin Tilemaps/WaterfallColor3@128x128.tsx
+/copy:Tilemaps/WaterfallColor3@128x128.tsx
+
