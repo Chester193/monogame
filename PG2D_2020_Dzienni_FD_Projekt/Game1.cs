@@ -33,7 +33,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            Camera.Initialize(zoomLevel: 0.5f);
+            Camera.Initialize(zoomLevel: 2.0f);
             base.Initialize();
         }
 
@@ -47,7 +47,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            tiledMap.Load(Content, @"Tilemaps/small_town.tmx");
+            tiledMap.Load(Content, @"Tilemaps/terrain.tmx");
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 Exit();
 
             // TODO: Add your update logic here
-            UpdateCamera(new Vector2(1600, 1000));
+            UpdateCamera(new Vector2(1200, 800));
 
             base.Update(gameTime);
         }
