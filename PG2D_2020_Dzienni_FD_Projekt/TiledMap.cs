@@ -15,13 +15,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 {
     public class TiledMap
     {
-        //public List<Decoration> decorations = new List<Decoration>();
-        //public List<Wall> walls = new List<Wall>();
-        //Texture2D wallTexture;
-
-        public int mapWidth = 15;
-        public int mapHeight = 9;
-
         public int tileSize = 128;
 
         TmxMap tiledMap;
@@ -30,11 +23,18 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
         List<TileLayer> tileLayers = new List<TileLayer>();
         List<Rectangle> collisionRectangles = new List<Rectangle>();
-        private IEnumerable<object> walls;
+
+        int VResWidth, VResHeight;
 
         public TiledMap()
         {
 
+        }
+
+        public TiledMap(int screenWidth, int screenHeight)
+        {
+            VResWidth = screenWidth;
+            VResHeight = screenHeight;
         }
 
 
@@ -52,7 +52,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             foreach (var layer in tiledMap.Layers)
             {
-                TileLayer mapLayer = new TileLayer();
+                TileLayer mapLayer = new TileLayer(VResWidth, VResHeight);
 
                 if (float.TryParse(layer.Properties["layerDepth"], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out float result))
                 {
@@ -128,17 +128,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             }
         }
 
-        //public void DrawWalls(SpriteBatch spriteBatch)
-        //{
-        //    foreach (var wall in walls)
-        //    {
-        //        if (wall != null && wall.active == true)
-        //        {
-        //            spriteBatch.Draw(wallTexture, new Vector2(wall.boundingBox.X, wall.boundingBox.Y), Color.White);
-        //            //spriteBatch.Draw(wallTexture, new Vector2(wall.boundingBox.X, wall.boundingBox.Y), wall.boundingBox, Color.White, 0.0f, Vector2.Zero, 1.0f, SpriteEffects.None, 0.7f);
-        //        }
-        //    }
-        //}
+        public void Update(GameTime gameTime, Vector2 playerPosition)
+        {
+            foreach (var layer in tileLayers)
+            {
+                layer.Update(gameTime, playerPosition);
+            }
+        }
 
         //public Point GetTileIndex(Vector2 inputPosition)
         //{
@@ -156,21 +152,48 @@ namespace PG2D_2020_Dzienni_FD_Projekt
     {
         public string name;
         public List<Tile> tiles = new List<Tile>();
+
+        private List<Tile> drawableTiles = new List<Tile>();
         public float layerDepth = 1.0f;
+
+        int VResWidth, VResHeight;
+        Vector2 previousPlayerPosition = new Vector2(int.MinValue, int.MinValue);
 
         public TileLayer()
         {
 
         }
 
-        public void Update()
+        public TileLayer(int screenWidth, int screenHeight)
         {
-            throw new NotImplementedException();
+            VResWidth = screenWidth;
+            VResHeight = screenHeight;
+        }
+
+        public void Update(GameTime gameTime, Vector2 playerPosition)
+        {
+            if (playerPosition != previousPlayerPosition)
+            {
+                drawableTiles.Clear();
+
+                //choose tiles to be drawn
+                foreach (var tile in tiles)
+                {
+                    if (tile.position.X > playerPosition.X - 2 * VResWidth && tile.position.X < playerPosition.X + 2 * VResWidth && tile.position.Y > playerPosition.Y - 2 * VResHeight && tile.position.Y < playerPosition.Y + 2 * VResHeight)
+                    {
+                        drawableTiles.Add(tile);
+                    }
+                }
+
+            }
+
+            previousPlayerPosition = playerPosition;
+
         }
 
         public void Draw(List<Texture2D> tilesets, SpriteBatch spriteBatch)
         {
-            foreach (var tile in tiles)
+            foreach (var tile in drawableTiles)
             {
                 spriteBatch.Draw(tilesets[tile.tilesetIndex], tile.position, tile.sourceRect, Color.White, 0.0f, Vector2.Zero, SpriteEffects.None, layerDepth);
             }
@@ -194,74 +217,4 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         }
 
     }
-    //public class Wall
-    //{
-    //    public Rectangle boundingBox;
-    //    public bool active = true;
-
-    //    public Wall()
-    //    {
-
-    //    }
-
-    //    public Wall(Rectangle rect)
-    //    {
-    //        boundingBox = rect;
-    //    }
-    //}
-
-    //public class Decoration : GameObject
-    //{
-    //    public string imagePath;
-    //    public Rectangle sourceRect;
-
-    //    public string Name
-    //    {
-    //        get { return imagePath; }
-    //    }
-
-
-    //    public Decoration()
-    //    {
-    //        isCollidable = false;
-    //    }
-
-    //    public Decoration(Vector2 position, string imagePath, float layerDepth)
-    //    {
-    //        this.position = position;
-    //        this.imagePath = imagePath;
-    //        this.layerDepth = layerDepth;
-    //    }
-
-    //    public virtual void Load(ContentManager content, string assetPath)
-    //    {
-    //        texture = TextureLoader.Load(assetPath, content);
-    //        texture.Name = assetPath;
-    //        //imagePath = assetPath;
-
-    //        boundingBoxWidth = texture.Width;
-    //        boundingBoxHeight = texture.Height;
-
-    //        if (sourceRect == Rectangle.Empty)
-    //        {
-    //            sourceRect = new Rectangle(0, 0, texture.Width, texture.Height);
-    //        }
-
-    //    }
-
-    //    public void SetImage(Texture2D inputTexture, string assetPath)
-    //    {
-    //        texture = inputTexture;
-    //        imagePath = assetPath;
-    //    }
-
-    //    public override void Draw(SpriteBatch spriteBatch)
-    //    {
-    //        if (texture != null && active == true)
-    //        {
-    //            spriteBatch.Draw(texture, position, sourceRect, tintColor, rotation, Vector2.Zero, scale, SpriteEffects.None, layerDepth);
-    //        }
-    //    }
-
-    //}
 }

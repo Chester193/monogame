@@ -12,7 +12,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        public TiledMap tiledMap = new TiledMap();
+        int vResWidth = 1280, vResHeight = 720;
+        int resWidth = 1280, resHeight = 720;
+
+        public TiledMap tiledMap;
 
         public Game1()
         {
@@ -20,8 +23,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             Content.RootDirectory = "Content";
 
             ResolutionManager.Init(ref graphics);
-            ResolutionManager.SetVirtualResolution(1280, 800);
-            ResolutionManager.SetResolution(1280, 800, false);
+            ResolutionManager.SetVirtualResolution(vResWidth, vResHeight);
+            ResolutionManager.SetResolution(resWidth, resHeight, false);
+            graphics.ApplyChanges();
         }
 
         /// <summary>
@@ -33,7 +37,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            Camera.Initialize(zoomLevel: 2.0f);
+            tiledMap = new TiledMap(vResWidth, vResHeight);
+
+            Camera.Initialize(zoomLevel: 1.0f);
             base.Initialize();
         }
 
@@ -70,7 +76,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 Exit();
 
             // TODO: Add your update logic here
-            UpdateCamera(new Vector2(1200, 800));
+            tiledMap.Update(gameTime, new Vector2(1200, 600));
+
+            UpdateCamera(new Vector2(1200, 600));
 
             base.Update(gameTime);
         }
