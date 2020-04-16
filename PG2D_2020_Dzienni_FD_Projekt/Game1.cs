@@ -47,7 +47,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            tiledMap.Load(Content, @"Tilemaps/small_town.tmx");
+            tiledMap.Load(Content, @"Map/map.tmx");
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 Exit();
 
             // TODO: Add your update logic here
-            UpdateCamera(new Vector2(1600, 1000));
+            UpdateCamera(new Vector2(1600, 800));
 
             base.Update(gameTime);
         }

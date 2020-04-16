@@ -46,6 +46,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             foreach (var tileset in tiledMap.Tilesets)
             {
+                Console.WriteLine(@content.RootDirectory + @"\" + filePath + " " + System.IO.Path.GetDirectoryName(filePath));
                 tilesets.Add(content.Load<Texture2D>(System.IO.Path.GetDirectoryName(filePath) + @"\" + @tileset.Name.ToString()));
                 firstGids.Add(tileset.FirstGid);
             }
