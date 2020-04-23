@@ -36,10 +36,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public override void Load(ContentManager content)
         {
 
-            texture = TextureLoader.Load(@"characters/enemy", content);
-            //SpriteAtlasData atlas = SpriteAtlasLoader.ParseSpriteAtlas(@"characters/walking.atlas", texture, content);
+            texture = TextureLoader.Load(@"characters/warrior", content);
+            SpriteAtlasData atlas = SpriteAtlasLoader.ParseSpriteAtlas(@"characters/warrior.atlas", texture, content);
 
-            //LoadAnimations(atlas);
+            LoadAnimations(atlas);
             ChangeAnimation(Animations.IdleRight);
 
             base.Load(content);
@@ -129,8 +129,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             //}
 
         }
-
-
 
     }
 }

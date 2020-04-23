@@ -10,9 +10,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
     public class Character : AnimatedObject
     {
         public Vector2 velocity;
-        protected float acceleration = 1.2f;
+        protected float acceleration = 0.4f;
         protected float deceleration = 0.78f;
-        protected float maxSpeed = 8.0f;
+        protected float maxSpeed = 4.0f;
 
         const float gravity = 1.0f;
         const float jumpVelocity = 16.0f;

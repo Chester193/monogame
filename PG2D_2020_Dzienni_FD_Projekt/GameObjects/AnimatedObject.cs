@@ -25,19 +25,19 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         protected class Animations
         {
-            public static string WalkingRight = "Right - Walking";
-            public static string WalkingLeft = "Left - Walking";
-            public static string WalkingBack = "Back - Walking";
-            public static string WalkingFront = "Front - Walking";
-            public static string IdleRight = "Right - Idle";
-            public static string IdleLeft = "Left - Idle";
-            public static string IdleBack = "Back - Idle";
-            public static string IdleFront = "Front - Idle";
-            public static string SlashLeft = "Left - Slashing";
-            public static string SlashRight = "Right - Slashing";
-            public static string SlashBack = "Back - Slashing";
-            public static string SlashFront = "Front - Slashing";
-            public static string Dying = "Dying";
+            public static string WalkingRight = "Right - Walking/0_Warrior_Walk";
+            public static string WalkingLeft = "Left - Walking/0_Warrior_Walk";
+            public static string WalkingBack = "Back - Walking/0_Warrior_Walk";
+            public static string WalkingFront = "Front - Walking/0_Warrior_Walk";
+            public static string IdleRight = "Right - Idle/0_Warrior_Idle";
+            public static string IdleLeft = "Left - Idle/0_Warrior_Idle";
+            public static string IdleBack = "Back - Idle/0_Warrior_Idle";
+            public static string IdleFront = "Front - Idle/0_Warrior_Idle";
+            public static string SlashLeft = "Left - Slashing/0_Warrior_Attack_1";
+            public static string SlashRight = "Right - Slashing/0_Warrior_Attack_2";
+            public static string SlashBack = "Back - Slashing/0_Warrior_Attack_1";
+            public static string SlashFront = "Front - Slashing/0_Warrior_Attack_2";
+            //public static string Dying = "Dying";
         }
         //protected enum Animations
 
