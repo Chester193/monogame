@@ -62,7 +62,32 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             base.UpdateAnimations();
 
-            if (velocity != Vector2.Zero && isJumping == false)
+            if (isAttacking)
+            {
+                velocity = Vector2.Zero;
+                if (characterFacingDirection == enums.Direction.Back && AnimationIsNot(Animations.SlashBack))
+                {
+                    ChangeAnimation(Animations.SlashBack);
+                }
+                if (characterFacingDirection == enums.Direction.Front && AnimationIsNot(Animations.SlashFront))
+                {
+                    ChangeAnimation(Animations.SlashFront);
+                }
+                if (characterFacingDirection == enums.Direction.Left && AnimationIsNot(Animations.SlashLeft))
+                {
+                    ChangeAnimation(Animations.SlashLeft);
+                }
+                if (characterFacingDirection == enums.Direction.Right && AnimationIsNot(Animations.SlashRight))
+                {
+                    ChangeAnimation(Animations.SlashRight);
+                }
+                if (IsAnimationComplete)
+                {
+                    isAttacking = false;
+                }
+            }
+
+            if (velocity != Vector2.Zero && isJumping == false && isAttacking == false)
             {
                 if (direction.X < 0 && AnimationIsNot(Animations.WalkingLeft))
                 {
@@ -84,7 +109,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             }
 
-            else if (velocity == Vector2.Zero && isJumping == false)
+            else if (velocity == Vector2.Zero && isJumping == false && isAttacking == false)
             {
                 if (direction.X < 0 && AnimationIsNot(Animations.IdleLeft))
                 {
@@ -123,11 +148,16 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             if (Input.IsKeyDown(Keys.W) == true)
                 MoveUp();
 
-            //if (Input.KeyPressed(Keys.Space))
-            //{
-            //    Fire();
-            //}
+            if (Input.KeyPressed(Keys.Space))
+            {
+                Fire();
+            }
 
+        }
+
+        private void Fire()
+        {
+            isAttacking = true;            
         }
 
     }
