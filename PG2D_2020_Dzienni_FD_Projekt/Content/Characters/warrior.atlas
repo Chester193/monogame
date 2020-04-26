@@ -1,0 +1,2106 @@
+
+warrior.png
+size: 2032, 1992
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Back - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1162, 772
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 0
+Back - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1258, 772
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 1
+Back - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1354, 772
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 2
+Back - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1450, 772
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 3
+Back - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1546, 773
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 4
+Back - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1642, 773
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 5
+Back - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1738, 773
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 6
+Back - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1834, 773
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 7
+Back - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1930, 773
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 8
+Back - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 90, 901
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 9
+Back - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 186, 901
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 10
+Back - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 282, 901
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 11
+Back - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 378, 901
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 12
+Back - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 717, 1681
+  size: 94, 129
+  orig: 220, 220
+  offset: 63, 48
+  index: 13
+Back - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 813, 1681
+  size: 94, 129
+  orig: 220, 220
+  offset: 63, 48
+  index: 14
+Back - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 909, 1681
+  size: 94, 129
+  orig: 220, 220
+  offset: 63, 48
+  index: 15
+Back - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1005, 1682
+  size: 94, 129
+  orig: 220, 220
+  offset: 63, 48
+  index: 16
+Back - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1101, 1682
+  size: 94, 129
+  orig: 220, 220
+  offset: 63, 48
+  index: 17
+Back - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 474, 901
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 18
+Back - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 570, 901
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 19
+Back - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 666, 901
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 20
+Back - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 762, 901
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 21
+Back - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 858, 901
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 22
+Back - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 954, 901
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 23
+Back - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1050, 901
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 24
+Back - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1146, 902
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 25
+Back - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1242, 902
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 26
+Back - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1338, 902
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 27
+Back - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1434, 902
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 28
+Back - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1530, 903
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 29
+Back - Slashing/0_Warrior_Attack_1
+  rotate: false
+  xy: 1626, 903
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 0
+Back - Slashing/0_Warrior_Attack_1
+  rotate: false
+  xy: 1722, 903
+  size: 150, 128
+  orig: 220, 220
+  offset: 49, 48
+  index: 1
+Back - Slashing/0_Warrior_Attack_1
+  rotate: false
+  xy: 1874, 903
+  size: 150, 128
+  orig: 220, 220
+  offset: 49, 48
+  index: 2
+Back - Slashing/0_Warrior_Attack_1
+  rotate: false
+  xy: 90, 256
+  size: 150, 127
+  orig: 220, 220
+  offset: 49, 48
+  index: 3
+Back - Slashing/0_Warrior_Attack_1
+  rotate: false
+  xy: 242, 256
+  size: 150, 127
+  orig: 220, 220
+  offset: 49, 48
+  index: 4
+Back - Slashing/0_Warrior_Attack_1
+  rotate: false
+  xy: 90, 1031
+  size: 150, 128
+  orig: 220, 220
+  offset: 49, 47
+  index: 5
+Back - Slashing/0_Warrior_Attack_1
+  rotate: false
+  xy: 242, 1031
+  size: 150, 128
+  orig: 220, 220
+  offset: 49, 47
+  index: 6
+Back - Slashing/0_Warrior_Attack_1
+  rotate: false
+  xy: 394, 256
+  size: 150, 127
+  orig: 220, 220
+  offset: 49, 47
+  index: 7
+Back - Slashing/0_Warrior_Attack_1
+  rotate: false
+  xy: 546, 256
+  size: 150, 127
+  orig: 220, 220
+  offset: 49, 47
+  index: 8
+Back - Slashing/0_Warrior_Attack_1
+  rotate: false
+  xy: 394, 1031
+  size: 150, 128
+  orig: 220, 220
+  offset: 49, 46
+  index: 9
+Back - Slashing/0_Warrior_Attack_1
+  rotate: false
+  xy: 546, 1031
+  size: 150, 128
+  orig: 220, 220
+  offset: 49, 46
+  index: 10
+Back - Slashing/0_Warrior_Attack_1
+  rotate: false
+  xy: 698, 256
+  size: 150, 127
+  orig: 220, 220
+  offset: 49, 46
+  index: 11
+Back - Slashing/0_Warrior_Attack_1
+  rotate: false
+  xy: 850, 256
+  size: 150, 127
+  orig: 220, 220
+  offset: 49, 46
+  index: 12
+Back - Slashing/0_Warrior_Attack_1
+  rotate: false
+  xy: 1002, 256
+  size: 150, 127
+  orig: 220, 220
+  offset: 49, 46
+  index: 13
+Back - Slashing/0_Warrior_Attack_1
+  rotate: false
+  xy: 698, 1031
+  size: 150, 128
+  orig: 220, 220
+  offset: 49, 46
+  index: 14
+Back - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 850, 1031
+  size: 93, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 0
+Back - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 945, 1031
+  size: 93, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 1
+Back - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1040, 1031
+  size: 93, 128
+  orig: 220, 220
+  offset: 63, 47
+  index: 2
+Back - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1135, 1032
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 47
+  index: 3
+Back - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1231, 1032
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 46
+  index: 4
+Back - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1327, 1032
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 46
+  index: 5
+Back - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1423, 1032
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 45
+  index: 6
+Back - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1519, 1033
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 45
+  index: 7
+Back - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1615, 1033
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 45
+  index: 8
+Back - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1711, 1033
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 45
+  index: 9
+Back - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1807, 1033
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 46
+  index: 10
+Back - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1903, 1033
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 46
+  index: 11
+Back - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 90, 1161
+  size: 93, 128
+  orig: 220, 220
+  offset: 64, 47
+  index: 12
+Back - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 185, 1161
+  size: 93, 128
+  orig: 220, 220
+  offset: 64, 47
+  index: 13
+Back - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 280, 1161
+  size: 93, 128
+  orig: 220, 220
+  offset: 64, 48
+  index: 14
+Back - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 375, 1161
+  size: 93, 128
+  orig: 220, 220
+  offset: 64, 48
+  index: 15
+Back - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 470, 1161
+  size: 93, 128
+  orig: 220, 220
+  offset: 64, 48
+  index: 16
+Back - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 565, 1161
+  size: 93, 128
+  orig: 220, 220
+  offset: 64, 47
+  index: 17
+Back - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 660, 1161
+  size: 93, 128
+  orig: 220, 220
+  offset: 64, 47
+  index: 18
+Back - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 755, 1161
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 46
+  index: 19
+Back - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 851, 1161
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 46
+  index: 20
+Back - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 947, 1161
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 45
+  index: 21
+Back - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1132, 1162
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 45
+  index: 22
+Back - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1228, 1162
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 45
+  index: 23
+Back - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1324, 1162
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 45
+  index: 24
+Back - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1420, 1162
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 46
+  index: 25
+Back - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1516, 1163
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 46
+  index: 26
+Back - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1612, 1163
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 47
+  index: 27
+Back - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1708, 1163
+  size: 93, 128
+  orig: 220, 220
+  offset: 63, 47
+  index: 28
+Back - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1803, 1163
+  size: 93, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 29
+Front - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1898, 1163
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 0
+Front - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 90, 1291
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 1
+Front - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 186, 1291
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 2
+Front - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 282, 1291
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 3
+Front - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 378, 1291
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 4
+Front - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 474, 1291
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 5
+Front - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 570, 1291
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 6
+Front - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 666, 1291
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 7
+Front - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 762, 1291
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 8
+Front - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 858, 1291
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 9
+Front - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 954, 1291
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 10
+Front - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1050, 1292
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 11
+Front - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1146, 1292
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 12
+Front - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1197, 1682
+  size: 94, 129
+  orig: 220, 220
+  offset: 63, 48
+  index: 13
+Front - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1293, 1682
+  size: 94, 129
+  orig: 220, 220
+  offset: 63, 48
+  index: 14
+Front - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1389, 1683
+  size: 94, 129
+  orig: 220, 220
+  offset: 63, 48
+  index: 15
+Front - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1485, 1683
+  size: 94, 129
+  orig: 220, 220
+  offset: 63, 48
+  index: 16
+Front - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1581, 1683
+  size: 94, 129
+  orig: 220, 220
+  offset: 63, 48
+  index: 17
+Front - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1242, 1292
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 18
+Front - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1338, 1292
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 19
+Front - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1434, 1293
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 20
+Front - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1530, 1293
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 21
+Front - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1626, 1293
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 22
+Front - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1722, 1293
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 23
+Front - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1818, 1293
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 24
+Front - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1914, 1293
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 25
+Front - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 90, 1421
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 26
+Front - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 186, 1421
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 27
+Front - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 282, 1421
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 28
+Front - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 378, 1421
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 29
+Front - Slashing/0_Warrior_Attack_2
+  rotate: false
+  xy: 1855, 1683
+  size: 105, 131
+  orig: 220, 220
+  offset: 56, 52
+  index: 0
+Front - Slashing/0_Warrior_Attack_2
+  rotate: false
+  xy: 1, 1811
+  size: 93, 141
+  orig: 220, 220
+  offset: 58, 41
+  index: 1
+Front - Slashing/0_Warrior_Attack_2
+  rotate: false
+  xy: 1872, 1816
+  size: 146, 175
+  orig: 220, 220
+  offset: 20, 5
+  index: 2
+Front - Slashing/0_Warrior_Attack_2
+  rotate: false
+  xy: 1724, 1816
+  size: 146, 174
+  orig: 220, 220
+  offset: 20, 5
+  index: 3
+Front - Slashing/0_Warrior_Attack_2
+  rotate: false
+  xy: 1576, 1814
+  size: 146, 172
+  orig: 220, 220
+  offset: 20, 5
+  index: 4
+Front - Slashing/0_Warrior_Attack_2
+  rotate: false
+  xy: 1428, 1814
+  size: 146, 171
+  orig: 220, 220
+  offset: 20, 5
+  index: 5
+Front - Slashing/0_Warrior_Attack_2
+  rotate: false
+  xy: 1280, 1814
+  size: 146, 170
+  orig: 220, 220
+  offset: 20, 5
+  index: 6
+Front - Slashing/0_Warrior_Attack_2
+  rotate: false
+  xy: 984, 1813
+  size: 146, 169
+  orig: 220, 220
+  offset: 20, 5
+  index: 7
+Front - Slashing/0_Warrior_Attack_2
+  rotate: false
+  xy: 1132, 1813
+  size: 146, 169
+  orig: 220, 220
+  offset: 20, 5
+  index: 8
+Front - Slashing/0_Warrior_Attack_2
+  rotate: false
+  xy: 540, 1811
+  size: 146, 168
+  orig: 220, 220
+  offset: 20, 5
+  index: 9
+Front - Slashing/0_Warrior_Attack_2
+  rotate: false
+  xy: 688, 1812
+  size: 146, 168
+  orig: 220, 220
+  offset: 20, 5
+  index: 10
+Front - Slashing/0_Warrior_Attack_2
+  rotate: false
+  xy: 836, 1812
+  size: 146, 168
+  orig: 220, 220
+  offset: 20, 5
+  index: 11
+Front - Slashing/0_Warrior_Attack_2
+  rotate: false
+  xy: 392, 1811
+  size: 146, 167
+  orig: 220, 220
+  offset: 20, 5
+  index: 12
+Front - Slashing/0_Warrior_Attack_2
+  rotate: false
+  xy: 244, 1811
+  size: 146, 166
+  orig: 220, 220
+  offset: 20, 6
+  index: 13
+Front - Slashing/0_Warrior_Attack_2
+  rotate: false
+  xy: 96, 1811
+  size: 146, 165
+  orig: 220, 220
+  offset: 20, 7
+  index: 14
+Front - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 474, 1421
+  size: 93, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 0
+Front - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 569, 1421
+  size: 93, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 1
+Front - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 664, 1421
+  size: 93, 128
+  orig: 220, 220
+  offset: 63, 47
+  index: 2
+Front - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 759, 1421
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 47
+  index: 3
+Front - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 855, 1421
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 46
+  index: 4
+Front - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 951, 1421
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 46
+  index: 5
+Front - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1047, 1422
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 45
+  index: 6
+Front - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1143, 1422
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 45
+  index: 7
+Front - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1239, 1422
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 45
+  index: 8
+Front - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1335, 1422
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 45
+  index: 9
+Front - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1431, 1423
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 46
+  index: 10
+Front - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1527, 1423
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 46
+  index: 11
+Front - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1623, 1423
+  size: 93, 128
+  orig: 220, 220
+  offset: 64, 47
+  index: 12
+Front - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1718, 1423
+  size: 93, 128
+  orig: 220, 220
+  offset: 64, 47
+  index: 13
+Front - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1813, 1423
+  size: 93, 128
+  orig: 220, 220
+  offset: 64, 48
+  index: 14
+Front - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1908, 1423
+  size: 93, 128
+  orig: 220, 220
+  offset: 64, 48
+  index: 15
+Front - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 90, 1551
+  size: 93, 128
+  orig: 220, 220
+  offset: 64, 48
+  index: 16
+Front - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 185, 1551
+  size: 93, 128
+  orig: 220, 220
+  offset: 64, 47
+  index: 17
+Front - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 280, 1551
+  size: 93, 128
+  orig: 220, 220
+  offset: 64, 47
+  index: 18
+Front - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 375, 1551
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 46
+  index: 19
+Front - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 471, 1551
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 46
+  index: 20
+Front - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 567, 1551
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 45
+  index: 21
+Front - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 663, 1551
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 45
+  index: 22
+Front - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 759, 1551
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 45
+  index: 23
+Front - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 855, 1551
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 45
+  index: 24
+Front - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 951, 1551
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 46
+  index: 25
+Front - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1047, 1552
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 46
+  index: 26
+Front - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1143, 1552
+  size: 94, 128
+  orig: 220, 220
+  offset: 63, 47
+  index: 27
+Front - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1239, 1552
+  size: 93, 128
+  orig: 220, 220
+  offset: 63, 47
+  index: 28
+Front - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1334, 1552
+  size: 93, 128
+  orig: 220, 220
+  offset: 63, 48
+  index: 29
+Left - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1781, 1
+  size: 87, 126
+  orig: 220, 220
+  offset: 68, 48
+  index: 0
+Left - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1, 255
+  size: 87, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 1
+Left - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1154, 256
+  size: 87, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 2
+Left - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1243, 256
+  size: 88, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 3
+Left - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1333, 256
+  size: 88, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 4
+Left - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1423, 256
+  size: 88, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 5
+Left - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1513, 256
+  size: 88, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 6
+Left - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1603, 256
+  size: 88, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 7
+Left - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1693, 257
+  size: 88, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 8
+Left - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1783, 257
+  size: 88, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 9
+Left - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1873, 257
+  size: 88, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 10
+Left - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 90, 385
+  size: 88, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 11
+Left - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 180, 385
+  size: 88, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 12
+Left - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 270, 385
+  size: 88, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 13
+Left - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 360, 385
+  size: 88, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 14
+Left - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 450, 385
+  size: 88, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 15
+Left - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 540, 385
+  size: 88, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 16
+Left - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 630, 385
+  size: 88, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 17
+Left - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 720, 385
+  size: 88, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 18
+Left - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 810, 385
+  size: 88, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 19
+Left - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 900, 385
+  size: 88, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 20
+Left - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 990, 385
+  size: 88, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 21
+Left - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1080, 385
+  size: 88, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 22
+Left - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1170, 385
+  size: 88, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 23
+Left - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1260, 385
+  size: 88, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 24
+Left - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1350, 385
+  size: 88, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 25
+Left - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1440, 385
+  size: 88, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 26
+Left - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1530, 385
+  size: 88, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 27
+Left - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1, 384
+  size: 87, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 28
+Left - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1620, 386
+  size: 87, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 29
+Left - Slashing/0_Warrior_Attack_1
+  rotate: false
+  xy: 1, 1
+  size: 97, 124
+  orig: 220, 220
+  offset: 79, 48
+  index: 0
+Left - Slashing/0_Warrior_Attack_1
+  rotate: false
+  xy: 208, 1
+  size: 90, 125
+  orig: 220, 220
+  offset: 75, 48
+  index: 1
+Left - Slashing/0_Warrior_Attack_1
+  rotate: false
+  xy: 1870, 1
+  size: 130, 126
+  orig: 220, 220
+  offset: 29, 48
+  index: 2
+Left - Slashing/0_Warrior_Attack_1
+  rotate: false
+  xy: 1, 127
+  size: 127, 126
+  orig: 220, 220
+  offset: 28, 48
+  index: 3
+Left - Slashing/0_Warrior_Attack_1
+  rotate: false
+  xy: 130, 128
+  size: 123, 126
+  orig: 220, 220
+  offset: 28, 48
+  index: 4
+Left - Slashing/0_Warrior_Attack_1
+  rotate: false
+  xy: 300, 1
+  size: 121, 125
+  orig: 220, 220
+  offset: 28, 48
+  index: 5
+Left - Slashing/0_Warrior_Attack_1
+  rotate: false
+  xy: 423, 1
+  size: 121, 125
+  orig: 220, 220
+  offset: 28, 48
+  index: 6
+Left - Slashing/0_Warrior_Attack_1
+  rotate: false
+  xy: 546, 1
+  size: 121, 125
+  orig: 220, 220
+  offset: 28, 48
+  index: 7
+Left - Slashing/0_Warrior_Attack_1
+  rotate: false
+  xy: 669, 1
+  size: 121, 125
+  orig: 220, 220
+  offset: 28, 48
+  index: 8
+Left - Slashing/0_Warrior_Attack_1
+  rotate: false
+  xy: 792, 1
+  size: 121, 125
+  orig: 220, 220
+  offset: 28, 48
+  index: 9
+Left - Slashing/0_Warrior_Attack_1
+  rotate: false
+  xy: 915, 1
+  size: 121, 125
+  orig: 220, 220
+  offset: 28, 48
+  index: 10
+Left - Slashing/0_Warrior_Attack_1
+  rotate: false
+  xy: 1038, 1
+  size: 121, 125
+  orig: 220, 220
+  offset: 28, 48
+  index: 11
+Left - Slashing/0_Warrior_Attack_1
+  rotate: false
+  xy: 255, 128
+  size: 121, 126
+  orig: 220, 220
+  offset: 28, 48
+  index: 12
+Left - Slashing/0_Warrior_Attack_1
+  rotate: false
+  xy: 1161, 1
+  size: 120, 125
+  orig: 220, 220
+  offset: 28, 48
+  index: 13
+Left - Slashing/0_Warrior_Attack_1
+  rotate: false
+  xy: 1283, 1
+  size: 120, 125
+  orig: 220, 220
+  offset: 28, 48
+  index: 14
+Left - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1405, 1
+  size: 87, 125
+  orig: 220, 220
+  offset: 68, 49
+  index: 0
+Left - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 378, 128
+  size: 88, 126
+  orig: 220, 220
+  offset: 67, 48
+  index: 1
+Left - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 468, 128
+  size: 88, 126
+  orig: 220, 220
+  offset: 67, 47
+  index: 2
+Left - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 558, 128
+  size: 87, 126
+  orig: 220, 220
+  offset: 67, 47
+  index: 3
+Left - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1709, 386
+  size: 88, 127
+  orig: 220, 220
+  offset: 66, 46
+  index: 4
+Left - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 647, 128
+  size: 87, 126
+  orig: 220, 220
+  offset: 66, 46
+  index: 5
+Left - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1799, 386
+  size: 87, 127
+  orig: 220, 220
+  offset: 66, 45
+  index: 6
+Left - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1888, 386
+  size: 88, 127
+  orig: 220, 220
+  offset: 65, 45
+  index: 7
+Left - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 90, 514
+  size: 88, 127
+  orig: 220, 220
+  offset: 65, 45
+  index: 8
+Left - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1, 513
+  size: 87, 127
+  orig: 220, 220
+  offset: 66, 45
+  index: 9
+Left - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 736, 128
+  size: 87, 126
+  orig: 220, 220
+  offset: 66, 46
+  index: 10
+Left - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 180, 514
+  size: 88, 127
+  orig: 220, 220
+  offset: 66, 46
+  index: 11
+Left - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 825, 128
+  size: 87, 126
+  orig: 220, 220
+  offset: 67, 47
+  index: 12
+Left - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 914, 128
+  size: 88, 126
+  orig: 220, 220
+  offset: 67, 47
+  index: 13
+Left - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1494, 1
+  size: 88, 125
+  orig: 220, 220
+  offset: 67, 48
+  index: 14
+Left - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1004, 128
+  size: 87, 126
+  orig: 220, 220
+  offset: 68, 48
+  index: 15
+Left - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1584, 1
+  size: 88, 125
+  orig: 220, 220
+  offset: 67, 48
+  index: 16
+Left - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1093, 128
+  size: 87, 126
+  orig: 220, 220
+  offset: 67, 47
+  index: 17
+Left - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 270, 514
+  size: 88, 127
+  orig: 220, 220
+  offset: 66, 46
+  index: 18
+Left - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 360, 514
+  size: 87, 127
+  orig: 220, 220
+  offset: 66, 46
+  index: 19
+Left - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 449, 514
+  size: 88, 127
+  orig: 220, 220
+  offset: 65, 45
+  index: 20
+Left - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 539, 514
+  size: 87, 127
+  orig: 220, 220
+  offset: 65, 45
+  index: 21
+Left - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1, 900
+  size: 87, 128
+  orig: 220, 220
+  offset: 64, 44
+  index: 22
+Left - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1, 1030
+  size: 87, 128
+  orig: 220, 220
+  offset: 64, 44
+  index: 23
+Left - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 628, 514
+  size: 87, 127
+  orig: 220, 220
+  offset: 65, 45
+  index: 24
+Left - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 717, 514
+  size: 87, 127
+  orig: 220, 220
+  offset: 65, 45
+  index: 25
+Left - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1, 1160
+  size: 87, 128
+  orig: 220, 220
+  offset: 66, 45
+  index: 26
+Left - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 806, 514
+  size: 88, 127
+  orig: 220, 220
+  offset: 66, 46
+  index: 27
+Left - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1182, 128
+  size: 87, 126
+  orig: 220, 220
+  offset: 67, 47
+  index: 28
+Left - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1271, 128
+  size: 88, 126
+  orig: 220, 220
+  offset: 67, 47
+  index: 29
+Right - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1361, 128
+  size: 87, 126
+  orig: 220, 220
+  offset: 68, 48
+  index: 0
+Right - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1450, 128
+  size: 87, 126
+  orig: 220, 220
+  offset: 68, 48
+  index: 1
+Right - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 896, 514
+  size: 87, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 2
+Right - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 985, 514
+  size: 87, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 3
+Right - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1074, 514
+  size: 87, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 4
+Right - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1163, 514
+  size: 88, 127
+  orig: 220, 220
+  offset: 67, 48
+  index: 5
+Right - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1253, 514
+  size: 88, 127
+  orig: 220, 220
+  offset: 67, 48
+  index: 6
+Right - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1343, 514
+  size: 88, 127
+  orig: 220, 220
+  offset: 67, 48
+  index: 7
+Right - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1433, 514
+  size: 88, 127
+  orig: 220, 220
+  offset: 67, 48
+  index: 8
+Right - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1523, 514
+  size: 88, 127
+  orig: 220, 220
+  offset: 67, 48
+  index: 9
+Right - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1613, 515
+  size: 88, 127
+  orig: 220, 220
+  offset: 67, 48
+  index: 10
+Right - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1703, 515
+  size: 87, 127
+  orig: 220, 220
+  offset: 67, 48
+  index: 11
+Right - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1792, 515
+  size: 87, 127
+  orig: 220, 220
+  offset: 67, 48
+  index: 12
+Right - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1881, 515
+  size: 87, 127
+  orig: 220, 220
+  offset: 67, 48
+  index: 13
+Right - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1, 642
+  size: 87, 127
+  orig: 220, 220
+  offset: 67, 48
+  index: 14
+Right - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 90, 643
+  size: 87, 127
+  orig: 220, 220
+  offset: 67, 48
+  index: 15
+Right - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 179, 643
+  size: 87, 127
+  orig: 220, 220
+  offset: 67, 48
+  index: 16
+Right - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 268, 643
+  size: 87, 127
+  orig: 220, 220
+  offset: 67, 48
+  index: 17
+Right - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 357, 643
+  size: 87, 127
+  orig: 220, 220
+  offset: 67, 48
+  index: 18
+Right - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 446, 643
+  size: 87, 127
+  orig: 220, 220
+  offset: 67, 48
+  index: 19
+Right - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 535, 643
+  size: 88, 127
+  orig: 220, 220
+  offset: 67, 48
+  index: 20
+Right - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 625, 643
+  size: 88, 127
+  orig: 220, 220
+  offset: 67, 48
+  index: 21
+Right - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 715, 643
+  size: 88, 127
+  orig: 220, 220
+  offset: 67, 48
+  index: 22
+Right - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 805, 643
+  size: 88, 127
+  orig: 220, 220
+  offset: 67, 48
+  index: 23
+Right - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 895, 643
+  size: 88, 127
+  orig: 220, 220
+  offset: 67, 48
+  index: 24
+Right - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 985, 643
+  size: 88, 127
+  orig: 220, 220
+  offset: 67, 48
+  index: 25
+Right - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1075, 643
+  size: 87, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 26
+Right - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1164, 643
+  size: 87, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 27
+Right - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1253, 643
+  size: 87, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 28
+Right - Idle/0_Warrior_Idle
+  rotate: false
+  xy: 1342, 643
+  size: 87, 127
+  orig: 220, 220
+  offset: 68, 48
+  index: 29
+Right - Slashing/0_Warrior_Attack_2
+  rotate: false
+  xy: 1539, 128
+  size: 98, 126
+  orig: 220, 220
+  offset: 43, 54
+  index: 0
+Right - Slashing/0_Warrior_Attack_2
+  rotate: false
+  xy: 1431, 643
+  size: 114, 127
+  orig: 220, 220
+  offset: 58, 50
+  index: 1
+Right - Slashing/0_Warrior_Attack_2
+  rotate: false
+  xy: 1547, 644
+  size: 108, 127
+  orig: 220, 220
+  offset: 64, 48
+  index: 2
+Right - Slashing/0_Warrior_Attack_2
+  rotate: false
+  xy: 1657, 644
+  size: 105, 127
+  orig: 220, 220
+  offset: 67, 48
+  index: 3
+Right - Slashing/0_Warrior_Attack_2
+  rotate: false
+  xy: 1674, 1
+  size: 105, 125
+  orig: 220, 220
+  offset: 67, 48
+  index: 4
+Right - Slashing/0_Warrior_Attack_2
+  rotate: false
+  xy: 100, 1
+  size: 106, 124
+  orig: 220, 220
+  offset: 67, 48
+  index: 5
+Right - Slashing/0_Warrior_Attack_2
+  rotate: false
+  xy: 1639, 128
+  size: 106, 126
+  orig: 220, 220
+  offset: 67, 47
+  index: 6
+Right - Slashing/0_Warrior_Attack_2
+  rotate: false
+  xy: 1747, 129
+  size: 105, 126
+  orig: 220, 220
+  offset: 68, 47
+  index: 7
+Right - Slashing/0_Warrior_Attack_2
+  rotate: false
+  xy: 1764, 644
+  size: 105, 127
+  orig: 220, 220
+  offset: 68, 47
+  index: 8
+Right - Slashing/0_Warrior_Attack_2
+  rotate: false
+  xy: 1871, 644
+  size: 105, 127
+  orig: 220, 220
+  offset: 68, 47
+  index: 9
+Right - Slashing/0_Warrior_Attack_2
+  rotate: false
+  xy: 90, 772
+  size: 105, 127
+  orig: 220, 220
+  offset: 68, 47
+  index: 10
+Right - Slashing/0_Warrior_Attack_2
+  rotate: false
+  xy: 197, 772
+  size: 105, 127
+  orig: 220, 220
+  offset: 68, 47
+  index: 11
+Right - Slashing/0_Warrior_Attack_2
+  rotate: false
+  xy: 304, 772
+  size: 105, 127
+  orig: 220, 220
+  offset: 68, 47
+  index: 12
+Right - Slashing/0_Warrior_Attack_2
+  rotate: false
+  xy: 411, 772
+  size: 105, 127
+  orig: 220, 220
+  offset: 68, 47
+  index: 13
+Right - Slashing/0_Warrior_Attack_2
+  rotate: false
+  xy: 518, 772
+  size: 105, 127
+  orig: 220, 220
+  offset: 68, 47
+  index: 14
+Right - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1361, 128
+  size: 87, 126
+  orig: 220, 220
+  offset: 68, 48
+  index: 0
+Right - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1, 771
+  size: 87, 127
+  orig: 220, 220
+  offset: 69, 47
+  index: 1
+Right - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 625, 772
+  size: 87, 127
+  orig: 220, 220
+  offset: 70, 47
+  index: 2
+Right - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1043, 1161
+  size: 87, 128
+  orig: 220, 220
+  offset: 71, 46
+  index: 3
+Right - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1, 1290
+  size: 87, 128
+  orig: 220, 220
+  offset: 72, 46
+  index: 4
+Right - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1, 1420
+  size: 87, 128
+  orig: 220, 220
+  offset: 73, 45
+  index: 5
+Right - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1, 1550
+  size: 87, 128
+  orig: 220, 220
+  offset: 74, 45
+  index: 6
+Right - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1429, 1553
+  size: 87, 128
+  orig: 220, 220
+  offset: 75, 45
+  index: 7
+Right - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1518, 1553
+  size: 87, 128
+  orig: 220, 220
+  offset: 75, 45
+  index: 8
+Right - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1607, 1553
+  size: 87, 128
+  orig: 220, 220
+  offset: 74, 45
+  index: 9
+Right - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1696, 1553
+  size: 88, 128
+  orig: 220, 220
+  offset: 73, 45
+  index: 10
+Right - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1786, 1553
+  size: 88, 128
+  orig: 220, 220
+  offset: 72, 46
+  index: 11
+Right - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1876, 1553
+  size: 88, 128
+  orig: 220, 220
+  offset: 71, 46
+  index: 12
+Right - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 714, 772
+  size: 88, 127
+  orig: 220, 220
+  offset: 70, 47
+  index: 13
+Right - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 804, 772
+  size: 88, 127
+  orig: 220, 220
+  offset: 69, 47
+  index: 14
+Right - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1854, 129
+  size: 88, 126
+  orig: 220, 220
+  offset: 68, 48
+  index: 15
+Right - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1944, 129
+  size: 87, 126
+  orig: 220, 220
+  offset: 69, 48
+  index: 16
+Right - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 894, 772
+  size: 88, 127
+  orig: 220, 220
+  offset: 69, 47
+  index: 17
+Right - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 90, 1681
+  size: 88, 128
+  orig: 220, 220
+  offset: 70, 46
+  index: 18
+Right - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1, 1680
+  size: 87, 128
+  orig: 220, 220
+  offset: 71, 46
+  index: 19
+Right - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 180, 1681
+  size: 87, 128
+  orig: 220, 220
+  offset: 72, 46
+  index: 20
+Right - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1677, 1683
+  size: 87, 129
+  orig: 220, 220
+  offset: 73, 45
+  index: 21
+Right - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 269, 1681
+  size: 88, 128
+  orig: 220, 220
+  offset: 73, 45
+  index: 22
+Right - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 359, 1681
+  size: 87, 128
+  orig: 220, 220
+  offset: 74, 45
+  index: 23
+Right - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 448, 1681
+  size: 87, 128
+  orig: 220, 220
+  offset: 73, 45
+  index: 24
+Right - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1766, 1683
+  size: 87, 129
+  orig: 220, 220
+  offset: 72, 45
+  index: 25
+Right - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 537, 1681
+  size: 88, 128
+  orig: 220, 220
+  offset: 71, 46
+  index: 26
+Right - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 627, 1681
+  size: 88, 128
+  orig: 220, 220
+  offset: 70, 46
+  index: 27
+Right - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 984, 772
+  size: 87, 127
+  orig: 220, 220
+  offset: 70, 47
+  index: 28
+Right - Walking/0_Warrior_Walk
+  rotate: false
+  xy: 1073, 772
+  size: 87, 127
+  orig: 220, 220
+  offset: 69, 47
+  index: 29
