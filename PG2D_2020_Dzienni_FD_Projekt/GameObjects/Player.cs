@@ -43,9 +43,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             ChangeAnimation(Animations.IdleRight);
 
             base.Load(content);
-            boundingBoxOffset = new Vector2(0f, 0f);
-            boundingBoxWidth = animationSet.frameWidth;
-            boundingBoxHeight = animationSet.frameHeight;
+            boundingBoxOffset = new Vector2(0f, 25f);
+            boundingBoxWidth = 26;
+            boundingBoxHeight = 12;
 
         }
 
