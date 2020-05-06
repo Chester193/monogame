@@ -47,6 +47,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             player.position = new Vector2(800, 600);
             gameObjects.Add(player);
 
+            GameObject enemy = new Enemy(new Vector2(400, 300));
+            gameObjects.Add(enemy);
+
             Camera.Initialize(zoomLevel: 1.0f);
             base.Initialize();
         }
