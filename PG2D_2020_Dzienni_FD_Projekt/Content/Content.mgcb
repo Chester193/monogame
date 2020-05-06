@@ -1,9 +1,10 @@
 
 #----------------------------- Global Properties ----------------------------#
 
-/outputDir:..\bin\$(Platform)
-/intermediateDir:..\obj\$(Platform)
-/platform:DesktopGL
+
+/outputDir:bin
+/intermediateDir:obj
+/platform:Windows
 /config:
 /profile:Reach
 /compress:False
@@ -13,7 +14,8 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin Map/grapthics/desert.png
+
+#begin Characters/enemy.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -194,6 +196,12 @@
 /build:Map/grapthics/submission_daneeklu/magic/turtleshell_front.png
 
 #begin Map/grapthics/submission_daneeklu/magic/turtleshell_side.png
+/build:Characters/enemy.png
+
+#begin Characters/warrior.atlas
+/copy:Characters/warrior.atlas
+
+#begin Characters/warrior.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -242,6 +250,9 @@
 /build:Map/grapthics/submission_daneeklu/tilesets/farming_fishing.png
 
 #begin Map/grapthics/submission_daneeklu/tilesets/fence.png
+/build:Characters/warrior.png
+
+#begin Other/pixel.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -374,6 +385,9 @@
 /build:Map/grapthics/submission_daneeklu/ui/scrollsandblocks.png
 
 #begin Map/grapthics/submission_daneeklu/ui_preview.png
+/build:Other/pixel.png
+
+#begin Tilemaps/terrain.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -387,4 +401,12 @@
 
 #begin Map/map.tmx
 /copy:Map/map.tmx
+/build:Tilemaps/terrain.png
+
+#begin Tilemaps/terrain.tmx
+/copy:Tilemaps/terrain.tmx
+
+#begin Tilemaps/Terrain.tsx
+/copy:Tilemaps/Terrain.tsx
+
 

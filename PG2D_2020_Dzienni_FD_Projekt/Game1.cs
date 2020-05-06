@@ -1,6 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using PG2D_2020_Dzienni_FD_Projekt.GameObjects;
+using PG2D_2020_Dzienni_FD_Projekt.Utilities;
+using System.Collections.Generic;
 
 namespace PG2D_2020_Dzienni_FD_Projekt
 {
@@ -11,12 +14,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        private static int widthResolution = 1280;
-        private static int heightResolution = 800;
-        int playerSpeed = 4;
 
-        public TiledMap tiledMap = new TiledMap();
-        public Vector2 cameraPosition = new Vector2(widthResolution / 2, heightResolution / 2);
+        public static int vResWidth = 1280, vResHeight = 720;
+        public static int resWidth = 1280, resHeight = 720;
+
+        public List<GameObject> gameObjects = new List<GameObject>();
+
+        public TiledMap tiledMap;
 
         public Game1()
         {
@@ -24,8 +28,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             Content.RootDirectory = "Content";
 
             ResolutionManager.Init(ref graphics);
-            ResolutionManager.SetVirtualResolution(1280, 800);
-            ResolutionManager.SetResolution(1280, 800, false);
+            ResolutionManager.SetVirtualResolution(vResWidth, vResHeight);
+            ResolutionManager.SetResolution(resWidth, resHeight, false);
+            graphics.ApplyChanges();
         }
 
         /// <summary>
@@ -37,7 +42,16 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            Camera.Initialize(zoomLevel: 1f);
+            tiledMap = new TiledMap(vResWidth, vResHeight);
+            GameObject player = new Player();
+            player.position = new Vector2(800, 600);
+            gameObjects.Add(player);
+
+            GameObject enemy = new Enemy(new Vector2(400, 300));
+            gameObjects.Add(enemy);
+
+            Camera.Initialize(zoomLevel: 1.0f);
+
             base.Initialize();
         }
 
@@ -50,7 +64,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            LoadInitializeGameObjects(gameObjects);
+
             // TODO: use this.Content to load your game content here
+
             tiledMap.Load(Content, @"Map/map.tmx");
         }
 
@@ -73,36 +90,14 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
-            KeyboardState state = Keyboard.GetState();
+            Input.Update();
+            var playerObject = gameObjects[0];
 
-            if (state.IsKeyDown(Keys.W)) {
-                if (cameraPosition.Y - (heightResolution / 2) > 0) {
-                    cameraPosition.Y -= playerSpeed;
-                }
-            } else if (state.IsKeyDown(Keys.S)) {
-                if (cameraPosition.Y + (heightResolution / 2) < tiledMap.mapHeight)
-                {
-                    cameraPosition.Y += playerSpeed;
-                }
-            }
+            // TODO: Add your update logic here           
 
-            if (state.IsKeyDown(Keys.A))
-            {
-                if (cameraPosition.X - (widthResolution / 2) > 0)
-                {
-                    cameraPosition.X -= playerSpeed;
-                }
-            }
-            else if (state.IsKeyDown(Keys.D))
-            {
-                if (cameraPosition.X + (widthResolution / 2) < tiledMap.mapWidth)
-                {
-                    cameraPosition.X += playerSpeed;
-                }
-            }
-
-            UpdateCamera(cameraPosition);
+            tiledMap.Update(gameTime, playerObject.position);
+            UpdateGameObjects(gameObjects, map: tiledMap);
+            UpdateCamera(playerObject.position);
 
             base.Update(gameTime);
         }
@@ -122,6 +117,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.LinearClamp, null, null, null, transformMatrix);
             tiledMap.Draw(spriteBatch);
+            DrawGameObjects(gameObjects);
             spriteBatch.End();
 
             base.Draw(gameTime);
@@ -130,6 +126,44 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         private void UpdateCamera(Vector2 followPosition)
         {
             Camera.Update(followPosition);
+        }
+
+        public void DrawGameObjects(List<GameObject> gameObjects)
+        {
+            foreach (var gameObject in gameObjects)
+            {
+                gameObject.Draw(spriteBatch);
+            }
+
+        }
+
+        public void UpdateGameObjects(List<GameObject> gameObjects, TiledMap map)
+        {
+            foreach (var gameObject in gameObjects)
+            {
+                gameObject.Update(gameObjects, map);
+            }
+
+            //Parallel.ForEach(gameObjects, gameObject =>
+            //{
+            //    gameObject.Update(gameObjects);
+            //});
+
+        }
+        public void LoadInitializeGameObjects(List<GameObject> gameObjects)
+        {
+            foreach (var gameObject in gameObjects)
+            {
+                gameObject.Initialize();
+                gameObject.Load(content: Content);
+            }
+
+
+            //Parallel.ForEach(gameObjects, gameObject =>
+            //{
+            //    gameObject.Initialize();
+            //    gameObject.Load(content: Content);
+            //});
         }
     }
 }
