@@ -10,7 +10,6 @@ using Microsoft.Xna.Framework.Input;
 using TiledSharp;
 
 
-
 namespace PG2D_2020_Dzienni_FD_Projekt
 {
     public class TiledMap
@@ -19,12 +18,16 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         //public List<Wall> walls = new List<Wall>();
         //Texture2D wallTexture;
 
-        public int mapWidth = 15;
-        public int mapHeight = 9;
 
-        public int tileSize = 128;
+
+        
 
         TmxMap tiledMap;
+        public int tileSize = 0;
+
+        public int mapWidth = 0;
+        public int mapHeight = 0;
+
         List<int> firstGids = new List<int>();
         List<Texture2D> tilesets = new List<Texture2D>();
 
@@ -34,7 +37,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
         public TiledMap()
         {
-
+            
         }
 
 
@@ -43,6 +46,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             //Load tmx file
             //var tilemapsPathPrefix = @"Tilemaps/";
             tiledMap = new TmxMap(@content.RootDirectory + @"\" + filePath);
+            tileSize = tiledMap.TileHeight;
+            mapWidth = tiledMap.Width * tileSize;
+            mapHeight = tiledMap.Height * tileSize;
 
             foreach (var tileset in tiledMap.Tilesets)
             {
@@ -78,7 +84,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                         int tilesetTilesWide = tilesets[index].Width / tileWidth;
                         //int tilesetTilesHigh = tilesets[index].Height / tileHeight;
 
-
                         int tileFrame = gid - firstGids[index];
                         int column = tileFrame % tilesetTilesWide;
                         int row = (int)Math.Floor((double)tileFrame / (double)tilesetTilesWide);
@@ -89,6 +94,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                         Rectangle tilesetRec = new Rectangle(tileWidth * column, tileHeight * row, tileWidth, tileHeight);
 
                         Tile mapTile = new Tile(new Rectangle((int)x, (int)y, tileWidth, tileHeight), index, tilesetRec);
+
                         mapLayer.tiles.Add(mapTile);
                     }
                     i++;

@@ -11,8 +11,12 @@ namespace PG2D_2020_Dzienni_FD_Projekt
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        private static int widthResolution = 1280;
+        private static int heightResolution = 800;
+        int playerSpeed = 4;
 
         public TiledMap tiledMap = new TiledMap();
+        public Vector2 cameraPosition = new Vector2(widthResolution / 2, heightResolution / 2);
 
         public Game1()
         {
@@ -33,7 +37,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            Camera.Initialize(zoomLevel: 0.5f);
+            Camera.Initialize(zoomLevel: 1f);
             base.Initialize();
         }
 
@@ -70,7 +74,35 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 Exit();
 
             // TODO: Add your update logic here
-            UpdateCamera(new Vector2(1600, 800));
+            KeyboardState state = Keyboard.GetState();
+
+            if (state.IsKeyDown(Keys.W)) {
+                if (cameraPosition.Y - (heightResolution / 2) > 0) {
+                    cameraPosition.Y -= playerSpeed;
+                }
+            } else if (state.IsKeyDown(Keys.S)) {
+                if (cameraPosition.Y + (heightResolution / 2) < tiledMap.mapHeight)
+                {
+                    cameraPosition.Y += playerSpeed;
+                }
+            }
+
+            if (state.IsKeyDown(Keys.A))
+            {
+                if (cameraPosition.X - (widthResolution / 2) > 0)
+                {
+                    cameraPosition.X -= playerSpeed;
+                }
+            }
+            else if (state.IsKeyDown(Keys.D))
+            {
+                if (cameraPosition.X + (widthResolution / 2) < tiledMap.mapWidth)
+                {
+                    cameraPosition.X += playerSpeed;
+                }
+            }
+
+            UpdateCamera(cameraPosition);
 
             base.Update(gameTime);
         }
