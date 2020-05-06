@@ -51,7 +51,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public override void Update(List<GameObject> gameObjects, TiledMap map)
         {
-            CheckInput(gameObjects, map);
+            if(!isAttacking)
+                CheckInput(gameObjects, map);
             base.Update(gameObjects, map);
         }
 
