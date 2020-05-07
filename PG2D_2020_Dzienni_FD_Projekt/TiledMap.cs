@@ -107,6 +107,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             {
                 foreach (var rect in objectLayer.Objects)
                 {
+                    Console.WriteLine("x: " + rect.X + " y: " + (int)rect.Y + " wid: " + (int)rect.Width + " hei: " + (int)rect.Height);
                     collisionRectangles.Add(new Rectangle((int)rect.X, (int)rect.Y, (int)rect.Width, (int)rect.Height));
                 }
             }

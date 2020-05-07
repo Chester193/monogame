@@ -44,9 +44,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             base.Load(content);
 
-            boundingBoxOffset = new Vector2(0f, 25f);
-            boundingBoxWidth = 26;
-            boundingBoxHeight = 12;
+            boundingBoxOffset = new Vector2(0f, 0f);
+            boundingBoxWidth = 15;
+            boundingBoxHeight = 20;
         }
 
         public override void Update(List<GameObject> gameObjects, TiledMap map)
@@ -135,6 +135,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
+           //spriteBatch.Begin();
+            //spriteBatch.Draw(new Rectangle(pos ));
         }
 
 

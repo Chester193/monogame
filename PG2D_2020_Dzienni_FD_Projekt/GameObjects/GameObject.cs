@@ -92,7 +92,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             if (boundingBoxTexture != null && drawBoundingBoxes == true && active == true)
-                spriteBatch.Draw(boundingBoxTexture, new Vector2(BoundingBox.X, BoundingBox.Y), BoundingBox, new Color(128, 128, 128, 128), rotation, Vector2.Zero, scale, SpriteEffects.None, 0.1f);
+                spriteBatch.Draw(boundingBoxTexture, new Vector2(BoundingBox.X, BoundingBox.Y), BoundingBox, new Color(255, 0, 0, 0), rotation, Vector2.Zero, scale, SpriteEffects.None, 0.1f);
 
 
             if (texture != null && active == true)

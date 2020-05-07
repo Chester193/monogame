@@ -44,11 +44,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             // TODO: Add your initialization logic here
             tiledMap = new TiledMap(vResWidth, vResHeight);
             GameObject player = new Player();
-            player.position = new Vector2(800, 600);
+            player.position = new Vector2(200, 600);
             gameObjects.Add(player);
 
-            GameObject enemy = new Enemy(new Vector2(400, 300));
-            gameObjects.Add(enemy);
+            GameObject enemy = new Enemy(new Vector2(200, 300));
+            //gameObjects.Add(enemy);
 
             Camera.Initialize(zoomLevel: 1.0f);
 
