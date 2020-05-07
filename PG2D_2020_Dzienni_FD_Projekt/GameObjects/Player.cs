@@ -44,9 +44,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             base.Load(content);
 
-            boundingBoxOffset = new Vector2(0f, 0f);
-            boundingBoxWidth = 15;
-            boundingBoxHeight = 20;
+            //boundingBoxOffset = new Vector2(0f, 0f);
+            boundingBoxWidth = animationSet.frameWidth;
+            boundingBoxHeight = animationSet.frameHeight;
         }
 
         public override void Update(List<GameObject> gameObjects, TiledMap map)
@@ -135,38 +135,25 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-           //spriteBatch.Begin();
-            //spriteBatch.Draw(new Rectangle(pos ));
         }
 
 
         private void CheckInput(List<GameObject> gameObjects, TiledMap map)
         {
             if (Input.IsKeyDown(Keys.W) == true) {
-                if (Camera.GetPosition().Y > 0) {
-                    MoveUp();
-                }
+                MoveUp();
             }
 
             if (Input.IsKeyDown(Keys.S) == true) {
-                if (Camera.GetPosition().Y < map.mapHeight)
-                {
-                    MoveDown();
-                }
+                MoveDown();
             }
 
             if (Input.IsKeyDown(Keys.A) == true) {
-                if (Camera.GetPosition().X > 0)
-                {
-                    MoveLeft();
-                }
+                MoveLeft();
             }
 
             if (Input.IsKeyDown(Keys.D) == true) {
-                if (Camera.GetPosition().X < map.mapWidth)
-                {
-                    MoveRight();
-                }
+                MoveRight();
             }
                 
             if (Input.KeyPressed(Keys.Space))

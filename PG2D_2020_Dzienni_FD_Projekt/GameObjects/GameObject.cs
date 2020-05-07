@@ -16,7 +16,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public Vector2 position;
         protected Vector2 center; //origin of the sprite/texture
         public Color tintColor = Color.White;
-        public float scale = 0.6f;
+        public float scale = 1f;
         public float rotation = 0.0f;
         //public float layerDepth = 0.5f;
         public float layerDepth = 0.1f;

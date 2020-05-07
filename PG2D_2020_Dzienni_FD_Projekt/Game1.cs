@@ -7,9 +7,6 @@ using System.Collections.Generic;
 
 namespace PG2D_2020_Dzienni_FD_Projekt
 {
-    /// <summary>
-    /// This is the main type for your game.
-    /// </summary>
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
@@ -33,18 +30,12 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             graphics.ApplyChanges();
         }
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
             tiledMap = new TiledMap(vResWidth, vResHeight);
             GameObject player = new Player();
-            player.position = new Vector2(200, 600);
+            player.position = new Vector2(15*32 + 1200, 15*32 + 2000);
             gameObjects.Add(player);
 
             GameObject enemy = new Enemy(new Vector2(200, 300));
@@ -55,10 +46,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             base.Initialize();
         }
 
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
@@ -66,25 +53,14 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             LoadInitializeGameObjects(gameObjects);
 
-            // TODO: use this.Content to load your game content here
-
             tiledMap.Load(Content, @"Map/map.tmx");
         }
 
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// game-specific content.
-        /// </summary>
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
         }
 
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -102,10 +78,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             base.Update(gameTime);
         }
 
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
@@ -116,6 +88,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             var transformMatrix = Camera.GetTransformMatrix();
 
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.LinearClamp, null, null, null, transformMatrix);
+
             tiledMap.Draw(spriteBatch);
             DrawGameObjects(gameObjects);
             spriteBatch.End();
