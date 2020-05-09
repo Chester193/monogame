@@ -46,7 +46,13 @@
     <Compile Include="Game1.cs" />
     <Compile Include="GameObjects\AnimatedObject.cs" />
     <Compile Include="GameObjects\Character.cs" />
-    <Compile Include="GameObjects\Enemy.cs" />
+    <Compile Include="GameObjects\Enemies\Demon.cs" />
+    <Compile Include="GameObjects\Enemies\Lizard.cs" />
+    <Compile Include="GameObjects\Enemies\Vikings\Viking1.cs" />
+    <Compile Include="GameObjects\Enemies\Vikings\Viking2.cs" />
+    <Compile Include="GameObjects\Enemies\Vikings\Viking3.cs" />
+    <Compile Include="GameObjects\Enemies\Zombie.cs" />
+    <Compile Include="GameObjects\Enemies\Enemy.cs" />
     <Compile Include="GameObjects\enums\Direction.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="GameObjects\Player.cs" />

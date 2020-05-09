@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using System.Collections.Generic;
+using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies;
 
 namespace PG2D_2020_Dzienni_FD_Projekt
 {
@@ -47,8 +48,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             player.position = new Vector2(800, 600);
             gameObjects.Add(player);
 
-            GameObject enemy = new Enemy(new Vector2(400, 300));
-            gameObjects.Add(enemy);
+            
+            gameObjects.Add(new Zombie(new Vector2(300, 400)));
+            gameObjects.Add(new Viking1(new Vector2(300, 300)));
+            gameObjects.Add(new Viking2(new Vector2(300, 200)));
+            gameObjects.Add(new Viking3(new Vector2(300, 100)));
+            gameObjects.Add(new Demon(new Vector2(300, 000)));
+            gameObjects.Add(new Lizard(new Vector2(500, 400)));
 
             Camera.Initialize(zoomLevel: 1.0f);
             base.Initialize();

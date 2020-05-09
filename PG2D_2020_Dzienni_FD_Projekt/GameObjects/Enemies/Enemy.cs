@@ -1,40 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using PG2D_2020_Dzienni_FD_Projekt.GameObjects.enums;
-using PG2D_2020_Dzienni_FD_Projekt.Utilities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PG2D_2020_Dzienni_FD_Projekt.GameObjects.enums;
 
 namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 {
     class Enemy : Character
     {
-        public Enemy(Vector2 startingPosition)
-        {
-            this.position = startingPosition;
-            applyGravity = false;
-        }
-
         public override void Initialize()
         {
             base.Initialize();
-        }
-
-        public override void Load(ContentManager content)
-        {
-
-            texture = TextureLoader.Load(@"characters/enemy", content);
-
-            base.Load(content);
-
-            boundingBoxOffset = new Vector2(0f, 25f);
-            boundingBoxWidth = 26;
-            boundingBoxHeight = 12;
-            maxSpeed = 3.0f;
         }
 
         public override void Update(List<GameObject> gameObjects, TiledMap map)
@@ -46,6 +21,19 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
+        }
+
+        protected override void UpdateAnimations()
+        {
+            if (characterXDirection == Direction.Left && AnimationIsNot(Animations.WalkingLeft))
+            {
+                ChangeAnimation(Animations.WalkingLeft);
+            }
+            if (characterXDirection == Direction.Right && AnimationIsNot(Animations.WalkingRight))
+            {
+                ChangeAnimation(Animations.WalkingRight);
+            }
+            base.UpdateAnimations();
         }
 
         private void FollowPlayer(List<GameObject> gameObjects)
