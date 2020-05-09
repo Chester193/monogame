@@ -46,6 +46,7 @@
     <Compile Include="Game1.cs" />
     <Compile Include="GameObjects\AnimatedObject.cs" />
     <Compile Include="GameObjects\Character.cs" />
+    <Compile Include="GameHUD.cs" />
     <Compile Include="GameObjects\Enemy.cs" />
     <Compile Include="GameObjects\enums\Direction.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
@@ -125,6 +126,7 @@
     <None Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\Fonts\" />
     <Folder Include="Content\Tilemaps\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

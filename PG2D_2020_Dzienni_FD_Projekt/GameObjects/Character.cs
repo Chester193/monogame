@@ -25,8 +25,19 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         protected bool isJumping = false;
         public static bool applyGravity = false;
 
+        public static int maxHp;
+        public static int hp;
+
+        public static int maxMp;
+        public static int mp;
+
         public override void Initialize()
         {
+            maxHp = 100;
+            hp = 99;
+            maxMp = 10;
+            mp = 0;
+
             velocity = Vector2.Zero;
             isJumping = false;
             base.Initialize();

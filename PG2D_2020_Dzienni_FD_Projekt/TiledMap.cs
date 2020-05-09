@@ -25,6 +25,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         List<Rectangle> collisionRectangles = new List<Rectangle>();
 
         int VResWidth, VResHeight;
+        private float result;
 
         public TiledMap()
         {
@@ -54,7 +55,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             {
                 TileLayer mapLayer = new TileLayer(VResWidth, VResHeight);
 
-                if (float.TryParse(layer.Properties["layerDepth"], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out float result))
+                if (float.TryParse(layer.Properties["layerDepth"], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out result))
                 {
                     mapLayer.layerDepth = result;
                 }

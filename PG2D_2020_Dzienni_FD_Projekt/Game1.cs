@@ -22,6 +22,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
         public TiledMap tiledMap;
 
+        GameHUD gameHUD = new GameHUD();
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -67,6 +69,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             // TODO: use this.Content to load your game content here
             tiledMap.Load(Content, @"Tilemaps/terrain.tmx");
+
+            gameHUD.Load(Content);
         }
 
         /// <summary>
@@ -116,6 +120,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             tiledMap.Draw(spriteBatch);
             DrawGameObjects(gameObjects);
             spriteBatch.End();
+
+            gameHUD.Draw(spriteBatch);
 
             base.Draw(gameTime);
         }
