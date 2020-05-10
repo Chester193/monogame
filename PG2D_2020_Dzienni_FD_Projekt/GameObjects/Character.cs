@@ -33,11 +33,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public override void Initialize()
         {
-            maxHp = 100;
-            hp = 99;
-            maxMp = 10;
-            mp = 0;
-
             velocity = Vector2.Zero;
             isJumping = false;
             base.Initialize();
@@ -219,5 +214,35 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             return val;
         }
 
+
+        public void Demage(int dmg)
+        {
+            hp -= dmg;
+            if (hp <= 0) hp = 0;
+        }
+
+        public void ManaUse(int mpUsed)
+        {
+            if (mpUsed > mp) throw new NotEnoughMpException();
+            mp -= mpUsed;
+            if (mp <= 0) mp = 0;
+        }
+
+        public void heal(int points)
+        {
+            hp += points;
+            if (hp >= maxHp) hp = maxHp;
+        }
+        
+        public void heal()
+        {
+            hp = maxHp;
+        }
+
     }
+}
+
+public class NotEnoughMpException : Exception
+{
+    public NotEnoughMpException() : base() { }
 }

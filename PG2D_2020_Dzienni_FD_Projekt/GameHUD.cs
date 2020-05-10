@@ -22,9 +22,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
-            spriteBatch.DrawString(fontCocoonian , "Zaraz dostaniesz wpierdol!!!", Vector2.Zero, Color.Gold);
-            Vector2 v = new Vector2(10, 30);
-            spriteBatch.DrawString(fontDiamond, "HP: " + GameObjects.Player.hp.ToString() + "/" + GameObjects.Player.maxHp.ToString() , v, Color.Red);
+            Vector2 v0 = new Vector2(10, 0);
+            spriteBatch.DrawString(fontCocoonian , "Zaraz dostaniesz wpierdol!!!", v0, Color.Gold);
+            Vector2 v1 = new Vector2(10, 30);
+            spriteBatch.DrawString(fontDiamond, "HP: " + GameObjects.Player.hp.ToString() + "/" + GameObjects.Player.maxHp.ToString() , v1, Color.Red);
             Vector2 v2 = new Vector2(10, 70);
             spriteBatch.DrawString(fontDiamond, "MP: " + GameObjects.Player.mp.ToString() + "/" + GameObjects.Player.maxMp.ToString(), v2, Color.Blue);
             spriteBatch.End();
