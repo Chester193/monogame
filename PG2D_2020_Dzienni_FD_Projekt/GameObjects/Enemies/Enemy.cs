@@ -1,35 +1,23 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using PG2D_2020_Dzienni_FD_Projekt.GameObjects.enums;
 
 namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 {
     class Enemy : Character
     {
-        public override void Initialize()
-        {
-            base.Initialize();
-        }
-
         public override void Update(List<GameObject> gameObjects, TiledMap map)
         {
             FollowPlayer(gameObjects);
             base.Update(gameObjects, map);
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            base.Draw(spriteBatch);
-        }
-
         protected override void UpdateAnimations()
         {
-            if (characterXDirection == Direction.Left && AnimationIsNot(Animations.WalkingLeft))
+            if (direction.X < 0 && AnimationIsNot(Animations.WalkingLeft))
             {
                 ChangeAnimation(Animations.WalkingLeft);
             }
-            if (characterXDirection == Direction.Right && AnimationIsNot(Animations.WalkingRight))
+            else if (direction.X > 0 && AnimationIsNot(Animations.WalkingRight))
             {
                 ChangeAnimation(Animations.WalkingRight);
             }
@@ -43,15 +31,17 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             float directionX = playerPosition.X - position.X;
             float directionY = playerPosition.Y - position.Y;
 
+            if (directionY > maxSpeed)
+                MoveDown();
+            else if (directionY < -maxSpeed)
+                MoveUp();
+
             if (directionX > maxSpeed)
                 MoveRight();
             else if (directionX < -maxSpeed)
                 MoveLeft();
 
-            if (directionY > maxSpeed)
-                MoveDown();
-            else if (directionY < -maxSpeed)
-                MoveUp();
+
         }
     }
 }

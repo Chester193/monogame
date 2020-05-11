@@ -21,19 +21,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
             base.Initialize();
         }
 
-        protected override void UpdateAnimations()
-        {
-            if (direction.X < 0 && AnimationIsNot(Animations.WalkingLeft))
-            {
-                ChangeAnimation(Animations.WalkingLeft);
-            }
-            if (direction.X > 0 && AnimationIsNot(Animations.WalkingRight))
-            {
-                ChangeAnimation(Animations.WalkingRight);
-            }
-            base.UpdateAnimations();
-        }
-
         public override void Load(ContentManager content)
         {
 

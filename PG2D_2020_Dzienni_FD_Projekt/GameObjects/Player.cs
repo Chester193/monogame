@@ -66,19 +66,19 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             if (isAttacking)
             {
                 velocity = Vector2.Zero;
-                if (characterFacingDirection == enums.Direction.Back && AnimationIsNot(Animations.SlashBack))
+                if (direction.Y < 0 && AnimationIsNot(Animations.SlashBack))
                 {
                     ChangeAnimation(Animations.SlashBack);
                 }
-                if (characterFacingDirection == enums.Direction.Front && AnimationIsNot(Animations.SlashFront))
+                if (direction.Y > 0 && AnimationIsNot(Animations.SlashFront))
                 {
                     ChangeAnimation(Animations.SlashFront);
                 }
-                if (characterFacingDirection == enums.Direction.Left && AnimationIsNot(Animations.SlashLeft))
+                if (direction.X < 0 && AnimationIsNot(Animations.SlashLeft))
                 {
                     ChangeAnimation(Animations.SlashLeft);
                 }
-                if (characterFacingDirection == enums.Direction.Right && AnimationIsNot(Animations.SlashRight))
+                if (direction.X > 0 && AnimationIsNot(Animations.SlashRight))
                 {
                     ChangeAnimation(Animations.SlashRight);
                 }
