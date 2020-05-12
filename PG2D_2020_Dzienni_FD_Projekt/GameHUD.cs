@@ -23,7 +23,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         {
             spriteBatch.Begin();
             Vector2 v0 = new Vector2(10, 0);
-            spriteBatch.DrawString(fontCocoonian , "Zaraz dostaniesz wpierdol!!!", v0, Color.Gold);
+            spriteBatch.DrawString(fontCocoonian , "To bedzie sumer gra!!!", v0, Color.Gold);
             Vector2 v1 = new Vector2(10, 30);
             spriteBatch.DrawString(fontDiamond, "HP: " + GameObjects.Player.hp.ToString() + "/" + GameObjects.Player.maxHp.ToString() , v1, Color.Red);
             Vector2 v2 = new Vector2(10, 70);
