@@ -44,7 +44,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             base.Load(content);
 
-            boundingBoxOffset = new Vector2(40f, 75f);
+            boundingBoxOffset = new Vector2(40, 75);
             boundingBoxWidth = 30;
             boundingBoxHeight = 15;
         }
