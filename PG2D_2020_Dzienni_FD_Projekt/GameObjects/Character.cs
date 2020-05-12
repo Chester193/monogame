@@ -1,10 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
-using PG2D_2020_Dzienni_FD_Projekt.GameObjects.enums;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 {
@@ -18,8 +14,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         const float gravity = 1.0f;
         const float jumpVelocity = 16.0f;
         const float terminalVelocity = 32.0f;
-
-        protected Direction characterFacingDirection = Direction.Back;
 
         protected bool isAttacking = false;
         protected bool isJumping = false;
@@ -79,7 +73,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         //TODO: CONCATENATE MOVEMENT FUNCTIONS TO ONE 
         protected void MoveRight()
         {
-            characterFacingDirection = Direction.Right;
             velocity.X += acceleration + deceleration;
             velocity.X = Math.Min(velocity.X, maxSpeed);
             direction.X = 1;
@@ -88,7 +81,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         protected void MoveLeft()
         {
-            characterFacingDirection = Direction.Left;
             velocity.X -= acceleration + deceleration;
             velocity.X = Math.Max(velocity.X, -maxSpeed);
             direction.X = -1;
@@ -98,7 +90,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         protected void MoveDown()
         {
-            characterFacingDirection = Direction.Front;
             velocity.Y += acceleration + deceleration;
             velocity.Y = Math.Min(velocity.Y, maxSpeed);
             direction.Y = 1;
@@ -108,7 +99,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         protected void MoveUp()
         {
-            characterFacingDirection = Direction.Back;
             velocity.Y -= acceleration + deceleration;
             velocity.Y = Math.Max(velocity.Y, -maxSpeed);
             direction.Y = -1;
