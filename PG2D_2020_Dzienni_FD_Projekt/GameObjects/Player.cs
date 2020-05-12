@@ -44,9 +44,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             base.Load(content);
 
-            boundingBoxOffset = new Vector2(0f, 25f);
-            boundingBoxWidth = 26;
-            boundingBoxHeight = 12;
+            boundingBoxOffset = new Vector2(40, 75);
+            boundingBoxWidth = 30;
+            boundingBoxHeight = 15;
         }
 
         public override void Update(List<GameObject> gameObjects, TiledMap map)

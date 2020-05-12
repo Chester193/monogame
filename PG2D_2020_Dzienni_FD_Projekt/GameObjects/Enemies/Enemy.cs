@@ -27,9 +27,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         private void FollowPlayer(List<GameObject> gameObjects)
         {
             GameObject player = gameObjects[0];
-            Vector2 playerPosition = player.position;
-            float directionX = playerPosition.X - position.X;
-            float directionY = playerPosition.Y - position.Y;
+            Rectangle playerBox = player.BoundingBox;
+            float directionX = playerBox.X - BoundingBox.X;
+            float directionY = playerBox.Y - BoundingBox.Y;
 
             if (directionY > maxSpeed)
                 MoveDown();
@@ -40,8 +40,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 MoveRight();
             else if (directionX < -maxSpeed)
                 MoveLeft();
-
-
         }
     }
 }
