@@ -45,9 +45,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         {
             // TODO: Add your initialization logic here
             tiledMap = new TiledMap(vResWidth, vResHeight);
-            GameObject player = new Player();
+            Player player = new Player();
             player.position = new Vector2(800, 600);
             gameObjects.Add(player);
+
+            gameHUD.Player(player);
 
             GameObject enemy = new Enemy(new Vector2(400, 300));
             gameObjects.Add(enemy);

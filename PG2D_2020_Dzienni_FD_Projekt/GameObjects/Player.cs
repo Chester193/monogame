@@ -161,11 +161,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             //HUD tests:
             if (Input.KeyPressed(Keys.H) == true)
-                heal();
+                Heal();
             if (Input.KeyPressed(Keys.J) == true)
-                heal(15);
+                Heal(15);
             if (Input.KeyPressed(Keys.K) == true)
-               Player.maxHp+=50;
+               MaxHpAdd(50);
         }
 
         private void Fire()
@@ -179,7 +179,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             }
             catch(NotEnoughMpException e)
             {
-                Demage(20);
+                Damage(20);
             }
             
         }

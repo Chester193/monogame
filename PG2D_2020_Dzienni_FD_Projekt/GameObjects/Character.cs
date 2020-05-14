@@ -25,11 +25,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         protected bool isJumping = false;
         public static bool applyGravity = false;
 
-        public static int maxHp;
-        public static int hp;
+        public int maxHp;
+        public int hp;
 
-        public static int maxMp;
-        public static int mp;
+        public int maxMp;
+        public int mp;
 
         public override void Initialize()
         {
@@ -215,7 +215,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         }
 
 
-        public void Demage(int dmg)
+        public void Damage(int dmg)
         {
             hp -= dmg;
             if (hp <= 0) hp = 0;
@@ -228,15 +228,44 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             if (mp <= 0) mp = 0;
         }
 
-        public void heal(int points)
+        public void Heal(int points)
         {
             hp += points;
             if (hp >= maxHp) hp = maxHp;
         }
         
-        public void heal()
+        public void Heal()
         {
             hp = maxHp;
+        }
+
+        public String HpToString()
+        {
+            String hpS = hp.ToString();
+            return hpS;
+        }
+
+        public String MaxHpToString()
+        {
+            String hpS = maxHp.ToString();
+            return hpS;
+        }
+
+        public String MpToString()
+        {
+            String mpS = mp.ToString();
+            return mpS;
+        }
+
+        public String MaxMpToString()
+        {
+            String mpS = maxMp.ToString();
+            return mpS;
+        }
+
+        public void MaxHpAdd(int addHp)
+        {
+            maxHp += addHp;
         }
 
     }
