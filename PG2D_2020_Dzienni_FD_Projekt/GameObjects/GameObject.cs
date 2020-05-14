@@ -2,11 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 {
@@ -36,7 +32,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         {
             get
             {
-                return new Rectangle((int)(position.X + boundingBoxOffset.X), (int)(position.Y + boundingBoxOffset.Y), boundingBoxWidth, boundingBoxHeight);
+                return new Rectangle((int)(position.X + boundingBoxOffset.X * scale), (int)(position.Y + boundingBoxOffset.Y * scale), (int)(boundingBoxWidth * scale), (int)(boundingBoxHeight * scale));
             }
         }
 
@@ -91,14 +87,19 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            if (boundingBoxTexture != null && drawBoundingBoxes == true && active == true)
-                spriteBatch.Draw(boundingBoxTexture, new Vector2(BoundingBox.X, BoundingBox.Y), BoundingBox, new Color(128, 128, 128, 128), rotation, Vector2.Zero, scale, SpriteEffects.None, 0.1f);
+            DrawBoundingBox(spriteBatch);
 
 
             if (texture != null && active == true)
             {
                 spriteBatch.Draw(texture, position, null, tintColor, rotation, Vector2.Zero, scale, SpriteEffects.None, layerDepth);
             }
+        }
+
+        protected void DrawBoundingBox(SpriteBatch spriteBatch)
+        {
+            if (boundingBoxTexture != null && drawBoundingBoxes == true && active == true)
+                spriteBatch.Draw(boundingBoxTexture, new Vector2(BoundingBox.X, BoundingBox.Y), BoundingBox, new Color(128, 128, 128, 128), rotation, Vector2.Zero, 1f, SpriteEffects.None, 0.05f);
         }
 
         private void CalculateCenter()

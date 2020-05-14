@@ -1,0 +1,314 @@
+
+lizard.png
+size: 1548, 1806
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Left - Died
+  rotate: false
+  xy: 1, 1
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Left - Died
+  rotate: false
+  xy: 1, 259
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Left - Died
+  rotate: false
+  xy: 1, 517
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Left - Died
+  rotate: false
+  xy: 1, 775
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Left - Died
+  rotate: false
+  xy: 1, 1033
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Left - Died
+  rotate: false
+  xy: 1, 1291
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Left - Hurt
+  rotate: false
+  xy: 1, 1
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Left - Hurt
+  rotate: false
+  xy: 1, 259
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Left - Idle
+  rotate: false
+  xy: 1, 1549
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Left - Idle
+  rotate: false
+  xy: 259, 1
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Left - Idle
+  rotate: false
+  xy: 259, 259
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Left - Slashing
+  rotate: false
+  xy: 259, 517
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Left - Slashing
+  rotate: false
+  xy: 259, 775
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Left - Slashing
+  rotate: false
+  xy: 259, 1033
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Left - Slashing
+  rotate: false
+  xy: 259, 1291
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Left - Slashing
+  rotate: false
+  xy: 259, 1549
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Left - Walking
+  rotate: false
+  xy: 517, 1
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Left - Walking
+  rotate: false
+  xy: 517, 259
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Left - Walking
+  rotate: false
+  xy: 517, 517
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Left - Walking
+  rotate: false
+  xy: 517, 775
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Left - Walking
+  rotate: false
+  xy: 517, 1033
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Left - Walking
+  rotate: false
+  xy: 517, 1291
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Right - Died
+  rotate: false
+  xy: 517, 1549
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Right - Died
+  rotate: false
+  xy: 775, 1
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Right - Died
+  rotate: false
+  xy: 775, 259
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Right - Died
+  rotate: false
+  xy: 775, 517
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Right - Died
+  rotate: false
+  xy: 775, 775
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Right - Died
+  rotate: false
+  xy: 775, 1033
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Right - Hurt
+  rotate: false
+  xy: 517, 1549
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Right - Hurt
+  rotate: false
+  xy: 775, 1
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Right - Idle
+  rotate: false
+  xy: 775, 1291
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Right - Idle
+  rotate: false
+  xy: 775, 1549
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Right - Idle
+  rotate: false
+  xy: 1033, 1
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Right - Slashing
+  rotate: false
+  xy: 1033, 259
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Right - Slashing
+  rotate: false
+  xy: 1033, 517
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Right - Slashing
+  rotate: false
+  xy: 1033, 775
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Right - Slashing
+  rotate: false
+  xy: 1033, 1033
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Right - Slashing
+  rotate: false
+  xy: 1033, 1291
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Right - Walking
+  rotate: false
+  xy: 1033, 1549
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Right - Walking
+  rotate: false
+  xy: 1291, 1
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Right - Walking
+  rotate: false
+  xy: 1291, 259
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Right - Walking
+  rotate: false
+  xy: 1291, 517
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Right - Walking
+  rotate: false
+  xy: 1291, 775
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
+Right - Walking
+  rotate: false
+  xy: 1291, 1033
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: -1
