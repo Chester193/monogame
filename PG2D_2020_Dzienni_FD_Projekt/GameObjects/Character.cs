@@ -263,7 +263,14 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             maxHp = newMaxHp;
         }
 
+        ///
+        public void GeTo(Vector2 point)
+        {
+            if (position.X != point.X)
+            {
 
+            }
+        }
 
     }
 }

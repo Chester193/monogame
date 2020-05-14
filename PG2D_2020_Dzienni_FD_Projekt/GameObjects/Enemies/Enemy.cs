@@ -13,80 +13,58 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         protected override void UpdateAnimations()
         {
-            if (direction.X < 0 && AnimationIsNot(Animations.WalkingLeft))
-            {
-                ChangeAnimation(Animations.WalkingLeft);
-            }
-            else if (direction.X > 0 && AnimationIsNot(Animations.WalkingRight))
-            {
-                ChangeAnimation(Animations.WalkingRight);
-            }
-            base.UpdateAnimations();
-            
-            if (hp <= 0)
-            {
-                if (direction.X < 0)
-                {
-                    ChangeAnimation(Animations.DieLeft);
-                }
-                else if (direction.X > 0)
-                {
-                    ChangeAnimation(Animations.DieRight);
-                }
-                if (direction.Y < 0)
-                {
-                    ChangeAnimation(Animations.DieBack);
-                }
-                else if (direction.Y > 0)
-                {
-                    ChangeAnimation(Animations.DieFront);
-                }
-            }
-            
-            if (isAttacking)
-            {
-                velocity = Vector2.Zero;
-                if (direction.Y < 0 && AnimationIsNot(Animations.SlashBack))
-                {
-                    ChangeAnimation(Animations.SlashBack);
-                }
-                if (direction.Y > 0 && AnimationIsNot(Animations.SlashFront))
-                {
-                    ChangeAnimation(Animations.SlashFront);
-                }
-                if (direction.X < 0 && AnimationIsNot(Animations.SlashLeft))
-                {
-                    ChangeAnimation(Animations.SlashLeft);
-                }
-                if (direction.X > 0 && AnimationIsNot(Animations.SlashRight))
-                {
-                    ChangeAnimation(Animations.SlashRight);
-                }
-                if (IsAnimationComplete)
-                {
-                    isAttacking = false;
-                }
-            }
+            if (velocity != Vector2.Zero && direction.X < 0 && AnimationIsNot(Animations.WalkingLeft))
+             {
+                 ChangeAnimation(Animations.WalkingLeft);
+             }
+             else if (velocity != Vector2.Zero && direction.X > 0 && AnimationIsNot(Animations.WalkingRight))
+             {
+                 ChangeAnimation(Animations.WalkingRight);
+             }
 
-            else if (velocity == Vector2.Zero && isJumping == false && isAttacking == false)
-            {
-                if (direction.X < 0 && AnimationIsNot(Animations.IdleLeft))
+             if (hp <= 0)
+             {
+                 if (direction.X < 0)
+                 {
+                     ChangeAnimation(Animations.DieLeft);
+                 }
+                 else if (direction.X > 0)
+                 {
+                     ChangeAnimation(Animations.DieRight);
+                 }
+             }
+
+             if (isAttacking)
+             {
+                 velocity = Vector2.Zero;
+                 if (direction.X < 0 && AnimationIsNot(Animations.SlashLeft))
+                 {
+                     ChangeAnimation(Animations.SlashLeft);
+                 }
+                 if (direction.X > 0 && AnimationIsNot(Animations.SlashRight))
+                 {
+                     ChangeAnimation(Animations.SlashRight);
+                 }
+                 if (IsAnimationComplete)
+                 {
+                     isAttacking = false;
+                 }
+             }
+
+             if (velocity == Vector2.Zero && isJumping == false && isAttacking == false)
+             {               
+                if ((direction.X <= 0) && AnimationIsNot(Animations.IdleLeft))
                 {
                     ChangeAnimation(Animations.IdleLeft);
                 }
-                else if (direction.X > 0 && AnimationIsNot(Animations.IdleRight))
+                else if ((direction.X > 0) && AnimationIsNot(Animations.IdleRight))
                 {
                     ChangeAnimation(Animations.IdleRight);
                 }
-                if (direction.Y < 0 && AnimationIsNot(Animations.IdleBack))
-                {
-                    ChangeAnimation(Animations.IdleBack);
-                }
-                else if (direction.Y > 0 && AnimationIsNot(Animations.IdleFront))
-                {
-                    ChangeAnimation(Animations.IdleFront);
-                }
+                
             }
+
+            base.UpdateAnimations();
         }
 
         public void FollowPlayer(List<GameObject> gameObjects)

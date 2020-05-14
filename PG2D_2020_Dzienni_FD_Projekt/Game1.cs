@@ -52,13 +52,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(player);
 
             gameHUD.Player(player);
-            /*
-            gameObjects.Add(new Zombie(new Vector2(300, 400)));
-            gameObjects.Add(new Viking1(new Vector2(300, 300)));
-            gameObjects.Add(new Viking2(new Vector2(300, 200)));
-            gameObjects.Add(new Viking3(new Vector2(300, 100)));
-            gameObjects.Add(new Demon(new Vector2(300, 000)));
-            */
+            
+            //gameObjects.Add(new Zombie(new Vector2(300, 400), 20));
+            //gameObjects.Add(new Viking1(new Vector2(300, 300), 50));
+            //gameObjects.Add(new Viking2(new Vector2(300, 200), 60));
+            //gameObjects.Add(new Viking3(new Vector2(300, 100), 55));
+            //gameObjects.Add(new Demon(new Vector2(300, 000), 300));
+            
             gameObjects.Add(new Lizard(new Vector2(720, 1070), 100));
             gameObjects.Add(new Lizard(new Vector2(800, 1070), 100));
 

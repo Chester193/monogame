@@ -7,10 +7,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
 {
     class Viking1 : Enemy
     {
-        public Viking1(Vector2 startingPosition)
+        public Viking1(Vector2 startingPosition,int maxHp)
         {
             this.position = startingPosition;
             applyGravity = false;
+
+            this.maxHp = maxHp;
+            this.hp = maxHp;
         }
 
         public override void Initialize()
