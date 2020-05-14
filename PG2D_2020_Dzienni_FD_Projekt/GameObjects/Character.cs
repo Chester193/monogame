@@ -19,6 +19,12 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         protected bool isJumping = false;
         public static bool applyGravity = false;
 
+        public int maxHp;
+        public int hp;
+
+        public int maxMp;
+        public int mp;
+
         public override void Initialize()
         {
             velocity = Vector2.Zero;
@@ -198,5 +204,69 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             return val;
         }
 
+
+        public void Damage(int dmg)
+        {
+            hp -= dmg;
+            if (hp <= 0) hp = 0;
+        }
+
+        public void ManaUse(int mpUsed)
+        {
+            if (mpUsed > mp) throw new NotEnoughMpException();
+            mp -= mpUsed;
+            if (mp <= 0) mp = 0;
+        }
+
+        public void Heal(int points)
+        {
+            hp += points;
+            if (hp >= maxHp) hp = maxHp;
+        }
+        
+        public void Heal()
+        {
+            hp = maxHp;
+        }
+
+        public String HpToString()
+        {
+            String hpS = hp.ToString();
+            return hpS;
+        }
+
+        public String MaxHpToString()
+        {
+            String hpS = maxHp.ToString();
+            return hpS;
+        }
+
+        public String MpToString()
+        {
+            String mpS = mp.ToString();
+            return mpS;
+        }
+
+        public String MaxMpToString()
+        {
+            String mpS = maxMp.ToString();
+            return mpS;
+        }
+
+        public void MaxHpAdd(int addHp)
+        {
+            maxHp += addHp;
+        }
+
+        public void SetMaxHp(int newMaxHp)
+        {
+            maxHp = newMaxHp;
+        }
+
     }
+}
+
+public class NotEnoughMpException : Exception
+{
+    public NotEnoughMpException() : base() { }
 }

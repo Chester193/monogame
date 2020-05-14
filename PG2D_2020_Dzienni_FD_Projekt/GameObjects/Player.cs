@@ -29,6 +29,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public override void Initialize()
         {
+            maxHp = 100;
+            hp = 100;
+            maxMp = 10;
+            mp = 10;
+
             base.Initialize();
         }
 
@@ -154,11 +159,29 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 Fire();
             }
 
+            //HUD tests:
+            if (Input.KeyPressed(Keys.H) == true)
+                Heal();
+            if (Input.KeyPressed(Keys.J) == true)
+                Heal(15);
+            if (Input.KeyPressed(Keys.K) == true)
+               MaxHpAdd(50);
         }
 
         private void Fire()
         {
-            isAttacking = true;            
+            isAttacking = true;
+            
+            //HUD test
+            try
+            {
+                ManaUse(1);
+            }
+            catch(NotEnoughMpException e)
+            {
+                Damage(20);
+            }
+            
         }
 
     }

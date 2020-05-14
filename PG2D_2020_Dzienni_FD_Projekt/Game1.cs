@@ -23,6 +23,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
         public TiledMap tiledMap;
 
+        GameHUD gameHUD = new GameHUD();
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -44,11 +46,12 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         {
             // TODO: Add your initialization logic here
             tiledMap = new TiledMap(vResWidth, vResHeight);
-            GameObject player = new Player();
+            Player player = new Player();
             player.position = new Vector2(800, 600);
             gameObjects.Add(player);
 
-            
+            gameHUD.Player(player);
+
             gameObjects.Add(new Zombie(new Vector2(300, 400)));
             gameObjects.Add(new Viking1(new Vector2(300, 300)));
             gameObjects.Add(new Viking2(new Vector2(300, 200)));
@@ -73,6 +76,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             // TODO: use this.Content to load your game content here
             tiledMap.Load(Content, @"Tilemaps/terrain.tmx");
+
+            gameHUD.Load(Content);
         }
 
         /// <summary>
@@ -122,6 +127,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             tiledMap.Draw(spriteBatch);
             DrawGameObjects(gameObjects);
             spriteBatch.End();
+
+            gameHUD.Draw(spriteBatch);
 
             base.Draw(gameTime);
         }
