@@ -135,6 +135,26 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 }
             }
 
+            if (hp <= 0)
+            {
+                if (direction.X < 0)
+                {
+                    ChangeAnimation(Animations.DieLeft);
+                }
+                else if (direction.X > 0)
+                {
+                    ChangeAnimation(Animations.DieRight);
+                }
+                if (direction.Y < 0)
+                {
+                    ChangeAnimation(Animations.DieBack);
+                }
+                else if (direction.Y > 0)
+                {
+                    ChangeAnimation(Animations.DieFront);
+                }
+            }
+
         }
 
         public override void Draw(SpriteBatch spriteBatch)

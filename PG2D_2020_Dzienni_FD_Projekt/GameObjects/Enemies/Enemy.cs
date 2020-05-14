@@ -7,7 +7,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
     {
         public override void Update(List<GameObject> gameObjects, TiledMap map)
         {
-            FollowPlayer(gameObjects);
+            //FollowPlayer(gameObjects);
             base.Update(gameObjects, map);
         }
 
@@ -22,9 +22,74 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 ChangeAnimation(Animations.WalkingRight);
             }
             base.UpdateAnimations();
+            
+            if (hp <= 0)
+            {
+                if (direction.X < 0)
+                {
+                    ChangeAnimation(Animations.DieLeft);
+                }
+                else if (direction.X > 0)
+                {
+                    ChangeAnimation(Animations.DieRight);
+                }
+                if (direction.Y < 0)
+                {
+                    ChangeAnimation(Animations.DieBack);
+                }
+                else if (direction.Y > 0)
+                {
+                    ChangeAnimation(Animations.DieFront);
+                }
+            }
+            
+            if (isAttacking)
+            {
+                velocity = Vector2.Zero;
+                if (direction.Y < 0 && AnimationIsNot(Animations.SlashBack))
+                {
+                    ChangeAnimation(Animations.SlashBack);
+                }
+                if (direction.Y > 0 && AnimationIsNot(Animations.SlashFront))
+                {
+                    ChangeAnimation(Animations.SlashFront);
+                }
+                if (direction.X < 0 && AnimationIsNot(Animations.SlashLeft))
+                {
+                    ChangeAnimation(Animations.SlashLeft);
+                }
+                if (direction.X > 0 && AnimationIsNot(Animations.SlashRight))
+                {
+                    ChangeAnimation(Animations.SlashRight);
+                }
+                if (IsAnimationComplete)
+                {
+                    isAttacking = false;
+                }
+            }
+
+            else if (velocity == Vector2.Zero && isJumping == false && isAttacking == false)
+            {
+                if (direction.X < 0 && AnimationIsNot(Animations.IdleLeft))
+                {
+                    ChangeAnimation(Animations.IdleLeft);
+                }
+                else if (direction.X > 0 && AnimationIsNot(Animations.IdleRight))
+                {
+                    ChangeAnimation(Animations.IdleRight);
+                }
+                if (direction.Y < 0 && AnimationIsNot(Animations.IdleBack))
+                {
+                    ChangeAnimation(Animations.IdleBack);
+                }
+                else if (direction.Y > 0 && AnimationIsNot(Animations.IdleFront))
+                {
+                    ChangeAnimation(Animations.IdleFront);
+                }
+            }
         }
 
-        private void FollowPlayer(List<GameObject> gameObjects)
+        public void FollowPlayer(List<GameObject> gameObjects)
         {
             GameObject player = gameObjects[0];
             Rectangle playerBox = player.BoundingBox;
@@ -40,6 +105,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 MoveRight();
             else if (directionX < -maxSpeed)
                 MoveLeft();
+        }
+
+        public void Guard(List<GameObject> gameObjects, int range)
+        {
+
         }
     }
 }

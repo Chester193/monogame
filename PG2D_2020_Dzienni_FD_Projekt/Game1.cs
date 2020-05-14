@@ -20,6 +20,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         int resWidth = 1280, resHeight = 720;
 
         public List<GameObject> gameObjects = new List<GameObject>();
+        public GameObject lizard1;
 
         public TiledMap tiledMap;
 
@@ -51,13 +52,16 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(player);
 
             gameHUD.Player(player);
-
+            /*
             gameObjects.Add(new Zombie(new Vector2(300, 400)));
             gameObjects.Add(new Viking1(new Vector2(300, 300)));
             gameObjects.Add(new Viking2(new Vector2(300, 200)));
             gameObjects.Add(new Viking3(new Vector2(300, 100)));
             gameObjects.Add(new Demon(new Vector2(300, 000)));
-            gameObjects.Add(new Lizard(new Vector2(500, 400)));
+            */
+            gameObjects.Add(new Lizard(new Vector2(720, 1070), 100));
+            gameObjects.Add(new Lizard(new Vector2(800, 1070), 100));
+
 
             Camera.Initialize(zoomLevel: 1.0f);
             base.Initialize();
@@ -175,5 +179,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             //    gameObject.Load(content: Content);
             //});
         }
+
+
     }
 }
