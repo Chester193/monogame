@@ -268,6 +268,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             maxHp += addHp;
         }
 
+        public void SetMaxHp(int newMaxHp)
+        {
+            maxHp = newMaxHp;
+        }
+
     }
 }
 
