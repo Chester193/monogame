@@ -264,11 +264,31 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         }
 
         ///
-        public void GeTo(Vector2 point)
+        public void GoToPositon(Vector2 point)
         {
-            if (position.X != point.X)
-            {
+            float directionX = point.X - position.X;
+            float directionY = point.Y - position.Y;
 
+            if (position.X < point.X)
+            {
+                if (directionX > 1)
+                    MoveRight();
+            }
+            else
+            {
+                if (directionX < -1)
+                    MoveLeft();
+            }
+
+            if (position.Y < point.Y)
+            {
+                if (directionY > 1)
+                    MoveDown();
+            }
+            else
+            {
+                if (directionY < -1)
+                    MoveUp();
             }
         }
 

@@ -39,7 +39,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
              if (isAttacking)
              {
                  velocity = Vector2.Zero;
-                 if (direction.X < 0 && AnimationIsNot(Animations.SlashLeft))
+                 if (direction.X <= 0 && AnimationIsNot(Animations.SlashLeft))
                  {
                      ChangeAnimation(Animations.SlashLeft);
                  }
@@ -102,12 +102,22 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         {
             GameObject player = gameObjects[0];
             Vector2 v = new Vector2(range, range);
-            if ((player.position.X < oryginalPosition.X + range) && (player.position.X > oryginalPosition.X - range) && (player.position.Y < oryginalPosition.Y + range) && (player.position.Y > oryginalPosition.Y - range))
+            if ((player.position.X < oryginalPosition.X + range + 100) && (player.position.X > oryginalPosition.X - range) && (player.position.Y < oryginalPosition.Y + range + 100) && (player.position.Y > oryginalPosition.Y - range)) //+100 aby centru obszary znajdowalo sie na przeciwniu (+/-)
             {
                 FollowPlayer(gameObjects);
-                if (velocity == Vector2.Zero) SetToDefaultPosition();
+                
+            }
+            else
+            {
+                if (position != oryginalPosition) GoToPositon(oryginalPosition);
             }
 
+        }
+
+        public string DirectionToString()
+        {
+            string s = direction.ToString();
+            return s;
         }
     }
 }

@@ -34,7 +34,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             //debug
             Vector2 v3 = new Vector2(10, 110);
-            spriteBatch.DrawString(fontArial, "XY: " + enemy.position.ToString() + "\norygXY: " + enemy.oryginalPosition.ToString() + "\nV: " + enemy.velocity.ToString() + " hp: " + enemy.hp + "/" + enemy.maxHp , v3, Color.WhiteSmoke);
+            spriteBatch.DrawString(fontArial, "Pxy: " + player.position.ToString() + "\nXY: " + enemy.position.ToString() + "\norygXY: " + enemy.oryginalPosition.ToString() + "\nV: " + enemy.velocity.ToString() + " Direct: " + enemy.DirectionToString() + " hp: " + enemy.hp + "/" + enemy.maxHp , v3, Color.Magenta);
 
             spriteBatch.End();
         }
