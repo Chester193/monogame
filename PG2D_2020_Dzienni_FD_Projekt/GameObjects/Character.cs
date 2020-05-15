@@ -25,7 +25,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public int maxMp;
         public int mp;
 
-        protected int mode = 0;
+        private int mode = 0;
 
         public override void Initialize()
         {
@@ -306,6 +306,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             this.mode = mode;
         }
 
+        public int GetMode()
+        {
+            return mode;
+        }
     }
 }
 

@@ -10,10 +10,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             //FollowPlayer(gameObjects);
             //Guard(gameObjects, 200);
             //WhaitForPlayer(gameObjects, 200);
+            int mode = GetMode();
             switch (mode)
             {
                 case 0:
-                    WhaitForPlayer(gameObjects, 200);
+                    WhaitForPlayer(gameObjects, 400);
                     break;
                 case 1:
                     Guard(gameObjects, 200);
