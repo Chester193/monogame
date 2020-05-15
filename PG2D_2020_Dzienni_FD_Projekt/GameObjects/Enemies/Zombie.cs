@@ -7,13 +7,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
 {
     class Zombie : Enemy
     {
-        public Zombie(Vector2 startingPosition, int maxHp)
+        public Zombie(Vector2 startingPosition, int maxHp,int mode)
         {
             this.position = startingPosition;
             applyGravity = false;
 
             this.maxHp = maxHp;
             this.hp = maxHp;
+
+            SetMode(mode);
         }
 
         public override void Initialize()
