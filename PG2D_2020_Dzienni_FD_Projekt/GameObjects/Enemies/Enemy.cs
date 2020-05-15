@@ -8,6 +8,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public override void Update(List<GameObject> gameObjects, TiledMap map)
         {
             //FollowPlayer(gameObjects);
+            Guard(gameObjects, 200);
+            //WhaitForPlayer(gameObjects, 200);
             base.Update(gameObjects, map);
         }
 
@@ -85,8 +87,26 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 MoveLeft();
         }
 
+        public void WhaitForPlayer(List<GameObject> gameObjects, int range)
+        {
+            GameObject player = gameObjects[0];
+            Vector2 v = new Vector2(range, range);
+            if((player.position.X < center.X + range) && (player.position.X > center.X - range) && (player.position.Y < center.Y + range) && (player.position.Y > center.Y - range))
+            {
+                FollowPlayer(gameObjects);
+            }
+                        
+        }
+
         public void Guard(List<GameObject> gameObjects, int range)
         {
+            GameObject player = gameObjects[0];
+            Vector2 v = new Vector2(range, range);
+            if ((player.position.X < oryginalPosition.X + range) && (player.position.X > oryginalPosition.X - range) && (player.position.Y < oryginalPosition.Y + range) && (player.position.Y > oryginalPosition.Y - range))
+            {
+                FollowPlayer(gameObjects);
+                if (velocity == Vector2.Zero) SetToDefaultPosition();
+            }
 
         }
     }

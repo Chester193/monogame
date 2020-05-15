@@ -14,6 +14,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
 
             this.maxHp = maxHp;
             this.hp = maxHp;
+
+            this.oryginalPosition = new Vector2(startingPosition.X, startingPosition.Y);
         }
 
         public override void Initialize()

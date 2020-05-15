@@ -51,7 +51,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             player.position = new Vector2(800, 600);
             gameObjects.Add(player);
 
-            gameHUD.Player(player);
+            gameHUD.Player(player);            
             
             //gameObjects.Add(new Zombie(new Vector2(300, 400), 20));
             //gameObjects.Add(new Viking1(new Vector2(300, 300), 50));
@@ -62,6 +62,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(new Lizard(new Vector2(720, 1070), 100));
             gameObjects.Add(new Lizard(new Vector2(800, 1070), 100));
 
+            gameHUD.Enemy((Enemy)gameObjects[1]);
 
             Camera.Initialize(zoomLevel: 1.0f);
             base.Initialize();

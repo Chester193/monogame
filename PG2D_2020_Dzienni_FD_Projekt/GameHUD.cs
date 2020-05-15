@@ -14,6 +14,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
     {
         SpriteFont fontArial, fontDiamond, fontCocoonian;
         Player player;
+        Enemy enemy;
         
         public void Load(ContentManager content)
         {
@@ -30,12 +31,22 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             spriteBatch.DrawString(fontDiamond, "HP: " + player.HpToString() + "/" + player.MaxHpToString() , v1, Color.Red);
             Vector2 v2 = new Vector2(10, 70);
             spriteBatch.DrawString(fontDiamond, "MP: " + player.MpToString() + "/" + player.MaxMpToString(), v2, Color.Blue);
+
+            //debug
+            Vector2 v3 = new Vector2(10, 110);
+            spriteBatch.DrawString(fontArial, "XY: " + enemy.position.ToString() + "\norygXY: " + enemy.oryginalPosition.ToString() + "\nV: " + enemy.velocity.ToString() + " hp: " + enemy.hp + "/" + enemy.maxHp , v3, Color.WhiteSmoke);
+
             spriteBatch.End();
         }
 
         internal void Player(Player player)
         {
             this.player = player;
+        }
+
+        internal void Enemy(Enemy enemy)
+        {
+            this.enemy = enemy;
         }
     }
 }
