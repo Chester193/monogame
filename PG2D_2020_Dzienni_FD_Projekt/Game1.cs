@@ -59,8 +59,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             //gameObjects.Add(new Viking3(new Vector2(300, 100), 55));
             //gameObjects.Add(new Demon(new Vector2(300, 000), 300));
             
-            gameObjects.Add(new Lizard(new Vector2(720, 1070), 100));
-            gameObjects.Add(new Lizard(new Vector2(800, 1070), 100));
+            gameObjects.Add(new Lizard(new Vector2(720, 1070), 100, 1));
+            gameObjects.Add(new Lizard(new Vector2(800, 1070), 100, 0));
 
             gameHUD.Enemy((Enemy)gameObjects[1]);
 

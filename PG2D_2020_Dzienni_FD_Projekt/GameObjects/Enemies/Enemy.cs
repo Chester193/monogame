@@ -8,8 +8,26 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public override void Update(List<GameObject> gameObjects, TiledMap map)
         {
             //FollowPlayer(gameObjects);
-            Guard(gameObjects, 200);
+            //Guard(gameObjects, 200);
             //WhaitForPlayer(gameObjects, 200);
+            switch (mode)
+            {
+                case 0:
+                    WhaitForPlayer(gameObjects, 200);
+                    break;
+                case 1:
+                    Guard(gameObjects, 200);
+                    break;
+                case 2:
+                    FollowPlayer(gameObjects);
+                    break;
+
+                default:
+                    WhaitForPlayer(gameObjects, 200);
+                    break;
+            }
+
+
             base.Update(gameObjects, map);
         }
 

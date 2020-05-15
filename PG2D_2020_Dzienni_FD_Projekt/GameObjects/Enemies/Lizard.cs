@@ -7,13 +7,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
 {
     class Lizard : Enemy
     {
-        public Lizard(Vector2 startingPosition, int maxHp)
+        public Lizard(Vector2 startingPosition, int maxHp, int mode)
         {
             this.position = startingPosition;
             applyGravity = false;
 
             this.maxHp = maxHp;
             this.hp = maxHp;
+
+            SetMode(mode);
 
             this.oryginalPosition = new Vector2(startingPosition.X, startingPosition.Y);
         }

@@ -32,7 +32,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             Vector2 v2 = new Vector2(10, 70);
             spriteBatch.DrawString(fontDiamond, "MP: " + player.MpToString() + "/" + player.MaxMpToString(), v2, Color.Blue);
 
-            //debug
+            //debug enemy
             Vector2 v3 = new Vector2(10, 110);
             spriteBatch.DrawString(fontArial, "Pxy: " + player.position.ToString() + "\nXY: " + enemy.position.ToString() + "\norygXY: " + enemy.oryginalPosition.ToString() + "\nV: " + enemy.velocity.ToString() + " Direct: " + enemy.DirectionToString() + " hp: " + enemy.hp + "/" + enemy.maxHp , v3, Color.Magenta);
 

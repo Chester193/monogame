@@ -25,6 +25,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public int maxMp;
         public int mp;
 
+        protected int mode = 0;
+
         public override void Initialize()
         {
             velocity = Vector2.Zero;
@@ -290,6 +292,18 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 if (directionY < -1)
                     MoveUp();
             }
+        }
+
+        /// <summary>
+        /// 0 - WhaitForPlayer [Domyslny];
+        /// 1 - Guard;
+        /// 2 - FollowPlayer;
+        /// 
+        /// </summary>
+        /// <param name="mode"></param>
+        public void SetMode(int mode)
+        {
+            this.mode = mode;
         }
 
     }
