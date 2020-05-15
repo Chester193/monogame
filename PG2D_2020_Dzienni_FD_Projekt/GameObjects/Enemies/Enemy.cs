@@ -11,22 +11,24 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             //Guard(gameObjects, 200);
             //WhaitForPlayer(gameObjects, 200);
             int mode = GetMode();
+            int range = GetRange();
             switch (mode)
             {
                 case 0:
-                    WhaitForPlayer(gameObjects, 400);
+                    WhaitForPlayer(gameObjects, range);
                     break;
                 case 1:
-                    Guard(gameObjects, 200);
+                    Guard(gameObjects, range);
                     break;
                 case 2:
                     FollowPlayer(gameObjects);
                     break;
 
                 default:
-                    WhaitForPlayer(gameObjects, 200);
+                    WhaitForPlayer(gameObjects, range);
                     break;
             }
+
 
 
             base.Update(gameObjects, map);
@@ -108,9 +110,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public void WhaitForPlayer(List<GameObject> gameObjects, int range)
         {
-            GameObject player = gameObjects[0];
+            Player player = (Player)gameObjects[0];
             Vector2 v = new Vector2(range, range);
-            if((player.position.X < center.X + range) && (player.position.X > center.X - range) && (player.position.Y < center.Y + range) && (player.position.Y > center.Y - range))
+            if((player.realPositon.X < realPositon.X + range) && (player.realPositon.X > realPositon.X - range) && (player.realPositon.Y < realPositon.Y + range) && (player.realPositon.Y > realPositon.Y - range))
             {
                 FollowPlayer(gameObjects);
             }
@@ -119,16 +121,17 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public void Guard(List<GameObject> gameObjects, int range)
         {
-            GameObject player = gameObjects[0];
-            Vector2 v = new Vector2(range, range);
-            if ((player.position.X < oryginalPosition.X + range + 100) && (player.position.X > oryginalPosition.X - range) && (player.position.Y < oryginalPosition.Y + range + 100) && (player.position.Y > oryginalPosition.Y - range)) //+100 aby centru obszary znajdowalo sie na przeciwniu (+/-)
+            Player player = (Player)gameObjects[0];
+            Vector2 v = new Vector2(range);
+            if ((player.realPositon.X  < oryginalPosition.X + range) && (player.realPositon.X > oryginalPosition.X - range) && (player.realPositon.Y < oryginalPosition.Y + range) && (player.realPositon.Y > oryginalPosition.Y - range))
             {
                 FollowPlayer(gameObjects);
-                
+
             }
             else
             {
-                if (position != oryginalPosition) GoToPositon(oryginalPosition);
+                //if (position != oryginalPosition)
+                    GoToPositon(oryginalPosition);
             }
 
         }

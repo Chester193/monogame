@@ -10,7 +10,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
     {
         protected Texture2D texture;
         public Vector2 position;
-        public Vector2 oryginalPosition;
+        public Vector2 oryginalPosition = new Vector2(-1, -1);
         protected Vector2 center; //origin of the sprite/texture
         public Color tintColor = Color.White;
         public float scale = 0.6f;

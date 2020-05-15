@@ -48,7 +48,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             // TODO: Add your initialization logic here
             tiledMap = new TiledMap(vResWidth, vResHeight);
             Player player = new Player();
-            player.position = new Vector2(800, 600);
+            player.position = new Vector2(400, 400);
             gameObjects.Add(player);
 
             gameHUD.Player(player);            
@@ -59,8 +59,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             //gameObjects.Add(new Viking3(new Vector2(300, 100), 55));
             //gameObjects.Add(new Demon(new Vector2(300, 000), 300));
             
-            gameObjects.Add(new Lizard(new Vector2(720, 1070), 100, 1));
-            gameObjects.Add(new Lizard(new Vector2(800, 1070), 100, 0));
+            gameObjects.Add(new Lizard(new Vector2(720, 1070), 100, 1, 300));
+            //gameObjects.Add(new Lizard(new Vector2(400, 600), 100, 1));
 
             gameHUD.Enemy((Enemy)gameObjects[1]);
 

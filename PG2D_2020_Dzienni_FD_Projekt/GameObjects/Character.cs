@@ -26,6 +26,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public int mp;
 
         private int mode = 0;
+        private int range;
+
+        public Vector2 realPositon;
 
         public override void Initialize()
         {
@@ -67,6 +70,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 velocity.Y = ApplyDrag(velocity.Y, deceleration);
             }
 
+            realPositon = BoundingBox.Center.ToVector2();
+            if (oryginalPosition == new Vector2(-1, -1)) oryginalPosition = new Vector2(realPositon.X, realPositon.Y);
         }
 
 
@@ -268,10 +273,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         ///
         public void GoToPositon(Vector2 point)
         {
-            float directionX = point.X - position.X;
-            float directionY = point.Y - position.Y;
+            float directionX = point.X - realPositon.X;
+            float directionY = point.Y - realPositon.Y;
 
-            if (position.X < point.X)
+            if (realPositon.X < point.X)
             {
                 if (directionX > 1)
                     MoveRight();
@@ -282,7 +287,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     MoveLeft();
             }
 
-            if (position.Y < point.Y)
+            if (realPositon.Y < point.Y)
             {
                 if (directionY > 1)
                     MoveDown();
@@ -309,6 +314,16 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public int GetMode()
         {
             return mode;
+        }
+
+        public int GetRange()
+        {
+            return range;
+        }
+
+        public void SetRange(int range)
+        {
+            this.range = range;
         }
     }
 }

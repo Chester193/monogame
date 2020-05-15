@@ -7,7 +7,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
 {
     class Lizard : Enemy
     {
-        public Lizard(Vector2 startingPosition, int maxHp, int mode)
+        public Lizard(Vector2 startingPosition, int maxHp, int mode, int range)
         {
             this.position = startingPosition;
             applyGravity = false;
@@ -16,8 +16,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
             this.hp = maxHp;
 
             SetMode(mode);
+            SetRange(range);
 
-            this.oryginalPosition = new Vector2(startingPosition.X, startingPosition.Y);
+            //this.oryginalPosition = BoundingBox.Center.ToVector2(); // new Vector2(startingPosition.X, startingPosition.Y);
         }
 
         public override void Initialize()
