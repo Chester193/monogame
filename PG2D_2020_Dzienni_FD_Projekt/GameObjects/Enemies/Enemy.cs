@@ -93,44 +93,39 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public void FollowPlayer(List<GameObject> gameObjects)
         {
             GameObject player = gameObjects[0];
-            Rectangle playerBox = player.BoundingBox;
-            float directionX = playerBox.X - BoundingBox.X;
-            float directionY = playerBox.Y - BoundingBox.Y;
+            Rectangle playerBox = player.BoundingBox; 
 
-            if (directionY > maxSpeed)
-                MoveDown();
-            else if (directionY < -maxSpeed)
-                MoveUp();
-
-            if (directionX > maxSpeed)
-                MoveRight();
-            else if (directionX < -maxSpeed)
-                MoveLeft();
+            Vector2 targetPoint = playerBox.Center.ToVector2();
+            GoToPositon(targetPoint);
         }
 
         public void WhaitForPlayer(List<GameObject> gameObjects, int range)
         {
             Player player = (Player)gameObjects[0];
             Vector2 v = new Vector2(range, range);
-            if((player.realPositon.X < realPositon.X + range) && (player.realPositon.X > realPositon.X - range) && (player.realPositon.Y < realPositon.Y + range) && (player.realPositon.Y > realPositon.Y - range))
+
+            float distansToPlayer = Vector2.Distance(player.realPositon, realPositon);
+            if (distansToPlayer < range)
             {
                 FollowPlayer(gameObjects);
             }
-                        
         }
 
         public void Guard(List<GameObject> gameObjects, int range)
         {
             Player player = (Player)gameObjects[0];
             Vector2 v = new Vector2(range);
-            if ((player.realPositon.X  < oryginalPosition.X + range) && (player.realPositon.X > oryginalPosition.X - range) && (player.realPositon.Y < oryginalPosition.Y + range) && (player.realPositon.Y > oryginalPosition.Y - range))
+            float distansToPlayer = Vector2.Distance(player.realPositon, realPositon);
+            float distansToGuardPosition = Vector2.Distance(oryginalPosition, realPositon);
+            if (distansToPlayer < range)
             {
-                FollowPlayer(gameObjects);
-
+                if (distansToGuardPosition <= 2* range)
+                {
+                    FollowPlayer(gameObjects);
+                }
             }
             else
             {
-                //if (position != oryginalPosition)
                     GoToPositon(oryginalPosition);
             }
 

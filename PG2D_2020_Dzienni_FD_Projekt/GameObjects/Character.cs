@@ -273,30 +273,19 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         ///
         public void GoToPositon(Vector2 point)
         {
-            float directionX = point.X - realPositon.X;
-            float directionY = point.Y - realPositon.Y;
+            float directionX = point.X - BoundingBox.Center.X;
+            float directionY = point.Y - BoundingBox.Center.Y;
 
-            if (realPositon.X < point.X)
-            {
-                if (directionX > 1)
-                    MoveRight();
-            }
-            else
-            {
-                if (directionX < -1)
-                    MoveLeft();
-            }
+            if (directionY > maxSpeed)
+                MoveDown();
+            else if (directionY < -maxSpeed)
+                MoveUp();
 
-            if (realPositon.Y < point.Y)
-            {
-                if (directionY > 1)
-                    MoveDown();
-            }
-            else
-            {
-                if (directionY < -1)
-                    MoveUp();
-            }
+            if (directionX > maxSpeed)
+                MoveRight();
+            else if (directionX < -maxSpeed)
+                MoveLeft();
+            
         }
 
         /// <summary>
