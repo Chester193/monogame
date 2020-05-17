@@ -237,7 +237,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 isDead = true;
             }
 
-            //Console.WriteLine("Character.Damage() " + dmg);
+            Console.WriteLine("Character.Damage() " + dmg);
         }
 
         public void ManaUse(int mpUsed)
@@ -298,7 +298,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             float directionX = point.X - BoundingBox.Center.X;
             float directionY = point.Y - BoundingBox.Center.Y;
 
-            if (!isAttacking || !isDead)
+            if (!isAttacking && !isDead)
             {
                 if (directionY > maxSpeed)
                     MoveDown();

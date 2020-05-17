@@ -191,11 +191,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         private void Fire(List<GameObject> gameObjects)
         {
-            //isAttacking = true;
-
             Character enemyInRange = NearestEnemy(gameObjects);
+            if(enemyInRange != null) Attack(enemyInRange, 1000);
+
             //Console.WriteLine("enmyInRange" + enemyInRange.ToString());
-            Attack(enemyInRange, 1000);
+            
 
             //Console.WriteLine("Fire()");
             //HUD test
@@ -215,8 +215,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             float distans = 0, distansPrev = 0;
             Character character;
             Character target = null;
-            /*
-            for (int i = 1; i < gameObjects.Count; i++ )
+          
+            for (int i = 0; i < gameObjects.Count; i++ )
             {
                 character = (Character)gameObjects[i];
                 distans = Vector2.Distance(character.realPositon, realPositon);
@@ -228,10 +228,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     Console.WriteLine("NarestEnemy " + target.ToString());
                 }
             }
-            */
+            
             //Console.WriteLine("NearestEnemy() distans " + distans + " GO.count " + gameObjects.Count);
 
-            return target = (Character)gameObjects[1];
+            return target; // = (Character)gameObjects[1];
         }
     }
 }

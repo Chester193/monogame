@@ -38,11 +38,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             spriteBatch.DrawString(fontArial, "Pxy: " + player.position.ToString() + "\nXY: " + enemy.position.ToString() + "\norygXY: " + player.oryginalPosition.ToString() + 
                 "\nBBox: " + player.BoundingBox.Center.ToString() + "\nRealPosition: " + player.realPositon.ToString() + "\nV: " + player.velocity.ToString() + 
                 " Direct: " + enemy.DirectionToString() + " hp: " + enemy.hp + "/" + enemy.maxHp , v3, Color.Magenta);
-            
+            */
             spriteBatch.DrawString(fontArial, "P-XY: " + player.realPositon.ToString() + "\nXY: " + enemy.position.ToString() + "\norygXY: " + enemy.oryginalPosition.ToString() +
                 "\nBBox: " + enemy.BoundingBox.Center.ToString() + "\nRealPosition: " + enemy.realPositon.ToString() + "\nV: " + enemy.velocity.ToString() +
                 " Direct: " + enemy.DirectionToString() + " hp: " + enemy.hp + "/" + enemy.maxHp, v3, Color.Magenta);
-            */
+            
 
             spriteBatch.End();
         }
