@@ -28,6 +28,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         const float jumpVelocity = 16.0f;
         const float terminalVelocity = 32.0f;
 
+        protected bool isDead = false;
         protected bool isAttacking = false;
         protected bool isJumping = false;
         public static bool applyGravity = false;
@@ -230,7 +231,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public void Damage(int dmg)
         {
             hp -= dmg;
-            if (hp <= 0) hp = 0;
+            if (hp <= 0)
+            {
+                hp = 0;
+                isDead = true;
+            }
+
+            //Console.WriteLine("Character.Damage() " + dmg);
         }
 
         public void ManaUse(int mpUsed)
@@ -291,7 +298,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             float directionX = point.X - BoundingBox.Center.X;
             float directionY = point.Y - BoundingBox.Center.Y;
 
-            if (!isAttacking)
+            if (!isAttacking || !isDead)
             {
                 if (directionY > maxSpeed)
                     MoveDown();
@@ -307,14 +314,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 
         }
 
-        public void Attack(List<GameObject> gameObjects, int dmg)
+        public void Attack(Character target, int dmg)
         {
-            Player player = (Player)gameObjects[0];
-            float distansToPlayer = Vector2.Distance(player.realPositon, realPositon);
-            if (distansToPlayer < rangeOfAttack && !isAttacking)
+            float distansToTarget = Vector2.Distance(target.realPositon, realPositon);
+            //Console.WriteLine("Character.Attack() " + distansToTarget + " / " + rangeOfAttack + " t.rPositon " + target.realPositon + " player.rPosioton" + realPositon);
+            if (distansToTarget < rangeOfAttack && !isAttacking)
             {
                 isAttacking = true;
-                player.Damage(dmg);
+                target.Damage(dmg);
+                //Console.WriteLine("Character.Attack()[EndIF]()");
             }
         }
 

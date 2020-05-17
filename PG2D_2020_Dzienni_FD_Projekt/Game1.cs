@@ -53,22 +53,21 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             gameHUD.Player(player);
 
-            //gameObjects.Add(new Zombie(new Vector2(300, 400), 20));
-            //gameObjects.Add(new Viking1(new Vector2(300, 300), 50));
-            //gameObjects.Add(new Viking2(new Vector2(300, 200), 60));
-            //gameObjects.Add(new Viking3(new Vector2(300, 100), 55));
-            //gameObjects.Add(new Demon(new Vector2(300, 000), 300));
+            CharacterSetings characterSetings = new CharacterSetings();
+            characterSetings.maxHp = 100;
+            characterSetings.mode = 1;
+            characterSetings.range = 300;
+            characterSetings.rangeOfAttack = 80;
 
-            CharacterSetings charSetings = new CharacterSetings();
-            charSetings.maxHp = 100;
-            charSetings.mode = 1;
-            charSetings.range = 300;
-            charSetings.rangeOfAttack = 80;
+            gameObjects.Add(new Lizard(new Vector2(720, 1070), characterSetings));
 
-            gameObjects.Add(new Lizard(new Vector2(720, 1070), charSetings));
-
-            charSetings.mode = 0;
-            gameObjects.Add(new Lizard(new Vector2(400, 600), charSetings));
+            characterSetings.mode = 0;
+            gameObjects.Add(new Lizard(new Vector2(400, 600), characterSetings));
+            gameObjects.Add(new Zombie(new Vector2(300, 400), characterSetings));
+            //gameObjects.Add(new Viking1(new Vector2(300, 300), characterSetings));
+            //gameObjects.Add(new Viking2(new Vector2(300, 200), characterSetings));
+            //gameObjects.Add(new Viking3(new Vector2(300, 100), characterSetings));
+            //gameObjects.Add(new Demon(new Vector2(300, 000), characterSetings));
 
             gameHUD.Enemy((Enemy)gameObjects[1]);
 

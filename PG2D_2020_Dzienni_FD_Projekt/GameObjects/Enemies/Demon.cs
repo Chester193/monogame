@@ -14,8 +14,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
 
             this.maxHp = setings.maxHp;
             this.hp = setings.maxHp;
+            this.rangeOfAttack = setings.rangeOfAttack;
 
             SetMode(setings.mode);
+            SetRange(setings.range);
         }
 
         public override void Initialize()
