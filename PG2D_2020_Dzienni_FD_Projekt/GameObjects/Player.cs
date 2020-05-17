@@ -215,17 +215,20 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             float distans = 0, distansPrev = 0;
             Character character;
             Character target = null;
-          
-            for (int i = 0; i < gameObjects.Count; i++ )
+
+            for (int i = 0; i < gameObjects.Count; i++)
             {
                 character = (Character)gameObjects[i];
-                distans = Vector2.Distance(character.realPositon, realPositon);
-                if (distansPrev == 0) distansPrev = distans;
-                if (distans < distansPrev)
-                {
-                    distansPrev = distans;
-                    target = character;
-                    Console.WriteLine("NarestEnemy " + target.ToString());
+                if(!character.IsDead())
+                { 
+                    distans = Vector2.Distance(character.realPositon, realPositon);
+                    if (distansPrev == 0) distansPrev = distans;
+                    if (distans < distansPrev)
+                    {
+                        distansPrev = distans;
+                        target = character;
+                        Console.WriteLine("NarestEnemy " + target.ToString());
+                    }
                 }
             }
             
