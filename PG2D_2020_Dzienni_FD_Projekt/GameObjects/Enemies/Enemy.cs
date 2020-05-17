@@ -109,6 +109,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             {
                 FollowPlayer(gameObjects);
             }
+            Attack(gameObjects, 20);
         }
 
         public void Guard(List<GameObject> gameObjects, int range)
@@ -128,7 +129,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             {
                     GoToPositon(oryginalPosition);
             }
-
+            Attack(gameObjects, 20);
         }
 
         public string DirectionToString()

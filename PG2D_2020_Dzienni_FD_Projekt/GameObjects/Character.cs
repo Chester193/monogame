@@ -4,6 +4,19 @@ using System.Collections.Generic;
 
 namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 {
+    struct CharacterSetings
+    {
+        public int maxHp;
+        public int hp;
+
+        public int mode;
+        public int range;
+        public int rangeOfAttack;
+
+        public int maxMp;
+        public int mp;
+    }
+
     public class Character : AnimatedObject
     {
         public Vector2 velocity;
@@ -27,6 +40,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         private int mode = 0;
         private int range;
+
+        public int rangeOfAttack;
 
         public Vector2 realPositon;
 
@@ -276,16 +291,31 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             float directionX = point.X - BoundingBox.Center.X;
             float directionY = point.Y - BoundingBox.Center.Y;
 
-            if (directionY > maxSpeed)
-                MoveDown();
-            else if (directionY < -maxSpeed)
-                MoveUp();
+            if (!isAttacking)
+            {
+                if (directionY > maxSpeed)
+                    MoveDown();
+                else if (directionY < -maxSpeed)
+                    MoveUp();
 
-            if (directionX > maxSpeed)
-                MoveRight();
-            else if (directionX < -maxSpeed)
-                MoveLeft();
+                if (directionX > maxSpeed)
+                    MoveRight();
+                else if (directionX < -maxSpeed)
+                    MoveLeft();
             
+            }
+                
+        }
+
+        public void Attack(List<GameObject> gameObjects, int dmg)
+        {
+            Player player = (Player)gameObjects[0];
+            float distansToPlayer = Vector2.Distance(player.realPositon, realPositon);
+            if (distansToPlayer < rangeOfAttack && !isAttacking)
+            {
+                isAttacking = true;
+                player.Damage(dmg);
+            }
         }
 
         /// <summary>

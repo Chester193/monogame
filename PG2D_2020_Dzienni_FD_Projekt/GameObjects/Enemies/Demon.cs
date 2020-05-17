@@ -7,15 +7,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
 {
     class Demon : Enemy
     {
-        public Demon(Vector2 startingPosition, int maxHp, int mode)
+        public Demon(Vector2 startingPosition, CharacterSetings setings)
         {
             this.position = startingPosition;
             applyGravity = false;
 
-            this.maxHp = maxHp;
-            this.hp = maxHp;
+            this.maxHp = setings.maxHp;
+            this.hp = setings.maxHp;
 
-            SetMode(mode);
+            SetMode(setings.mode);
         }
 
         public override void Initialize()

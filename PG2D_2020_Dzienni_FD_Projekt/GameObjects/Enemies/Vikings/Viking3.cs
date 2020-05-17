@@ -7,15 +7,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
 {
     class Viking3 : Enemy
     {
-        public Viking3(Vector2 startingPosition, int maxHp,int mode)
+        public Viking3(Vector2 startingPosition, CharacterSetings setings)
         {
             this.position = startingPosition;
             applyGravity = false;
 
-            this.maxHp = maxHp;
-            this.hp = maxHp;
+            this.maxHp = setings.maxHp;
+            this.hp = setings.maxHp;
 
-            SetMode(mode);
+            SetMode(setings.mode);
         }
 
         public override void Initialize()
