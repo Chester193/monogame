@@ -1,13 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 
 namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 {
     class Enemy : Character
     {
+
         public override void Update(List<GameObject> gameObjects, TiledMap map)
         {
-            FollowPlayer(gameObjects);
+            if(path.Count == 0 || GoToPoint(path[0]))
+            {
+                path = PathFinder.FindPath(map, new Vector2(BoundingBox.X, BoundingBox.Y), new Vector2(gameObjects[0].BoundingBox.X, gameObjects[0].BoundingBox.Y));
+            }
             base.Update(gameObjects, map);
         }
 
@@ -22,24 +27,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 ChangeAnimation(Animations.WalkingRight);
             }
             base.UpdateAnimations();
-        }
-
-        private void FollowPlayer(List<GameObject> gameObjects)
-        {
-            GameObject player = gameObjects[0];
-            Rectangle playerBox = player.BoundingBox;
-            float directionX = playerBox.X - BoundingBox.X;
-            float directionY = playerBox.Y - BoundingBox.Y;
-
-            if (directionY > maxSpeed)
-                MoveDown();
-            else if (directionY < -maxSpeed)
-                MoveUp();
-
-            if (directionX > maxSpeed)
-                MoveRight();
-            else if (directionX < -maxSpeed)
-                MoveLeft();
         }
     }
 }
