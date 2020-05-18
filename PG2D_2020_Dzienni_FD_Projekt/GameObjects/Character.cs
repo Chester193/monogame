@@ -11,6 +11,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public int mode;
         public int range;
+        public List<Point> points;
         public int rangeOfAttack;
 
         public int maxMp;
@@ -41,7 +42,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         private int mode = 0;
         private int range;
-
+        public List<Point> points;
         public int rangeOfAttack;
 
         public Vector2 realPositon;

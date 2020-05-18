@@ -18,6 +18,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
 
             SetMode(setings.mode);
             SetRange(setings.range);
+            points = setings.points;
 
             //this.oryginalPosition = BoundingBox.Center.ToVector2(); // new Vector2(startingPosition.X, startingPosition.Y);
         }

@@ -1,10 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using System;
 
 namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 {
     class Enemy : Character
     {
+        private int step = 0;
+
         public override void Update(List<GameObject> gameObjects, TiledMap map)
         {
             int mode = GetMode();
@@ -133,9 +136,41 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             }
             else
             {
-                    GoToPositon(oryginalPosition);
+                Patrol();
+                //GoToPositon(oryginalPosition);
             }
             Attack(player, 20);
+        }
+
+        public void Patrol()
+        {
+            float distans;
+            if (points != null)
+            {
+                if (step > points.Count)
+                    step = 0;
+                else
+                {
+                    if (step == points.Count)
+                    {
+                        GoToPositon(oryginalPosition);
+                        distans = Vector2.Distance(realPositon, oryginalPosition);
+                        if (distans < 5) step++;
+                    }                        
+                    else
+                    {
+                        distans = Vector2.Distance(realPositon, points[step].ToVector2());
+                        if (distans < 5)
+                            step++;
+                        else
+                            GoToPositon(points[step].ToVector2());
+                        if (realPositon == oryginalPosition)
+                            step++;
+                    }
+
+                }
+                Console.WriteLine("step: " + step);
+            }
         }
 
         public string DirectionToString()

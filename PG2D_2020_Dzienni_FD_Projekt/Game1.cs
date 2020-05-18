@@ -59,6 +59,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             characterSetings.range = 300;
             characterSetings.rangeOfAttack = 80;
 
+            List<Point> points = new List<Point>();
+            points.Add(new Point(650, 970));
+            points.Add(new Point(650, 1070));
+            points.Add(new Point(850, 1070));
+
+            characterSetings.points = points;
+
             gameObjects.Add(new Zombie(new Vector2(-100, -100), characterSetings));     //z jakiegoś powodu pierwszy przeciwnik jest zawsze niesmiertelny;
             gameObjects.Add(new Lizard(new Vector2(720, 1070), characterSetings));
 
