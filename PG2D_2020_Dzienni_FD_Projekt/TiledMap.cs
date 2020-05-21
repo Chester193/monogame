@@ -26,8 +26,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
         int VResWidth, VResHeight;
 
-        float result;
-
         public TiledMap()
         {
 
@@ -56,7 +54,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             {
                 TileLayer mapLayer = new TileLayer(VResWidth, VResHeight);
 
-                if (float.TryParse(layer.Properties["layerDepth"], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out result))
+                if (float.TryParse(layer.Properties["layerDepth"], System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out float result))
                 {
                     mapLayer.layerDepth = result;
                 }

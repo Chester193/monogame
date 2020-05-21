@@ -4,14 +4,21 @@ using System.Collections.Generic;
 
 namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 {
-    struct CharacterSetings
+    public enum CharcterMode
+    {
+        WhaitForPlayer,
+        Guard,
+        FollowPlayer
+    }
+
+    struct CharacterSettings
     {
         public int maxHp;
         public int hp;
 
-        public int mode;
+        public CharcterMode mode;
         public int range;
-        public List<Point> points;
+        public List<Vector2> points;
         public int rangeOfAttack;
 
         public int maxMp;
@@ -40,9 +47,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public int maxMp;
         public int mp;
 
-        private int mode = 0;
+        private CharcterMode mode = 0;
         private int range;
-        public List<Point> points;
+        public List<Vector2> points;
         public int rangeOfAttack;
 
         public Vector2 realPositon;
@@ -238,7 +245,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 isDead = true;
             }
 
-            Console.WriteLine("Character.Damage() " + dmg);
+            //Console.WriteLine("Character.Damage() " + dmg);
         }
 
         public void ManaUse(int mpUsed)
@@ -253,7 +260,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             hp += points;
             if (hp >= maxHp) hp = maxHp;
         }
-        
+
         public void Heal()
         {
             hp = maxHp;
@@ -310,9 +317,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     MoveRight();
                 else if (directionX < -maxSpeed)
                     MoveLeft();
-            
             }
-                
         }
 
         public void Attack(Character target, int dmg)
@@ -327,19 +332,12 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             }
         }
 
-        /// <summary>
-        /// 0 - WhaitForPlayer [Domyslny];
-        /// 1 - Guard;
-        /// 2 - FollowPlayer;
-        /// 
-        /// </summary>
-        /// <param name="mode"></param>
-        public void SetMode(int mode)
+        public void SetMode(CharcterMode mode)
         {
             this.mode = mode;
         }
 
-        public int GetMode()
+        public CharcterMode GetMode()
         {
             return mode;
         }

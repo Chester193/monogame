@@ -53,31 +53,31 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             gameHUD.Player(player);
 
-            CharacterSetings characterSetings = new CharacterSetings();
-            characterSetings.maxHp = 100;
-            characterSetings.mode = 1;
-            characterSetings.range = 300;
-            characterSetings.rangeOfAttack = 80;
+            CharacterSettings characterSettings = new CharacterSettings();
+            characterSettings.maxHp = 100;
+            characterSettings.mode = CharcterMode.Guard;
+            characterSettings.range = 300;
+            characterSettings.rangeOfAttack = 80;
 
-            List<Point> points = new List<Point>();
-            points.Add(new Point(650, 970));
-            points.Add(new Point(650, 1070));
-            points.Add(new Point(850, 1070));
+            List<Vector2> points = new List<Vector2>();
+            points.Add(new Vector2(650, 970));
+            points.Add(new Vector2(650, 1070));
+            points.Add(new Vector2(850, 1070));
 
-            characterSetings.points = points;
+            characterSettings.points = points;
 
-            gameObjects.Add(new Zombie(new Vector2(-100, -100), characterSetings));     //z jakiegoś powodu pierwszy przeciwnik jest zawsze niesmiertelny;
-            gameObjects.Add(new Lizard(new Vector2(720, 1070), characterSetings));
+            gameObjects.Add(new Zombie(new Vector2(-100, -100), characterSettings));     //z jakiegoś powodu pierwszy przeciwnik jest zawsze niesmiertelny;
+            gameObjects.Add(new Lizard(new Vector2(720, 1070), characterSettings));
 
-            characterSetings.mode = 0;
-            gameObjects.Add(new Lizard(new Vector2(400, 600), characterSetings));
-            characterSetings.rangeOfAttack = 30;
-            gameObjects.Add(new Zombie(new Vector2(300, 400), characterSetings));
-            gameObjects.Add(new Viking1(new Vector2(300, 300), characterSetings));
-            gameObjects.Add(new Viking2(new Vector2(300, 200), characterSetings));
-            gameObjects.Add(new Viking3(new Vector2(300, 100), characterSetings));
-            characterSetings.mode = 5;
-            gameObjects.Add(new Demon(new Vector2(300, 000), characterSetings));
+            characterSettings.mode = 0;
+            gameObjects.Add(new Lizard(new Vector2(400, 600), characterSettings));
+            characterSettings.rangeOfAttack = 30;
+            gameObjects.Add(new Zombie(new Vector2(300, 400), characterSettings));
+            gameObjects.Add(new Viking1(new Vector2(300, 300), characterSettings));
+            gameObjects.Add(new Viking2(new Vector2(300, 200), characterSettings));
+            gameObjects.Add(new Viking3(new Vector2(300, 100), characterSettings));
+            characterSettings.mode = CharcterMode.FollowPlayer;
+            gameObjects.Add(new Demon(new Vector2(300, 000), characterSettings));
 
             gameHUD.Enemy((Enemy)gameObjects[2]);
 

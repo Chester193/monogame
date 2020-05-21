@@ -10,21 +10,20 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public override void Update(List<GameObject> gameObjects, TiledMap map)
         {
-            int mode = GetMode();
+            CharcterMode mode = GetMode();
             int range = GetRange();
 
             if (!isDead)
             {
-
                 switch (mode)
                 {
-                    case 0:
+                    case CharcterMode.WhaitForPlayer:
                         WhaitForPlayer(gameObjects, range);
                         break;
-                    case 1:
+                    case CharcterMode.Guard:
                         Guard(gameObjects, range);
                         break;
-                    case 2:
+                    case CharcterMode.FollowPlayer:
                         FollowPlayer(gameObjects);
                         break;
 
@@ -33,56 +32,53 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                         break;
                 }
             }
-                
-
-
 
             base.Update(gameObjects, map);
         }
 
         protected override void UpdateAnimations()
         {
-             if (hp <= 0)
-             {
-                 if (direction.X < 0)
-                 {
-                     ChangeAnimation(Animations.DieLeft);
-                 }
-                 else if (direction.X > 0)
-                 {
-                     ChangeAnimation(Animations.DieRight);
-                 }
-             }
+            if (hp <= 0)
+            {
+                if (direction.X < 0)
+                {
+                    ChangeAnimation(Animations.DieLeft);
+                }
+                else if (direction.X > 0)
+                {
+                    ChangeAnimation(Animations.DieRight);
+                }
+            }
             else
             {
-                 if (velocity != Vector2.Zero && direction.X < 0 && AnimationIsNot(Animations.WalkingLeft))
-                 {
-                     ChangeAnimation(Animations.WalkingLeft);
-                 }
-                 else if (velocity != Vector2.Zero && direction.X > 0 && AnimationIsNot(Animations.WalkingRight))
-                 {
-                     ChangeAnimation(Animations.WalkingRight);
-                 }
+                if (velocity != Vector2.Zero && direction.X < 0 && AnimationIsNot(Animations.WalkingLeft))
+                {
+                    ChangeAnimation(Animations.WalkingLeft);
+                }
+                else if (velocity != Vector2.Zero && direction.X > 0 && AnimationIsNot(Animations.WalkingRight))
+                {
+                    ChangeAnimation(Animations.WalkingRight);
+                }
 
-                 if (isAttacking)
-                 {
-                     velocity = Vector2.Zero;
-                     if (direction.X <= 0 && AnimationIsNot(Animations.SlashLeft))
-                     {
-                         ChangeAnimation(Animations.SlashLeft);
-                     }
-                     if (direction.X > 0 && AnimationIsNot(Animations.SlashRight))
-                     {
-                         ChangeAnimation(Animations.SlashRight);
-                     }
-                     if (IsAnimationComplete)
-                     {
-                         isAttacking = false;
-                     }
-                 }
+                if (isAttacking)
+                {
+                    velocity = Vector2.Zero;
+                    if (direction.X <= 0 && AnimationIsNot(Animations.SlashLeft))
+                    {
+                        ChangeAnimation(Animations.SlashLeft);
+                    }
+                    if (direction.X > 0 && AnimationIsNot(Animations.SlashRight))
+                    {
+                        ChangeAnimation(Animations.SlashRight);
+                    }
+                    if (IsAnimationComplete)
+                    {
+                        isAttacking = false;
+                    }
+                }
 
-                 if (velocity == Vector2.Zero && isJumping == false && isAttacking == false)
-                 {               
+                if (velocity == Vector2.Zero && isJumping == false && isAttacking == false)
+                {
                     if ((direction.X <= 0) && AnimationIsNot(Animations.IdleLeft))
                     {
                         ChangeAnimation(Animations.IdleLeft);
@@ -91,10 +87,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     {
                         ChangeAnimation(Animations.IdleRight);
                     }
-                
+
                 }
             }
-            
+
 
             base.UpdateAnimations();
         }
@@ -102,7 +98,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public void FollowPlayer(List<GameObject> gameObjects)
         {
             GameObject player = gameObjects[0];
-            Rectangle playerBox = player.BoundingBox; 
+            Rectangle playerBox = player.BoundingBox;
 
             Vector2 targetPoint = playerBox.Center.ToVector2();
             GoToPositon(targetPoint);
@@ -129,7 +125,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             float distansToGuardPosition = Vector2.Distance(oryginalPosition, realPositon);
             if (distansToPlayer < range)
             {
-                if (distansToGuardPosition <= 2* range)
+                if (distansToGuardPosition <= 2 * range)
                 {
                     FollowPlayer(gameObjects);
                 }
@@ -137,7 +133,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             else
             {
                 Patrol();
-                //GoToPositon(oryginalPosition);
             }
             Attack(player, 20);
         }
@@ -156,20 +151,20 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                         GoToPositon(oryginalPosition);
                         distans = Vector2.Distance(realPositon, oryginalPosition);
                         if (distans < 5) step++;
-                    }                        
+                    }
                     else
                     {
-                        distans = Vector2.Distance(realPositon, points[step].ToVector2());
+                        distans = Vector2.Distance(realPositon, points[step]);
                         if (distans < 5)
                             step++;
                         else
-                            GoToPositon(points[step].ToVector2());
+                            GoToPositon(points[step]);
                         if (realPositon == oryginalPosition)
                             step++;
                     }
 
                 }
-                Console.WriteLine("step: " + step);
+                //Console.WriteLine("step: " + step);
             }
         }
 
