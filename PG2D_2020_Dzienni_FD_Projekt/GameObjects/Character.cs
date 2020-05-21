@@ -6,7 +6,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 {
     public enum CharcterMode
     {
-        WhaitForPlayer,
+        WaitForPlayer,
         Guard,
         FollowPlayer
     }
@@ -95,7 +95,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             }
 
             realPositon = BoundingBox.Center.ToVector2();
-            if (oryginalPosition == new Vector2(-1, -1)) oryginalPosition = new Vector2(realPositon.X, realPositon.Y);
+            if (originalPosition == new Vector2(-1, -1)) originalPosition = new Vector2(realPositon.X, realPositon.Y);
         }
 
 

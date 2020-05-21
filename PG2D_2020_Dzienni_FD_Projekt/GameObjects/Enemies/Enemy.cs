@@ -17,8 +17,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             {
                 switch (mode)
                 {
-                    case CharcterMode.WhaitForPlayer:
-                        WhaitForPlayer(gameObjects, range);
+                    case CharcterMode.WaitForPlayer:
+                        WaitForPlayer(gameObjects, range);
                         break;
                     case CharcterMode.Guard:
                         Guard(gameObjects, range);
@@ -28,7 +28,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                         break;
 
                     default:
-                        WhaitForPlayer(gameObjects, range);
+                        WaitForPlayer(gameObjects, range);
                         break;
                 }
             }
@@ -104,13 +104,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             GoToPositon(targetPoint);
         }
 
-        public void WhaitForPlayer(List<GameObject> gameObjects, int range)
+        public void WaitForPlayer(List<GameObject> gameObjects, int range)
         {
             Player player = (Player)gameObjects[0];
             Vector2 v = new Vector2(range, range);
 
-            float distansToPlayer = Vector2.Distance(player.realPositon, realPositon);
-            if (distansToPlayer < range)
+            float distanceToPlayer = Vector2.Distance(player.realPositon, realPositon);
+            if (distanceToPlayer < range)
             {
                 FollowPlayer(gameObjects);
             }
@@ -121,11 +121,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         {
             Player player = (Player)gameObjects[0];
             Vector2 v = new Vector2(range);
-            float distansToPlayer = Vector2.Distance(player.realPositon, realPositon);
-            float distansToGuardPosition = Vector2.Distance(oryginalPosition, realPositon);
-            if (distansToPlayer < range)
+            float distanceToPlayer = Vector2.Distance(player.realPositon, realPositon);
+            float distanceToGuardPosition = Vector2.Distance(originalPosition, realPositon);
+            if (distanceToPlayer < range)
             {
-                if (distansToGuardPosition <= 2 * range)
+                if (distanceToGuardPosition <= 2 * range)
                 {
                     FollowPlayer(gameObjects);
                 }
@@ -139,7 +139,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public void Patrol()
         {
-            float distans;
+            float distance;
             if (points != null)
             {
                 if (step > points.Count)
@@ -148,18 +148,18 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 {
                     if (step == points.Count)
                     {
-                        GoToPositon(oryginalPosition);
-                        distans = Vector2.Distance(realPositon, oryginalPosition);
-                        if (distans < 5) step++;
+                        GoToPositon(originalPosition);
+                        distance = Vector2.Distance(realPositon, originalPosition);
+                        if (distance < 5) step++;
                     }
                     else
                     {
-                        distans = Vector2.Distance(realPositon, points[step]);
-                        if (distans < 5)
+                        distance = Vector2.Distance(realPositon, points[step]);
+                        if (distance < 5)
                             step++;
                         else
                             GoToPositon(points[step]);
-                        if (realPositon == oryginalPosition)
+                        if (realPositon == originalPosition)
                             step++;
                     }
 

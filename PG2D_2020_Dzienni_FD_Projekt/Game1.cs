@@ -20,7 +20,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         int resWidth = 1280, resHeight = 720;
 
         public List<GameObject> gameObjects = new List<GameObject>();
-        public GameObject lizard1;
 
         public TiledMap tiledMap;
 
