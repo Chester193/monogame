@@ -14,7 +14,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 {
     public class Player : Character
     {
-
         public Player()
         {
             applyGravity = false;
@@ -29,10 +28,12 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public override void Initialize()
         {
-            maxHp = 100;
-            hp = 100;
+            maxHp = 1000;
+            hp = 1000;
             maxMp = 10;
             mp = 10;
+
+            rangeOfAttack = 150;
 
             base.Initialize();
         }
@@ -135,6 +136,26 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 }
             }
 
+            if (hp <= 0)
+            {
+                if (direction.X < 0)
+                {
+                    ChangeAnimation(Animations.DieLeft);
+                }
+                else if (direction.X > 0)
+                {
+                    ChangeAnimation(Animations.DieRight);
+                }
+                if (direction.Y < 0)
+                {
+                    ChangeAnimation(Animations.DieBack);
+                }
+                else if (direction.Y > 0)
+                {
+                    ChangeAnimation(Animations.DieFront);
+                }
+            }
+
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -156,7 +177,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             if (Input.KeyPressed(Keys.Space))
             {
-                Fire();
+                Fire(gameObjects);
             }
 
             //HUD tests:
@@ -168,10 +189,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                MaxHpAdd(50);
         }
 
-        private void Fire()
+        private void Fire(List<GameObject> gameObjects)
         {
-            isAttacking = true;
+            Character enemyInRange = NearestEnemy(gameObjects);
+            if(enemyInRange != null) Attack(enemyInRange, 1000);
+
+            //Console.WriteLine("enmyInRange" + enemyInRange.ToString());
             
+
+            //Console.WriteLine("Fire()");
             //HUD test
             try
             {
@@ -184,5 +210,31 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             
         }
 
+        private Character NearestEnemy(List<GameObject> gameObjects)
+        {
+            float distans = 0, distansPrev = 0;
+            Character character;
+            Character target = null;
+
+            for (int i = 0; i < gameObjects.Count; i++)
+            {
+                character = (Character)gameObjects[i];
+                if(!character.IsDead())
+                { 
+                    distans = Vector2.Distance(character.realPositon, realPositon);
+                    if (distansPrev == 0) distansPrev = distans;
+                    if (distans < distansPrev)
+                    {
+                        distansPrev = distans;
+                        target = character;
+                        Console.WriteLine("NarestEnemy " + target.ToString());
+                    }
+                }
+            }
+            
+            //Console.WriteLine("NearestEnemy() distans " + distans + " GO.count " + gameObjects.Count);
+
+            return target; // = (Character)gameObjects[1];
+        }
     }
 }

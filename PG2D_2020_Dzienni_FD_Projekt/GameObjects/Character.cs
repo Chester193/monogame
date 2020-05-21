@@ -4,6 +4,27 @@ using System.Collections.Generic;
 
 namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 {
+    public enum CharcterMode
+    {
+        WaitForPlayer,
+        Guard,
+        FollowPlayer
+    }
+
+    struct CharacterSettings
+    {
+        public int maxHp;
+        public int hp;
+
+        public CharcterMode mode;
+        public int range;
+        public List<Vector2> points;
+        public int rangeOfAttack;
+
+        public int maxMp;
+        public int mp;
+    }
+
     public class Character : AnimatedObject
     {
         public Vector2 velocity;
@@ -15,6 +36,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         const float jumpVelocity = 16.0f;
         const float terminalVelocity = 32.0f;
 
+        protected bool isDead = false;
         protected bool isAttacking = false;
         protected bool isJumping = false;
         public static bool applyGravity = false;
@@ -24,6 +46,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public int maxMp;
         public int mp;
+
+        private CharcterMode mode = 0;
+        private int range;
+        public List<Vector2> points;
+        public int rangeOfAttack;
+
+        public Vector2 realPositon;
 
         public override void Initialize()
         {
@@ -65,6 +94,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 velocity.Y = ApplyDrag(velocity.Y, deceleration);
             }
 
+            realPositon = BoundingBox.Center.ToVector2();
+            if (originalPosition == new Vector2(-1, -1)) originalPosition = new Vector2(realPositon.X, realPositon.Y);
         }
 
 
@@ -208,7 +239,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public void Damage(int dmg)
         {
             hp -= dmg;
-            if (hp <= 0) hp = 0;
+            if (hp <= 0)
+            {
+                hp = 0;
+                isDead = true;
+            }
+
+            //Console.WriteLine("Character.Damage() " + dmg);
         }
 
         public void ManaUse(int mpUsed)
@@ -223,7 +260,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             hp += points;
             if (hp >= maxHp) hp = maxHp;
         }
-        
+
         public void Heal()
         {
             hp = maxHp;
@@ -263,7 +300,64 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             maxHp = newMaxHp;
         }
 
+        ///
+        public void GoToPositon(Vector2 point)
+        {
+            float directionX = point.X - BoundingBox.Center.X;
+            float directionY = point.Y - BoundingBox.Center.Y;
+
+            if (!isAttacking && !isDead)
+            {
+                if (directionY > maxSpeed)
+                    MoveDown();
+                else if (directionY < -maxSpeed)
+                    MoveUp();
+
+                if (directionX > maxSpeed)
+                    MoveRight();
+                else if (directionX < -maxSpeed)
+                    MoveLeft();
+            }
+        }
+
+        public void Attack(Character target, int dmg)
+        {
+            float distansToTarget = Vector2.Distance(target.realPositon, realPositon);
+            //Console.WriteLine("Character.Attack() " + distansToTarget + " / " + rangeOfAttack + " t.rPositon " + target.realPositon + " player.rPosioton" + realPositon);
+            if (distansToTarget < rangeOfAttack && !isAttacking)
+            {
+                isAttacking = true;
+                target.Damage(dmg);
+                //Console.WriteLine("Character.Attack()[EndIF]()");
+            }
+        }
+
+        public void SetMode(CharcterMode mode)
+        {
+            this.mode = mode;
+        }
+
+        public CharcterMode GetMode()
+        {
+            return mode;
+        }
+
+        public int GetRange()
+        {
+            return range;
+        }
+
+        public void SetRange(int range)
+        {
+            this.range = range;
+        }
+
+        public bool IsDead()
+        {
+            return isDead;
+        }
     }
+
 }
 
 public class NotEnoughMpException : Exception
