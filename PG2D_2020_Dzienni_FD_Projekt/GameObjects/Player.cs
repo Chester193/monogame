@@ -54,6 +54,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             if(!isAttacking)
                 CheckInput(gameObjects, map);
             base.Update(gameObjects, map);
+            Console.WriteLine(position);
         }
 
         protected override void UpdateAnimations()

@@ -13,11 +13,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         protected override void UpdateAnimations()
         {
-            if (direction.X < 0 && AnimationIsNot(Animations.WalkingLeft))
+            if (velocity != Vector2.Zero && direction.X < 0 && AnimationIsNot(Animations.WalkingLeft) && isAttacking == false)
             {
                 ChangeAnimation(Animations.WalkingLeft);
             }
-            else if (direction.X > 0 && AnimationIsNot(Animations.WalkingRight))
+            else if (velocity != Vector2.Zero && direction.X > 0 && AnimationIsNot(Animations.WalkingRight) && isAttacking == false)
             {
                 ChangeAnimation(Animations.WalkingRight);
             }

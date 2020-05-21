@@ -4,7 +4,8 @@ using Microsoft.Xna.Framework.Input;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using System.Collections.Generic;
-using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies;
+using System.Linq;
+using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Jhin;
 
 namespace PG2D_2020_Dzienni_FD_Projekt
 {
@@ -49,12 +50,12 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(player);
 
             
-            gameObjects.Add(new Zombie(new Vector2(300, 400)));
-            gameObjects.Add(new Viking1(new Vector2(300, 300)));
-            gameObjects.Add(new Viking2(new Vector2(300, 200)));
-            gameObjects.Add(new Viking3(new Vector2(300, 100)));
-            gameObjects.Add(new Demon(new Vector2(300, 000)));
-            gameObjects.Add(new Lizard(new Vector2(500, 400)));
+            gameObjects.Add(new Jhin(new Vector2(300, 400)));
+            // gameObjects.Add(new Viking1(new Vector2(300, 300)));
+            // gameObjects.Add(new Viking2(new Vector2(300, 200)));
+            // gameObjects.Add(new Viking3(new Vector2(300, 100)));
+            // gameObjects.Add(new Demon(new Vector2(300, 000)));
+            // gameObjects.Add(new Lizard(new Vector2(500, 400)));
 
             Camera.Initialize(zoomLevel: 1.0f);
             base.Initialize();
@@ -142,7 +143,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
         public void UpdateGameObjects(List<GameObject> gameObjects, TiledMap map)
         {
-            foreach (var gameObject in gameObjects)
+            foreach (var gameObject in gameObjects.ToList())
             {
                 gameObject.Update(gameObjects, map);
             }

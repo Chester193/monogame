@@ -47,6 +47,8 @@
     <Compile Include="GameObjects\AnimatedObject.cs" />
     <Compile Include="GameObjects\Character.cs" />
     <Compile Include="GameObjects\Enemies\Demon.cs" />
+    <Compile Include="GameObjects\Enemies\Jhin\IceCone.cs" />
+    <Compile Include="GameObjects\Enemies\Jhin\Jhin.cs" />
     <Compile Include="GameObjects\Enemies\Lizard.cs" />
     <Compile Include="GameObjects\Enemies\Vikings\Viking1.cs" />
     <Compile Include="GameObjects\Enemies\Vikings\Viking2.cs" />
