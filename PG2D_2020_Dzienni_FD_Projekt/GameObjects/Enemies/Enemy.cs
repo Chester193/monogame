@@ -9,10 +9,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public override void Update(List<GameObject> gameObjects, TiledMap map)
         {
-            if(path.Count == 0 || GoToPoint(path[0]))
-            {
-                path = PathFinder.FindPath(map, new Vector2(BoundingBox.X, BoundingBox.Y), new Vector2(gameObjects[0].BoundingBox.X, gameObjects[0].BoundingBox.Y));
-            }
+            Follow(gameObjects[0], map);
             base.Update(gameObjects, map);
         }
 

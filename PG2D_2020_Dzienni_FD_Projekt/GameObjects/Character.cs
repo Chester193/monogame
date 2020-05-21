@@ -103,6 +103,14 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         }
 
+        public void Follow(GameObject player, TiledMap map)
+        {
+            if (path.Count == 0 || GoToPoint(path[0]))
+            {
+                path = PathFinder.FindPath(map, new Vector2(BoundingBox.X, BoundingBox.Y), new Vector2(player.BoundingBox.X, player.BoundingBox.Y));
+            }
+        }
+
         public bool GoToPoint(Vector2 point)
         {
             bool arriveX = false, arriveY = false;
