@@ -68,7 +68,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 foreach (Node item in pathFinder.available_test)
                     spriteBatch.Draw(pathTexture, new Vector2(item.Position.X, item.Position.Y), new Rectangle((int)item.Position.X, (int)item.Position.Y, pathWidth, pathHeight), new Color(0, 255, 0, 128), rotation, Vector2.Zero, 1f, SpriteEffects.None, 0.15f);
 
-                foreach (Vector2 item in pathFinder.path)
+                foreach (Vector2 item in pathFinder.Path)
                     spriteBatch.Draw(pathTexture, new Vector2(item.X, item.Y), new Rectangle((int)item.X, (int)item.Y, pathWidth, pathHeight), pathColor, rotation, Vector2.Zero, 1f, SpriteEffects.None, 0.05f);
             }
         }
@@ -104,7 +104,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public void Follow(GameObject player, TiledMap map)
         {
-            if (pathFinder.path.Count == 0 || GoToPoint(pathFinder.path[pathFinder.path.Count - 1]))
+            Vector2 nextStep;
+            if (!pathFinder.TryGetFirstStep(out nextStep) || GoToPoint(nextStep))
             {
                 pathFinder.FindPath(map, new Vector2(BoundingBox.X, BoundingBox.Y), new Vector2(player.BoundingBox.X, player.BoundingBox.Y));
             }

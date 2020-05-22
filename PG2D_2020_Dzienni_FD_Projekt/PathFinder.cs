@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,20 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         public List<Node> available_test = new List<Node>();
         public List<Point> visited_test = new List<Point>();
 
-        public List<Vector2> path = new List<Vector2>();
+        public List<Vector2> Path { get; private set; } = new List<Vector2>();
+
+        public bool TryGetFirstStep(out Vector2 firstStep)
+        {
+            if (Path.Count > 0)
+            {
+                firstStep = Path[0];
+                return true;
+            }
+
+            firstStep = Vector2.Zero;
+            return false;
+
+        }
 
         public void FindPath(TiledMap map, Vector2 startPoint, Vector2 endPoint)
         {
@@ -78,13 +92,14 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
         private void SavePath(Node current)
         {
-            path = new List<Vector2>();
+            Path = new List<Vector2>();
 
             while (current.Previous != null)
             {
-                path.Add(new Vector2(current.Position.X, current.Position.Y));
+                Path.Add(new Vector2(current.Position.X, current.Position.Y));
                 current = current.Previous;
             }
+            Path.Reverse();
         }
 
         private bool IsVisited(Point point, List<Point> visited)
@@ -131,45 +146,25 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
     public class Node
     {
-        Node previous;
-        Point position;
-        double distanceFrom;
-        double distanceTo;
+        public Node Previous { get; set; }
 
-        public Node Previous
-        {
-            get => previous;
-            set => previous = value;
-        }
+        public double DistanceTo { get; set; }
 
-        public double DistanceTo
-        {
-            get => distanceTo;
-            set => distanceTo = value;
-        }
+        public double DistanceFrom { get; set; }
 
-        public double DistanceFrom
-        {
-            get => distanceFrom;
-            set => distanceFrom = value;
-        }
-
-        public Point Position
-        {
-            get => position;
-        }
+        public Point Position { get; }
 
         public double Value
         {
-            get => distanceFrom + distanceTo;
+            get => DistanceFrom + DistanceTo;
         }
 
         public Node(Node previous, Point position, double distanceFrom, double distanceTo)
         {
-            this.previous = previous;
-            this.position = position;
-            this.distanceFrom = distanceFrom;
-            this.distanceTo = distanceTo;
+            this.Previous = previous;
+            this.Position = position;
+            this.DistanceFrom = distanceFrom;
+            this.DistanceTo = distanceTo;
         }
 
         public static Node GetNode(Node previous, Point position, Point endPoint)
@@ -182,28 +177,19 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
     public class Point
     {
-        private int x;
-        private int y;
+        public int X { get; }
 
-        public int X
-        {
-            get => x;
-        }
-
-        public int Y
-        {
-            get => y;
-        }
+        public int Y { get; }
 
         public double DistanceTo(Point dest)
         {
-            return Math.Sqrt(Math.Pow(this.x - dest.x, 2) + Math.Pow(this.y -dest.y, 2));
+            return Math.Sqrt(Math.Pow(this.X - dest.X, 2) + Math.Pow(this.Y -dest.Y, 2));
         }
 
         public Point(int x, int y)
         {
-            this.x = x;
-            this.y = y;
+            this.X = x;
+            this.Y = y;
         }
     }
 }
