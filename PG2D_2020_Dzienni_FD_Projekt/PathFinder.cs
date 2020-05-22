@@ -14,13 +14,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         public List<Node> available_test = new List<Node>();
         public List<Point> visited_test = new List<Point>();
 
+        private Point fixedEndPoint = new Point(-1, -1);
+
         public List<Vector2> Path { get; private set; } = new List<Vector2>();
 
         public bool TryGetFirstStep(out Vector2 firstStep)
         {
             if (Path.Count > 0)
             {
-                firstStep = Path[0];
+                firstStep = Path[Path.Count - 1];
                 return true;
             }
 
@@ -36,12 +38,21 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             int tileSize = map.tileSize;
 
+            // Remove first step and exit if endPoint not changed
+            if(fixedEndPoint.X == (int)endPoint.X && fixedEndPoint.Y == endPoint.Y)
+            {
+                if(Path.Count > 0)
+                    Path.RemoveAt(Path.Count - 1);
+
+                return;
+            }    
+
             // TODO: Delete in final version
             available_test = available;
             visited_test = visited;
 
             Point fixedStartPoint = AlignToGrid(startPoint, tileSize);
-            Point fixedEndPoint = new Point((int)Math.Round(endPoint.X), (int)Math.Round(endPoint.Y));
+            fixedEndPoint = new Point((int)endPoint.X, (int)endPoint.Y);
 
             //Prepare root node and push it into queue
             Node root = new Node(null, fixedStartPoint, 0, fixedStartPoint.DistanceTo(fixedEndPoint));
@@ -99,7 +110,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 Path.Add(new Vector2(current.Position.X, current.Position.Y));
                 current = current.Previous;
             }
-            Path.Reverse();
         }
 
         private bool IsVisited(Point point, List<Point> visited)
