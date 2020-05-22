@@ -48,35 +48,40 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 {
                     for (int j = -tileSize; j <= tileSize; j += tileSize)
                     {
-                        if(i != 0 || j != 0)
+                        bool flag = true;
+                        Vector2 next = new Vector2(current.Position.X + i, current.Position.Y + j);
+
+                        foreach(Vector2 item in visited)
                         {
-                            bool flag = true;
-                            Vector2 next = new Vector2(current.Position.X + i, current.Position.Y + j);
-
-                            foreach(Vector2 item in visited)
+                            if(Math.Abs(next.X - item.X) < 1 && Math.Abs(next.Y - item.Y) < 1)
                             {
-                                if(Math.Abs(next.X - item.X) < 1 && Math.Abs(next.Y - item.Y) < 1)
-                                {
-                                    flag = false;
-                                }
+                                flag = false;
                             }
+                        }
 
-                            foreach (Node item in available)
+                        foreach (Node item in available)
+                        {
+                            if (Math.Abs(next.X - item.Position.X) < 1 && Math.Abs(next.Y - item.Position.Y) < 1)
                             {
-                                if (next.X == item.Position.X && next.Y == item.Position.Y)
-                                {
-                                    flag = false;
-                                }
-                            }
-
-                            Rectangle wallCollision = map.CheckCollision(new Rectangle((int)next.X, (int)next.Y, tileSize, tileSize));
-
-                            if (wallCollision == Rectangle.Empty && flag)
-                            {
+                                flag = false;
                                 float distanceFrom = current.DistanceFrom + Vector2.Distance(current.Position, next);
                                 float distanceTo = Vector2.Distance(next, endPoint);
-                                available.Add(new Node(current, next, distanceFrom, distanceTo));
+                                if (distanceFrom + distanceTo < item.Value)
+                                {
+                                    item.Previous = current;
+                                    item.DistanceFrom = distanceFrom;
+                                    item.DistanceTo = distanceTo;
+                                }
                             }
+                        }
+
+                        Rectangle wallCollision = map.CheckCollision(new Rectangle((int)next.X, (int)next.Y, tileSize, tileSize));
+
+                        if (wallCollision == Rectangle.Empty && flag)
+                        {
+                            float distanceFrom = current.DistanceFrom + Vector2.Distance(current.Position, next);
+                            float distanceTo = Vector2.Distance(next, endPoint);
+                            available.Add(new Node(current, next, distanceFrom, distanceTo));
                         }
                     }
                 }
@@ -106,42 +111,30 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
         public Node Previous
         {
-            get
-            {
-                return previous;
-            }
+            get => previous;
+            set => previous = value;
         }
 
         public float DistanceTo
         {
-            get
-            {
-                return distanceTo;
-            }
+            get => distanceTo;
+            set => distanceTo = value;
         }
 
         public float DistanceFrom
         {
-            get
-            {
-                return distanceFrom;
-            }
+            get => distanceFrom;
+            set => distanceFrom = value;
         }
 
         public Vector2 Position
         {
-            get
-            {
-                return position;
-            }
+            get => position;
         }
 
         public float Value
         {
-            get
-            {
-                return distanceFrom + distanceTo;
-            }
+            get => distanceFrom + distanceTo;
         }
 
         public Node(Node previous, Vector2 position, float distanceFrom, float distanceTo)
