@@ -5,6 +5,7 @@ using PG2D_2020_Dzienni_FD_Projekt.GameObjects;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using System.Collections.Generic;
 using System.Linq;
+using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Jhin;
 
 namespace PG2D_2020_Dzienni_FD_Projekt
@@ -23,6 +24,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         public List<GameObject> gameObjects = new List<GameObject>();
 
         public TiledMap tiledMap;
+
+        GameHUD gameHUD = new GameHUD();
 
         public Game1()
         {
@@ -45,17 +48,46 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         {
             // TODO: Add your initialization logic here
             tiledMap = new TiledMap(vResWidth, vResHeight);
-            GameObject player = new Player();
-            player.position = new Vector2(800, 600);
+            Player player = new Player();
+            player.position = new Vector2(400, 400);
             gameObjects.Add(player);
 
             
-            gameObjects.Add(new Jhin(new Vector2(300, 400)));
-            // gameObjects.Add(new Viking1(new Vector2(300, 300)));
-            // gameObjects.Add(new Viking2(new Vector2(300, 200)));
-            // gameObjects.Add(new Viking3(new Vector2(300, 100)));
-            // gameObjects.Add(new Demon(new Vector2(300, 000)));
-            // gameObjects.Add(new Lizard(new Vector2(500, 400)));
+            // gameObjects.Add(new Jhin(new Vector2(300, 400)));
+            // // gameObjects.Add(new Viking1(new Vector2(300, 300)));
+            // // gameObjects.Add(new Viking2(new Vector2(300, 200)));
+            // // gameObjects.Add(new Viking3(new Vector2(300, 100)));
+            // // gameObjects.Add(new Demon(new Vector2(300, 000)));
+            // // gameObjects.Add(new Lizard(new Vector2(500, 400)));
+            gameHUD.Player(player);
+
+            CharacterSettings characterSettings = new CharacterSettings();
+            characterSettings.maxHp = 100;
+            characterSettings.mode = CharcterMode.Guard;
+            characterSettings.range = 300;
+            characterSettings.rangeOfAttack = 80;
+
+            List<Vector2> points = new List<Vector2>();
+            points.Add(new Vector2(650, 970));
+            points.Add(new Vector2(650, 1070));
+            points.Add(new Vector2(850, 1070));
+
+            characterSettings.points = points;
+
+            gameObjects.Add(new Zombie(new Vector2(-100, -100), characterSettings));     //z jakiegoś powodu pierwszy przeciwnik jest zawsze niesmiertelny;
+            gameObjects.Add(new Lizard(new Vector2(720, 1070), characterSettings));
+
+            characterSettings.mode = 0;
+            gameObjects.Add(new Lizard(new Vector2(400, 600), characterSettings));
+            characterSettings.rangeOfAttack = 30;
+            gameObjects.Add(new Zombie(new Vector2(300, 400), characterSettings));
+            gameObjects.Add(new Viking1(new Vector2(300, 300), characterSettings));
+            gameObjects.Add(new Viking2(new Vector2(300, 200), characterSettings));
+            gameObjects.Add(new Viking3(new Vector2(300, 100), characterSettings));
+            characterSettings.mode = CharcterMode.FollowPlayer;
+            gameObjects.Add(new Demon(new Vector2(300, 000), characterSettings));
+
+            gameHUD.Enemy((Enemy)gameObjects[2]);
 
             Camera.Initialize(zoomLevel: 1.0f);
             base.Initialize();
@@ -74,6 +106,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             // TODO: use this.Content to load your game content here
             tiledMap.Load(Content, @"Tilemaps/terrain.tmx");
+
+            gameHUD.Load(Content);
         }
 
         /// <summary>
@@ -124,6 +158,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             DrawGameObjects(gameObjects);
             spriteBatch.End();
 
+            gameHUD.Draw(spriteBatch);
+
             base.Draw(gameTime);
         }
 
@@ -169,5 +205,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             //    gameObject.Load(content: Content);
             //});
         }
+
+
     }
 }
