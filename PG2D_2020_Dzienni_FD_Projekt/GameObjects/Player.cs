@@ -60,7 +60,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             if(!isAttacking)
                 CheckInput(gameObjects, map);
             base.Update(gameObjects, map);
-            Console.WriteLine(position);
         }
 
         protected override void UpdateAnimations()
@@ -195,7 +194,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             Character enemyInRange = NearestEnemy(gameObjects);
             if(enemyInRange != null) Attack(enemyInRange, 1000);
 
-            //Console.WriteLine("enmyInRange" + enemyInRange.ToString());
             
 
             //Console.WriteLine("Fire()");
@@ -228,13 +226,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     {
                         distansPrev = distans;
                         target = character;
-                        Console.WriteLine("NarestEnemy " + target.ToString());
                     }
                 }
             }
             
-            //Console.WriteLine("NearestEnemy() distans " + distans + " GO.count " + gameObjects.Count);
-
             return target; // = (Character)gameObjects[1];
         }
     }

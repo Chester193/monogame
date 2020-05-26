@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -11,46 +10,38 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Jhin
     class Jhin : Enemy
     {
         IceCone cone;
-        private int attackDelay;
 
-        public Jhin(Vector2 startingPosition)
+        public Jhin(Vector2 startingPosition, CharacterSettings settings)
         {
+            this.maxHp = settings.maxHp;
+            this.hp = settings.maxHp;
+            this.rangeOfAttack = settings.rangeOfAttack;
+
+            SetMode(settings.mode);
+            SetRange(settings.range);
+
             this.position = startingPosition;
             applyGravity = false;
         }
 
         protected override void UpdateAnimations()
         {
-            if (isAttacking)
+            if (isAttacking && AnimationIsNot(Animations.SlashLeft))
             {
-                velocity = Vector2.Zero;
-                currentAnimation.animationSpeed = 15;
-
-                if (direction.X < 0 && AnimationIsNot(Animations.SlashLeft))
-                {
-                    ChangeAnimation(Animations.SlashLeft);
-                }
-                if (direction.X > 0 && AnimationIsNot(Animations.SlashRight))
-                {
-                    ChangeAnimation(Animations.SlashRight);
-                }
-                if (IsAnimationComplete)
-                {
-                    isAttacking = false;
-                }
+                ChangeAnimation((Animations.SlashLeft));
             }
-            if (!isAttacking && AnimationIsNot(Animations.IdleRight))
+            if (isAttacking && AnimationIsNot(Animations.SlashRight))
             {
-                ChangeAnimation(Animations.IdleRight);
+                ChangeAnimation((Animations.SlashRight));
             }
             base.UpdateAnimations();
+
         }
 
         public override void Update(List<GameObject> gameObjects, TiledMap map)
         {
-            attackDelay--;
             cone.Update(gameObjects, map);
-            shootAtPlayer(gameObjects);
+            Fire(gameObjects[0].position);
             base.Update(gameObjects, map);
         }
 
@@ -59,8 +50,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Jhin
             maxSpeed = 1.0f;
             acceleration = 0.2f;
             scale = 0.5f;
-            attackDelay = 40;
-            cone = new IceCone(this.position);
+            cone = new IceCone();
             base.Initialize();
         }
 
@@ -83,10 +73,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Jhin
 
         public void Fire(Vector2 playerPosition)
         {
-                if (cone.active == false)
+            if (cone.active == false && Vector2.Distance(playerPosition, position) <= rangeOfAttack)
                 {
-                    attackDelay = 300;
-                    cone.Fire(this, new Vector2(this.position.X, this.position.Y - 40), playerPosition);
+                    cone.Fire(this, new Vector2(this.position.X, this.position.Y), playerPosition);
                 }
         }
 
@@ -94,18 +83,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Jhin
         {
             cone.Draw(spriteBatch);
             base.Draw(spriteBatch);
-        }
-
-        private void shootAtPlayer(List<GameObject> gameObjects)
-        {
-            GameObject player = gameObjects[0];
-            Vector2 playerPosition = player.position;
-
-            if (Vector2.Distance(playerPosition, position) < 300)
-            {
-                Fire(playerPosition);
-                isAttacking = true;
-            }
         }
     }
 }

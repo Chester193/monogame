@@ -322,9 +322,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public void Attack(Character target, int dmg)
         {
-            float distansToTarget = Vector2.Distance(target.realPositon, realPositon);
+            float distanceToTarget = Vector2.Distance(target.realPositon, realPositon);
             //Console.WriteLine("Character.Attack() " + distansToTarget + " / " + rangeOfAttack + " t.rPositon " + target.realPositon + " player.rPosioton" + realPositon);
-            if (distansToTarget < rangeOfAttack && !isAttacking)
+            if (distanceToTarget < rangeOfAttack && !isAttacking)
             {
                 isAttacking = true;
                 target.Damage(dmg);
