@@ -10,9 +10,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 {
     public class PathFinder
     {
-        // TODO: Delete in final version
-        public List<Node> available_test = new List<Node>();
-        public List<Point> visited_test = new List<Point>();
+        //public List<Node> available_test = new List<Node>();
+        //public List<Point> visited_test = new List<Point>();
 
         private Point fixedEndPoint = new Point(-1, -1);
 
@@ -47,9 +46,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 return;
             }    
 
-            // TODO: Delete in final version
-            available_test = available;
-            visited_test = visited;
+            //available_test = available;
+            //visited_test = visited;
 
             Point fixedStartPoint = AlignToGrid(startPoint, tileSize);
             fixedEndPoint = new Point((int)endPoint.X, (int)endPoint.Y);
