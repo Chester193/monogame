@@ -96,7 +96,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             LoadInitializeGameObjects(gameObjects);
 
             // TODO: use this.Content to load your game content here
-            tiledMap.Load(Content, @"Tilemaps/terrain.tmx");
+            tiledMap.Load(Content, @"Map/map.tmx");
 
             gameHUD.Load(Content);
         }
