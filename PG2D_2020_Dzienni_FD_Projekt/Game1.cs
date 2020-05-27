@@ -66,7 +66,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             characterSettings.points = points;
 
             gameObjects.Add(new Zombie(new Vector2(-100, -100), characterSettings));     //z jakiegoś powodu pierwszy przeciwnik jest zawsze niesmiertelny;
-            gameObjects.Add(new Lizard(new Vector2(720, 1070), characterSettings));
+            gameObjects.Add(new Lizard(new Vector2(720, 1000), characterSettings));
 
             characterSettings.mode = 0;
             gameObjects.Add(new Lizard(new Vector2(400, 600), characterSettings));
