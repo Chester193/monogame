@@ -10,16 +10,14 @@ using Microsoft.Xna.Framework.Input;
 using TiledSharp;
 
 
+
 namespace PG2D_2020_Dzienni_FD_Projekt
 {
     public class TiledMap
     {
+        public int tileSize = 32;
+
         TmxMap tiledMap;
-        public int tileSize = 0;
-
-        public int mapWidth = 0;
-        public int mapHeight = 0;
-
         List<int> firstGids = new List<int>();
         List<Texture2D> tilesets = new List<Texture2D>();
 
@@ -30,7 +28,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
         public TiledMap()
         {
-            
+
         }
 
         public TiledMap(int screenWidth, int screenHeight)
@@ -45,13 +43,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             //Load tmx file
             //var tilemapsPathPrefix = @"Tilemaps/";
             tiledMap = new TmxMap(@content.RootDirectory + @"\" + filePath);
-            tileSize = tiledMap.TileHeight;
-            mapWidth = tiledMap.Width * tileSize;
-            mapHeight = tiledMap.Height * tileSize;
 
             foreach (var tileset in tiledMap.Tilesets)
             {
-                Console.WriteLine(@content.RootDirectory + @"\" + filePath + " " + System.IO.Path.GetDirectoryName(filePath));
                 tilesets.Add(content.Load<Texture2D>(System.IO.Path.GetDirectoryName(filePath) + @"\" + @tileset.Name.ToString()));
                 firstGids.Add(tileset.FirstGid);
             }
@@ -83,6 +77,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                         int tilesetTilesWide = tilesets[index].Width / tileWidth;
                         //int tilesetTilesHigh = tilesets[index].Height / tileHeight;
 
+
                         int tileFrame = gid - firstGids[index];
                         int column = tileFrame % tilesetTilesWide;
                         int row = (int)Math.Floor((double)tileFrame / (double)tilesetTilesWide);
@@ -93,7 +88,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                         Rectangle tilesetRec = new Rectangle(tileWidth * column, tileHeight * row, tileWidth, tileHeight);
 
                         Tile mapTile = new Tile(new Rectangle((int)x, (int)y, tileWidth, tileHeight), index, tilesetRec);
-
                         mapLayer.tiles.Add(mapTile);
                     }
                     i++;
@@ -107,7 +101,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             {
                 foreach (var rect in objectLayer.Objects)
                 {
-                    Console.WriteLine("x: " + rect.X + " y: " + (int)rect.Y + " wid: " + (int)rect.Width + " hei: " + (int)rect.Height);
                     collisionRectangles.Add(new Rectangle((int)rect.X, (int)rect.Y, (int)rect.Width, (int)rect.Height));
                 }
             }

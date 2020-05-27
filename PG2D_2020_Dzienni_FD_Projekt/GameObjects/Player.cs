@@ -14,7 +14,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 {
     public class Player : Character
     {
-
         public Player()
         {
             applyGravity = false;
@@ -29,6 +28,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public override void Initialize()
         {
+            maxHp = 1000;
+            hp = 1000;
+            maxMp = 10;
+            mp = 10;
+
+            rangeOfAttack = 150;
+
             base.Initialize();
         }
 
@@ -44,9 +50,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             base.Load(content);
 
-            //boundingBoxOffset = new Vector2(0f, 0f);
-            boundingBoxWidth = animationSet.frameWidth;
-            boundingBoxHeight = animationSet.frameHeight;
+            boundingBoxOffset = new Vector2(40, 75);
+            boundingBoxWidth = 30;
+            boundingBoxHeight = 15;
         }
 
         public override void Update(List<GameObject> gameObjects, TiledMap map)
@@ -66,19 +72,19 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             if (isAttacking)
             {
                 velocity = Vector2.Zero;
-                if (characterFacingDirection == enums.Direction.Back && AnimationIsNot(Animations.SlashBack))
+                if (direction.Y < 0 && AnimationIsNot(Animations.SlashBack))
                 {
                     ChangeAnimation(Animations.SlashBack);
                 }
-                if (characterFacingDirection == enums.Direction.Front && AnimationIsNot(Animations.SlashFront))
+                if (direction.Y > 0 && AnimationIsNot(Animations.SlashFront))
                 {
                     ChangeAnimation(Animations.SlashFront);
                 }
-                if (characterFacingDirection == enums.Direction.Left && AnimationIsNot(Animations.SlashLeft))
+                if (direction.X < 0 && AnimationIsNot(Animations.SlashLeft))
                 {
                     ChangeAnimation(Animations.SlashLeft);
                 }
-                if (characterFacingDirection == enums.Direction.Right && AnimationIsNot(Animations.SlashRight))
+                if (direction.X > 0 && AnimationIsNot(Animations.SlashRight))
                 {
                     ChangeAnimation(Animations.SlashRight);
                 }
@@ -130,6 +136,26 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 }
             }
 
+            if (hp <= 0)
+            {
+                if (direction.X < 0)
+                {
+                    ChangeAnimation(Animations.DieLeft);
+                }
+                else if (direction.X > 0)
+                {
+                    ChangeAnimation(Animations.DieRight);
+                }
+                if (direction.Y < 0)
+                {
+                    ChangeAnimation(Animations.DieBack);
+                }
+                else if (direction.Y > 0)
+                {
+                    ChangeAnimation(Animations.DieFront);
+                }
+            }
+
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -140,33 +166,75 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         private void CheckInput(List<GameObject> gameObjects, TiledMap map)
         {
-            if (Input.IsKeyDown(Keys.W) == true) {
-                MoveUp();
-            }
-
-            if (Input.IsKeyDown(Keys.S) == true) {
-                MoveDown();
-            }
-
-            if (Input.IsKeyDown(Keys.A) == true) {
-                MoveLeft();
-            }
-
-            if (Input.IsKeyDown(Keys.D) == true) {
+            if (Input.IsKeyDown(Keys.D) == true)
                 MoveRight();
-            }
-                
+            if (Input.IsKeyDown(Keys.A) == true)
+                MoveLeft();
+            if (Input.IsKeyDown(Keys.S) == true)
+                MoveDown();
+            if (Input.IsKeyDown(Keys.W) == true)
+                MoveUp();
+
             if (Input.KeyPressed(Keys.Space))
             {
-                Fire();
+                Fire(gameObjects);
             }
 
+            //HUD tests:
+            if (Input.KeyPressed(Keys.H) == true)
+                Heal();
+            if (Input.KeyPressed(Keys.J) == true)
+                Heal(15);
+            if (Input.KeyPressed(Keys.K) == true)
+               MaxHpAdd(50);
         }
 
-        private void Fire()
+        private void Fire(List<GameObject> gameObjects)
         {
-            isAttacking = true;            
+            Character enemyInRange = NearestEnemy(gameObjects);
+            if(enemyInRange != null) Attack(enemyInRange, 1000);
+
+            //Console.WriteLine("enmyInRange" + enemyInRange.ToString());
+            
+
+            //Console.WriteLine("Fire()");
+            //HUD test
+            try
+            {
+                ManaUse(1);
+            }
+            catch(NotEnoughMpException e)
+            {
+                Damage(20);
+            }
+            
         }
 
+        private Character NearestEnemy(List<GameObject> gameObjects)
+        {
+            float distans = 0, distansPrev = 0;
+            Character character;
+            Character target = null;
+
+            for (int i = 0; i < gameObjects.Count; i++)
+            {
+                character = (Character)gameObjects[i];
+                if(!character.IsDead())
+                { 
+                    distans = Vector2.Distance(character.realPositon, realPositon);
+                    if (distansPrev == 0) distansPrev = distans;
+                    if (distans < distansPrev)
+                    {
+                        distansPrev = distans;
+                        target = character;
+                        Console.WriteLine("NarestEnemy " + target.ToString());
+                    }
+                }
+            }
+            
+            //Console.WriteLine("NearestEnemy() distans " + distans + " GO.count " + gameObjects.Count);
+
+            return target; // = (Character)gameObjects[1];
+        }
     }
 }
