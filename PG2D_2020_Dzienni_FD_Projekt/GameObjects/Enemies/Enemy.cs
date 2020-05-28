@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System;
 
@@ -18,17 +19,17 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 switch (mode)
                 {
                     case CharcterMode.WaitForPlayer:
-                        WaitForPlayer(gameObjects, range);
+                        WaitForPlayer(gameObjects, range, map);
                         break;
                     case CharcterMode.Guard:
-                        Guard(gameObjects, range);
+                        Guard(gameObjects, range, map);
                         break;
                     case CharcterMode.FollowPlayer:
-                        FollowPlayer(gameObjects);
+                        Follow(gameObjects[0], map);
                         break;
 
                     default:
-                        WaitForPlayer(gameObjects, range);
+                        WaitForPlayer(gameObjects, range, map);
                         break;
                 }
             }
@@ -94,7 +95,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             base.UpdateAnimations();
         }
-
+        
         public void FollowPlayer(List<GameObject> gameObjects)
         {
             GameObject player = gameObjects[0];
@@ -104,7 +105,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             GoToPositon(targetPoint);
         }
 
-        public void WaitForPlayer(List<GameObject> gameObjects, int range)
+        public void WaitForPlayer(List<GameObject> gameObjects, int range, TiledMap map)
         {
             Player player = (Player)gameObjects[0];
             Vector2 v = new Vector2(range, range);
@@ -112,12 +113,12 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             float distanceToPlayer = Vector2.Distance(player.realPositon, realPositon);
             if (distanceToPlayer < range)
             {
-                FollowPlayer(gameObjects);
+                Follow(gameObjects[0], map);
             }
             Attack(player, 20);
         }
 
-        public void Guard(List<GameObject> gameObjects, int range)
+        public void Guard(List<GameObject> gameObjects, int range, TiledMap map)
         {
             Player player = (Player)gameObjects[0];
             Vector2 v = new Vector2(range);
@@ -127,7 +128,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             {
                 if (distanceToGuardPosition <= 2 * range)
                 {
-                    FollowPlayer(gameObjects);
+                    Follow(gameObjects[0], map);
                 }
             }
             else
@@ -173,5 +174,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             string s = direction.ToString();
             return s;
         }
+
     }
 }

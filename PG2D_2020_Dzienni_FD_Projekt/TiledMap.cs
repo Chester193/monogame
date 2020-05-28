@@ -15,7 +15,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 {
     public class TiledMap
     {
-        public int tileSize = 128;
+        public int tileSize = 32;
 
         TmxMap tiledMap;
         List<int> firstGids = new List<int>();
