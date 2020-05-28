@@ -34,9 +34,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Jhin
             ChangeAnimation(AnimatedObject.Animations.IceCone);
             base.Load(content);
 
-            boundingBoxOffset = new Vector2(100, 100);
-            boundingBoxWidth = 26;
-            boundingBoxHeight = 12;
+            boundingBoxOffset = new Vector2(110, 110);
+            boundingBoxWidth = 50;
+            boundingBoxHeight = 50;
         }
 
         public override void Update(List<GameObject> gameObjects, TiledMap map)
@@ -46,7 +46,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Jhin
 
             position += direction * Speed;
 
-            // CheckCollisions(gameObjects, map);
+            CheckCollisions(gameObjects, map);
 
             destroyTimer--;
             if (destroyTimer <= 0 && active == true)
@@ -58,7 +58,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Jhin
 
         internal void Fire(Character inputOwner, Vector2 inputPosition, Vector2 inputDirection)
         {
-            Console.WriteLine(Vector2.Normalize(Vector2.Subtract(inputDirection, inputPosition)));
             position = inputPosition;
             direction = Vector2.Normalize(Vector2.Subtract(inputDirection, inputPosition));
             active = true;
@@ -68,6 +67,17 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Jhin
         private void Destroy()
         {
             active = false;
+        }
+
+        private void CheckCollisions(List<GameObject> gameObjects, TiledMap map)
+        {
+            if (gameObjects[0].CheckCollision(BoundingBox))
+            {
+                Destroy();
+                gameObjects[0].BulletResponse();
+                return;
+            } 
+         
         }
 
     }

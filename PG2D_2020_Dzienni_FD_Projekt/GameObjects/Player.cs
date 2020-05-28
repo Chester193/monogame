@@ -57,7 +57,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public override void Update(List<GameObject> gameObjects, TiledMap map)
         {
-            if(!isAttacking)
+            if(!isAttacking && !isHurting)
                 CheckInput(gameObjects, map);
             base.Update(gameObjects, map);
         }
@@ -67,9 +67,33 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             if (currentAnimation == null)
                 return;
 
-            base.UpdateAnimations();
+            if (isHurting)
+            {
+                currentAnimation.animationSpeed = 1;
+                velocity = Vector2.Zero;
+                if (direction.Y < 0 && AnimationIsNot(Animations.HurtBack))
+                {
+                    ChangeAnimation(Animations.HurtBack);
+                }
+                if (direction.Y > 0 && AnimationIsNot(Animations.HurtFront))
+                {
+                    ChangeAnimation(Animations.HurtFront);
+                }
+                if (direction.X < 0 && AnimationIsNot(Animations.HurtLeft))
+                {
+                    ChangeAnimation(Animations.HurtLeft);
+                }
+                if (direction.X > 0 && AnimationIsNot(Animations.HurtRight))
+                {
+                    ChangeAnimation(Animations.HurtRight);
+                }
+                if (IsAnimationComplete)
+                {
+                    isHurting = false;
+                }
+            }
 
-            if (isAttacking)
+            if (isAttacking && !isHurting)
             {
                 velocity = Vector2.Zero;
                 if (direction.Y < 0 && AnimationIsNot(Animations.SlashBack))
@@ -94,7 +118,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 }
             }
 
-            if (velocity != Vector2.Zero && isJumping == false && isAttacking == false)
+            if (velocity != Vector2.Zero && isJumping == false && isAttacking == false && isHurting == false)
             {
                 if (direction.X < 0 && AnimationIsNot(Animations.WalkingLeft))
                 {
@@ -116,7 +140,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             }
 
-            else if (velocity == Vector2.Zero && isJumping == false && isAttacking == false)
+            else if (velocity == Vector2.Zero && isJumping == false && isAttacking == false && isHurting == false)
             {
                 if (direction.X < 0 && AnimationIsNot(Animations.IdleLeft))
                 {
@@ -155,6 +179,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     ChangeAnimation(Animations.DieFront);
                 }
             }
+            base.UpdateAnimations();
 
         }
 
@@ -211,7 +236,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         private Character NearestEnemy(List<GameObject> gameObjects)
         {
-            float distans = 0, distansPrev = 0;
+            float distance = 0, distancePrev = 0;
             Character character;
             Character target = null;
 
@@ -220,11 +245,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 character = (Character)gameObjects[i];
                 if(!character.IsDead())
                 { 
-                    distans = Vector2.Distance(character.realPositon, realPositon);
-                    if (distansPrev == 0) distansPrev = distans;
-                    if (distans < distansPrev)
+                    distance = Vector2.Distance(character.realPositon, realPositon);
+                    if (distancePrev == 0) distancePrev = distance;
+                    if (distance < distancePrev)
                     {
-                        distansPrev = distans;
+                        distancePrev = distance;
                         target = character;
                     }
                 }

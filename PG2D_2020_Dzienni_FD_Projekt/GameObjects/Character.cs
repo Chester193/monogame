@@ -43,6 +43,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         protected bool isDead = false;
         protected bool isAttacking = false;
         protected bool isJumping = false;
+        protected bool isHurting = false;
+
         public static bool applyGravity = false;
         const bool drawPath = true;
 
@@ -190,7 +192,12 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             direction.Y = 0;
         }
 
-
+        public override void BulletResponse()
+        {
+            isHurting = true;
+            this.hp -= 10;
+            base.BulletResponse();
+        }
         protected void MoveDown()
         {
             velocity.Y += acceleration + deceleration;
@@ -372,7 +379,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             float directionX = point.X - BoundingBox.Center.X;
             float directionY = point.Y - BoundingBox.Center.Y;
 
-            if (!isAttacking && !isDead)
+            if (!isAttacking && !isDead && !isHurting)
             {
                 if (directionY > maxSpeed)
                     MoveDown();
@@ -397,6 +404,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 //Console.WriteLine("Character.Attack()[EndIF]()");
             }
         }
+
 
         public void SetMode(CharcterMode mode)
         {

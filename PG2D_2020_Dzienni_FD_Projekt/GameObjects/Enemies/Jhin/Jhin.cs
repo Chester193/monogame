@@ -26,16 +26,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Jhin
 
         protected override void UpdateAnimations()
         {
-            if (isAttacking && AnimationIsNot(Animations.SlashLeft))
-            {
-                ChangeAnimation((Animations.SlashLeft));
-            }
-            if (isAttacking && AnimationIsNot(Animations.SlashRight))
-            {
-                ChangeAnimation((Animations.SlashRight));
-            }
             base.UpdateAnimations();
-
         }
 
         public override void Update(List<GameObject> gameObjects, TiledMap map)
@@ -75,7 +66,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Jhin
         {
             if (cone.active == false && Vector2.Distance(playerPosition, position) <= rangeOfAttack)
                 {
-                    cone.Fire(this, new Vector2(this.position.X, this.position.Y), playerPosition);
+                    isAttacking = true;
+                    cone.Fire(this, new Vector2(this.position.X - 50, this.position.Y - 50), playerPosition);
                 }
         }
 
