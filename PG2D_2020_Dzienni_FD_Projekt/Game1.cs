@@ -4,7 +4,6 @@ using Microsoft.Xna.Framework.Input;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using System.Collections.Generic;
-using System.Linq;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Jhin;
 
@@ -52,13 +51,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             player.position = new Vector2(400, 400);
             gameObjects.Add(player);
 
-            
-            // gameObjects.Add(new Jhin(new Vector2(300, 400)));
-            // // gameObjects.Add(new Viking1(new Vector2(300, 300)));
-            // // gameObjects.Add(new Viking2(new Vector2(300, 200)));
-            // // gameObjects.Add(new Viking3(new Vector2(300, 100)));
-            // // gameObjects.Add(new Demon(new Vector2(300, 000)));
-            // // gameObjects.Add(new Lizard(new Vector2(500, 400)));
             gameHUD.Player(player);
 
             CharacterSettings characterSettings = new CharacterSettings();
@@ -78,18 +70,20 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(new Lizard(new Vector2(720, 1000), characterSettings));
 
             characterSettings.mode = 0;
-            // gameObjects.Add(new Lizard(new Vector2(400, 600), characterSettings));
-            characterSettings.rangeOfAttack = 300;
-            // gameObjects.Add(new Zombie(new Vector2(300, 400), characterSettings));
-            // gameObjects.Add(new Viking1(new Vector2(300, 300), characterSettings));
-            // gameObjects.Add(new Viking2(new Vector2(300, 200), characterSettings));
-            // gameObjects.Add(new Viking3(new Vector2(300, 100), characterSettings));
+            gameObjects.Add(new Lizard(new Vector2(400, 600), characterSettings));
+            characterSettings.rangeOfAttack = 30;
+            gameObjects.Add(new Zombie(new Vector2(300, 400), characterSettings));
+            gameObjects.Add(new Viking1(new Vector2(300, 300), characterSettings));
+            gameObjects.Add(new Viking2(new Vector2(300, 200), characterSettings));
+            gameObjects.Add(new Viking3(new Vector2(300, 100), characterSettings));
+            
             characterSettings.mode = CharcterMode.FollowPlayer;
-            // gameObjects.Add(new Demon(new Vector2(300, 000), characterSettings));
-            gameObjects.Add(new Jhin(new Vector2(300, 000), characterSettings));
+            gameObjects.Add(new Demon(new Vector2(300, 000), characterSettings));
+            characterSettings.rangeOfAttack = 300;
+            gameObjects.Add(new Jhin(new Vector2(250, 000), characterSettings));
 
             gameHUD.Enemy((Enemy)gameObjects[2]);
-            
+
             Camera.Initialize(zoomLevel: 1.0f);
             base.Initialize();
         }
@@ -180,7 +174,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
         public void UpdateGameObjects(List<GameObject> gameObjects, TiledMap map)
         {
-            foreach (var gameObject in gameObjects.ToList())
+            foreach (var gameObject in gameObjects)
             {
                 gameObject.Update(gameObjects, map);
             }
