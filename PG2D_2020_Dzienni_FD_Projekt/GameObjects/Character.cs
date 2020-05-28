@@ -1,4 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using System;
 using System.Collections.Generic;
 
@@ -27,6 +30,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
     public class Character : AnimatedObject
     {
+        public PathFinder pathFinder = new PathFinder();
         public Vector2 velocity;
         protected float acceleration = 0.4f;
         protected float deceleration = 0.78f;
@@ -40,6 +44,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         protected bool isAttacking = false;
         protected bool isJumping = false;
         public static bool applyGravity = false;
+        const bool drawPath = true;
 
         public int maxHp;
         public int hp;
@@ -47,6 +52,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public int maxMp;
         public int mp;
 
+        Texture2D pathTexture;
+        Color pathColor;
+        protected int pathWidth, pathHeight;
         private CharcterMode mode = 0;
         private int range;
         public List<Vector2> points;
@@ -61,10 +69,36 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             base.Initialize();
         }
 
+        public override void Load(ContentManager content)
+        {
+            pathTexture = TextureLoader.Load(@"other/pixel", content);
+            base.Load(content);
+
+            pathColor = new Color(0, 0, 255, 128);
+            pathWidth = 32;
+            pathHeight = 32;
+        }
+
         public override void Update(List<GameObject> gameObjects, TiledMap map)
         {
             UpdateMovement(gameObjects, map);
             base.Update(gameObjects, map);
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
+            if (drawPath)
+            {
+                //foreach (Point item in pathFinder.visited_test)
+                //    spriteBatch.Draw(pathTexture, new Vector2(item.X, item.Y), new Rectangle(item.X, item.Y, pathWidth, pathHeight), new Color(255, 0, 0, 128), rotation, Vector2.Zero, 1f, SpriteEffects.None, 0.15f);
+
+                //foreach (Node item in pathFinder.available_test)
+                //    spriteBatch.Draw(pathTexture, new Vector2(item.Position.X, item.Position.Y), new Rectangle((int)item.Position.X, (int)item.Position.Y, pathWidth, pathHeight), new Color(0, 255, 0, 128), rotation, Vector2.Zero, 1f, SpriteEffects.None, 0.15f);
+
+                foreach (Vector2 item in pathFinder.Path)
+                    spriteBatch.Draw(pathTexture, new Vector2(item.X, item.Y), new Rectangle((int)item.X, (int)item.Y, pathWidth, pathHeight), pathColor, rotation, Vector2.Zero, 1f, SpriteEffects.None, 0.05f);
+            }
         }
 
         private void UpdateMovement(List<GameObject> gameObjects, TiledMap map)
@@ -98,6 +132,38 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             if (originalPosition == new Vector2(-1, -1)) originalPosition = new Vector2(realPositon.X, realPositon.Y);
         }
 
+        public void Follow(GameObject player, TiledMap map)
+        {
+            Vector2 nextStep;
+            if (!pathFinder.TryGetFirstStep(out nextStep) || GoToPoint(nextStep))
+            {
+                pathFinder.FindPath(map, new Vector2(BoundingBox.X, BoundingBox.Y), new Vector2(player.BoundingBox.X, player.BoundingBox.Y));
+            }
+        }
+
+        public bool GoToPoint(Vector2 point)
+        {
+            bool arriveX = false, arriveY = false;
+            float directionX = point.X - BoundingBox.X;
+            float directionY = point.Y - BoundingBox.Y;
+
+            if (directionY > maxSpeed)
+                MoveDown();
+            else if (directionY < -maxSpeed)
+                MoveUp();
+            else
+                arriveY = true;
+
+
+            if (directionX > maxSpeed)
+                MoveRight();
+            else if (directionX < -maxSpeed)
+                MoveLeft();
+            else
+                arriveX = true;
+
+            return arriveX && arriveY;
+        }
 
         private void ApplyGravity(TiledMap map)
         {
