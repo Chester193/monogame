@@ -11,6 +11,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Jhin
     {
         private const float Speed = 6.0f;
 
+        Jhin owner;
+
         private int destroyTimer;
         private const int TimeToLive = 180;
 
@@ -21,7 +23,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Jhin
 
         protected override void UpdateAnimations()
         {
-            if (IsAnimationComplete) this.active = false;
+            if (IsAnimationComplete)
+            {
+                Destroy();
+            }
             base.UpdateAnimations();
         }
 
@@ -43,22 +48,25 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Jhin
         {
             if (active == false)
                 return;
-
+   
             position += direction * Speed;
 
             CheckCollisions(gameObjects, map);
 
             destroyTimer--;
             if (destroyTimer <= 0 && active == true)
-            {
+            {               
                 Destroy();
             }
             base.Update(gameObjects, map);
         }
 
-        internal void Fire(Character inputOwner, Vector2 inputPosition, Vector2 inputDirection)
+        internal void Fire(Jhin inputOwner, Vector2 inputPosition, Vector2 inputDirection)
         {
-            position = inputPosition;
+            owner = inputOwner;
+            resetAnimation();
+            //TODO fix this line with position(I have no idea ho to adjust this without hardcoding this vector2 parameter)
+            position = inputPosition - boundingBoxOffset + new Vector2(20, 20);
             direction = Vector2.Normalize(Vector2.Subtract(inputDirection, inputPosition));
             active = true;
             destroyTimer = TimeToLive;
@@ -66,6 +74,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Jhin
 
         private void Destroy()
         {
+            owner.resetAttackDelay();
             active = false;
         }
 
@@ -74,11 +83,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Jhin
             if (gameObjects[0].CheckCollision(BoundingBox))
             {
                 Destroy();
-                gameObjects[0].BulletResponse();
+                gameObjects[0].BulletResponse(25);
                 return;
             } 
          
         }
 
+        private void resetAnimation()
+        {
+            ChangeAnimation(Animations.IceCone);
+        }
     }
 }

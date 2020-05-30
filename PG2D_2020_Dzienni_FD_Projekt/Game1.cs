@@ -80,7 +80,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             characterSettings.mode = CharcterMode.FollowPlayer;
             gameObjects.Add(new Demon(new Vector2(300, 000), characterSettings));
             characterSettings.rangeOfAttack = 300;
-            gameObjects.Add(new Jhin(new Vector2(250, 000), characterSettings));
+            gameObjects.Add(new Jhin(new Vector2(250, 400), characterSettings));
 
             gameHUD.Enemy((Enemy)gameObjects[2]);
 

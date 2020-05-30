@@ -114,8 +114,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             if (distanceToPlayer < range)
             {
                 Follow(gameObjects[0], map);
-            }
-            Attack(player, 20);
+            }            
         }
 
         public void Guard(List<GameObject> gameObjects, int range, TiledMap map)
@@ -135,7 +134,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             {
                 Patrol();
             }
-            Attack(player, 20);
+            //Attack(player, 20);
         }
 
         public void Patrol()

@@ -81,7 +81,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             return BoundingBox.Intersects(input);
         }
 
-        public virtual void BulletResponse()
+        public virtual void BulletResponse(int damageTaken)
         {
 
         }

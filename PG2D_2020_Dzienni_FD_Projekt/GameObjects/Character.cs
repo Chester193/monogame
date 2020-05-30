@@ -192,11 +192,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             direction.Y = 0;
         }
 
-        public override void BulletResponse()
+        public override void BulletResponse(int damageTaken)
         {
             isHurting = true;
-            this.hp -= 10;
-            base.BulletResponse();
+            this.Damage(damageTaken);
+            base.BulletResponse(damageTaken);
         }
         protected void MoveDown()
         {
