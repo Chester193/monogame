@@ -39,15 +39,19 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         protected override void UpdateAnimations()
         {
-            if (hp <= 0)
+            if (isDead)
             {
-                if (direction.X < 0)
+                if (direction.X <= 0 && AnimationIsNot(Animations.DieLeft))
                 {
                     ChangeAnimation(Animations.DieLeft);
                 }
-                else if (direction.X > 0)
+                else if (direction.X > 0 && AnimationIsNot(Animations.DieRight))
                 {
                     ChangeAnimation(Animations.DieRight);
+                }
+                if (IsAnimationComplete)
+                {
+                    ChangeAnimation(null);
                 }
             }
             else
@@ -91,8 +95,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
                 }
             }
-
-
             base.UpdateAnimations();
         }
         

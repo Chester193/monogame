@@ -28,8 +28,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public override void Initialize()
         {
-            maxHp = 1000;
-            hp = 1000;
+            maxHp = 80;
+            hp = 80;
             maxMp = 10;
             mp = 10;
 
@@ -57,7 +57,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public override void Update(List<GameObject> gameObjects, TiledMap map)
         {
-            if(!isAttacking)
+            if(!isAttacking && !isDead)
                 CheckInput(gameObjects, map);
             base.Update(gameObjects, map);
         }
@@ -69,7 +69,27 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             base.UpdateAnimations();
 
-            if (isAttacking)
+            if (isDead)
+            {
+                if (direction.Y < 0 && AnimationIsNot(Animations.DieBack))
+                {
+                    ChangeAnimation(Animations.DieBack);
+                }
+                if (direction.Y > 0 && AnimationIsNot(Animations.DieFront))
+                {
+                    ChangeAnimation(Animations.DieFront);
+                }
+                if (direction.X < 0 && AnimationIsNot(Animations.DieLeft))
+                {
+                    ChangeAnimation(Animations.DieLeft);
+                }
+                if (direction.X > 0 && AnimationIsNot(Animations.DieRight))
+                {
+                    ChangeAnimation(Animations.DieRight);
+                }
+            }
+
+            if (!isDead && isAttacking)
             {
                 velocity = Vector2.Zero;
                 if (direction.Y < 0 && AnimationIsNot(Animations.SlashBack))
@@ -94,7 +114,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 }
             }
 
-            if (velocity != Vector2.Zero && isJumping == false && isAttacking == false)
+            if (velocity != Vector2.Zero && isJumping == false && isAttacking == false && isDead == false)
             {
                 if (direction.X < 0 && AnimationIsNot(Animations.WalkingLeft))
                 {
@@ -116,7 +136,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             }
 
-            else if (velocity == Vector2.Zero && isJumping == false && isAttacking == false)
+            else if (velocity == Vector2.Zero && isJumping == false && isAttacking == false && isDead == false)
             {
                 if (direction.X < 0 && AnimationIsNot(Animations.IdleLeft))
                 {
@@ -133,26 +153,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 else if (direction.Y > 0 && AnimationIsNot(Animations.IdleFront))
                 {
                     ChangeAnimation(Animations.IdleFront);
-                }
-            }
-
-            if (hp <= 0)
-            {
-                if (direction.X < 0)
-                {
-                    ChangeAnimation(Animations.DieLeft);
-                }
-                else if (direction.X > 0)
-                {
-                    ChangeAnimation(Animations.DieRight);
-                }
-                if (direction.Y < 0)
-                {
-                    ChangeAnimation(Animations.DieBack);
-                }
-                else if (direction.Y > 0)
-                {
-                    ChangeAnimation(Animations.DieFront);
                 }
             }
 
