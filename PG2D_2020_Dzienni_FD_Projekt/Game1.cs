@@ -56,7 +56,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             characterSettings.maxHp = 100;
             characterSettings.mode = CharcterMode.Guard;
             characterSettings.range = 300;
-            characterSettings.rangeOfAttack = 80;
+            characterSettings.rangeOfAttack = 30;
 
             List<Vector2> points = new List<Vector2>();
             points.Add(new Vector2(650, 970));

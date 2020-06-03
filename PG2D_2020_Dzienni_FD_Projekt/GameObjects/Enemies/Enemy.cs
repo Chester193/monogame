@@ -8,11 +8,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
     class Enemy : Character
     {
         private int step = 0;
+        private float distanceToPlayer;
 
         public override void Update(List<GameObject> gameObjects, TiledMap map)
         {
             CharcterMode mode = GetMode();
             int range = GetRange();
+            distanceToPlayer = countDistanceToPlayer((Player)gameObjects[0]);
 
             if (!isDead)
             {
@@ -56,7 +58,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             }
             else
             {
-                if (velocity != Vector2.Zero && direction.X < 0 && AnimationIsNot(Animations.WalkingLeft))
+                if (velocity != Vector2.Zero && direction.X <= 0 && AnimationIsNot(Animations.WalkingLeft))
                 {
                     ChangeAnimation(Animations.WalkingLeft);
                 }
@@ -76,7 +78,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     {
                         ChangeAnimation(Animations.SlashRight);
                     }
-                    if (IsAnimationComplete)
+                    if (IsAnimationComplete || distanceToPlayer >= rangeOfAttack)
                     {
                         isAttacking = false;
                     }
@@ -112,7 +114,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             Player player = (Player)gameObjects[0];
             Vector2 v = new Vector2(range, range);
 
-            float distanceToPlayer = Vector2.Distance(player.realPositon, realPositon);
             if (distanceToPlayer < range)
             {
                 Follow(gameObjects[0], map);
@@ -123,8 +124,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public void Guard(List<GameObject> gameObjects, int range, TiledMap map)
         {
             Player player = (Player)gameObjects[0];
-            Vector2 v = new Vector2(range);
-            float distanceToPlayer = Vector2.Distance(player.realPositon, realPositon);
             float distanceToGuardPosition = Vector2.Distance(originalPosition, realPositon);
             if (distanceToPlayer < range)
             {
@@ -138,6 +137,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 Patrol();
             }
             Attack(player, 20);
+        }
+
+        private float countDistanceToPlayer(Player player)
+        {
+            return Vector2.Distance(player.realPositon, realPositon);
         }
 
         public void Patrol()
