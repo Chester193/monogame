@@ -161,9 +161,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
         public void DrawGameObjects(List<GameObject> gameObjects)
         {
-            foreach (var gameObject in gameObjects)
+            List<GameObject> sortedGameObjects = new List<GameObject>(gameObjects);
+            sortedGameObjects.Sort((a, b) => a.BoundingBox.Y.CompareTo(b.BoundingBox.Y));
+            float depth = 0.1f;
+
+            foreach (var gameObject in sortedGameObjects)
             {
+                gameObject.layerDepth = depth;
                 gameObject.Draw(spriteBatch);
+                depth -= 0.001f;
             }
 
         }

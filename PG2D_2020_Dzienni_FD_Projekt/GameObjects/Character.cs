@@ -44,7 +44,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         protected bool isAttacking = false;
         protected bool isJumping = false;
         public static bool applyGravity = false;
-        const bool drawPath = true;
+        const bool drawPath = false;
 
         public int maxHp;
         public int hp;
