@@ -24,7 +24,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
         {
             maxSpeed = 1.0f;
             acceleration = 0.2f;
-            scale = 0.3f;
+            scale = 0.28f;
             base.Initialize();
         }
 
@@ -39,9 +39,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
 
             base.Load(content);
 
-            boundingBoxOffset = new Vector2(40, 150);
-            boundingBoxWidth = 70;
-            boundingBoxHeight = 40;
+            boundingBoxOffset = new Vector2(30, 110);
+            boundingBoxWidth = 80;
+            boundingBoxHeight = 80;
         }
     }
 }

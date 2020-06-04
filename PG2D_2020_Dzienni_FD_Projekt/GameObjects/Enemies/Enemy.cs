@@ -25,7 +25,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                         Guard(gameObjects, range, map);
                         break;
                     case CharcterMode.FollowPlayer:
-                        Follow(gameObjects[0], map);
+                        Follow(gameObjects[0], map, gameObjects);
                         break;
 
                     default:
@@ -95,15 +95,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             base.UpdateAnimations();
         }
-        
-        public void FollowPlayer(List<GameObject> gameObjects)
-        {
-            GameObject player = gameObjects[0];
-            Rectangle playerBox = player.BoundingBox;
-
-            Vector2 targetPoint = playerBox.Center.ToVector2();
-            GoToPositon(targetPoint);
-        }
 
         public void WaitForPlayer(List<GameObject> gameObjects, int range, TiledMap map)
         {
@@ -113,7 +104,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             float distanceToPlayer = Vector2.Distance(player.realPositon, realPositon);
             if (distanceToPlayer < range)
             {
-                Follow(gameObjects[0], map);
+                Follow(gameObjects[0], map, gameObjects);
             }
             Attack(player, 20);
         }
@@ -128,7 +119,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             {
                 if (distanceToGuardPosition <= 2 * range)
                 {
-                    Follow(gameObjects[0], map);
+                    Follow(gameObjects[0], map, gameObjects);
                 }
             }
             else
@@ -149,7 +140,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 {
                     if (step == points.Count)
                     {
-                        GoToPositon(originalPosition);
+                        GoToPoint(originalPosition);
                         distance = Vector2.Distance(realPositon, originalPosition);
                         if (distance < 5) step++;
                     }
@@ -159,7 +150,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                         if (distance < 5)
                             step++;
                         else
-                            GoToPositon(points[step]);
+                            GoToPoint(points[step]);
                         if (realPositon == originalPosition)
                             step++;
                     }

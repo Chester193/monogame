@@ -76,7 +76,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(new Viking2(new Vector2(300, 200), characterSettings));
             gameObjects.Add(new Viking3(new Vector2(300, 100), characterSettings));
             characterSettings.mode = CharcterMode.FollowPlayer;
-            gameObjects.Add(new Demon(new Vector2(300, 000), characterSettings));
+            gameObjects.Add(new Demon(new Vector2(290, 000), characterSettings));
 
             gameHUD.Enemy((Enemy)gameObjects[2]);
             
@@ -161,9 +161,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
         public void DrawGameObjects(List<GameObject> gameObjects)
         {
-            foreach (var gameObject in gameObjects)
+            List<GameObject> sortedGameObjects = new List<GameObject>(gameObjects);
+            sortedGameObjects.Sort((a, b) => a.BoundingBox.Y.CompareTo(b.BoundingBox.Y));
+            float depth = 0.1f;
+
+            foreach (var gameObject in sortedGameObjects)
             {
+                gameObject.layerDepth = depth;
                 gameObject.Draw(spriteBatch);
+                depth -= 0.001f;
             }
 
         }
