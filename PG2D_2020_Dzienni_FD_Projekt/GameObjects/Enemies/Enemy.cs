@@ -8,11 +8,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
     class Enemy : Character
     {
         private int step = 0;
+        private float distanceToPlayer;
 
         public override void Update(List<GameObject> gameObjects, TiledMap map)
         {
             CharcterMode mode = GetMode();
             int range = GetRange();
+            distanceToPlayer = countDistanceToPlayer((Player)gameObjects[0]);
 
             if (!isDead)
             {
@@ -25,7 +27,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                         Guard(gameObjects, range, map);
                         break;
                     case CharcterMode.FollowPlayer:
-                        Follow(gameObjects[0], map);
+                        Follow(gameObjects[0], map, gameObjects);
                         break;
 
                     default:
@@ -39,20 +41,24 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         protected override void UpdateAnimations()
         {
-            if (hp <= 0)
+            if (isDead)
             {
-                if (direction.X < 0)
+                if (direction.X <= 0 && AnimationIsNot(Animations.DieLeft))
                 {
                     ChangeAnimation(Animations.DieLeft);
                 }
-                else if (direction.X > 0)
+                else if (direction.X > 0 && AnimationIsNot(Animations.DieRight))
                 {
                     ChangeAnimation(Animations.DieRight);
+                }
+                if (IsAnimationComplete)
+                {
+                    ChangeAnimation(null);
                 }
             }
             else
             {
-                if (velocity != Vector2.Zero && direction.X < 0 && AnimationIsNot(Animations.WalkingLeft))
+                if (velocity != Vector2.Zero && direction.X <= 0 && AnimationIsNot(Animations.WalkingLeft))
                 {
                     ChangeAnimation(Animations.WalkingLeft);
                 }
@@ -72,7 +78,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     {
                         ChangeAnimation(Animations.SlashRight);
                     }
-                    if (IsAnimationComplete)
+                    if (IsAnimationComplete || distanceToPlayer >= rangeOfAttack)
                     {
                         isAttacking = false;
                     }
@@ -91,18 +97,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
                 }
             }
-
-
             base.UpdateAnimations();
-        }
-        
-        public void FollowPlayer(List<GameObject> gameObjects)
-        {
-            GameObject player = gameObjects[0];
-            Rectangle playerBox = player.BoundingBox;
-
-            Vector2 targetPoint = playerBox.Center.ToVector2();
-            GoToPositon(targetPoint);
         }
 
         public void WaitForPlayer(List<GameObject> gameObjects, int range, TiledMap map)
@@ -110,31 +105,34 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             Player player = (Player)gameObjects[0];
             Vector2 v = new Vector2(range, range);
 
-            float distanceToPlayer = Vector2.Distance(player.realPositon, realPositon);
             if (distanceToPlayer < range)
             {
-                Follow(gameObjects[0], map);
-            }            
+                Follow(gameObjects[0], map, gameObjects);
+            }
+            Attack(player, 20);
         }
 
         public void Guard(List<GameObject> gameObjects, int range, TiledMap map)
         {
             Player player = (Player)gameObjects[0];
-            Vector2 v = new Vector2(range);
-            float distanceToPlayer = Vector2.Distance(player.realPositon, realPositon);
             float distanceToGuardPosition = Vector2.Distance(originalPosition, realPositon);
             if (distanceToPlayer < range)
             {
                 if (distanceToGuardPosition <= 2 * range)
                 {
-                    Follow(gameObjects[0], map);
+                    Follow(gameObjects[0], map, gameObjects);
                 }
             }
             else
             {
                 Patrol();
             }
-            //Attack(player, 20);
+            Attack(player, 20);
+        }
+
+        private float countDistanceToPlayer(Player player)
+        {
+            return Vector2.Distance(player.realPositon, realPositon);
         }
 
         public void Patrol()
@@ -148,7 +146,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 {
                     if (step == points.Count)
                     {
-                        GoToPositon(originalPosition);
+                        GoToPoint(originalPosition);
                         distance = Vector2.Distance(realPositon, originalPosition);
                         if (distance < 5) step++;
                     }
@@ -158,7 +156,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                         if (distance < 5)
                             step++;
                         else
-                            GoToPositon(points[step]);
+                            GoToPoint(points[step]);
                         if (realPositon == originalPosition)
                             step++;
                     }

@@ -1,8 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
+using PG2D_2020_Dzienni_FD_Projekt.GameObjects;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,7 +15,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         //public List<Node> available_test = new List<Node>();
         //public List<Point> visited_test = new List<Point>();
 
-        private Point fixedEndPoint = new Point(-1, -1);
+        //private Point fixedEndPoint = new Point(-1, -1);
 
         public List<Vector2> Path { get; private set; } = new List<Vector2>();
 
@@ -30,7 +32,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
         }
 
-        public void FindPath(TiledMap map, Vector2 startPoint, Vector2 endPoint)
+        public bool FindPath(TiledMap map, List<GameObject> gameObjects, Vector2 startPoint, Vector2 endPoint)
         {
             List<Node> available = new List<Node>();
             List<Point> visited = new List<Point>();
@@ -38,25 +40,25 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             int tileSize = map.tileSize;
 
             // Remove first step and exit if endPoint not changed
-            if(fixedEndPoint.X == (int)endPoint.X && fixedEndPoint.Y == endPoint.Y)
-            {
-                if(Path.Count > 0)
-                    Path.RemoveAt(Path.Count - 1);
-
-                return;
-            }    
+            //if(fixedEndPoint.X == (int)endPoint.X && fixedEndPoint.Y == endPoint.Y)
+            //{
+            //    if(Path.Count > 0)
+            //        Path.RemoveAt(Path.Count - 1);
+            //
+            //    return true;
+            //}    
 
             //available_test = available;
             //visited_test = visited;
 
             Point fixedStartPoint = AlignToGrid(startPoint, tileSize);
-            fixedEndPoint = new Point((int)endPoint.X, (int)endPoint.Y);
+            Point fixedEndPoint = AlignToGrid(endPoint, tileSize);
 
             //Prepare root node and push it into queue
             Node root = new Node(null, fixedStartPoint, 0, fixedStartPoint.DistanceTo(fixedEndPoint));
             available.Add(root);
 
-            while(available.Count > 0)
+            while(available.Count > 0 && visited.Count < 100)
             {
                 //Pop lowest value node from queue and add to visited list
                 Node current = available[available.Count - 1];
@@ -64,10 +66,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 visited.Add(current.Position);
 
                 //If shortest path was found, save it and exit.
-                if (current.DistanceTo < tileSize)
+                if (current.DistanceTo < tileSize + tileSize / 2)
                 {
-                    SavePath(current);
-                    return;
+                    SavePath(current, endPoint);
+                    return true;
                 }
                 //Find all adjacent fields and check their availability
                 for(int i = -tileSize; i <= tileSize; i += tileSize)
@@ -76,8 +78,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                     {
                         Point neighbour_position = new Point(current.Position.X + i, current.Position.Y + j);
                         Node  neighbour = Node.GetNode(current, neighbour_position, fixedEndPoint);
+                        Rectangle box = new Rectangle(neighbour_position.X - (tileSize / 2), neighbour_position.Y - (tileSize / 2), tileSize, tileSize);
 
-                        if (!IsAlreadyAvailable(neighbour, available) && !IsVisited(neighbour_position, visited) && !IsCollision(neighbour_position, map))
+                        if (!IsAlreadyAvailable(neighbour, available) && !IsVisited(neighbour_position, visited) && !IsCollision(box, map) && !IsGameObjectCollision(box, gameObjects))
                         {
                             available.Add(neighbour);
                         }
@@ -87,21 +90,23 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 //sort queue
                 available.Sort((a, b) => b.Value.CompareTo(a.Value));
             }
+            return false;
         }
 
         private Point AlignToGrid(Vector2 coordinate, int tileSize)
         {
-            return new Point(RoundToTiles(coordinate.X, tileSize), RoundToTiles(coordinate.Y, tileSize));
+            return new Point(RoundToTileCenter(coordinate.X, tileSize), RoundToTileCenter(coordinate.Y, tileSize));
         }
 
-        private int RoundToTiles(float coordinate, int tileSize)
+        private int RoundToTileCenter(float coordinate, int tileSize)
         {
-            return (int)Math.Round(coordinate/tileSize) * tileSize;
+            return (int)(coordinate - (coordinate % tileSize) + (tileSize / 2));
         }
 
-        private void SavePath(Node current)
+        private void SavePath(Node current, Vector2 endPoint)
         {
             Path = new List<Vector2>();
+            Path.Add(endPoint);
 
             while (current.Previous != null)
             {
@@ -141,14 +146,26 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             return false;
         }
 
-        private bool IsCollision(Point position, TiledMap map)
+        private bool IsCollision(Rectangle box, TiledMap map)
         {
-            Rectangle wallCollision = map.CheckCollision(new Rectangle(position.X, position.Y, map.tileSize, map.tileSize));
+            Rectangle wallCollision = map.CheckCollision(box);
 
             if (wallCollision == Rectangle.Empty)
                 return false;
 
             return true;
+        }
+
+        private bool IsGameObjectCollision(Rectangle box, List<GameObject> gameObjects)
+        {
+            foreach (var gameObject in gameObjects)
+            {
+                if (gameObject.active == true && gameObject.isCollidable == true && gameObject.CheckCollision(box) == true)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 

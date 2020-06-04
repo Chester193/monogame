@@ -28,8 +28,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public override void Initialize()
         {
-            maxHp = 1000;
-            hp = 1000;
+            maxHp = 80;
+            hp = 80;
             maxMp = 10;
             mp = 10;
 
@@ -50,14 +50,14 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             base.Load(content);
 
-            boundingBoxOffset = new Vector2(40, 75);
-            boundingBoxWidth = 30;
-            boundingBoxHeight = 15;
+            boundingBoxOffset = new Vector2(40, 57);
+            boundingBoxWidth = 32;
+            boundingBoxHeight = 32;
         }
 
         public override void Update(List<GameObject> gameObjects, TiledMap map)
         {
-            if(!isAttacking && !isHurting)
+            if(!isAttacking && !isHurting && !isDead)
                 CheckInput(gameObjects, map);
             base.Update(gameObjects, map);
         }
@@ -67,7 +67,27 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             if (currentAnimation == null)
                 return;
 
-            if (isHurting)
+            if (isDead)
+            {
+                if (direction.Y < 0 && AnimationIsNot(Animations.DieBack))
+                {
+                    ChangeAnimation(Animations.DieBack);
+                }
+                if (direction.Y > 0 && AnimationIsNot(Animations.DieFront))
+                {
+                    ChangeAnimation(Animations.DieFront);
+                }
+                if (direction.X < 0 && AnimationIsNot(Animations.DieLeft))
+                {
+                    ChangeAnimation(Animations.DieLeft);
+                }
+                if (direction.X > 0 && AnimationIsNot(Animations.DieRight))
+                {
+                    ChangeAnimation(Animations.DieRight);
+                }
+            }
+
+            else if(isHurting)
             {
                 currentAnimation.animationSpeed = 1;
                 velocity = Vector2.Zero;
@@ -93,7 +113,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 }
             }
 
-            if (isAttacking && !isHurting)
+            else if (isAttacking)
             {
                 velocity = Vector2.Zero;
                 if (direction.Y < 0 && AnimationIsNot(Animations.SlashBack))
@@ -118,7 +138,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 }
             }
 
-            if (velocity != Vector2.Zero && isJumping == false && isAttacking == false && isHurting == false)
+            else if (velocity != Vector2.Zero)
             {
                 if (direction.X < 0 && AnimationIsNot(Animations.WalkingLeft))
                 {
@@ -140,7 +160,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             }
 
-            else if (velocity == Vector2.Zero && isJumping == false && isAttacking == false && isHurting == false)
+            else
+                //(velocity == Vector2.Zero && isJumping == false && isAttacking == false && isDead == false && isHurting == false)
             {
                 if (direction.X < 0 && AnimationIsNot(Animations.IdleLeft))
                 {
@@ -159,28 +180,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     ChangeAnimation(Animations.IdleFront);
                 }
             }
-
-            if (hp <= 0)
-            {
-                if (direction.X < 0)
-                {
-                    ChangeAnimation(Animations.DieLeft);
-                }
-                else if (direction.X > 0)
-                {
-                    ChangeAnimation(Animations.DieRight);
-                }
-                if (direction.Y < 0)
-                {
-                    ChangeAnimation(Animations.DieBack);
-                }
-                else if (direction.Y > 0)
-                {
-                    ChangeAnimation(Animations.DieFront);
-                }
-            }
             base.UpdateAnimations();
-
         }
 
         public override void Draw(SpriteBatch spriteBatch)
