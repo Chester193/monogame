@@ -67,7 +67,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Jhin
 
         public void Fire(GameObject player)
         {
-            if (cone.active == false && Vector2.Distance(player.position, position) <= rangeOfAttack && attackDelay <= 0)
+            if (cone.active == false && !isDead && Vector2.Distance(player.position, position) <= rangeOfAttack && attackDelay <= 0)
                 {
                     isAttacking = true;
                     cone.Fire(this, new Vector2(this.BoundingBox.X, this.BoundingBox.Y), new Vector2(player.BoundingBox.X, player.BoundingBox.Y));
