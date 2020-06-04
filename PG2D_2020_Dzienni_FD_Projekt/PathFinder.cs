@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -67,7 +68,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 //If shortest path was found, save it and exit.
                 if (current.DistanceTo < tileSize + tileSize / 2)
                 {
-                    SavePath(current);
+                    SavePath(current, endPoint);
                     return true;
                 }
                 //Find all adjacent fields and check their availability
@@ -102,9 +103,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             return (int)(coordinate - (coordinate % tileSize) + (tileSize / 2));
         }
 
-        private void SavePath(Node current)
+        private void SavePath(Node current, Vector2 endPoint)
         {
             Path = new List<Vector2>();
+            Path.Add(endPoint);
 
             while (current.Previous != null)
             {

@@ -163,6 +163,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             float directionX = point.X - BoundingBox.Center.X;
             float directionY = point.Y - BoundingBox.Center.Y;
 
+            if (isAttacking || isDead)
+            {
+                return false;
+            }
+
             if (directionY > maxSpeed)
                 MoveDown();
             else if (directionY < -maxSpeed)
@@ -380,26 +385,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public void SetMaxHp(int newMaxHp)
         {
             maxHp = newMaxHp;
-        }
-
-        ///
-        public void GoToPositon(Vector2 point)
-        {
-            float directionX = point.X - BoundingBox.Center.X;
-            float directionY = point.Y - BoundingBox.Center.Y;
-
-            if (!isAttacking && !isDead)
-            {
-                if (directionY > maxSpeed)
-                    MoveDown();
-                else if (directionY < -maxSpeed)
-                    MoveUp();
-
-                if (directionX > maxSpeed)
-                    MoveRight();
-                else if (directionX < -maxSpeed)
-                    MoveLeft();
-            }
         }
 
         public void Attack(Character target, int dmg)
