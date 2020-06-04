@@ -39,13 +39,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             int tileSize = map.tileSize;
 
             // Remove first step and exit if endPoint not changed
-            if(fixedEndPoint.X == (int)endPoint.X && fixedEndPoint.Y == endPoint.Y)
-            {
-                if(Path.Count > 0)
-                    Path.RemoveAt(Path.Count - 1);
-
-                return true;
-            }    
+            //if(fixedEndPoint.X == (int)endPoint.X && fixedEndPoint.Y == endPoint.Y)
+            //{
+            //    if(Path.Count > 0)
+            //        Path.RemoveAt(Path.Count - 1);
+            //
+            //    return true;
+            //}    
 
             //available_test = available;
             //visited_test = visited;
