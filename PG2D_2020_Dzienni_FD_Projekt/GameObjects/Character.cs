@@ -148,7 +148,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             {
                 List<GameObject> gameObjectsWithoutPlayer = new List<GameObject>(gameObjects);
                 gameObjectsWithoutPlayer.Remove(player);
-                bool pathFound = pathFinder.FindPath(map, gameObjectsWithoutPlayer, new Vector2(BoundingBox.X, BoundingBox.Y), new Vector2(player.BoundingBox.X, player.BoundingBox.Y));
+                gameObjectsWithoutPlayer.Remove(this);
+                bool pathFound = pathFinder.FindPath(map, gameObjectsWithoutPlayer, new Vector2(BoundingBox.Center.X, BoundingBox.Center.Y), new Vector2(player.BoundingBox.Center.X, player.BoundingBox.Center.Y));
                 if (!pathFound)
                 {
                     timer.Time = 60;
@@ -159,8 +160,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public bool GoToPoint(Vector2 point)
         {
             bool arriveX = false, arriveY = false;
-            float directionX = point.X - BoundingBox.X;
-            float directionY = point.Y - BoundingBox.Y;
+            float directionX = point.X - BoundingBox.Center.X;
+            float directionY = point.Y - BoundingBox.Center.Y;
 
             if (directionY > maxSpeed)
                 MoveDown();

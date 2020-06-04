@@ -14,7 +14,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         //public List<Node> available_test = new List<Node>();
         //public List<Point> visited_test = new List<Point>();
 
-        private Point fixedEndPoint = new Point(-1, -1);
+        //private Point fixedEndPoint = new Point(-1, -1);
 
         public List<Vector2> Path { get; private set; } = new List<Vector2>();
 
@@ -51,7 +51,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             //visited_test = visited;
 
             Point fixedStartPoint = AlignToGrid(startPoint, tileSize);
-            fixedEndPoint = new Point((int)endPoint.X, (int)endPoint.Y);
+            Point fixedEndPoint = AlignToGrid(endPoint, tileSize);
 
             //Prepare root node and push it into queue
             Node root = new Node(null, fixedStartPoint, 0, fixedStartPoint.DistanceTo(fixedEndPoint));
@@ -65,7 +65,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 visited.Add(current.Position);
 
                 //If shortest path was found, save it and exit.
-                if (current.DistanceTo < tileSize)
+                if (current.DistanceTo < tileSize + tileSize / 2)
                 {
                     SavePath(current);
                     return true;
@@ -77,8 +77,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                     {
                         Point neighbour_position = new Point(current.Position.X + i, current.Position.Y + j);
                         Node  neighbour = Node.GetNode(current, neighbour_position, fixedEndPoint);
+                        Rectangle box = new Rectangle(neighbour_position.X - (tileSize / 2), neighbour_position.Y - (tileSize / 2), tileSize, tileSize);
 
-                        if (!IsAlreadyAvailable(neighbour, available) && !IsVisited(neighbour_position, visited) && !IsCollision(neighbour_position, map) && !IsGameObjectCollision(neighbour_position, gameObjects, tileSize))
+                        if (!IsAlreadyAvailable(neighbour, available) && !IsVisited(neighbour_position, visited) && !IsCollision(box, map) && !IsGameObjectCollision(box, gameObjects))
                         {
                             available.Add(neighbour);
                         }
@@ -93,12 +94,12 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
         private Point AlignToGrid(Vector2 coordinate, int tileSize)
         {
-            return new Point(RoundToTiles(coordinate.X, tileSize), RoundToTiles(coordinate.Y, tileSize));
+            return new Point(RoundToTileCenter(coordinate.X, tileSize), RoundToTileCenter(coordinate.Y, tileSize));
         }
 
-        private int RoundToTiles(float coordinate, int tileSize)
+        private int RoundToTileCenter(float coordinate, int tileSize)
         {
-            return (int)Math.Round(coordinate/tileSize) * tileSize;
+            return (int)(coordinate - (coordinate % tileSize) + (tileSize / 2));
         }
 
         private void SavePath(Node current)
@@ -143,9 +144,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             return false;
         }
 
-        private bool IsCollision(Point position, TiledMap map)
+        private bool IsCollision(Rectangle box, TiledMap map)
         {
-            Rectangle wallCollision = map.CheckCollision(new Rectangle(position.X, position.Y, map.tileSize, map.tileSize));
+            Rectangle wallCollision = map.CheckCollision(box);
 
             if (wallCollision == Rectangle.Empty)
                 return false;
@@ -153,9 +154,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             return true;
         }
 
-        private bool IsGameObjectCollision(Point position, List<GameObject> gameObjects, int tileSize)
+        private bool IsGameObjectCollision(Rectangle box, List<GameObject> gameObjects)
         {
-            Rectangle box = new Rectangle(position.X, position.Y, tileSize, tileSize);
             foreach (var gameObject in gameObjects)
             {
                 if (gameObject.active == true && gameObject.isCollidable == true && gameObject.CheckCollision(box) == true)
