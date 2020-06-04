@@ -288,7 +288,7 @@
  </layer>
  <objectgroup id="8" name="collisions">
   <object id="1" x="-1.16667" y="0" width="191.833" height="254.667"/>
-  <object id="2" x="190.667" y="33.25" width="96.3333" height="61.4167"/>
+  <object id="2" x="190.667" y="29.9167" width="96.3333" height="64.75"/>
   <object id="3" x="191.5" y="95.3333" width="31.3333" height="63.1667"/>
   <object id="4" x="223.333" y="94.8333" width="32.3333" height="32.5"/>
   <object id="6" x="-1.33333" y="254.667" width="64.3333" height="96.8333"/>
@@ -345,13 +345,13 @@
   <object id="117" x="1600" y="0.5" width="31.5" height="1632.5"/>
   <object id="118" x="-32.25" y="1601.59" width="1632.5" height="30.1666"/>
   <object id="119" x="-31.75" y="-32.75" width="31.5" height="1632.5"/>
-  <object id="131" x="687.92" y="273.5" width="15.7841" height="46.3125"/>
-  <object id="134" x="704.767" y="265.322" width="15.2663" height="54.6781"/>
+  <object id="131" x="687.92" y="277.833" width="15.7841" height="41.9792"/>
+  <object id="134" x="704.767" y="270.989" width="15.2663" height="49.0114"/>
   <object id="135" x="736.589" y="248.438" width="15.8118" height="71.5231"/>
-  <object id="136" x="720.1" y="257.123" width="16.1754" height="62.8769"/>
+  <object id="136" x="720.1" y="261.123" width="16.1754" height="58.8769"/>
   <object id="137" x="608.957" y="320.996" width="159.125" height="6.45833"/>
-  <object id="139" x="672.199" y="280.092" width="15.7841" height="39.8542"/>
-  <object id="140" x="656.358" y="288.898" width="15.7841" height="31.1951"/>
+  <object id="139" x="672.199" y="285.092" width="15.7841" height="34.8542"/>
+  <object id="140" x="656.358" y="291.565" width="15.7841" height="28.5284"/>
   <object id="141" x="640.608" y="295.455" width="15.7841" height="24.6383"/>
   <object id="142" x="624.858" y="301.031" width="15.7841" height="18.8125"/>
   <object id="143" x="608.983" y="308.031" width="15.7841" height="12.0625"/>

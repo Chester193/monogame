@@ -31,6 +31,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
     public class Character : AnimatedObject
     {
         public PathFinder pathFinder = new PathFinder();
+        public Timer timer = new Timer();
         public Vector2 velocity;
         protected float acceleration = 0.4f;
         protected float deceleration = 0.78f;
@@ -54,6 +55,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         Texture2D pathTexture;
         Color pathColor;
+        bool positionChanged = true;
         protected int pathWidth, pathHeight;
         private CharcterMode mode = 0;
         private int range;
@@ -117,6 +119,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             position.Y += velocity.Y;
 
+            positionChanged = velocity.X != 0 || velocity.Y != 0;
+
             if (applyGravity == true)
             {
                 ApplyGravity(map);
@@ -132,12 +136,23 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             if (originalPosition == new Vector2(-1, -1)) originalPosition = new Vector2(realPositon.X, realPositon.Y);
         }
 
-        public void Follow(GameObject player, TiledMap map)
+        public void Follow(GameObject player, TiledMap map, List<GameObject> gameObjects)
         {
+            if(timer.Count())
+            {
+                return;
+            }
+
             Vector2 nextStep;
             if (!pathFinder.TryGetFirstStep(out nextStep) || GoToPoint(nextStep))
             {
-                pathFinder.FindPath(map, new Vector2(BoundingBox.X, BoundingBox.Y), new Vector2(player.BoundingBox.X, player.BoundingBox.Y));
+                List<GameObject> gameObjectsWithoutPlayer = new List<GameObject>(gameObjects);
+                gameObjectsWithoutPlayer.Remove(player);
+                bool pathFound = pathFinder.FindPath(map, gameObjectsWithoutPlayer, new Vector2(BoundingBox.X, BoundingBox.Y), new Vector2(player.BoundingBox.X, player.BoundingBox.Y));
+                if (!pathFound)
+                {
+                    timer.Time = 60;
+                }
             }
         }
 
@@ -162,7 +177,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             else
                 arriveX = true;
 
-            return arriveX && arriveY;
+            return arriveX && arriveY || !positionChanged;
         }
 
         private void ApplyGravity(TiledMap map)

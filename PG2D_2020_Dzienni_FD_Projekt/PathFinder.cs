@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using PG2D_2020_Dzienni_FD_Projekt.GameObjects;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -30,7 +31,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
         }
 
-        public void FindPath(TiledMap map, Vector2 startPoint, Vector2 endPoint)
+        public bool FindPath(TiledMap map, List<GameObject> gameObjects, Vector2 startPoint, Vector2 endPoint)
         {
             List<Node> available = new List<Node>();
             List<Point> visited = new List<Point>();
@@ -43,7 +44,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 if(Path.Count > 0)
                     Path.RemoveAt(Path.Count - 1);
 
-                return;
+                return true;
             }    
 
             //available_test = available;
@@ -56,7 +57,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             Node root = new Node(null, fixedStartPoint, 0, fixedStartPoint.DistanceTo(fixedEndPoint));
             available.Add(root);
 
-            while(available.Count > 0)
+            while(available.Count > 0 && visited.Count < 100)
             {
                 //Pop lowest value node from queue and add to visited list
                 Node current = available[available.Count - 1];
@@ -67,7 +68,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 if (current.DistanceTo < tileSize)
                 {
                     SavePath(current);
-                    return;
+                    return true;
                 }
                 //Find all adjacent fields and check their availability
                 for(int i = -tileSize; i <= tileSize; i += tileSize)
@@ -77,7 +78,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                         Point neighbour_position = new Point(current.Position.X + i, current.Position.Y + j);
                         Node  neighbour = Node.GetNode(current, neighbour_position, fixedEndPoint);
 
-                        if (!IsAlreadyAvailable(neighbour, available) && !IsVisited(neighbour_position, visited) && !IsCollision(neighbour_position, map))
+                        if (!IsAlreadyAvailable(neighbour, available) && !IsVisited(neighbour_position, visited) && !IsCollision(neighbour_position, map) && !IsGameObjectCollision(neighbour_position, gameObjects, tileSize))
                         {
                             available.Add(neighbour);
                         }
@@ -87,6 +88,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 //sort queue
                 available.Sort((a, b) => b.Value.CompareTo(a.Value));
             }
+            return false;
         }
 
         private Point AlignToGrid(Vector2 coordinate, int tileSize)
@@ -149,6 +151,19 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 return false;
 
             return true;
+        }
+
+        private bool IsGameObjectCollision(Point position, List<GameObject> gameObjects, int tileSize)
+        {
+            Rectangle box = new Rectangle(position.X, position.Y, tileSize, tileSize);
+            foreach (var gameObject in gameObjects)
+            {
+                if (gameObject.active == true && gameObject.isCollidable == true && gameObject.CheckCollision(box) == true)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 
