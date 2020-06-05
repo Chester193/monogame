@@ -31,6 +31,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
     public class Character : AnimatedObject
     {
         public PathFinder pathFinder = new PathFinder();
+        public Timer timer = new Timer();
         public Vector2 velocity;
         protected float acceleration = 0.4f;
         protected float deceleration = 0.78f;
@@ -44,7 +45,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         protected bool isAttacking = false;
         protected bool isJumping = false;
         public static bool applyGravity = false;
-        const bool drawPath = true;
+        const bool drawPath = false;
 
         public int maxHp;
         public int hp;
@@ -54,6 +55,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         Texture2D pathTexture;
         Color pathColor;
+        bool positionChanged = true;
         protected int pathWidth, pathHeight;
         private CharcterMode mode = 0;
         private int range;
@@ -117,6 +119,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             position.Y += velocity.Y;
 
+            positionChanged = velocity.X != 0 || velocity.Y != 0;
+
             if (applyGravity == true)
             {
                 ApplyGravity(map);
@@ -132,20 +136,37 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             if (originalPosition == new Vector2(-1, -1)) originalPosition = new Vector2(realPositon.X, realPositon.Y);
         }
 
-        public void Follow(GameObject player, TiledMap map)
+        public void Follow(GameObject player, TiledMap map, List<GameObject> gameObjects)
         {
+            if(timer.Count())
+            {
+                return;
+            }
+
             Vector2 nextStep;
             if (!pathFinder.TryGetFirstStep(out nextStep) || GoToPoint(nextStep))
             {
-                pathFinder.FindPath(map, new Vector2(BoundingBox.X, BoundingBox.Y), new Vector2(player.BoundingBox.X, player.BoundingBox.Y));
+                List<GameObject> gameObjectsWithoutPlayer = new List<GameObject>(gameObjects);
+                gameObjectsWithoutPlayer.Remove(player);
+                gameObjectsWithoutPlayer.Remove(this);
+                bool pathFound = pathFinder.FindPath(map, gameObjectsWithoutPlayer, new Vector2(BoundingBox.Center.X, BoundingBox.Center.Y), new Vector2(player.BoundingBox.Center.X, player.BoundingBox.Center.Y));
+                if (!pathFound)
+                {
+                    timer.Time = 60;
+                }
             }
         }
 
         public bool GoToPoint(Vector2 point)
         {
             bool arriveX = false, arriveY = false;
-            float directionX = point.X - BoundingBox.X;
-            float directionY = point.Y - BoundingBox.Y;
+            float directionX = point.X - BoundingBox.Center.X;
+            float directionY = point.Y - BoundingBox.Center.Y;
+
+            if (isAttacking || isDead)
+            {
+                return false;
+            }
 
             if (directionY > maxSpeed)
                 MoveDown();
@@ -162,7 +183,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             else
                 arriveX = true;
 
-            return arriveX && arriveY;
+            return arriveX && arriveY || !positionChanged;
         }
 
         private void ApplyGravity(TiledMap map)
@@ -366,31 +387,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             maxHp = newMaxHp;
         }
 
-        ///
-        public void GoToPositon(Vector2 point)
-        {
-            float directionX = point.X - BoundingBox.Center.X;
-            float directionY = point.Y - BoundingBox.Center.Y;
-
-            if (!isAttacking && !isDead)
-            {
-                if (directionY > maxSpeed)
-                    MoveDown();
-                else if (directionY < -maxSpeed)
-                    MoveUp();
-
-                if (directionX > maxSpeed)
-                    MoveRight();
-                else if (directionX < -maxSpeed)
-                    MoveLeft();
-            }
-        }
-
         public void Attack(Character target, int dmg)
         {
-            float distansToTarget = Vector2.Distance(target.realPositon, realPositon);
+            float distanceToTarget = Vector2.Distance(target.realPositon, realPositon);
             //Console.WriteLine("Character.Attack() " + distansToTarget + " / " + rangeOfAttack + " t.rPositon " + target.realPositon + " player.rPosioton" + realPositon);
-            if (distansToTarget < rangeOfAttack && !isAttacking)
+            if (distanceToTarget < rangeOfAttack && !isAttacking)
             {
                 isAttacking = true;
                 target.Damage(dmg);
