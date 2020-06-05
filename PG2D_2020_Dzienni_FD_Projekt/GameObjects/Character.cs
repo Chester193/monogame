@@ -139,7 +139,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             {
                 pathFinder.FindPath(map, new Vector2(BoundingBox.X, BoundingBox.Y), new Vector2(player.BoundingBox.X, player.BoundingBox.Y));
             }
-            Attack((Character)player, 20);
         }
 
         public bool GoToPoint(Vector2 point)

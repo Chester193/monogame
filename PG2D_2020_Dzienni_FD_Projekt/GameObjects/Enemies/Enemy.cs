@@ -25,7 +25,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                         Guard(gameObjects, range, map);
                         break;
                     case CharcterMode.FollowPlayer:
-                        Follow(gameObjects[0], map);
+                        FollowPlayer(gameObjects, map);
                         break;
 
                     default:
@@ -96,13 +96,14 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             base.UpdateAnimations();
         }
         
-        public void FollowPlayer(List<GameObject> gameObjects)
+        public void FollowPlayer(List<GameObject> gameObjects, TiledMap map)
         {
             GameObject player = gameObjects[0];
             Rectangle playerBox = player.BoundingBox;
 
             Vector2 targetPoint = playerBox.Center.ToVector2();
-            GoToPositon(targetPoint);
+            Follow(player, map);
+            Attack((Character)player, 20);
         }
 
         public void WaitForPlayer(List<GameObject> gameObjects, int range, TiledMap map)
