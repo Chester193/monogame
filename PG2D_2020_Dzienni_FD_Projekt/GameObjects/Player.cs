@@ -33,7 +33,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             maxMp = 10;
             mp = 10;
 
-            rangeOfAttack = 150;
+            rangeOfAttack = 50;
             weaponAttack = 200;
 
             base.Initialize();
@@ -220,11 +220,12 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             for (int i = 0; i < gameObjects.Count; i++)
             {
                 character = (Character)gameObjects[i];
-                if(!character.IsDead())
+                Console.WriteLine("NarestEnemy i= " + i + " targget " + character.ToString());
+                if (!character.IsDead())
                 { 
                     distans = Vector2.Distance(character.realPositon, realPositon);
                     if (distansPrev == 0) distansPrev = distans;
-                    if (distans < distansPrev)
+                    if (distans <= distansPrev)
                     {
                         distansPrev = distans;
                         target = character;
