@@ -136,8 +136,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             if (originalPosition == new Vector2(-1, -1)) originalPosition = new Vector2(realPositon.X, realPositon.Y);
         }
 
-        public void Follow(GameObject player, TiledMap map, List<GameObject> gameObjects)
+        public void Follow(TiledMap map, List<GameObject> gameObjects)
         {
+            GameObject player = gameObjects[0];
+
             if(timer.Count())
             {
                 return;
