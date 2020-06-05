@@ -136,9 +136,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             if (originalPosition == new Vector2(-1, -1)) originalPosition = new Vector2(realPositon.X, realPositon.Y);
         }
 
-        public void Follow(GameObject player, TiledMap map, List<GameObject> gameObjects)
+        public void Follow(TiledMap map, List<GameObject> gameObjects, int targetIndex = 0)
         {
-            if(timer.Count())
+            GameObject targetCharacter = gameObjects[targetIndex];
+
+            if (timer.Count())
             {
                 return;
             }
@@ -147,9 +149,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             if (!pathFinder.TryGetFirstStep(out nextStep) || GoToPoint(nextStep))
             {
                 List<GameObject> gameObjectsWithoutPlayer = new List<GameObject>(gameObjects);
-                gameObjectsWithoutPlayer.Remove(player);
+                gameObjectsWithoutPlayer.Remove(targetCharacter);
                 gameObjectsWithoutPlayer.Remove(this);
-                bool pathFound = pathFinder.FindPath(map, gameObjectsWithoutPlayer, new Vector2(BoundingBox.Center.X, BoundingBox.Center.Y), new Vector2(player.BoundingBox.Center.X, player.BoundingBox.Center.Y));
+                bool pathFound = pathFinder.FindPath(map, gameObjectsWithoutPlayer, new Vector2(BoundingBox.Center.X, BoundingBox.Center.Y), new Vector2(targetCharacter.BoundingBox.Center.X, targetCharacter.BoundingBox.Center.Y));
                 if (!pathFound)
                 {
                     timer.Time = 60;
