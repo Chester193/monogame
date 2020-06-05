@@ -14,7 +14,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         FollowPlayer
     }
 
-    struct CharacterSettings
+    public struct CharacterSettings
     {
         public int maxHp;
         public int hp;
@@ -23,6 +23,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public int range;
         public List<Vector2> points;
         public int rangeOfAttack;
+        public int weaponAttack;
 
         public int maxMp;
         public int mp;
@@ -61,6 +62,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         private int range;
         public List<Vector2> points;
         public int rangeOfAttack;
+        public int weaponAttack;
 
         public Vector2 realPositon;
 
@@ -424,6 +426,21 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public bool IsDead()
         {
             return isDead;
+        }
+
+        public void SetCharacterSettings(CharacterSettings settings)
+        {
+            this.maxHp = settings.maxHp;
+            this.hp = settings.maxHp;
+
+            SetMode(settings.mode);
+            SetRange(settings.range);
+            points = settings.points;
+            this.rangeOfAttack = settings.rangeOfAttack;
+            this.weaponAttack = settings.weaponAttack;
+
+            this.maxMp = settings.maxMp;
+            this.mp = settings.mp;
         }
     }
 

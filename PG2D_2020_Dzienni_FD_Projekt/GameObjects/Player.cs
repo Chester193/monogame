@@ -34,6 +34,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             mp = 10;
 
             rangeOfAttack = 150;
+            weaponAttack = 200;
 
             base.Initialize();
         }
@@ -192,7 +193,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         private void Fire(List<GameObject> gameObjects)
         {
             Character enemyInRange = NearestEnemy(gameObjects);
-            if(enemyInRange != null) Attack(enemyInRange, 1000);
+            if(enemyInRange != null) Attack(enemyInRange, weaponAttack);
 
             //Console.WriteLine("enmyInRange" + enemyInRange.ToString());
             

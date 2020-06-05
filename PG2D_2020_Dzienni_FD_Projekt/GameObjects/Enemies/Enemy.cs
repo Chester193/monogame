@@ -103,7 +103,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public void FollowPlayer(TiledMap map, List<GameObject> gameObjects)
         {
             Follow(map, gameObjects);
-            Attack((Character)gameObjects[0], 20);
+            Attack((Character)gameObjects[0], weaponAttack);
         }
 
         public void WaitForPlayer(List<GameObject> gameObjects, int range, TiledMap map)
@@ -115,7 +115,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             {
                 Follow(map, gameObjects);
             }
-            Attack(player, 20);
+            Attack(player, weaponAttack);
         }
 
         public void Guard(List<GameObject> gameObjects, int range, TiledMap map)
@@ -133,7 +133,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             {
                 Patrol();
             }
-            Attack(player, 20);
+            Attack(player, weaponAttack);
         }
 
         private float countDistanceToPlayer(Player player)
