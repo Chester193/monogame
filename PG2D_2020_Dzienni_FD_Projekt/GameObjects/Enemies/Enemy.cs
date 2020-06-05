@@ -27,7 +27,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                         Guard(gameObjects, range, map);
                         break;
                     case CharcterMode.FollowPlayer:
-                        Follow(gameObjects[0], map, gameObjects);
+                        Follow(map, gameObjects);
                         break;
 
                     default:
@@ -107,7 +107,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             if (distanceToPlayer < range)
             {
-                Follow(gameObjects[0], map, gameObjects);
+                Follow(map, gameObjects);
             }
             Attack(player, 20);
         }
@@ -120,7 +120,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             {
                 if (distanceToGuardPosition <= 2 * range)
                 {
-                    Follow(gameObjects[0], map, gameObjects);
+                    Follow(map, gameObjects);
                 }
             }
             else
