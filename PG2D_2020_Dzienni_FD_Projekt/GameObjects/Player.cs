@@ -220,7 +220,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             for (int i = 0; i < gameObjects.Count; i++)
             {
                 character = (Character)gameObjects[i];
-                Console.WriteLine("NarestEnemy i= " + i + " targget " + character.ToString());
                 if (!character.IsDead())
                 { 
                     distans = Vector2.Distance(character.realPositon, realPositon);
@@ -229,7 +228,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     {
                         distansPrev = distans;
                         target = character;
-                        Console.WriteLine("NarestEnemy " + target.ToString());
                     }
                 }
             }
