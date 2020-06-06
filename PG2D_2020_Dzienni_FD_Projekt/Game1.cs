@@ -6,6 +6,7 @@ using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using System.Collections.Generic;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies;
 using System.Reflection.Emit;
+using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts;
 
 namespace PG2D_2020_Dzienni_FD_Projekt
 {
@@ -39,7 +40,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             ResolutionManager.SetResolution(resWidth, resHeight, false);
             graphics.ApplyChanges();
 
-            scriptsList.Add(new ScriptsController(TeleportTo1000_1000));
+            //scriptsList.Add(new ScriptsController(TeleportTo1000_1000));
         }
 
         /// <summary>
@@ -74,7 +75,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             gameObjects.Add(new Zombie(new Vector2(-100, -100), characterSettings));     //z jakiegoś powodu pierwszy przeciwnik jest zawsze niesmiertelny;
             gameObjects.Add(new Lizard(new Vector2(720, 1000), characterSettings));
-            
+
             /*
             characterSettings.mode = 0;
             gameObjects.Add(new Lizard(new Vector2(400, 600), characterSettings));
@@ -87,27 +88,12 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(new Demon(new Vector2(290, 000), characterSettings));
             */
 
-            scriptsList.Add(new ScriptsController(TeleportTo1000_1000));
+            Scripts scripts = new Scripts(gameObjects);
+            scriptsList.Add(new ScriptsController(scripts.TeleportTo1000_1000));
             gameObjects.Add(new Trigger(new Vector2(300, 300), new Vector2(100, 100), 0, scriptsList));
-            
+
             Camera.Initialize(zoomLevel: 1.0f);
             base.Initialize();
-        }
-
-        private void TeleportTo1000_1000()
-        {
-            gameObjects[0].position = new Vector2(1000, 1000);
-            /*
-            CharacterSettings characterSettings = new CharacterSettings();
-            characterSettings.maxHp = 100;
-            characterSettings.mode = CharcterMode.Guard;
-            characterSettings.range = 300;
-            characterSettings.rangeOfAttack = 30;
-
-            gameObjects.Add(new Viking1(new Vector2(300, 300), characterSettings));
-            gameObjects.Add(new Viking2(new Vector2(300, 200), characterSettings));
-            gameObjects.Add(new Viking3(new Vector2(300, 100), characterSettings));
-            */
         }
 
         /// <summary>
