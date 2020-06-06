@@ -213,7 +213,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         private Character NearestEnemy(List<GameObject> gameObjects)
         {
-            float distans = 0, distansPrev = 0;
+            float distance = 0, distancePrev = 0;
             Character character;
             Character target = null;
 
@@ -222,17 +222,17 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 character = (Character)gameObjects[i];
                 if (!character.IsDead())
                 { 
-                    distans = Vector2.Distance(character.realPositon, realPositon);
-                    if (distansPrev == 0) distansPrev = distans;
-                    if (distans <= distansPrev)
+                    distance = Vector2.Distance(character.realPositon, realPositon);
+                    if (distancePrev == 0) distancePrev = distance;
+                    if (distance <= distancePrev)
                     {
-                        distansPrev = distans;
+                        distancePrev = distance;
                         target = character;
                     }
                 }
             }
             
-            //Console.WriteLine("NearestEnemy() distans " + distans + " GO.count " + gameObjects.Count);
+            //Console.WriteLine("NearestEnemy() distance " + distance + " GO.count " + gameObjects.Count);
 
             return target; // = (Character)gameObjects[1];
         }
