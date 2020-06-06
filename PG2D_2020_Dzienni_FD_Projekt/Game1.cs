@@ -51,10 +51,12 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         /// </summary>
         protected override void Initialize()
         {
+            Scripts scripts = new Scripts(gameObjects);
+            scriptsList.Add(new ScriptsController(scripts.TeleportTo1000_1000));
+
             // TODO: Add your initialization logic here
             tiledMap = new TiledMap(vResWidth, vResHeight);
-            Player player = new Player();
-            player.position = new Vector2(400, 400);
+            Player player = new Player(new Vector2(300, 700), scripts);
             gameObjects.Add(player);
 
             gameHUD.Player(player);
@@ -88,8 +90,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(new Demon(new Vector2(290, 000), characterSettings));
             */
 
-            Scripts scripts = new Scripts(gameObjects);
-            scriptsList.Add(new ScriptsController(scripts.TeleportTo1000_1000));
             gameObjects.Add(new Trigger(new Vector2(300, 300), new Vector2(100, 100), 0, scriptsList));
 
             Camera.Initialize(zoomLevel: 1.0f);

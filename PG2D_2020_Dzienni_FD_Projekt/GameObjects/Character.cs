@@ -64,6 +64,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public Vector2 realPositon;
 
+        public Scripts.Scripts scripts;
+
         public override void Initialize()
         {
             velocity = Vector2.Zero;
@@ -424,6 +426,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public bool IsDead()
         {
             return isDead;
+        }
+
+        public void Respawn()
+        {
+            isDead = false;
         }
     }
 

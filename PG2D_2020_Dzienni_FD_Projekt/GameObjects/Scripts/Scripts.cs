@@ -25,15 +25,28 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
          private void Teleport(GameObject what, Vector2 where)
         {
             what.position = where;
+        }         
+        
+        private void HealingCahracter(GameObject who)
+        {
+            Character character = (Character)who;
+            character.Respawn();
+            character.Heal();
         }
 
         /*
          * Poniżej znajdują się gotowe skrypty
+         * WAŻNE: skrypty NIE przyjmują parametrów
          */
         public void TeleportTo1000_1000()
         {
             Teleport(gameObjects[0], new Vector2(1000, 1000));
         }
 
+        public void PlayerRespawn()
+        {
+            Teleport(gameObjects[0], gameObjects[0].startPosition);
+            HealingCahracter(gameObjects[0]);
+        }
     }
 }

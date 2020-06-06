@@ -19,17 +19,18 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             applyGravity = false;
         }
 
-        public Player(Vector2 startingPosition)
+        public Player(Vector2 startingPosition, Scripts.Scripts scripts)
         {
             this.position = startingPosition;
             applyGravity = false;
 
+            this.scripts = scripts;
         }
 
         public override void Initialize()
         {
-            maxHp = 8000;
-            hp = 8000;
+            maxHp = 80;
+            hp = 80;
             maxMp = 100;
             mp = 100;
 
@@ -86,6 +87,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 if (direction.X > 0 && AnimationIsNot(Animations.DieRight))
                 {
                     ChangeAnimation(Animations.DieRight);
+                }
+
+                if (IsAnimationComplete)
+                {
+                    scripts.PlayerRespawn();
                 }
             }
 
