@@ -28,13 +28,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public override void Initialize()
         {
-            maxHp = 80;
-            hp = 80;
-            maxMp = 10;
-            mp = 10;
+            characterSettings.maxHp = 80;
+            characterSettings.hp = 80;
+            characterSettings.maxMp = 10;
+            characterSettings.mp = 10;
 
-            rangeOfAttack = 50;
-            weaponAttack = 200;
+            characterSettings.rangeOfAttack = 50;
+            characterSettings.weaponAttack = 200;
 
             base.Initialize();
         }
@@ -193,7 +193,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         private void Fire(List<GameObject> gameObjects)
         {
             Character enemyInRange = NearestEnemy(gameObjects);
-            if(enemyInRange != null) Attack(enemyInRange, weaponAttack);
+            if(enemyInRange != null) Attack(enemyInRange, characterSettings.weaponAttack);
 
             //Console.WriteLine("enmyInRange" + enemyInRange.ToString());
             
