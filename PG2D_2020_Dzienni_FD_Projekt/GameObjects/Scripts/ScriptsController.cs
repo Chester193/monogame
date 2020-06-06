@@ -1,6 +1,6 @@
 ﻿namespace PG2D_2020_Dzienni_FD_Projekt
 {
-    public class Script
+    public class ScriptsController
     {
         private bool isFin = false;
         private bool activated = false;
@@ -9,7 +9,7 @@
         public delegate void GameScript();
         GameScript gScript;
 
-        public Script(GameScript gameScript)
+        public ScriptsController(GameScript gameScript)
         {
             gScript = gameScript;
         }

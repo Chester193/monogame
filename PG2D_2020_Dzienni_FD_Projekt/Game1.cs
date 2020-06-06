@@ -26,7 +26,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
         GameHUD gameHUD = new GameHUD();
 
-        public List<Script> scriptsList = new List<Script>();
+        public List<ScriptsController> scriptsList = new List<ScriptsController>();
 
 
         public Game1()
@@ -39,7 +39,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             ResolutionManager.SetResolution(resWidth, resHeight, false);
             graphics.ApplyChanges();
 
-            scriptsList.Add(new Script(TeleportTo1000_1000));
+            scriptsList.Add(new ScriptsController(TeleportTo1000_1000));
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(new Demon(new Vector2(290, 000), characterSettings));
             */
 
-            scriptsList.Add(new Script(TeleportTo1000_1000));
+            scriptsList.Add(new ScriptsController(TeleportTo1000_1000));
             gameObjects.Add(new Trigger(new Vector2(300, 300), new Vector2(100, 100), 0, scriptsList));
             
             Camera.Initialize(zoomLevel: 1.0f);
@@ -145,9 +145,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            Character chara = (Character)gameObjects[0];
-            System.Console.WriteLine("Position: " + gameObjects[0].position + " realPos: " + chara.realPositon );
 
             Input.Update();
             var playerObject = gameObjects[0];

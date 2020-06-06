@@ -10,9 +10,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
     class Trigger : GameObject
     {
         private bool isCircel = false;
-        private List<Script> scripts;
+        private List<ScriptsController> scripts;
 
-        public Trigger(Vector2 location, Vector2 size, int scriptID, List<Script> scriptsList)
+        public Trigger(Vector2 location, Vector2 size, int scriptID, List<ScriptsController> scriptsList)
         {
             position = location;
             boundingBoxHeight = (int)size.Y;
@@ -21,7 +21,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             scripts = scriptsList;
         }
 
-        public Trigger(Vector2 positon, int radius, int scriptID, List<Script> scripts)
+        public Trigger(Vector2 positon, int radius, int scriptID, List<ScriptsController> scripts)
         {
             isCircel = true;
 
@@ -39,7 +39,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             private void ActivScript()
         {
-            Script script = scripts[0];
+            ScriptsController script = scripts[0];
 
             script.Activate();
         }
