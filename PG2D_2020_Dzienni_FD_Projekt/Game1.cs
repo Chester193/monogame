@@ -5,7 +5,6 @@ using PG2D_2020_Dzienni_FD_Projekt.GameObjects;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using System.Collections.Generic;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies;
-using System.Reflection.Emit;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts;
 
 namespace PG2D_2020_Dzienni_FD_Projekt
@@ -39,8 +38,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             ResolutionManager.SetVirtualResolution(vResWidth, vResHeight);
             ResolutionManager.SetResolution(resWidth, resHeight, false);
             graphics.ApplyChanges();
-
-            //scriptsList.Add(new ScriptsController(TeleportTo1000_1000));
         }
 
         /// <summary>
@@ -61,7 +58,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             gameHUD.Player(player);
 
-            
             CharacterSettings characterSettings = new CharacterSettings();
             characterSettings.maxHp = 100;
             characterSettings.mode = CharcterMode.Guard;
