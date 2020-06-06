@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System;
+using StateMachine;
 
 namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 {
@@ -10,8 +11,36 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         private int step = 0;
         private float distanceToPlayer;
 
-        public override void Update(List<GameObject> gameObjects, TiledMap map)
+        private enum EState { IDLE, FOLLOW };
+        private enum ETrigger { STOP, FOLLOW_PLAYER };
+
+        private Fsm<EState, ETrigger> enemyAiMachine;
+
+        List<GameObject> gameObjects;
+        TiledMap map;
+
+        public Enemy()
         {
+            enemyAiMachine = Fsm<EState, ETrigger>.Builder(EState.IDLE)
+                .State(EState.FOLLOW)
+                    .TransitionTo(EState.IDLE).On(ETrigger.STOP)
+                    .Update(args => {
+                        Console.WriteLine("FOLLOW");
+                        FollowPlayer(gameObjects, map); 
+                    })
+                .State(EState.IDLE)
+                    .TransitionTo(EState.FOLLOW).On(ETrigger.FOLLOW_PLAYER)
+                    .Update(args => {
+                        Console.WriteLine("IDLE");
+                    })
+            .Build();
+        }
+
+        public override void Update(List<GameObject> gameObjectsG, TiledMap mapG, GameTime gameTime)
+        {
+            gameObjects = gameObjectsG;
+            map = mapG;
+
             CharcterMode mode = GetMode();
             int range = GetRange();
             distanceToPlayer = countDistanceToPlayer((Player)gameObjects[0]);
@@ -21,7 +50,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 switch (mode)
                 {
                     case CharcterMode.WaitForPlayer:
-                        WaitForPlayer(gameObjects, range, map);
+                        WaitForPlayer();//gameObjects, range, map);
                         break;
                     case CharcterMode.Guard:
                         Guard(gameObjects, range, map);
@@ -31,12 +60,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                         break;
 
                     default:
-                        WaitForPlayer(gameObjects, range, map);
+                        WaitForPlayer();// gameObjects, range, map);
                         break;
                 }
             }
+            enemyAiMachine.Update(TimeSpan.FromMilliseconds(gameTime.ElapsedGameTime.TotalMilliseconds));
 
-            base.Update(gameObjects, map);
+            base.Update(gameObjects, map, gameTime);
         }
 
         protected override void UpdateAnimations()
@@ -99,27 +129,35 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             }
             base.UpdateAnimations();
         }
-        
+
         public void FollowPlayer(List<GameObject> gameObjects, TiledMap map)
         {
             GameObject player = gameObjects[0];
             Rectangle playerBox = player.BoundingBox;
 
             Vector2 targetPoint = playerBox.Center.ToVector2();
-            Follow(player, map);
+            Follow(gameObjects[0], map, gameObjects);
             Attack((Character)player, 20);
         }
 
-        public void WaitForPlayer(List<GameObject> gameObjects, int range, TiledMap map)
+        public void WaitForPlayer() //List<GameObject> gameObjects, int range, TiledMap map)
         {
             Player player = (Player)gameObjects[0];
-            Vector2 v = new Vector2(range, range);
+            //Vector2 v = new Vector2(range, range);
 
-            if (distanceToPlayer < range)
+            if (distanceToPlayer < 400)
             {
-                Follow(gameObjects[0], map, gameObjects);
+                Console.WriteLine("dsitance<<<<  :" + distanceToPlayer);
+                //Follow(gameObjects[0], map, gameObjects);
+                enemyAiMachine.Trigger(ETrigger.FOLLOW_PLAYER);
             }
-            Attack(player, 20);
+            else if(distanceToPlayer > 800)
+            {
+                Console.WriteLine("dsitance>>>>  :" + distanceToPlayer);
+                enemyAiMachine.Trigger(ETrigger.STOP);
+            }
+
+            //Attack(player, 20);
         }
 
         public void Guard(List<GameObject> gameObjects, int range, TiledMap map)
