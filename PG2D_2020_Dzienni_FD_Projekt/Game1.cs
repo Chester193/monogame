@@ -5,6 +5,7 @@ using PG2D_2020_Dzienni_FD_Projekt.GameObjects;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using System.Collections.Generic;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies;
+using System.Reflection.Emit;
 
 namespace PG2D_2020_Dzienni_FD_Projekt
 {
@@ -25,6 +26,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
         GameHUD gameHUD = new GameHUD();
 
+        public List<Script> scriptsList = new List<Script>();
+
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -34,6 +38,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             ResolutionManager.SetVirtualResolution(vResWidth, vResHeight);
             ResolutionManager.SetResolution(resWidth, resHeight, false);
             graphics.ApplyChanges();
+
+            scriptsList.Add(new Script(TeleportTo1000_1000));
         }
 
         /// <summary>
@@ -52,6 +58,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             gameHUD.Player(player);
 
+            
             CharacterSettings characterSettings = new CharacterSettings();
             characterSettings.maxHp = 100;
             characterSettings.mode = CharcterMode.Guard;
@@ -67,7 +74,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             gameObjects.Add(new Zombie(new Vector2(-100, -100), characterSettings));     //z jakiegoś powodu pierwszy przeciwnik jest zawsze niesmiertelny;
             gameObjects.Add(new Lizard(new Vector2(720, 1000), characterSettings));
-
+            
+            /*
             characterSettings.mode = 0;
             gameObjects.Add(new Lizard(new Vector2(400, 600), characterSettings));
             characterSettings.rangeOfAttack = 30;
@@ -77,11 +85,29 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(new Viking3(new Vector2(300, 100), characterSettings));
             characterSettings.mode = CharcterMode.FollowPlayer;
             gameObjects.Add(new Demon(new Vector2(290, 000), characterSettings));
+            */
 
-            gameHUD.Enemy((Enemy)gameObjects[2]);
+            scriptsList.Add(new Script(TeleportTo1000_1000));
+            gameObjects.Add(new Trigger(new Vector2(300, 300), new Vector2(100, 100), 0, scriptsList));
             
             Camera.Initialize(zoomLevel: 1.0f);
             base.Initialize();
+        }
+
+        private void TeleportTo1000_1000()
+        {
+            gameObjects[0].position = new Vector2(1000, 1000);
+            /*
+            CharacterSettings characterSettings = new CharacterSettings();
+            characterSettings.maxHp = 100;
+            characterSettings.mode = CharcterMode.Guard;
+            characterSettings.range = 300;
+            characterSettings.rangeOfAttack = 30;
+
+            gameObjects.Add(new Viking1(new Vector2(300, 300), characterSettings));
+            gameObjects.Add(new Viking2(new Vector2(300, 200), characterSettings));
+            gameObjects.Add(new Viking3(new Vector2(300, 100), characterSettings));
+            */
         }
 
         /// <summary>
@@ -119,6 +145,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+            Character chara = (Character)gameObjects[0];
+            System.Console.WriteLine("Position: " + gameObjects[0].position + " realPos: " + chara.realPositon );
 
             Input.Update();
             var playerObject = gameObjects[0];

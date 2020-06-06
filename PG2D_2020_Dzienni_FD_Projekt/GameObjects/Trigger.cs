@@ -1,0 +1,47 @@
+﻿using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
+{
+    class Trigger : GameObject
+    {
+        private bool isCircel = false;
+        private List<Script> scripts;
+
+        public Trigger(Vector2 location, Vector2 size, int scriptID, List<Script> scriptsList)
+        {
+            position = location;
+            boundingBoxHeight = (int)size.Y;
+            boundingBoxWidth = (int)size.X;
+            isCollidable = false;
+            scripts = scriptsList;
+        }
+
+        public Trigger(Vector2 positon, int radius, int scriptID, List<Script> scripts)
+        {
+            isCircel = true;
+
+
+        }
+
+        public override void Update(List<GameObject> gameObjects, TiledMap map)
+        {
+            if (CheckCollision(gameObjects[0].BoundingBox))
+            {
+                Console.WriteLine("Trigger");
+                ActivScript();
+            }
+        }
+
+            private void ActivScript()
+        {
+            Script script = scripts[0];
+
+            script.Activate();
+        }
+    }
+}

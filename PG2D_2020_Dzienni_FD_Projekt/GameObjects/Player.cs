@@ -28,10 +28,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public override void Initialize()
         {
-            maxHp = 80;
-            hp = 80;
-            maxMp = 10;
-            mp = 10;
+            maxHp = 8000;
+            hp = 8000;
+            maxMp = 100;
+            mp = 100;
 
             rangeOfAttack = 150;
 
@@ -57,7 +57,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public override void Update(List<GameObject> gameObjects, TiledMap map)
         {
-            if(!isAttacking && !isDead)
+            if (!isAttacking && !isDead)
                 CheckInput(gameObjects, map);
             base.Update(gameObjects, map);
         }
@@ -186,16 +186,16 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             if (Input.KeyPressed(Keys.J) == true)
                 Heal(15);
             if (Input.KeyPressed(Keys.K) == true)
-               MaxHpAdd(50);
+                MaxHpAdd(50);
         }
 
         private void Fire(List<GameObject> gameObjects)
         {
             Character enemyInRange = NearestEnemy(gameObjects);
-            if(enemyInRange != null) Attack(enemyInRange, 1000);
+            if (enemyInRange != null) Attack(enemyInRange, 1000);
 
             //Console.WriteLine("enmyInRange" + enemyInRange.ToString());
-            
+
 
             //Console.WriteLine("Fire()");
             //HUD test
@@ -203,11 +203,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             {
                 ManaUse(1);
             }
-            catch(NotEnoughMpException e)
+            catch (NotEnoughMpException e)
             {
                 Damage(20);
             }
-            
+
         }
 
         private Character NearestEnemy(List<GameObject> gameObjects)
@@ -218,20 +218,29 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             for (int i = 0; i < gameObjects.Count; i++)
             {
-                character = (Character)gameObjects[i];
-                if(!character.IsDead())
-                { 
-                    distans = Vector2.Distance(character.realPositon, realPositon);
-                    if (distansPrev == 0) distansPrev = distans;
-                    if (distans < distansPrev)
+                try
+                {
+                    character = (Character)gameObjects[i];
+                    if (!character.IsDead())
                     {
-                        distansPrev = distans;
-                        target = character;
-                        Console.WriteLine("NarestEnemy " + target.ToString());
+                        distans = Vector2.Distance(character.realPositon, realPositon);
+                        if (distansPrev == 0) distansPrev = distans;
+                        if (distans < distansPrev)
+                        {
+                            distansPrev = distans;
+                            target = character;
+                            Console.WriteLine("NarestEnemy " + target.ToString());
+                        }
                     }
                 }
+                catch (InvalidCastException e)
+                {
+
+                }
+
+
             }
-            
+
             //Console.WriteLine("NearestEnemy() distans " + distans + " GO.count " + gameObjects.Count);
 
             return target; // = (Character)gameObjects[1];
