@@ -95,6 +95,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(new Trigger(new Vector2(250, 0), new Vector2(200, 30), 1, scriptsList));
             gameObjects.Add(new Trigger(new Vector2(1100, 1570), new Vector2(200, 30), 2, scriptsList));
             gameObjects.Add(new Trigger(new Vector2(345, 665), new Vector2(75), 3, scriptsList));
+            gameObjects.Add(new Trigger(new Vector2(890, 1300), new Vector2(75), 3, scriptsList));
+            gameObjects.Add(new Trigger(new Vector2(1465, 25), new Vector2(75), 3, scriptsList));
 
             Camera.Initialize(zoomLevel: 1.0f);
             base.Initialize();

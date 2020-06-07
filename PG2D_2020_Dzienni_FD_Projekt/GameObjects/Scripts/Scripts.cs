@@ -67,16 +67,26 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
 
         public void FastTravel()
         {
-            hud.FastTravelStart();
+            List<string> fastTravelPlaces = new List<string>();
+            fastTravelPlaces.Add("Miasto poczatkowe");
+            fastTravelPlaces.Add("Wodospad");
+            fastTravelPlaces.Add("Labirynt");
+
+            hud.FastTravelStart(fastTravelPlaces);
 
             if (Input.IsKeyDown(Keys.NumPad1) == true)
             {
-                Teleport(gameObjects[0], new Vector2(1200, 1450));
+                Teleport(gameObjects[0], gameObjects[0].originalPosition);
                 hud.FastTravelStop();
             }
             if (Input.IsKeyDown(Keys.NumPad2) == true)
             {
-                Teleport(gameObjects[0], new Vector2(300, 50));
+                Teleport(gameObjects[0], new Vector2(1450, 25));
+                hud.FastTravelStop();
+            }
+            if (Input.IsKeyDown(Keys.NumPad3) == true)
+            {
+                Teleport(gameObjects[0], new Vector2(845, 1290));
                 hud.FastTravelStop();
             }
         }

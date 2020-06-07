@@ -16,12 +16,12 @@
 
         public void Activate()
         {
-            if (!activated)
-            {
-                activated = true;
+            //if (!activated)
+           // {
+               // activated = true;
                 Execute();
-                activated = false;
-            }
+              //  activated = false;
+          //  }
 
         }
 

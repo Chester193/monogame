@@ -13,6 +13,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         private List<ScriptsController> scripts;
         private int scriptId;
 
+        private ScriptsController lastScript;
+
         public Trigger(Vector2 location, Vector2 size, int scriptID, List<ScriptsController> scriptsList)
         {
             position = location;
@@ -36,12 +38,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             {
                 ActivScript();
             }
+            else
+            {
+
+            }
         }
 
         private void ActivScript()
         {
             ScriptsController script = scripts[scriptId];
-
             script.Activate();
         }
     }
