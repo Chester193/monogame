@@ -74,17 +74,17 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
 
             hud.FastTravelStart(fastTravelPlaces);
 
-            if (Input.IsKeyDown(Keys.NumPad1) == true)
+            if (Input.IsKeyDown(Keys.NumPad1) || Input.IsKeyDown(Keys.D1))
             {
                 Teleport(gameObjects[0], gameObjects[0].originalPosition);
                 hud.FastTravelStop();
             }
-            if (Input.IsKeyDown(Keys.NumPad2) == true)
+            if (Input.IsKeyDown(Keys.NumPad2) || Input.IsKeyDown(Keys.D2))
             {
                 Teleport(gameObjects[0], new Vector2(1450, 25));
                 hud.FastTravelStop();
             }
-            if (Input.IsKeyDown(Keys.NumPad3) == true)
+            if (Input.IsKeyDown(Keys.NumPad3) || Input.IsKeyDown(Keys.D3))
             {
                 Teleport(gameObjects[0], new Vector2(845, 1290));
                 hud.FastTravelStop();
