@@ -48,5 +48,17 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
             Teleport(gameObjects[0], gameObjects[0].startPosition);
             HealingCahracter(gameObjects[0]);
         }
+
+        public void TeleportToLocationA()
+        {
+            Console.WriteLine("TeleportToLocationA");
+            Teleport(gameObjects[0], new Vector2(1200, 1450));
+        }
+
+        public void TeleportToLocationB()
+        {
+            Console.WriteLine("TeleportToLocationB");
+            Teleport(gameObjects[0], new Vector2(300, 50));
+        }
     }
 }

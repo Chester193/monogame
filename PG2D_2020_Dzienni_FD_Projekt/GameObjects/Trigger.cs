@@ -11,6 +11,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
     {
         private bool isCircel = false;
         private List<ScriptsController> scripts;
+        private int scriptId;
 
         public Trigger(Vector2 location, Vector2 size, int scriptID, List<ScriptsController> scriptsList)
         {
@@ -19,6 +20,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             boundingBoxWidth = (int)size.X;
             isCollidable = false;
             scripts = scriptsList;
+            scriptId = scriptID;
         }
 
         public Trigger(Vector2 positon, int radius, int scriptID, List<ScriptsController> scripts)
@@ -32,14 +34,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         {
             if (CheckCollision(gameObjects[0].BoundingBox))
             {
-                Console.WriteLine("Trigger");
                 ActivScript();
             }
         }
 
-            private void ActivScript()
+        private void ActivScript()
         {
-            ScriptsController script = scripts[0];
+            ScriptsController script = scripts[scriptId];
 
             script.Activate();
         }

@@ -50,6 +50,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         {
             Scripts scripts = new Scripts(gameObjects);
             scriptsList.Add(new ScriptsController(scripts.TeleportTo1000_1000));
+            scriptsList.Add(new ScriptsController(scripts.TeleportToLocationA));
+            scriptsList.Add(new ScriptsController(scripts.TeleportToLocationB));
+
 
             // TODO: Add your initialization logic here
             tiledMap = new TiledMap(vResWidth, vResHeight);
@@ -86,7 +89,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(new Demon(new Vector2(290, 000), characterSettings));
             */
 
-            gameObjects.Add(new Trigger(new Vector2(300, 300), new Vector2(100, 100), 0, scriptsList));
+            gameObjects.Add(new Trigger(new Vector2(250, 0), new Vector2(200, 30), 1, scriptsList));
+            gameObjects.Add(new Trigger(new Vector2(1100, 1570), new Vector2(200, 30), 2, scriptsList));
 
             Camera.Initialize(zoomLevel: 1.0f);
             base.Initialize();
