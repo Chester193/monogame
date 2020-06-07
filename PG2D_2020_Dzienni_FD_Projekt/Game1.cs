@@ -48,10 +48,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         /// </summary>
         protected override void Initialize()
         {
-            Scripts scripts = new Scripts(gameObjects);
+            Scripts scripts = new Scripts(gameObjects, gameHUD);
             scriptsList.Add(new ScriptsController(scripts.TeleportTo1000_1000));
             scriptsList.Add(new ScriptsController(scripts.TeleportToLocationA));
             scriptsList.Add(new ScriptsController(scripts.TeleportToLocationB));
+            scriptsList.Add(new ScriptsController(scripts.FastTravel));
 
 
             // TODO: Add your initialization logic here
@@ -61,11 +62,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             gameHUD.Player(player);
 
-            CharacterSettings characterSettings = new CharacterSettings();
-            characterSettings.maxHp = 100;
-            characterSettings.mode = CharcterMode.Guard;
-            characterSettings.range = 300;
-            characterSettings.rangeOfAttack = 30;
+            CharacterSettings characterSettings = new CharacterSettings
+            {
+                maxHp = 100,
+                mode = CharcterMode.Guard,
+                range = 300,
+                rangeOfAttack = 30
+            };
 
             List<Vector2> points = new List<Vector2>();
             points.Add(new Vector2(650, 970));
@@ -91,6 +94,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             gameObjects.Add(new Trigger(new Vector2(250, 0), new Vector2(200, 30), 1, scriptsList));
             gameObjects.Add(new Trigger(new Vector2(1100, 1570), new Vector2(200, 30), 2, scriptsList));
+            gameObjects.Add(new Trigger(new Vector2(345, 665), new Vector2(75), 3, scriptsList));
 
             Camera.Initialize(zoomLevel: 1.0f);
             base.Initialize();

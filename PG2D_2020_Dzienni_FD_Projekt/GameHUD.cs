@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects;
+using System.Collections.Generic;
 
 namespace PG2D_2020_Dzienni_FD_Projekt
 {
@@ -10,6 +11,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         SpriteFont fontArial, fontDiamond, fontCocoonian;
         Player player;
         Enemy enemy;
+
+        bool fastTravel = false;
+        List<string> fastTravelPlaces;
 
         public void Load(ContentManager content)
         {
@@ -27,6 +31,14 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             Vector2 v2 = new Vector2(10, 70);
             spriteBatch.DrawString(fontDiamond, "MP: " + player.MpToString() + "/" + player.MaxMpToString(), v2, Color.Blue);
 
+            if (fastTravel)
+            {
+                v1 = new Vector2(100, 100);
+                spriteBatch.DrawString(fontDiamond, "[Click the number]", v1, Color.White);
+                v2 = new Vector2(100, 170);
+                spriteBatch.DrawString(fontDiamond, "Fast travel to:", v2, Color.White);
+            }
+
             spriteBatch.End();
         }
 
@@ -38,6 +50,18 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         internal void Enemy(Enemy enemy)
         {
             this.enemy = enemy;
+        }
+
+        public void FastTravelStart()
+        {
+            fastTravel = true;
+
+        }
+
+        public void FastTravelStop()
+        {
+            fastTravel = false;
+
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,20 +15,22 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
     public class Scripts
     {
         private List<GameObject> gameObjects;
+        private GameHUD hud;
 
-        public Scripts(List<GameObject> gameObjects)
+        public Scripts(List<GameObject> gameObjects, GameHUD GameHud)
         {
             this.gameObjects = gameObjects;
+            this.hud = GameHud;
         }
 
         /*
          * Poniżej znajdują się meotdy do budowy skryptów
          */
-         private void Teleport(GameObject what, Vector2 where)
+        private void Teleport(GameObject what, Vector2 where)
         {
             what.position = where;
-        }         
-        
+        }
+
         private void HealingCahracter(GameObject who)
         {
             Character character = (Character)who;
@@ -59,6 +63,22 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
         {
             Console.WriteLine("TeleportToLocationB");
             Teleport(gameObjects[0], new Vector2(300, 50));
+        }
+
+        public void FastTravel()
+        {
+            hud.FastTravelStart();
+
+            if (Input.IsKeyDown(Keys.NumPad1) == true)
+            {
+                Teleport(gameObjects[0], new Vector2(1200, 1450));
+                hud.FastTravelStop();
+            }
+            if (Input.IsKeyDown(Keys.NumPad2) == true)
+            {
+                Teleport(gameObjects[0], new Vector2(300, 50));
+                hud.FastTravelStop();
+            }
         }
     }
 }
