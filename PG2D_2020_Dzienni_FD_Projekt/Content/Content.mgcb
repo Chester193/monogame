@@ -151,6 +151,9 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/diamondfantasy.spritefont
 
+#begin Map/blacksmith.tmx
+/copy:Map/blacksmith.tmx
+
 #begin Map/desert.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -370,6 +373,18 @@
 /processorParam:TextureFormat=Color
 /build:Map/mountains.png
 
+#begin Map/OutsideObjects.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Map/OutsideObjects.png
+
 #begin Map/plants.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -441,6 +456,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Map/tallgrass.png
+
+#begin Map/terrain-v7.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Map/terrain-v7.png
 
 #begin Map/tileset_preview.png
 /importer:TextureImporter

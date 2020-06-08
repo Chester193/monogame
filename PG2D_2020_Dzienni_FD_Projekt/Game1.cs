@@ -21,7 +21,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
         public List<GameObject> gameObjects = new List<GameObject>();
 
-        public TiledMap tiledMap;
+        public TiledMap renderingMap;
+        public TiledMap mainWorld;
+        public TiledMap blacksmith;
 
         GameHUD gameHUD = new GameHUD();
 
@@ -45,10 +47,16 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            tiledMap = new TiledMap(vResWidth, vResHeight);
-            Vector2 realMapBeginning = new Vector2(tiledMap.tileSize * 31, tiledMap.tileSize * 31);
+            mainWorld = new TiledMap(vResWidth, vResHeight);
+            blacksmith = new TiledMap(vResWidth, vResHeight);
+
+            renderingMap = mainWorld;
+
+            Vector2 realMapBeginning = new Vector2(renderingMap.tileSize * 31, renderingMap.tileSize * 31);
             Player player = new Player();
-            player.position = new Vector2(realMapBeginning.X + 550, realMapBeginning.Y + 550);
+            int tileSpawnPointX = 10;
+            int tielSpawnPointY = 14;
+            player.position = new Vector2(tileSpawnPointX * 32, tielSpawnPointY * 32);
             gameObjects.Add(player);
 
             gameHUD.Player(player);
@@ -69,15 +77,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(new Zombie(new Vector2(-100, -100), characterSettings));     //z jakiegoś powodu pierwszy przeciwnik jest zawsze niesmiertelny;
             gameObjects.Add(new Lizard(new Vector2(realMapBeginning.X + 650, realMapBeginning.Y + 550), characterSettings));
 
-            characterSettings.mode = 0;
-            gameObjects.Add(new Lizard(new Vector2(realMapBeginning.X + 400, realMapBeginning.Y + 600), characterSettings));
-            characterSettings.rangeOfAttack = 30;
-            gameObjects.Add(new Zombie(new Vector2(realMapBeginning.X + 400, realMapBeginning.Y + 650), characterSettings));
-            gameObjects.Add(new Viking1(new Vector2(realMapBeginning.X + 400, realMapBeginning.Y + 700), characterSettings));
-            gameObjects.Add(new Viking2(new Vector2(realMapBeginning.X + 500, realMapBeginning.Y + 700), characterSettings));
-            gameObjects.Add(new Viking3(new Vector2(realMapBeginning.X + 550, realMapBeginning.Y + 650), characterSettings));
-            characterSettings.mode = CharcterMode.FollowPlayer;
-            gameObjects.Add(new Demon(new Vector2(realMapBeginning.X + 500, realMapBeginning.Y + 700), characterSettings));
+            //characterSettings.mode = 0;
+            //gameObjects.Add(new Lizard(new Vector2(realMapBeginning.X + 400, realMapBeginning.Y + 600), characterSettings));
+            //characterSettings.rangeOfAttack = 30;
+            //gameObjects.Add(new Zombie(new Vector2(realMapBeginning.X + 400, realMapBeginning.Y + 650), characterSettings));
+            //gameObjects.Add(new Viking1(new Vector2(realMapBeginning.X + 400, realMapBeginning.Y + 700), characterSettings));
+            //gameObjects.Add(new Viking2(new Vector2(realMapBeginning.X + 500, realMapBeginning.Y + 700), characterSettings));
+            //gameObjects.Add(new Viking3(new Vector2(realMapBeginning.X + 550, realMapBeginning.Y + 650), characterSettings));
+            //characterSettings.mode = CharcterMode.FollowPlayer;
+            //gameObjects.Add(new Demon(new Vector2(realMapBeginning.X + 500, realMapBeginning.Y + 700), characterSettings));
 
             gameHUD.Enemy((Enemy)gameObjects[2]);
             
@@ -97,7 +105,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             LoadInitializeGameObjects(gameObjects);
 
             // TODO: use this.Content to load your game content here
-            tiledMap.Load(Content, @"Map/map.tmx");
+            renderingMap.Load(Content, @"Map/map.tmx");
+            blacksmith.Load(Content, @"Map/blacksmith.tmx");
 
             gameHUD.Load(Content);
         }
@@ -121,12 +130,16 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            if (Keyboard.GetState().IsKeyDown(Keys.Space)) {
+                renderingMap = blacksmith;
+            }
+
             Input.Update();
             var playerObject = gameObjects[0];
 
             // TODO: Add your update logic here
-            tiledMap.Update(gameTime, playerObject.position);
-            UpdateGameObjects(gameObjects, map: tiledMap);
+            renderingMap.Update(gameTime, playerObject.position);
+            UpdateGameObjects(gameObjects, map: renderingMap);
             UpdateCamera(playerObject.position);
 
             base.Update(gameTime);
@@ -146,7 +159,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             var transformMatrix = Camera.GetTransformMatrix();
 
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.LinearClamp, null, null, null, transformMatrix);
-            tiledMap.Draw(spriteBatch);
+            renderingMap.Draw(spriteBatch);
             DrawGameObjects(gameObjects);
             spriteBatch.End();
 
