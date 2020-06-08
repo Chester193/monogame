@@ -130,7 +130,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Space)) {
+            if (Keyboard.GetState().IsKeyDown(Keys.T)) {
                 renderingMap = blacksmith;
             }
 
