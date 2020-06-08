@@ -11,6 +11,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         Player player;
         Enemy enemy;
 
+        bool pause = false;
+
         public void Load(ContentManager content)
         {
             fontArial = content.Load<SpriteFont>("Fonts\\Arial");
@@ -27,6 +29,16 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             Vector2 v2 = new Vector2(10, 70);
             spriteBatch.DrawString(fontDiamond, "MP: " + player.MpToString() + "/" + player.MaxMpToString(), v2, Color.Blue);
 
+            if (pause)
+            {
+                v1 = new Vector2(500, 270);
+                spriteBatch.DrawString(fontDiamond, "GAME PAUSED", v1, Color.White);
+                v1.Y += 40;
+                spriteBatch.DrawString(fontDiamond, "GAME PAUSED", v1, Color.Black);
+                v1.Y += 40;
+                spriteBatch.DrawString(fontDiamond, "GAME PAUSED", v1, Color.Red);
+            }
+
             spriteBatch.End();
         }
 
@@ -38,6 +50,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         internal void Enemy(Enemy enemy)
         {
             this.enemy = enemy;
+        }
+
+        internal void TogglePause()
+        {
+            pause = !pause;
         }
     }
 }
