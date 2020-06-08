@@ -11,8 +11,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         private int step = 0;
         private float distanceToPlayer;
 
-        private enum EState { IDLE, FOLLOW };
-        private enum ETrigger { STOP, FOLLOW_PLAYER };
+        private enum EState { IDLE, FOLLOW, ATTACK };
+        private enum ETrigger { STOP, FOLLOW_PLAYER, ATTACK };
 
         private Fsm<EState, ETrigger> enemyAiMachine;
 
@@ -24,15 +24,18 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             enemyAiMachine = Fsm<EState, ETrigger>.Builder(EState.IDLE)
                 .State(EState.FOLLOW)
                     .TransitionTo(EState.IDLE).On(ETrigger.STOP)
+                    .TransitionTo(EState.ATTACK).On(ETrigger.ATTACK)
                     .Update(args => {
                         Console.WriteLine("FOLLOW");
-                        FollowPlayer(gameObjects, map); 
+                        FollowPlayer(gameObjects, map);
                     })
                 .State(EState.IDLE)
                     .TransitionTo(EState.FOLLOW).On(ETrigger.FOLLOW_PLAYER)
                     .Update(args => {
                         Console.WriteLine("IDLE");
                     })
+                .State(EState.ATTACK)
+                    .TransitionTo(EState.IDLE).On(ETrigger.STOP)
             .Build();
         }
 
