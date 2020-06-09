@@ -152,6 +152,26 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             }
         }
 
+        public void GoToPositon(TiledMap map, List<GameObject> gameObjects, Vector2 target)
+        {
+            if (timer.Count())
+            {
+                return;
+            }
+
+            Vector2 nextStep;
+            if (!pathFinder.TryGetFirstStep(out nextStep) || GoToPoint(nextStep))
+            {
+                List<GameObject> gameObjectsWithoutPlayer = new List<GameObject>(gameObjects);
+                gameObjectsWithoutPlayer.Remove(this);
+                bool pathFound = pathFinder.FindPath(map, gameObjectsWithoutPlayer, new Vector2(BoundingBox.Center.X, BoundingBox.Center.Y), target);
+                if (!pathFound)
+                {
+                    timer.Time = 60;
+                }
+            }
+        }
+
         public bool GoToPoint(Vector2 point)
         {
             bool arriveX = false, arriveY = false;
