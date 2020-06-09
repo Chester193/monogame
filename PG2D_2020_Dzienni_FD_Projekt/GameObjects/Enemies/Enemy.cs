@@ -180,7 +180,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public void Guard(int range)
         {
             float distanceToGuardPosition = Vector2.Distance(originalPosition, realPositon);
-            enemyAiMachine.Trigger(ETrigger.GO_PATROL);
             if (distanceToPlayer < rangeOfAttack)
             {
                 Console.WriteLine("G  attack");
@@ -193,13 +192,12 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     Console.WriteLine("G  follow");
                     enemyAiMachine.Trigger(ETrigger.FOLLOW_PLAYER);
                 }
-                else
-                {
-                    Console.WriteLine("G  patrol");
-                    enemyAiMachine.Trigger(ETrigger.GO_PATROL);
-                }
             }
-
+            else
+            {
+                Console.WriteLine("G  patrol");
+                enemyAiMachine.Trigger(ETrigger.GO_PATROL);
+            }
         }
 
         private float countDistanceToPlayer(Player player)
