@@ -59,9 +59,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             characterSettings.rangeOfAttack = 30;
 
             List<Vector2> points = new List<Vector2>();
-            points.Add(new Vector2(650, 970));
-            points.Add(new Vector2(650, 1070));
-            points.Add(new Vector2(850, 1070));
+            //points.Add(new Vector2(650, 970));
+            //points.Add(new Vector2(650, 1070));
+            //points.Add(new Vector2(850, 1070));
 
             characterSettings.points = points;
 

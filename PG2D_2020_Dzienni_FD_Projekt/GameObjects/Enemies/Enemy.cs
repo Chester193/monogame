@@ -207,6 +207,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public void Patrol()
         {
+            /*
             float distance;
             if (points != null)
             {
@@ -234,6 +235,16 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
                 }
             }
+            */
+            Vector2 nextPoint = originalPosition;
+            float distance;
+            distance = Vector2.Distance(realPositon, nextPoint);
+            if (distance < 5)
+            {
+                nextPoint = RandomPoint(500);
+                Console.WriteLine(nextPoint);
+            }
+            GoToPositon(map, gameObjects, nextPoint);
         }
 
         public string DirectionToString()
@@ -242,5 +253,42 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             return s;
         }
 
+        private List<Vector2> RandomPoints(int range)
+        {
+            List<Vector2> randomPoints = new List<Vector2>();
+            var rand = new Random();
+
+            Vector2 rPoint = new Vector2(startPosition.X, startPosition.Y);
+            randomPoints.Add(rPoint);
+
+            for (int i = 0; i < 10; i++)
+            {
+                rPoint.X = rand.Next(-range, range);
+                rPoint.Y = rand.Next(-range, range);
+
+                randomPoints.Add(rPoint);
+            }
+
+            return randomPoints;
+        }
+
+        private Vector2 RandomPoint(int range)
+        {
+            Vector2 rPoint = new Vector2(originalPosition.X, originalPosition.Y);
+            var rand = new Random();
+            if(rand.Next(0,1)<0.5)
+                rPoint.X += rand.Next(range / 2, range);
+            else
+                rPoint.X -= rand.Next(range / 2, range);
+
+            if (rand.Next(0, 1) < 0.5)
+                rPoint.Y += rand.Next(range / 2, range);
+            else
+                rPoint.Y -= rand.Next(range / 2, range);
+
+
+
+            return rPoint;
+        }
     }
 }
