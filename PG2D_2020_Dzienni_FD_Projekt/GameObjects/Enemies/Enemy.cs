@@ -218,7 +218,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 {
                     if (step == points.Count)
                     {
-                        GoToPoint(originalPosition);
+                        //GoToPoint(originalPosition);
+                        GoToPositon(map, gameObjects, originalPosition);
                         distance = Vector2.Distance(realPositon, originalPosition);
                         if (distance < 5) step++;
                     }
@@ -228,7 +229,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                         if (distance < 5)
                             step++;
                         else
-                            GoToPoint(points[step]);
+                            GoToPositon(map, gameObjects, points[step]);
                         if (realPositon == originalPosition)
                             step++;
                     }
