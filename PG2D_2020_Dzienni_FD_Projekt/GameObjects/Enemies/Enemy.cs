@@ -10,7 +10,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
     {
         private int step = 0;
         private float distanceToPlayer;
-        Vector2 nextPoint = originalPosition;
+        Vector2 nextPoint;
+        int timer = 100;
 
         private enum EState { IDLE, FOLLOW, ATTACK, PATROL, ESCAPE };
         private enum ETrigger { STOP, FOLLOW_PLAYER, ATTACK, GO_PATROL, RUN_AWAY };
@@ -215,22 +216,32 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public void Patrol()
         {
-            float distance;
-            distance = Vector2.Distance(realPositon, nextPoint);
-            if (distance < 5)
+            Console.WriteLine(nextPoint);
+            Console.WriteLine(step);
+            if (timer <= 0)
             {
-                if (step > 10)
-                {
+                timer = 100;
+                if (step == 0)
                     nextPoint = originalPosition;
-                }
-                else
+                float distance;
+                distance = Vector2.Distance(realPositon, nextPoint);
+                Console.WriteLine(distance);
+                if (distance < 5)
                 {
-                    nextPoint = RandomPoint(500);
-                    Console.WriteLine(nextPoint);
-                    step++;
+                    timer--;
+                    if (step > 10)
+                    {
+                        nextPoint = originalPosition;
+                        step = 0;
+                    }
+                    else
+                    {
+                        nextPoint = RandomPoint(100);
+                        step++;
+                    }
                 }
-            }
-            GoToPositon(map, gameObjects, nextPoint);
+                GoToPositon(map, gameObjects, nextPoint);
+            }            
         }
 
         private void RunAway()
@@ -267,6 +278,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         private Vector2 RandomPoint(int range)
         {
             Vector2 rPoint = new Vector2(originalPosition.X, originalPosition.Y);
+            Console.WriteLine("RP: " + rPoint + " org: " + originalPosition);
             var rand = new Random();
             if (rand.Next(0, 1) < 0.5)
                 rPoint.X += rand.Next(range / 2, range);
@@ -277,8 +289,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 rPoint.Y += rand.Next(range / 2, range);
             else
                 rPoint.Y -= rand.Next(range / 2, range);
-
-
+            Console.WriteLine("RP: " + rPoint);
 
             return rPoint;
         }
