@@ -10,7 +10,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
     {
         private int step = 0;
         private float distanceToPlayer;
-        Vector2 nextPoint;
+        Vector2 nextPoint = new Vector2(0);
         int timer = 100;
 
         private enum EState { IDLE, FOLLOW, ATTACK, PATROL, ESCAPE };
@@ -76,6 +76,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             CharcterMode mode = GetMode();
             int range = GetRange();
             distanceToPlayer = countDistanceToPlayer((Player)gameObjects[0]);
+
+            if (nextPoint.Equals(new Vector2(0)))
+                nextPoint = originalPosition;
 
             if (!isDead)
             {
@@ -216,32 +219,14 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public void Patrol()
         {
-            Console.WriteLine(nextPoint);
-            Console.WriteLine(step);
-            if (timer <= 0)
+            float distance;
+            distance = Vector2.Distance(realPositon, nextPoint);
+            if (distance < 5)
             {
-                timer = 100;
-                if (step == 0)
-                    nextPoint = originalPosition;
-                float distance;
-                distance = Vector2.Distance(realPositon, nextPoint);
-                Console.WriteLine(distance);
-                if (distance < 5)
-                {
-                    timer--;
-                    if (step > 10)
-                    {
-                        nextPoint = originalPosition;
-                        step = 0;
-                    }
-                    else
-                    {
-                        nextPoint = RandomPoint(100);
-                        step++;
-                    }
-                }
-                GoToPositon(map, gameObjects, nextPoint);
-            }            
+                nextPoint = RandomPoint(200);
+                Console.WriteLine(nextPoint);
+            }
+            GoToPositon(map, gameObjects, nextPoint);
         }
 
         private void RunAway()
