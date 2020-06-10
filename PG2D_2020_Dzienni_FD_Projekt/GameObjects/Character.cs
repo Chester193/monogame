@@ -134,15 +134,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             GameObject targetCharacter = gameObjects[targetIndex];
             Vector2 target = new Vector2(targetCharacter.BoundingBox.Center.X, targetCharacter.BoundingBox.Center.Y);
 
-            GoWithPF(map, gameObjects, target);
+            GoToPositon(map, gameObjects, target);
         }
 
         public void GoToPositon(TiledMap map, List<GameObject> gameObjects, Vector2 target)
-        {
-            GoWithPF(map, gameObjects, target);
-        }
-
-        private void GoWithPF(TiledMap map, List<GameObject> gameObjects, Vector2 target)
         {
             if (timer.Count())
             {
