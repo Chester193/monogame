@@ -132,27 +132,17 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public void Follow(TiledMap map, List<GameObject> gameObjects, int targetIndex = 0)
         {
             GameObject targetCharacter = gameObjects[targetIndex];
+            Vector2 target = new Vector2(targetCharacter.BoundingBox.Center.X, targetCharacter.BoundingBox.Center.Y);
 
-            if (timer.Count())
-            {
-                return;
-            }
-
-            Vector2 nextStep;
-            if (!pathFinder.TryGetFirstStep(out nextStep) || GoToPoint(nextStep))
-            {
-                List<GameObject> gameObjectsWithoutPlayer = new List<GameObject>(gameObjects);
-                gameObjectsWithoutPlayer.Remove(targetCharacter);
-                gameObjectsWithoutPlayer.Remove(this);
-                bool pathFound = pathFinder.FindPath(map, gameObjectsWithoutPlayer, new Vector2(BoundingBox.Center.X, BoundingBox.Center.Y), new Vector2(targetCharacter.BoundingBox.Center.X, targetCharacter.BoundingBox.Center.Y));
-                if (!pathFound)
-                {
-                    timer.Time = 60;
-                }
-            }
+            GoWithPF(map, gameObjects, target);
         }
 
         public void GoToPositon(TiledMap map, List<GameObject> gameObjects, Vector2 target)
+        {
+            GoWithPF(map, gameObjects, target);
+        }
+
+        private void GoWithPF(TiledMap map, List<GameObject> gameObjects, Vector2 target)
         {
             if (timer.Count())
             {
@@ -162,9 +152,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             Vector2 nextStep;
             if (!pathFinder.TryGetFirstStep(out nextStep) || GoToPoint(nextStep))
             {
-                List<GameObject> gameObjectsWithoutPlayer = new List<GameObject>(gameObjects);
-                gameObjectsWithoutPlayer.Remove(this);
-                bool pathFound = pathFinder.FindPath(map, gameObjectsWithoutPlayer, new Vector2(BoundingBox.Center.X, BoundingBox.Center.Y), target);
+                List<GameObject> gameObjectsWithoutThis = new List<GameObject>(gameObjects);
+                gameObjectsWithoutThis.Remove(this);
+                bool pathFound = pathFinder.FindPath(map, gameObjectsWithoutThis, new Vector2(BoundingBox.Center.X, BoundingBox.Center.Y), target);
                 if (!pathFound)
                 {
                     timer.Time = 60;
