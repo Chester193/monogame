@@ -10,9 +10,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
     {
         private int step = 0;
         private float distanceToPlayer;
+        Vector2 nextPoint = originalPosition;
 
-        private enum EState { IDLE, FOLLOW, ATTACK, PATROL };
-        private enum ETrigger { STOP, FOLLOW_PLAYER, ATTACK, GO_PATROL };
+        private enum EState { IDLE, FOLLOW, ATTACK, PATROL, ESCAPE };
+        private enum ETrigger { STOP, FOLLOW_PLAYER, ATTACK, GO_PATROL, RUN_AWAY };
 
         private Fsm<EState, ETrigger> enemyAiMachine;
 
@@ -35,6 +36,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     .TransitionTo(EState.FOLLOW).On(ETrigger.FOLLOW_PLAYER)
                     .TransitionTo(EState.ATTACK).On(ETrigger.ATTACK)
                     .TransitionTo(EState.PATROL).On(ETrigger.GO_PATROL)
+                    .TransitionTo(EState.ESCAPE).On(ETrigger.RUN_AWAY)
                     .Update(args =>
                     {
                         //Console.WriteLine("IDLE");
@@ -55,6 +57,12 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     {
                         //Console.WriteLine("PATROL");
                         Patrol();
+                    })
+                .State(EState.ESCAPE)
+                    .TransitionTo(EState.IDLE).On(ETrigger.STOP)
+                    .Update(args =>
+                    {
+                        RunAway();
                     })
             .Build();
         }
@@ -207,45 +215,29 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public void Patrol()
         {
-            /*
-            float distance;
-            if (points != null)
-            {
-                if (step > points.Count)
-                    step = 0;
-                else
-                {
-                    if (step == points.Count)
-                    {
-                        //GoToPoint(originalPosition);
-                        GoToPositon(map, gameObjects, originalPosition);
-                        distance = Vector2.Distance(realPositon, originalPosition);
-                        if (distance < 5) step++;
-                    }
-                    else
-                    {
-                        distance = Vector2.Distance(realPositon, points[step]);
-                        if (distance < 5)
-                            step++;
-                        else
-                            GoToPositon(map, gameObjects, points[step]);
-                        if (realPositon == originalPosition)
-                            step++;
-                    }
-
-                }
-            }
-            */
-            Vector2 nextPoint = originalPosition;
             float distance;
             distance = Vector2.Distance(realPositon, nextPoint);
             if (distance < 5)
             {
-                nextPoint = RandomPoint(500);
-                Console.WriteLine(nextPoint);
+                if (step > 10)
+                {
+                    nextPoint = originalPosition;
+                }
+                else
+                {
+                    nextPoint = RandomPoint(500);
+                    Console.WriteLine(nextPoint);
+                    step++;
+                }
             }
             GoToPositon(map, gameObjects, nextPoint);
         }
+
+        private void RunAway()
+        {
+            throw new NotImplementedException();
+        }
+
 
         public string DirectionToString()
         {
@@ -276,7 +268,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         {
             Vector2 rPoint = new Vector2(originalPosition.X, originalPosition.Y);
             var rand = new Random();
-            if(rand.Next(0,1)<0.5)
+            if (rand.Next(0, 1) < 0.5)
                 rPoint.X += rand.Next(range / 2, range);
             else
                 rPoint.X -= rand.Next(range / 2, range);

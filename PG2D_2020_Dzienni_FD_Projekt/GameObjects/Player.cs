@@ -28,8 +28,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public override void Initialize()
         {
-            maxHp = 80;
-            hp = 80;
+            maxHp = 800;
+            hp = 800;
             maxMp = 10;
             mp = 10;
 
