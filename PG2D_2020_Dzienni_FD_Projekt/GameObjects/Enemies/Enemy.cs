@@ -11,7 +11,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         private int step = 0;
         private float distanceToPlayer;
         Vector2 nextPoint = new Vector2(0);
-        int timer = 100;
+        int patrolTimer = 50;
 
         private enum EState { IDLE, FOLLOW, ATTACK, PATROL, ESCAPE };
         private enum ETrigger { STOP, FOLLOW_PLAYER, ATTACK, GO_PATROL, RUN_AWAY };
@@ -219,14 +219,34 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public void Patrol()
         {
-            float distance;
-            distance = Vector2.Distance(realPositon, nextPoint);
-            if (distance < 5)
+            if (step == 0)
+            {
+                nextPoint = realPositon;
+                step++;
+            }
+
+            if (step > 10)
+            {
+                nextPoint = originalPosition;
+                step = 0;
+            }
+
+            float distance = Vector2.Distance(realPositon, nextPoint);
+            if (patrolTimer <= 0 || patrolTimer > 150)
             {
                 nextPoint = RandomPoint(200);
-                Console.WriteLine(nextPoint);
+                step++;
+                patrolTimer = 50;
             }
-            GoToPositon(map, gameObjects, nextPoint);
+            if (distance < 15)
+            {
+                patrolTimer--;
+            }
+            else
+            {
+                GoToPositon(map, gameObjects, nextPoint);
+                patrolTimer++;
+            }
         }
 
         private void RunAway()

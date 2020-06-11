@@ -67,16 +67,17 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             gameObjects.Add(new Zombie(new Vector2(-100, -100), characterSettings));     //z jakiegoś powodu pierwszy przeciwnik jest zawsze niesmiertelny;
             gameObjects.Add(new Lizard(new Vector2(720, 1000), characterSettings));
+            gameObjects.Add(new Lizard(new Vector2(600, 800), characterSettings));
 
             characterSettings.mode = 0;
             //gameObjects.Add(new Lizard(new Vector2(400, 600), characterSettings));
             characterSettings.rangeOfAttack = 30;
-            gameObjects.Add(new Zombie(new Vector2(300, 400), characterSettings));
-            gameObjects.Add(new Viking1(new Vector2(300, 300), characterSettings));
+            //gameObjects.Add(new Zombie(new Vector2(300, 400), characterSettings));
+            //gameObjects.Add(new Viking1(new Vector2(300, 300), characterSettings));
             //gameObjects.Add(new Viking2(new Vector2(300, 200), characterSettings));
             //gameObjects.Add(new Viking3(new Vector2(300, 100), characterSettings));
             characterSettings.mode = CharcterMode.FollowPlayer;
-            gameObjects.Add(new Demon(new Vector2(290, 000), characterSettings));
+            //gameObjects.Add(new Demon(new Vector2(290, 000), characterSettings));
 
             //gameHUD.Enemy((Enemy)gameObjects[2]);
             
