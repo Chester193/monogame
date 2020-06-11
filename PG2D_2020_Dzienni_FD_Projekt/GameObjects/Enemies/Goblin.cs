@@ -2,23 +2,33 @@
 using Microsoft.Xna.Framework.Content;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities.SpriteAtlas;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
 {
-    class Viking2 : Enemy
+    class Goblin : Enemy
     {
-        public Viking2(Vector2 startingPosition, CharacterSettings settings)
+        public Goblin(Vector2 startingPosition, CharacterSettings settings)
         {
             this.position = startingPosition;
             applyGravity = false;
 
-            base.SetCharacterSettings(settings);
+            this.maxHp = settings.maxHp;
+            this.hp = settings.maxHp;
+            this.rangeOfAttack = settings.rangeOfAttack;
+
+            SetMode(settings.mode);
+            SetRange(settings.range);
         }
 
         public override void Initialize()
         {
             maxSpeed = 1.0f;
-            acceleration = 0.05f;
+            acceleration = 0.5f;
             scale = 0.5f;
             base.Initialize();
         }
@@ -26,16 +36,16 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
         public override void Load(ContentManager content)
         {
 
-            texture = TextureLoader.Load(@"characters/viking2", content);
-            SpriteAtlasData atlas = SpriteAtlasLoader.ParseSpriteAtlas(@"characters/viking2.atlas", texture, content);
+            texture = TextureLoader.Load(@"characters/Goblin", content);
+            SpriteAtlasData atlas = SpriteAtlasLoader.ParseSpriteAtlas(@"characters/Goblin.atlas", texture, content);
 
             LoadAnimations(atlas);
             ChangeAnimation(AnimatedObject.Animations.WalkingRight);
 
             base.Load(content);
 
-            boundingBoxOffset = new Vector2(60, 80);
-            boundingBoxWidth = 40;
+            boundingBoxOffset = new Vector2(60, 70);
+            boundingBoxWidth = 39;
             boundingBoxHeight = 40;
         }
     }

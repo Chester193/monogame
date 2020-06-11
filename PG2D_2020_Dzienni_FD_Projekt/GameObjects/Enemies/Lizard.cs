@@ -12,13 +12,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
             this.position = startingPosition;
             applyGravity = false;
 
-            this.maxHp = settings.maxHp;
-            this.hp = settings.maxHp;
-            this.rangeOfAttack = settings.rangeOfAttack;
-
-            SetMode(settings.mode);
-            SetRange(settings.range);
-            points = settings.points;
+            base.SetCharacterSettings(settings);
         }
 
         public override void Initialize()

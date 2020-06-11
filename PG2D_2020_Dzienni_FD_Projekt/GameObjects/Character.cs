@@ -14,7 +14,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         FollowPlayer
     }
 
-    struct CharacterSettings
+    public struct CharacterSettings
     {
         public int maxHp;
         public int hp;
@@ -23,6 +23,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public int range;
         public List<Vector2> points;
         public int rangeOfAttack;
+        public int weaponAttack;
 
         public int maxMp;
         public int mp;
@@ -47,24 +48,16 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public static bool applyGravity = false;
         const bool drawPath = false;
 
-        public int maxHp;
-        public int hp;
-
-        public int maxMp;
-        public int mp;
-
         Texture2D pathTexture;
         Color pathColor;
         bool positionChanged = true;
         protected int pathWidth, pathHeight;
-        private CharcterMode mode = 0;
-        private int range;
-        public List<Vector2> points;
-        public int rangeOfAttack;
 
         public Vector2 realPositon;
 
         public Scripts.Scripts scripts;
+        
+        public CharacterSettings characterSettings;
 
         public override void Initialize()
         {
@@ -138,11 +131,17 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             if (originalPosition == new Vector2(-1, -1)) originalPosition = new Vector2(realPositon.X, realPositon.Y);
         }
 
-        public void Follow(TiledMap map, List<GameObject> gameObjects, int targetIndex=0)
+        public void Follow(TiledMap map, List<GameObject> gameObjects, int targetIndex = 0)
         {
             GameObject targetCharacter = gameObjects[targetIndex];
+            Vector2 target = new Vector2(targetCharacter.BoundingBox.Center.X, targetCharacter.BoundingBox.Center.Y);
 
-            if(timer.Count())
+            GoToPositon(map, gameObjects, target);
+        }
+
+        public void GoToPositon(TiledMap map, List<GameObject> gameObjects, Vector2 target)
+        {
+            if (timer.Count())
             {
                 return;
             }
@@ -153,7 +152,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 List<GameObject> gameObjectsWithoutPlayer = new List<GameObject>(gameObjects);
                 gameObjectsWithoutPlayer.Remove(targetCharacter);
                 gameObjectsWithoutPlayer.Remove(this);
-                bool pathFound = pathFinder.FindPath(map, gameObjectsWithoutPlayer, new Vector2(BoundingBox.Center.X, BoundingBox.Center.Y), new Vector2(targetCharacter.BoundingBox.Center.X, targetCharacter.BoundingBox.Center.Y));
+                bool pathFound = pathFinder.FindPath(map, gameObjectsWithoutThis, new Vector2(BoundingBox.Center.X, BoundingBox.Center.Y), target);
                 if (!pathFound)
                 {
                     timer.Time = 60;
@@ -329,10 +328,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public void Damage(int dmg)
         {
-            hp -= dmg;
-            if (hp <= 0)
+            characterSettings.hp -= dmg;
+            if (characterSettings.hp <= 0)
             {
-                hp = 0;
+                characterSettings.hp = 0;
                 isDead = true;
             }
 
@@ -341,61 +340,61 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public void ManaUse(int mpUsed)
         {
-            if (mpUsed > mp) throw new NotEnoughMpException();
-            mp -= mpUsed;
-            if (mp <= 0) mp = 0;
+            if (mpUsed > characterSettings.mp) throw new NotEnoughMpException();
+            characterSettings.mp -= mpUsed;
+            if (characterSettings.mp <= 0) characterSettings.mp = 0;
         }
 
         public void Heal(int points)
         {
-            hp += points;
-            if (hp >= maxHp) hp = maxHp;
+            characterSettings.hp += points;
+            if (characterSettings.hp >= characterSettings.maxHp) characterSettings.hp = characterSettings.maxHp;
         }
 
         public void Heal()
         {
-            hp = maxHp;
+            characterSettings.hp = characterSettings.maxHp;
         }
 
         public String HpToString()
         {
-            String hpS = hp.ToString();
+            String hpS = characterSettings.hp.ToString();
             return hpS;
         }
 
         public String MaxHpToString()
         {
-            String hpS = maxHp.ToString();
+            String hpS = characterSettings.maxHp.ToString();
             return hpS;
         }
 
         public String MpToString()
         {
-            String mpS = mp.ToString();
+            String mpS = characterSettings.mp.ToString();
             return mpS;
         }
 
         public String MaxMpToString()
         {
-            String mpS = maxMp.ToString();
+            String mpS = characterSettings.maxMp.ToString();
             return mpS;
         }
 
         public void MaxHpAdd(int addHp)
         {
-            maxHp += addHp;
+            characterSettings.maxHp += addHp;
         }
 
         public void SetMaxHp(int newMaxHp)
         {
-            maxHp = newMaxHp;
+            characterSettings.maxHp = newMaxHp;
         }
 
         public void Attack(Character target, int dmg)
         {
             float distanceToTarget = Vector2.Distance(target.realPositon, realPositon);
             //Console.WriteLine("Character.Attack() " + distansToTarget + " / " + rangeOfAttack + " t.rPositon " + target.realPositon + " player.rPosioton" + realPositon);
-            if (distanceToTarget < rangeOfAttack && !isAttacking)
+            if (distanceToTarget < characterSettings.rangeOfAttack && !isAttacking)
             {
                 isAttacking = true;
                 target.Damage(dmg);
@@ -405,22 +404,22 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public void SetMode(CharcterMode mode)
         {
-            this.mode = mode;
+            this.characterSettings.mode = mode;
         }
 
         public CharcterMode GetMode()
         {
-            return mode;
+            return characterSettings.mode;
         }
 
         public int GetRange()
         {
-            return range;
+            return characterSettings.range;
         }
 
         public void SetRange(int range)
         {
-            this.range = range;
+            this.characterSettings.range = range;
         }
 
         public bool IsDead()
@@ -431,6 +430,21 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public void Respawn()
         {
             isDead = false;
+        }    
+
+        public void SetCharacterSettings(CharacterSettings settings)
+        {
+            this.characterSettings.maxHp = settings.maxHp;
+            this.characterSettings.hp = settings.maxHp;
+
+            SetMode(settings.mode);
+            SetRange(settings.range);
+            characterSettings.points = settings.points;
+            this.characterSettings.rangeOfAttack = settings.rangeOfAttack;
+            this.characterSettings.weaponAttack = settings.weaponAttack;
+
+            this.characterSettings.maxMp = settings.maxMp;
+            this.characterSettings.mp = settings.mp;
         }
     }
 
