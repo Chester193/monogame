@@ -55,6 +55,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public Vector2 realPositon;
 
+        public Scripts.Scripts scripts;
+        
         public CharacterSettings characterSettings;
 
         public override void Initialize()
@@ -132,9 +134,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public void Follow(TiledMap map, List<GameObject> gameObjects, int targetIndex = 0)
         {
             GameObject targetCharacter = gameObjects[targetIndex];
+            List<GameObject> gameObjectsWithoutPlayer = new List<GameObject>(gameObjects);
+            gameObjectsWithoutPlayer.Remove(targetCharacter);
             Vector2 target = new Vector2(targetCharacter.BoundingBox.Center.X, targetCharacter.BoundingBox.Center.Y);
 
-            GoToPositon(map, gameObjects, target);
+            GoToPositon(map, gameObjectsWithoutPlayer, target);
         }
 
         public void GoToPositon(TiledMap map, List<GameObject> gameObjects, Vector2 target)
@@ -147,9 +151,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             Vector2 nextStep;
             if (!pathFinder.TryGetFirstStep(out nextStep) || GoToPoint(nextStep))
             {
-                List<GameObject> gameObjectsWithoutThis = new List<GameObject>(gameObjects);
-                gameObjectsWithoutThis.Remove(this);
-                bool pathFound = pathFinder.FindPath(map, gameObjectsWithoutThis, new Vector2(BoundingBox.Center.X, BoundingBox.Center.Y), target);
+                bool pathFound = pathFinder.FindPath(map, gameObjects, new Vector2(BoundingBox.Center.X, BoundingBox.Center.Y), target);
                 if (!pathFound)
                 {
                     timer.Time = 60;
@@ -423,6 +425,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         {
             return isDead;
         }
+
+        public void Respawn()
+        {
+            isDead = false;
+        }    
 
         public void SetCharacterSettings(CharacterSettings settings)
         {
