@@ -19,6 +19,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         int vResWidth = 1280, vResHeight = 720;
         int resWidth = 1280, resHeight = 720;
 
+        bool gameStarted = false;
+        bool gamePaused = false;
+
         public List<GameObject> gameObjects = new List<GameObject>();
 
         public TiledMap tiledMap;
@@ -79,7 +82,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(new Demon(new Vector2(290, 000), characterSettings));
 
             gameHUD.Enemy((Enemy)gameObjects[2]);
-            
+
             Camera.Initialize(zoomLevel: 1.0f);
             base.Initialize();
         }
@@ -117,6 +120,17 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            if (!gameStarted && Input.KeyPressed(Keys.Enter))
+            {
+                gameStarted = true;
+                gameHUD.StartGame();
+            }
+            if (Input.KeyPressed(Keys.P))
+            {
+                gameHUD.TogglePause();
+                gamePaused = !gamePaused;
+            }
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
@@ -144,10 +158,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             var transformMatrix = Camera.GetTransformMatrix();
 
-            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.LinearClamp, null, null, null, transformMatrix);
-            tiledMap.Draw(spriteBatch);
-            DrawGameObjects(gameObjects);
-            spriteBatch.End();
+            if (gameStarted)
+            {
+                spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.LinearClamp, null, null, null, transformMatrix);
+                tiledMap.Draw(spriteBatch);
+                DrawGameObjects(gameObjects);
+                spriteBatch.End();
+            }
 
             gameHUD.Draw(spriteBatch);
 
@@ -176,9 +193,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
         public void UpdateGameObjects(List<GameObject> gameObjects, TiledMap map)
         {
-            foreach (var gameObject in gameObjects)
+            if (gameStarted)
             {
-                gameObject.Update(gameObjects, map);
+                if (!gamePaused)
+                {
+                    foreach (var gameObject in gameObjects)
+                    {
+                        gameObject.Update(gameObjects, map);    //, gameTime    - aby nie zapomniec
+                    }
+                }
             }
 
             //Parallel.ForEach(gameObjects, gameObject =>
