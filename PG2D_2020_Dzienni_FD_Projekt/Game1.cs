@@ -60,6 +60,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             characterSettings.mode = CharcterMode.Guard;
             characterSettings.range = 300;
             characterSettings.rangeOfAttack = 30;
+            characterSettings.weaponAttack = 20;
 
             List<Vector2> points = new List<Vector2>();
             points.Add(new Vector2(650, 970));
@@ -68,7 +69,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             characterSettings.points = points;
 
-            gameObjects.Add(new Zombie(new Vector2(-100, -100), characterSettings));     //z jakiegoś powodu pierwszy przeciwnik jest zawsze niesmiertelny;
+            gameObjects.Add(new Zombie(new Vector2(1000, 1000), characterSettings));
             gameObjects.Add(new Lizard(new Vector2(720, 1000), characterSettings));
 
             characterSettings.mode = 0;

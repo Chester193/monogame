@@ -28,12 +28,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public override void Initialize()
         {
-            maxHp = 80;
-            hp = 80;
-            maxMp = 10;
-            mp = 10;
+            characterSettings.maxHp = 80;
+            characterSettings.hp = 80;
+            characterSettings.maxMp = 10;
+            characterSettings.mp = 10;
 
-            rangeOfAttack = 150;
+            characterSettings.rangeOfAttack = 50;
+            characterSettings.weaponAttack = 200;
 
             base.Initialize();
         }
@@ -192,7 +193,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         private void Fire(List<GameObject> gameObjects)
         {
             Character enemyInRange = NearestEnemy(gameObjects);
-            if(enemyInRange != null) Attack(enemyInRange, 1000);
+            if(enemyInRange != null) Attack(enemyInRange, characterSettings.weaponAttack);
 
             //Console.WriteLine("enmyInRange" + enemyInRange.ToString());
             
@@ -212,27 +213,26 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         private Character NearestEnemy(List<GameObject> gameObjects)
         {
-            float distans = 0, distansPrev = 0;
+            float distance = 0, distancePrev = 0;
             Character character;
             Character target = null;
 
             for (int i = 0; i < gameObjects.Count; i++)
             {
                 character = (Character)gameObjects[i];
-                if(!character.IsDead())
+                if (!character.IsDead())
                 { 
-                    distans = Vector2.Distance(character.realPositon, realPositon);
-                    if (distansPrev == 0) distansPrev = distans;
-                    if (distans < distansPrev)
+                    distance = Vector2.Distance(character.realPositon, realPositon);
+                    if (distancePrev == 0) distancePrev = distance;
+                    if (distance <= distancePrev)
                     {
-                        distansPrev = distans;
+                        distancePrev = distance;
                         target = character;
-                        Console.WriteLine("NarestEnemy " + target.ToString());
                     }
                 }
             }
             
-            //Console.WriteLine("NearestEnemy() distans " + distans + " GO.count " + gameObjects.Count);
+            //Console.WriteLine("NearestEnemy() distance " + distance + " GO.count " + gameObjects.Count);
 
             return target; // = (Character)gameObjects[1];
         }
