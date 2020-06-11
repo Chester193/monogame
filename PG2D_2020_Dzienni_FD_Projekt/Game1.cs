@@ -70,7 +70,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 maxHp = 100,
                 mode = CharcterMode.Guard,
                 range = 300,
-                rangeOfAttack = 30
+                rangeOfAttack = 30,
+                weaponAttack = 20,
             };
 
 

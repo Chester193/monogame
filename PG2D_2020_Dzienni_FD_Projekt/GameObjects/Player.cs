@@ -199,7 +199,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         private void Fire(List<GameObject> gameObjects)
         {
             Character enemyInRange = NearestEnemy(gameObjects);
-            if(enemyInRange != null) Attack(enemyInRange, characterSettings.weaponAttack);
+            if (enemyInRange != null) Attack(enemyInRange, characterSettings.weaponAttack);
 
             //Console.WriteLine("enmyInRange" + enemyInRange.ToString());
 
@@ -225,17 +225,21 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             for (int i = 0; i < gameObjects.Count; i++)
             {
-                character = (Character)gameObjects[i];
-                if (!character.IsDead())
-                { 
-                    distance = Vector2.Distance(character.realPositon, realPositon);
-                    if (distancePrev == 0) distancePrev = distance;
-                    if (distance <= distancePrev)
+                try
+                {
+                    character = (Character)gameObjects[i];
+                    if (!character.IsDead())
                     {
-                        distancePrev = distance;
-                        target = character;
+                        distance = Vector2.Distance(character.realPositon, realPositon);
+                        if (distancePrev == 0) distancePrev = distance;
+                        if (distance <= distancePrev)
+                        {
+                            distancePrev = distance;
+                            target = character;
+                        }
                     }
                 }
+
                 catch (InvalidCastException e)
                 {
 
@@ -243,7 +247,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
 
             }
-            
+
             //Console.WriteLine("NearestEnemy() distance " + distance + " GO.count " + gameObjects.Count);
 
             return target; // = (Character)gameObjects[1];

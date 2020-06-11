@@ -59,9 +59,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             if (fastTravel && timer>0)
             {
-                v1 = new Vector2(500, 100);
+                Vector2 v1 = new Vector2(500, 100);
                 spriteBatch.DrawString(fontDiamond, "[Click the number]", v1, Color.White);
-                v2 = new Vector2(500, 140);
+                Vector2 v2 = new Vector2(500, 140);
                 spriteBatch.DrawString(fontDiamond, "Fast travel to:", v2, Color.White);
 
                 int i = 1;
@@ -99,6 +99,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         public void FastTravelStop()
         {
             fastTravel = false;
+        }
 
         internal void TogglePause()
         {
