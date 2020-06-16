@@ -6,6 +6,7 @@ using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using System.Collections.Generic;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts;
+using PG2D_2020_Dzienni_FD_Projekt.States;
 
 namespace PG2D_2020_Dzienni_FD_Projekt
 {
@@ -20,17 +21,21 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         int vResWidth = 1280, vResHeight = 720;
         int resWidth = 1280, resHeight = 720;
 
-        bool gameStarted = false;
-        bool gamePaused = false;
+        private State currentState;
+        private State nextState;
 
-        public List<GameObject> gameObjects = new List<GameObject>();
+        public List<GameObject> gameObjects;
 
         public TiledMap tiledMap;
 
-        GameHUD gameHUD = new GameHUD();
+        public GameHUD gameHUD = new GameHUD();
 
-        public List<ScriptsController> scriptsList = new List<ScriptsController>();
+        public List<ScriptsController> scriptsList;
 
+        public void ChangeState(State state)
+        {
+            nextState = state;
+        }
 
         public Game1()
         {
@@ -51,6 +56,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         /// </summary>
         protected override void Initialize()
         {
+            scriptsList = new List<ScriptsController>();
+            gameObjects = new List<GameObject>();
+
             Scripts scripts = new Scripts(gameObjects, gameHUD);
             scriptsList.Add(new ScriptsController(scripts.TeleportTo1000_1000));
             scriptsList.Add(new ScriptsController(scripts.TeleportToLocationA));
@@ -122,6 +130,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             tiledMap.Load(Content, @"Tilemaps/terrain.tmx");
 
             gameHUD.Load(Content);
+
+            currentState = new MenuState(this, graphics.GraphicsDevice, Content, false);
         }
 
         /// <summary>
@@ -140,27 +150,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (!gameStarted && Input.KeyPressed(Keys.Enter))
+            if(nextState != null)
             {
-                gameStarted = true;
-                gameHUD.StartGame();
-            }
-            if (Input.KeyPressed(Keys.P))
-            {
-                gameHUD.TogglePause();
-                gamePaused = !gamePaused;
+                currentState = nextState;
+                nextState = null;
             }
 
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
-            Input.Update();
-            var playerObject = gameObjects[0];
-
-            // TODO: Add your update logic here
-            tiledMap.Update(gameTime, playerObject.position);
-            UpdateGameObjects(gameObjects, map: tiledMap);
-            UpdateCamera(playerObject.position);
+            currentState.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -173,63 +169,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
-            ResolutionManager.BeginDraw();
-
-            var transformMatrix = Camera.GetTransformMatrix();
-
-            if (gameStarted)
-            {
-                spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.LinearClamp, null, null, null, transformMatrix);
-                tiledMap.Draw(spriteBatch);
-                DrawGameObjects(gameObjects);
-                spriteBatch.End();
-            }
-
-            gameHUD.Draw(spriteBatch);
+            currentState.Draw(gameTime, spriteBatch);
 
             base.Draw(gameTime);
         }
 
-        private void UpdateCamera(Vector2 followPosition)
-        {
-            Camera.Update(followPosition);
-        }
-
-        public void DrawGameObjects(List<GameObject> gameObjects)
-        {
-            List<GameObject> sortedGameObjects = new List<GameObject>(gameObjects);
-            sortedGameObjects.Sort((a, b) => a.BoundingBox.Y.CompareTo(b.BoundingBox.Y));
-            float depth = 0.1f;
-
-            foreach (var gameObject in sortedGameObjects)
-            {
-                gameObject.layerDepth = depth;
-                gameObject.Draw(spriteBatch);
-                depth -= 0.001f;
-            }
-
-        }
-
-        public void UpdateGameObjects(List<GameObject> gameObjects, TiledMap map)
-        {
-            if (gameStarted)
-            {
-                if (!gamePaused)
-                {
-                    foreach (var gameObject in gameObjects)
-                    {
-                        gameObject.Update(gameObjects, map);    //, gameTime    - aby nie zapomniec
-                    }
-                }
-            }
-
-            //Parallel.ForEach(gameObjects, gameObject =>
-            //{
-            //    gameObject.Update(gameObjects);
-            //});
-
-        }
         public void LoadInitializeGameObjects(List<GameObject> gameObjects)
         {
             foreach (var gameObject in gameObjects)
