@@ -207,7 +207,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             }
             else
             {
-                Console.WriteLine("G  patrol");
+                //Console.WriteLine("G  patrol");
                 enemyAiMachine.Trigger(ETrigger.GO_PATROL);
             }
         }
@@ -225,7 +225,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 step++;
             }
 
-            if (step > 10)
+            if (step > 4)
             {
                 nextPoint = originalPosition;
                 step = 0;
@@ -234,7 +234,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             float distance = Vector2.Distance(realPositon, nextPoint);
             if (patrolTimer <= 0 || patrolTimer > 150)
             {
-                nextPoint = RandomPoint(200);
+                nextPoint = RandomPoint(100);
                 step++;
                 patrolTimer = 50;
             }
@@ -285,12 +285,12 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             Vector2 rPoint = new Vector2(originalPosition.X, originalPosition.Y);
             Console.WriteLine("RP: " + rPoint + " org: " + originalPosition);
             var rand = new Random();
-            if (rand.Next(0, 1) < 0.5)
+            if (rand.NextDouble() < 0.5)
                 rPoint.X += rand.Next(range / 2, range);
             else
                 rPoint.X -= rand.Next(range / 2, range);
 
-            if (rand.Next(0, 1) < 0.5)
+            if (rand.NextDouble() < 0.5)
                 rPoint.Y += rand.Next(range / 2, range);
             else
                 rPoint.Y -= rand.Next(range / 2, range);
