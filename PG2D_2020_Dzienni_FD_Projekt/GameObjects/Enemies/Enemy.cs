@@ -103,6 +103,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public void FollowPlayer(TiledMap map, List<GameObject> gameObjects)
         {
             Follow(map, gameObjects);
+            if (characterSettings.rangeOfAttack > 200) return;
             Attack((Character)gameObjects[0], characterSettings.weaponAttack);
         }
 
@@ -115,7 +116,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             {
                 Follow(map, gameObjects);
             }
-            if (rangeOfAttack > 200) return;
+            if (characterSettings.rangeOfAttack > 200) return;
             Attack(player, characterSettings.weaponAttack);
         }
 
@@ -134,7 +135,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             {
                 Patrol();
             }
-            if (rangeOfAttack > 200) return;
+            if (characterSettings.rangeOfAttack > 200) return;
             Attack(player, characterSettings.weaponAttack);
         }
 

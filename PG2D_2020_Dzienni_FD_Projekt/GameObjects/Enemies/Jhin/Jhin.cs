@@ -14,15 +14,12 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Jhin
 
         public Jhin(Vector2 startingPosition, CharacterSettings settings)
         {
-            this.maxHp = settings.maxHp;
-            this.hp = settings.maxHp;
-            this.rangeOfAttack = settings.rangeOfAttack;
-
-            SetMode(settings.mode);
-            SetRange(settings.range);
 
             this.position = startingPosition;
             applyGravity = false;
+
+            base.SetCharacterSettings(settings);
+
         }
 
         protected override void UpdateAnimations()
@@ -67,7 +64,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Jhin
 
         public void Fire(GameObject player)
         {
-            if (cone.active == false && !isDead && Vector2.Distance(player.position, position) <= rangeOfAttack && attackDelay <= 0)
+            if (cone.active == false && !isDead && Vector2.Distance(player.position, position) <= characterSettings.rangeOfAttack && attackDelay <= 0)
                 {
                     isAttacking = true;
                     cone.Fire(this, new Vector2(this.BoundingBox.X, this.BoundingBox.Y), new Vector2(player.BoundingBox.X, player.BoundingBox.Y));

@@ -85,7 +85,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(new Zombie(new Vector2(1000, 1000), characterSettings));
             gameObjects.Add(new Lizard(new Vector2(720, 1000), characterSettings));
 
-            /*
+            
             characterSettings.mode = 0;
             gameObjects.Add(new Lizard(new Vector2(400, 600), characterSettings));
             characterSettings.rangeOfAttack = 30;
