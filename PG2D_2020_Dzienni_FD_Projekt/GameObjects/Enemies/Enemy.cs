@@ -175,6 +175,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public void WaitForPlayer()
         {
+            CheckEscape();
             if (distanceToPlayer < rangeOfAttack)
                 enemyAiMachine.Trigger(ETrigger.ATTACK);
             else if (distanceToPlayer < 400)
@@ -191,6 +192,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public void Guard(int range)
         {
+            CheckEscape();
             float distanceToGuardPosition = Vector2.Distance(originalPosition, realPositon);
             if (distanceToPlayer < rangeOfAttack)
             {
@@ -251,7 +253,18 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         private void RunAway()
         {
-            throw new NotImplementedException();
+            //maxSpeed += maxSpeed/2;
+            var rand = new Random();
+            int x, y;
+            if (gameObjects[0].position.X < position.X)
+                x = rand.Next(200, 300);
+            else
+                x = - rand.Next(200, 300);
+            if (gameObjects[0].position.Y < position.Y)
+                y = rand.Next(200, 300);
+            else
+                y = -rand.Next(200, 300);
+            GoToPositon(map, gameObjects, new Vector2(x, y));
         }
 
 
@@ -259,25 +272,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         {
             string s = direction.ToString();
             return s;
-        }
-
-        private List<Vector2> RandomPoints(int range)
-        {
-            List<Vector2> randomPoints = new List<Vector2>();
-            var rand = new Random();
-
-            Vector2 rPoint = new Vector2(startPosition.X, startPosition.Y);
-            randomPoints.Add(rPoint);
-
-            for (int i = 0; i < 10; i++)
-            {
-                rPoint.X = rand.Next(-range, range);
-                rPoint.Y = rand.Next(-range, range);
-
-                randomPoints.Add(rPoint);
-            }
-
-            return randomPoints;
         }
 
         private Vector2 RandomPoint(int range)
@@ -297,6 +291,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             Console.WriteLine("RP: " + rPoint);
 
             return rPoint;
+        }
+
+        private void CheckEscape()
+        {
+            var rand = new Random();
+            if (hp < (maxHp / 5) && (rand.NextDouble() < 0.2))
+                enemyAiMachine.Trigger(ETrigger.RUN_AWAY);
+            if (distanceToPlayer > 600)
+                enemyAiMachine.Trigger(ETrigger.STOP);
         }
     }
 }
