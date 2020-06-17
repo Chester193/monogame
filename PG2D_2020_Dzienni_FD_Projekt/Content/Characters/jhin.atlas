@@ -11,7 +11,21 @@ Left - Died
   orig: 128, 128
   offset: 0, 0
   index: 3
+Right - Died
+  rotate: false
+  xy: 2, 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 3
 Left - Died
+  rotate: false
+  xy: 260, 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 4
+Right - Died
   rotate: false
   xy: 260, 2
   size: 128, 128
@@ -25,7 +39,21 @@ Left - Died
   orig: 128, 128
   offset: 0, 0
   index: 5
+Right - Died
+  rotate: false
+  xy: 518, 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 5
 Left - Died
+  rotate: false
+  xy: 776, 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 6
+Right - Died
   rotate: false
   xy: 776, 2
   size: 128, 128
@@ -46,6 +74,13 @@ Left - Died
   orig: 128, 128
   offset: 0, 0
   index: 1
+Right - Died
+  rotate: false
+  xy: 1034, 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 1
 Left - Hurt
   rotate: false
   xy: 1292, 2
@@ -54,6 +89,13 @@ Left - Hurt
   offset: 0, 0
   index: 2
 Left - Died
+  rotate: false
+  xy: 1292, 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 2
+Right - Died
   rotate: false
   xy: 1292, 2
   size: 128, 128

@@ -109,6 +109,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             {
                 Follow(gameObjects[0], map, gameObjects);
             }
+            if (rangeOfAttack > 200) return;
             Attack(player, 20);
         }
 
@@ -127,6 +128,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             {
                 Patrol();
             }
+            if (rangeOfAttack > 200) return;
             Attack(player, 20);
         }
 
