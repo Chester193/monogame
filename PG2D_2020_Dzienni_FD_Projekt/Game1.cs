@@ -5,7 +5,7 @@ using PG2D_2020_Dzienni_FD_Projekt.GameObjects;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using System.Collections.Generic;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies;
-using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Jhin;
+using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts;
 
 namespace PG2D_2020_Dzienni_FD_Projekt
 {
@@ -20,11 +20,17 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         int vResWidth = 1280, vResHeight = 720;
         int resWidth = 1280, resHeight = 720;
 
+        bool gameStarted = false;
+        bool gamePaused = false;
+
         public List<GameObject> gameObjects = new List<GameObject>();
 
         public TiledMap tiledMap;
 
         GameHUD gameHUD = new GameHUD();
+
+        public List<ScriptsController> scriptsList = new List<ScriptsController>();
+
 
         public Game1()
         {
@@ -45,19 +51,29 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         /// </summary>
         protected override void Initialize()
         {
+            Scripts scripts = new Scripts(gameObjects, gameHUD);
+            scriptsList.Add(new ScriptsController(scripts.TeleportTo1000_1000));
+            scriptsList.Add(new ScriptsController(scripts.TeleportToLocationA));
+            scriptsList.Add(new ScriptsController(scripts.TeleportToLocationB));
+            scriptsList.Add(new ScriptsController(scripts.FastTravel));
+
+
             // TODO: Add your initialization logic here
             tiledMap = new TiledMap(vResWidth, vResHeight);
-            Player player = new Player();
-            player.position = new Vector2(400, 400);
+            Player player = new Player(new Vector2(300, 700), scripts);
             gameObjects.Add(player);
 
             gameHUD.Player(player);
 
-            CharacterSettings characterSettings = new CharacterSettings();
-            characterSettings.maxHp = 100;
-            characterSettings.mode = CharcterMode.Guard;
-            characterSettings.range = 300;
-            characterSettings.rangeOfAttack = 30;
+            CharacterSettings characterSettings = new CharacterSettings
+            {
+                maxHp = 100,
+                mode = CharcterMode.Guard,
+                range = 300,
+                rangeOfAttack = 30,
+                weaponAttack = 20,
+            };
+
 
             List<Vector2> points = new List<Vector2>();
             points.Add(new Vector2(650, 970));
@@ -66,9 +82,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             characterSettings.points = points;
 
-            gameObjects.Add(new Zombie(new Vector2(-100, -100), characterSettings));     //z jakiegoś powodu pierwszy przeciwnik jest zawsze niesmiertelny;
+            gameObjects.Add(new Zombie(new Vector2(1000, 1000), characterSettings));
             gameObjects.Add(new Lizard(new Vector2(720, 1000), characterSettings));
 
+            /*
             characterSettings.mode = 0;
             gameObjects.Add(new Lizard(new Vector2(400, 600), characterSettings));
             characterSettings.rangeOfAttack = 30;
@@ -80,10 +97,12 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             characterSettings.mode = CharcterMode.FollowPlayer;
 
             gameObjects.Add(new Demon(new Vector2(290, 000), characterSettings));
-            characterSettings.rangeOfAttack = 300;
-            gameObjects.Add(new Jhin(new Vector2(200, 400), characterSettings));
 
-            gameHUD.Enemy((Enemy)gameObjects[2]);
+            gameObjects.Add(new Trigger(new Vector2(250, 0), new Vector2(200, 30), 1, scriptsList));
+            gameObjects.Add(new Trigger(new Vector2(1100, 1570), new Vector2(200, 30), 2, scriptsList));
+            gameObjects.Add(new Trigger(new Vector2(345, 665), new Vector2(75), 3, scriptsList));
+            gameObjects.Add(new Trigger(new Vector2(890, 1300), new Vector2(75), 3, scriptsList));
+            gameObjects.Add(new Trigger(new Vector2(1465, 25), new Vector2(75), 3, scriptsList));
 
             Camera.Initialize(zoomLevel: 1.0f);
             base.Initialize();
@@ -122,6 +141,17 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            if (!gameStarted && Input.KeyPressed(Keys.Enter))
+            {
+                gameStarted = true;
+                gameHUD.StartGame();
+            }
+            if (Input.KeyPressed(Keys.P))
+            {
+                gameHUD.TogglePause();
+                gamePaused = !gamePaused;
+            }
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
@@ -149,10 +179,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             var transformMatrix = Camera.GetTransformMatrix();
 
-            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.LinearClamp, null, null, null, transformMatrix);
-            tiledMap.Draw(spriteBatch);
-            DrawGameObjects(gameObjects);
-            spriteBatch.End();
+            if (gameStarted)
+            {
+                spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.LinearClamp, null, null, null, transformMatrix);
+                tiledMap.Draw(spriteBatch);
+                DrawGameObjects(gameObjects);
+                spriteBatch.End();
+            }
 
             gameHUD.Draw(spriteBatch);
 
@@ -181,9 +214,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
         public void UpdateGameObjects(List<GameObject> gameObjects, TiledMap map)
         {
-            foreach (var gameObject in gameObjects)
+            if (gameStarted)
             {
-                gameObject.Update(gameObjects, map);
+                if (!gamePaused)
+                {
+                    foreach (var gameObject in gameObjects)
+                    {
+                        gameObject.Update(gameObjects, map);    //, gameTime    - aby nie zapomniec
+                    }
+                }
             }
 
             //Parallel.ForEach(gameObjects, gameObject =>

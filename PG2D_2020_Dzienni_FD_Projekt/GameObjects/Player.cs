@@ -19,21 +19,23 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             applyGravity = false;
         }
 
-        public Player(Vector2 startingPosition)
+        public Player(Vector2 startingPosition, Scripts.Scripts scripts)
         {
             this.position = startingPosition;
             applyGravity = false;
 
+            this.scripts = scripts;
         }
 
         public override void Initialize()
         {
-            maxHp = 80;
-            hp = 80;
-            maxMp = 10;
-            mp = 10;
+            characterSettings.maxHp = 80;
+            characterSettings.hp = 80;
+            characterSettings.maxMp = 10;
+            characterSettings.mp = 10;
 
-            rangeOfAttack = 150;
+            characterSettings.rangeOfAttack = 50;
+            characterSettings.weaponAttack = 200;
 
             base.Initialize();
         }
@@ -84,6 +86,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 if (direction.X > 0 && AnimationIsNot(Animations.DieRight))
                 {
                     ChangeAnimation(Animations.DieRight);
+                }
+
+                if (IsAnimationComplete)
+                {
+                    scripts.PlayerRespawn();
                 }
             }
 
@@ -211,15 +218,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             if (Input.KeyPressed(Keys.J) == true)
                 Heal(15);
             if (Input.KeyPressed(Keys.K) == true)
-               MaxHpAdd(50);
+                MaxHpAdd(50);
         }
 
         private void Fire(List<GameObject> gameObjects)
         {
             Character enemyInRange = NearestEnemy(gameObjects);
-            if(enemyInRange != null) Attack(enemyInRange, 1000);
-
-            
+            if (enemyInRange != null) Attack(enemyInRange, characterSettings.weaponAttack);
 
             //Console.WriteLine("Fire()");
             //HUD test
@@ -227,11 +232,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             {
                 ManaUse(1);
             }
-            catch(NotEnoughMpException e)
+            catch (NotEnoughMpException e)
             {
                 Damage(20);
             }
-            
+
         }
 
         private Character NearestEnemy(List<GameObject> gameObjects)
@@ -242,19 +247,29 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             for (int i = 0; i < gameObjects.Count; i++)
             {
-                character = (Character)gameObjects[i];
-                if(!character.IsDead())
-                { 
-                    distance = Vector2.Distance(character.realPositon, realPositon);
-                    if (distancePrev == 0) distancePrev = distance;
-                    if (distance < distancePrev)
+                try
+                {
+                    character = (Character)gameObjects[i];
+                    if (!character.IsDead())
                     {
-                        distancePrev = distance;
-                        target = character;
+                        distance = Vector2.Distance(character.realPositon, realPositon);
+                        if (distancePrev == 0) distancePrev = distance;
+                        if (distance <= distancePrev)
+                        {
+                            distancePrev = distance;
+                            target = character;
+                        }
                     }
                 }
+
+                catch (InvalidCastException e)
+                {
+
+                }
+
+
             }
-            
+
             return target; // = (Character)gameObjects[1];
         }
     }
