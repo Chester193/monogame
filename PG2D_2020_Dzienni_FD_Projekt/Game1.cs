@@ -48,14 +48,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         {
             // TODO: Add your initialization logic here
             mainWorld = new TiledMap(vResWidth, vResHeight);
-            blacksmith = new TiledMap(vResWidth, vResHeight);
 
             renderingMap = mainWorld;
 
             Vector2 realMapBeginning = new Vector2(renderingMap.tileSize * 31, renderingMap.tileSize * 31);
             Player player = new Player();
-            int tileSpawnPointX = 10;
-            int tielSpawnPointY = 14;
+            int tileSpawnPointX = 94;
+            int tielSpawnPointY = 37;
             player.position = new Vector2(tileSpawnPointX * 32, tielSpawnPointY * 32);
             gameObjects.Add(player);
 
@@ -106,7 +105,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             // TODO: use this.Content to load your game content here
             renderingMap.Load(Content, @"Map/map.tmx");
-            blacksmith.Load(Content, @"Map/blacksmith.tmx");
 
             gameHUD.Load(Content);
         }
@@ -130,9 +128,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            if (Keyboard.GetState().IsKeyDown(Keys.T)) {
-                renderingMap = blacksmith;
-            }
 
             Input.Update();
             var playerObject = gameObjects[0];
