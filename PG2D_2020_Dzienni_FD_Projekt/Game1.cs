@@ -60,9 +60,14 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             // TODO: Add your initialization logic here
             tiledMap = new TiledMap(vResWidth, vResHeight);
-            Player player = new Player(new Vector2(300, 700), scripts);
-            gameObjects.Add(player);
 
+            int tileSpawnPointX = 94;
+            int tielSpawnPointY = 37;
+            Player player = new Player(new Vector2(tileSpawnPointX * 32, tielSpawnPointY * 32), scripts);
+
+            Vector2 realMapBeginning = new Vector2(tiledMap.tileSize * 31, tiledMap.tileSize * 31);
+            
+            gameObjects.Add(player);
             gameHUD.Player(player);
 
             CharacterSettings characterSettings = new CharacterSettings
@@ -103,6 +108,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(new Trigger(new Vector2(890, 1300), new Vector2(75), 3, scriptsList));
             gameObjects.Add(new Trigger(new Vector2(1465, 25), new Vector2(75), 3, scriptsList));
 
+
             Camera.Initialize(zoomLevel: 1.0f);
             base.Initialize();
         }
@@ -119,7 +125,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             LoadInitializeGameObjects(gameObjects);
 
             // TODO: use this.Content to load your game content here
-            tiledMap.Load(Content, @"Tilemaps/terrain.tmx");
+            tiledMap.Load(Content, @"Map/map.tmx");
 
             gameHUD.Load(Content);
         }
@@ -153,6 +159,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
 
             Input.Update();
             var playerObject = gameObjects[0];
