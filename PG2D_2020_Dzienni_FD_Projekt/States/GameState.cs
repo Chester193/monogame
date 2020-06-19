@@ -38,6 +38,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
 
         public override void Update(GameTime gameTime)
         {
+            if (Input.KeyPressed(Keys.Escape))
+            {
+                _game.ChangeState(new MenuState(_game, _graphicsDevice, _content, true));
+            }
+
             Input.Update();
             var playerObject = _game.gameObjects[0];
 
@@ -54,11 +59,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
 
         public void UpdateGameObjects(List<GameObject> gameObjects, TiledMap map)
         {
-            if (Input.KeyPressed(Keys.Escape))
-            {
-                _game.ChangeState(new MenuState(_game, _graphicsDevice, _content, true));
-            }
-
             foreach (var gameObject in gameObjects)
             {
                 gameObject.Update(gameObjects, map);    //, gameTime    - aby nie zapomniec
