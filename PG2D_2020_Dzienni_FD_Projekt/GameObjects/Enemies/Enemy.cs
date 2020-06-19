@@ -5,7 +5,7 @@ using System;
 
 namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 {
-    class Enemy : Character
+    public class Enemy : Character
     {
         private int step = 0;
         private float distanceToPlayer;

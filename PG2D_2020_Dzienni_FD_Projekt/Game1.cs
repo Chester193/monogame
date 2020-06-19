@@ -60,7 +60,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             // TODO: Add your initialization logic here
             tiledMap = new TiledMap(vResWidth, vResHeight);
-            Player player = new Player(new Vector2(300, 700), scripts);
+            Player player = new Player(new Vector2(300, 700), scripts, new List<Quest>());
             gameObjects.Add(player);
 
             gameHUD.Player(player);
@@ -81,7 +81,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             points.Add(new Vector2(850, 1070));
 
             characterSettings.points = points;
-
             gameObjects.Add(new Zombie(new Vector2(1000, 1000), characterSettings));
             gameObjects.Add(new Lizard(new Vector2(720, 1000), characterSettings));
 
