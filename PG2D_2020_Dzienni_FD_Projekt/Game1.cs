@@ -140,6 +140,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             LoadInitializeGameObjects(gameObjects);
+            LoadInitializeTrigger(triggers);
 
             // TODO: use this.Content to load your game content here
             tiledMap.Load(Content, @"Map/map.tmx");
@@ -212,6 +213,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             //    gameObject.Initialize();
             //    gameObject.Load(content: Content);
             //});
+        }
+
+        public void LoadInitializeTrigger(List<Trigger> triggers)
+        {
+            foreach (var trigger in triggers)
+            {
+                trigger.Initialize();
+                trigger.Load(content: Content);
+            }
         }
 
         public void Restart()
