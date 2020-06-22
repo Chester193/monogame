@@ -84,6 +84,7 @@
     <Compile Include="Quest.cs" />
     <Compile Include="States\GameState.cs" />
     <Compile Include="States\MenuState.cs" />
+    <Compile Include="States\PausedGameState.cs" />
     <Compile Include="States\State.cs" />
     <Compile Include="TiledMap.cs" />
     <Compile Include="Timer.cs" />
