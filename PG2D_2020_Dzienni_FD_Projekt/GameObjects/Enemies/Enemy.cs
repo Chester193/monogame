@@ -31,7 +31,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     .Update(args =>
                     {
                         //Console.WriteLine("FOLLOW");
-                        Follow(gameObjects[0], map, gameObjects);
+                        Follow(map, gameObjects);
                     })
                 .State(EState.IDLE)
                     .TransitionTo(EState.FOLLOW).On(ETrigger.FOLLOW_PLAYER)
@@ -161,7 +161,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public void FollowPlayer()
         {
-            if (distanceToPlayer < rangeOfAttack)
+            if (distanceToPlayer < characterSettings.rangeOfAttack)
                 enemyAiMachine.Trigger(ETrigger.ATTACK);
             else
                 enemyAiMachine.Trigger(ETrigger.FOLLOW_PLAYER);
@@ -169,7 +169,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public void WaitForPlayer()
         {
-            if (distanceToPlayer < rangeOfAttack)
+            if (distanceToPlayer < characterSettings.rangeOfAttack)
                 enemyAiMachine.Trigger(ETrigger.ATTACK);
             else if (distanceToPlayer < 400)
                 enemyAiMachine.Trigger(ETrigger.FOLLOW_PLAYER);
@@ -186,7 +186,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public void Guard(int range)
         {
             float distanceToGuardPosition = Vector2.Distance(originalPosition, realPositon);
-            if (distanceToPlayer < rangeOfAttack)
+            if (distanceToPlayer < characterSettings.rangeOfAttack)
             {
                 Console.WriteLine("G  attack");
                 enemyAiMachine.Trigger(ETrigger.ATTACK);

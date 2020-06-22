@@ -45,7 +45,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Orc
             boundingBoxHeight = 100;
         }
 
-        public override void Update(List<GameObject> gameObjects, TiledMap map)
+        public override void Update(List<GameObject> gameObjects, TiledMap map, GameTime gameTime)
         {
             if (active == false)
                 return;
@@ -59,7 +59,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Orc
             {
                 Destroy();
             }
-            base.Update(gameObjects, map);
+            base.Update(gameObjects, map, gameTime);
         }
 
         internal void Fire(Orc inputOwner, Vector2 inputPosition, Vector2 inputDirection)
