@@ -15,12 +15,18 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
     public class Scripts
     {
         private List<GameObject> gameObjects;
+        private List<Trigger> triggers;
         private GameHUD hud;
+        private Game1 game;
 
-        public Scripts(List<GameObject> gameObjects, GameHUD GameHud)
+        private bool startQuestDialog = false;
+
+        public Scripts(List<GameObject> gameObjects, List<Trigger> triggers, GameHUD GameHud, Game1 game1)
         {
             this.gameObjects = gameObjects;
+            this.triggers = triggers;
             this.hud = GameHud;
+            this.game = game1;
         }
 
         /*
@@ -88,6 +94,40 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
             {
                 Teleport(gameObjects[0], new Vector2(845, 1290));
                 hud.FastTravelStop();
+            }
+        }
+
+        public void StartDialog()
+        {
+            hud.PrintMessage("Press E to talk");
+
+            if (Input.IsKeyDown(Keys.E))
+            {
+                triggers[6].active = true;
+                triggers[5].active = false;
+                game.PauseGame();
+                //Console.WriteLine("SD");
+            }
+        }
+
+        public void QuestDialog()
+        {
+            Player player = (Player)gameObjects[0];
+            hud.PrintMessage(player.Interact());
+            hud.PrintMessage2("Press Q to end");
+            if (Input.IsKeyDown(Keys.Q))
+            {
+                hud.PrintMessage2(null);
+                triggers[6].active = false;
+                triggers[5].active = true;
+                game.ContinueGame();
+                ///Console.WriteLine("QD");
+            }
+
+            Quest currentQuest;
+            if (player.TryGetCurrentQuest(out currentQuest))
+            {
+                currentQuest.Confirm();
             }
         }
     }

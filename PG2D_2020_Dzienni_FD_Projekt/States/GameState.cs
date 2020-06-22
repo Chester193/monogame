@@ -31,6 +31,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
             spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.LinearClamp, null, null, null, transformMatrix);
             _game.tiledMap.Draw(spriteBatch);
             DrawGameObjects(_game.gameObjects, spriteBatch);
+            DrawTriggers(_game.triggers, spriteBatch);
             spriteBatch.End();
 
             _game.gameHUD.Draw(spriteBatch);
@@ -49,6 +50,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
             // TODO: Add your update logic here
             _game.tiledMap.Update(gameTime, playerObject.position);
             UpdateGameObjects(_game.gameObjects, map: _game.tiledMap, gameTime);
+            UpdateTriggers(_game.gameObjects, _game.triggers, map: _game.tiledMap, gameTime);
             UpdateCamera(playerObject.position);
         }
 
@@ -70,6 +72,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
             //});
 
         }
+
+        public void UpdateTriggers(List<GameObject> gameObjects, List<Trigger> triggers, TiledMap map, GameTime gameTime)
+        {
+            foreach (var trigger in triggers)
+            {
+                trigger.Update(gameObjects, map, gameTime);
+            }
+        }
+
         public void DrawGameObjects(List<GameObject> gameObjects, SpriteBatch spriteBatch)
         {
             List<GameObject> sortedGameObjects = new List<GameObject>(gameObjects);
@@ -81,6 +92,17 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
                 gameObject.layerDepth = depth;
                 gameObject.Draw(spriteBatch);
                 depth -= 0.001f;
+            }
+
+        }
+
+        public void DrawTriggers(List<Trigger> triggers, SpriteBatch spriteBatch)
+        {
+            float depth = 0.1f;
+            foreach (var trigger in triggers)
+            {
+                trigger.layerDepth = depth;
+                trigger.Draw(spriteBatch);
             }
 
         }
