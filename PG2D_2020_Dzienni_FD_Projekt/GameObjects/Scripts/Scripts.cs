@@ -101,9 +101,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
             {
                 gameObjects[16].active = true;
                 gameObjects[15].active = false;
-                Console.WriteLine("SD");
-
-                gameObjects[0].active = false;
+                //Console.WriteLine("SD");
             }
         }
 
@@ -117,9 +115,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
                 hud.PrintMessage2(null);
                 gameObjects[16].active = false;
                 gameObjects[15].active = true;
-                Console.WriteLine("QD");
-
-                gameObjects[0].active = true;
+                ///Console.WriteLine("QD");
             }
 
             Quest currentQuest;
