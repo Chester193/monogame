@@ -121,13 +121,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
                 triggers[6].active = false;
                 triggers[5].active = true;
                 game.ContinueGame();
-                ///Console.WriteLine("QD");
-            }
 
-            Quest currentQuest;
-            if (player.TryGetCurrentQuest(out currentQuest))
-            {
-                currentQuest.Confirm();
+                Quest currentQuest;
+                if (player.TryGetCurrentQuest(out currentQuest))
+                {
+                    currentQuest.Confirm();
+                }
+                ///Console.WriteLine("QD");
             }
         }
     }
