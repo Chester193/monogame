@@ -23,7 +23,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
         {
             Input.Update();
             UpdateTriggers(_game.gameObjects, _game.triggers, map: _game.tiledMap, gameTime);
-
         }
     }
 }
