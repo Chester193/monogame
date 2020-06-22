@@ -199,16 +199,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             ChangeState(new GameState(this, graphics.GraphicsDevice, Content));
         }
 
-        public void PauseGame()
-        {
-            ChangeState(new PausedGameState(this, graphics.GraphicsDevice, Content));
-        }
-
-        public void ContinueGame()
-        {
-            ChangeState(new GameState(this, graphics.GraphicsDevice, Content));
-        }
-
         public void LoadInitializeGameObjects(List<GameObject> gameObjects)
         {
             foreach (var gameObject in gameObjects)
