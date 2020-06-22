@@ -90,5 +90,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
                 hud.FastTravelStop();
             }
         }
+        public void QuestDialog()
+        {
+            hud.PrintMessage("Press ENTER to talk");
+            if (Input.IsKeyDown(Keys.Enter))
+            {
+
+            }
+        }
     }
 }

@@ -14,7 +14,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
         bool fastTravel = false;
         List<string> fastTravelPlaces;
-        int timer;
+        int fastTraveTimer, messageTimer;
+        string message = null;
 
         public void Load(ContentManager content)
         {
@@ -31,7 +32,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             spriteBatch.DrawString(fontDiamond, "MP: " + player.MpToString() + "/" + player.MaxMpToString(), new Vector2(10, 70), Color.Blue);
 
 
-            if (fastTravel && timer>0)
+            if (fastTravel && fastTraveTimer>0)
             {
                 Vector2 v1 = new Vector2(500, 100);
                 spriteBatch.DrawString(fontDiamond, "[Click the number]", v1, Color.White);
@@ -47,7 +48,19 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                     i++;
                 }
 
-                timer -= 1;
+                fastTraveTimer -= 1;
+            }
+
+            if (message != null && messageTimer > 0)
+            {
+                Vector2 v1 = new Vector2(500, 100);
+                spriteBatch.DrawString(fontDiamond, message, v1, Color.White);
+
+                messageTimer--;
+            }
+            if (messageTimer <= 0)
+            {
+                message = null;
             }
 
             spriteBatch.End();
@@ -67,12 +80,18 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         {
             this.fastTravelPlaces = fastTravelPlaces;
             fastTravel = true;
-            timer = 30;
+            fastTraveTimer = 30;
         }
 
         public void FastTravelStop()
         {
             fastTravel = false;
+        }
+
+        public void PrintMessage(string msg)
+        {
+            message = msg;
+            messageTimer = 10;
         }
     }
 }
