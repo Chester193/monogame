@@ -340,10 +340,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             if (characterSettings.hp <= 0)
             {
                 characterSettings.hp = 0;
-                isDead = true;
+                Die();
             }
 
             //Console.WriteLine("Character.Damage() " + dmg);
+        }
+
+        public virtual void Die()
+        {
+            isDead = true;
         }
 
         public void ManaUse(int mpUsed)

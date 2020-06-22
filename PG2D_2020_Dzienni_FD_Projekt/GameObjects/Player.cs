@@ -14,17 +14,34 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 {
     public class Player : Character
     {
+        private List<Quest> quests;
+        private int currentQuestIndex = 0;
+
         public Player()
         {
             applyGravity = false;
         }
 
-        public Player(Vector2 startingPosition, Scripts.Scripts scripts)
+        public Player(Vector2 startingPosition, Scripts.Scripts scripts, List<Quest> quests)
         {
             this.position = startingPosition;
             applyGravity = false;
 
             this.scripts = scripts;
+            this.quests = quests;
+        }
+
+        public bool TryGetCurrentQuest(out Quest currentQuest)
+        {
+            if (currentQuestIndex < quests.Count)
+            {
+                currentQuest = quests[currentQuestIndex];
+                return true;
+            }
+
+            currentQuest = null;
+            return false;
+
         }
 
         public override void Initialize()
@@ -59,6 +76,14 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public override void Update(List<GameObject> gameObjects, TiledMap map, GameTime gameTime)
         {
+            Quest currentQuest;
+            if (TryGetCurrentQuest(out currentQuest))
+            {
+                currentQuest.Update();
+                if (currentQuest.State == QuestState.Done)
+                    currentQuestIndex++;
+            }
+
             if(!isAttacking && !isHurting && !isDead)
                 CheckInput(gameObjects, map);
             base.Update(gameObjects, map, gameTime);
@@ -271,6 +296,20 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             }
 
             return target; // = (Character)gameObjects[1];
+        }
+
+        public string Interact()
+        {
+            Quest currentQuest;
+
+            if (TryGetCurrentQuest(out currentQuest))
+            {
+                return currentQuest.getDialog();
+            }
+            else
+            {
+                return Quest.defaultDialog;
+            }
         }
     }
 }

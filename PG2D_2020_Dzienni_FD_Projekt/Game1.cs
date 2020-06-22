@@ -71,7 +71,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             int tileSpawnPointX = 59;
             int tielSpawnPointY = 52;
-            Player player = new Player(new Vector2(tileSpawnPointX * 32, tielSpawnPointY * 32), scripts);
+            Player player = new Player(new Vector2(tileSpawnPointX * 32, tielSpawnPointY * 32), scripts, new List<Quest>());
 
             Vector2 realMapBeginning = new Vector2(tiledMap.tileSize * 31, tiledMap.tileSize * 31);
             
@@ -94,7 +94,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             //points.Add(new Vector2(850, 1070));
 
             characterSettings.points = points;
-
             gameObjects.Add(new Zombie(new Vector2(1000, 1000), characterSettings));
             gameObjects.Add(new Lizard(new Vector2(720, 1000), characterSettings));
             gameObjects.Add(new Lizard(new Vector2(600, 800), characterSettings));

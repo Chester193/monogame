@@ -66,6 +66,7 @@
     <Compile Include="GameObjects\Enemies\Orc\Axe.cs" />
     <Compile Include="GameObjects\Enemies\Orc\Orc.cs" />
     <Compile Include="GameObjects\Enemies\Pirate.cs" />
+    <Compile Include="GameObjects\Enemies\SpecialEnemies\SpecialEnemy.cs" />
     <Compile Include="GameObjects\Enemies\Vikings\Viking1.cs" />
     <Compile Include="GameObjects\Enemies\Vikings\Viking2.cs" />
     <Compile Include="GameObjects\Enemies\Vikings\Viking3.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="PathFinder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quest.cs" />
     <Compile Include="States\GameState.cs" />
     <Compile Include="States\MenuState.cs" />
     <Compile Include="States\State.cs" />
