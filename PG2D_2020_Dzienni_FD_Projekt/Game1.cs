@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts;
 using PG2D_2020_Dzienni_FD_Projekt.States;
+using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.SpecialEnemies;
 
 namespace PG2D_2020_Dzienni_FD_Projekt
 {
@@ -74,15 +75,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             // TODO: Add your initialization logic here
             tiledMap = new TiledMap(vResWidth, vResHeight);
 
-            int tileSpawnPointX = 59;
-            int tielSpawnPointY = 52;
-            Player player = new Player(new Vector2(tileSpawnPointX * 32, tielSpawnPointY * 32), scripts, new List<Quest>());
-
-            Vector2 realMapBeginning = new Vector2(tiledMap.tileSize * 31, tiledMap.tileSize * 31);
-            
-            gameObjects.Add(player);
-            gameHUD.Player(player);
-
             CharacterSettings characterSettings = new CharacterSettings
             {
                 maxHp = 100,
@@ -92,6 +84,17 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 weaponAttack = 20,
             };
 
+            List<SpecialEnemy> specialEnemies;
+            List<Quest> quests = PrepareQuests(characterSettings, out specialEnemies);
+
+            int tileSpawnPointX = 59;
+            int tielSpawnPointY = 52;
+            Player player = new Player(new Vector2(tileSpawnPointX * 32, tielSpawnPointY * 32), scripts, quests);
+
+            Vector2 realMapBeginning = new Vector2(tiledMap.tileSize * 31, tiledMap.tileSize * 31);
+            
+            gameObjects.Add(player);
+            gameHUD.Player(player);
 
             List<Vector2> points = new List<Vector2>();
             //points.Add(new Vector2(650, 970));
@@ -111,6 +114,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(new Viking1(new Vector2(300, 300), characterSettings));
             gameObjects.Add(new Viking2(new Vector2(300, 200), characterSettings));
             gameObjects.Add(new Viking3(new Vector2(300, 100), characterSettings));
+
+            foreach(SpecialEnemy specEnemy in specialEnemies)
+            {
+                gameObjects.Add(specEnemy);
+            }
 
             characterSettings.mode = CharcterMode.FollowPlayer;
 
@@ -229,5 +237,43 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             Initialize();
         }
 
+        private List<Quest> PrepareQuests(CharacterSettings characterSettings, out List<SpecialEnemy> specialEnemies)
+        {
+            List<Quest> quests = new List<Quest>();
+            specialEnemies = new List<SpecialEnemy>();
+
+            //Quest 1
+            List<SpecialEnemy> objectives = new List<SpecialEnemy>();
+            SpecialEnemy specialEnemy = new Wolf(new Vector2(1500, 1500), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            string startDialog = "Hi, can you kill one wolf for me ? \n It always came from North";
+            string endDialog = "You killed this beast, thank you";
+            string alternativeDialog = "Did you killed wolf yet ?";
+            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 100));
+
+            //Quest 2
+            objectives = new List<SpecialEnemy>();
+
+            specialEnemy = new EarthGolem(new Vector2(2500, 1500), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new IceGolem(new Vector2(1500, 2500), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new LavaGolem(new Vector2(3500, 1500), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            startDialog = "Kill 3 golems";
+            endDialog = "You killed this beasts, thank you";
+            alternativeDialog = "Did you killed golems yet ?";
+            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 200));
+
+            return quests;
+        }
     }
 }
