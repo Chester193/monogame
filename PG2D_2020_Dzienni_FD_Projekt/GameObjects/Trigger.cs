@@ -32,7 +32,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         }
 
-        public override void Update(List<GameObject> gameObjects, TiledMap map)
+        public override void Update(List<GameObject> gameObjects, TiledMap map, GameTime gameTime)
         {
             if (CheckCollision(gameObjects[0].BoundingBox))
             {

@@ -34,12 +34,12 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Orc
             axe = new Axe();
             base.Initialize();
         }
-        public override void Update(List<GameObject> gameObjects, TiledMap map)
+        public override void Update(List<GameObject> gameObjects, TiledMap map, GameTime gameTime)
         {
             attackDelay--;
-            axe.Update(gameObjects, map);
+            axe.Update(gameObjects, map, gameTime);
             Fire(gameObjects[0]);
-            base.Update(gameObjects, map);
+            base.Update(gameObjects, map, gameTime);
         }
 
         public override void Load(ContentManager content)
