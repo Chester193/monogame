@@ -19,6 +19,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
         private GameHUD hud;
         private Game1 game;
 
+        int tileSize = 32;
+
         private bool startQuestDialog = false;
 
         public Scripts(List<GameObject> gameObjects, List<Trigger> triggers, GameHUD GameHud, Game1 game1)
@@ -82,17 +84,17 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
 
             if (Input.IsKeyDown(Keys.NumPad1) || Input.IsKeyDown(Keys.D1))
             {
-                Teleport(gameObjects[0], gameObjects[0].originalPosition);
+                Teleport(gameObjects[0], gameObjects[0].originalPosition - new Vector2(0, 100));
                 hud.FastTravelStop();
             }
             if (Input.IsKeyDown(Keys.NumPad2) || Input.IsKeyDown(Keys.D2))
             {
-                Teleport(gameObjects[0], new Vector2(1450, 25));
+                Teleport(gameObjects[0], new Vector2(158 * tileSize, 79 * tileSize));
                 hud.FastTravelStop();
             }
             if (Input.IsKeyDown(Keys.NumPad3) || Input.IsKeyDown(Keys.D3))
             {
-                Teleport(gameObjects[0], new Vector2(845, 1290));
+                Teleport(gameObjects[0], new Vector2(50 * tileSize, 96 * tileSize));
                 hud.FastTravelStop();
             }
         }
@@ -106,7 +108,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
                 triggers[6].active = true;
                 triggers[5].active = false;
                 game.PauseGame();
-                //Console.WriteLine("SD");
+                Console.WriteLine("SD");
             }
         }
 
@@ -121,7 +123,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
                 triggers[6].active = false;
                 triggers[5].active = true;
                 game.ContinueGame();
-                ///Console.WriteLine("QD");
+                Console.WriteLine("QD");
             }
 
             Quest currentQuest;

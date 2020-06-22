@@ -34,6 +34,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
         public List<ScriptsController> scriptsList;
 
+        public int tileSize = 32;
+
         public void ChangeState(State state)
         {
             nextState = state;
@@ -74,12 +76,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             // TODO: Add your initialization logic here
             tiledMap = new TiledMap(vResWidth, vResHeight);
 
+
             int tileSpawnPointX = 59;
             int tielSpawnPointY = 52;
             Player player = new Player(new Vector2(tileSpawnPointX * 32, tielSpawnPointY * 32), scripts, new List<Quest>());
 
             Vector2 realMapBeginning = new Vector2(tiledMap.tileSize * 31, tiledMap.tileSize * 31);
-            
+
             gameObjects.Add(player);
             gameHUD.Player(player);
 
@@ -99,31 +102,29 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             //points.Add(new Vector2(850, 1070));
 
             characterSettings.points = points;
-            gameObjects.Add(new Zombie(new Vector2(1000, 1000), characterSettings));
-            gameObjects.Add(new Lizard(new Vector2(720, 1000), characterSettings));
-            gameObjects.Add(new Lizard(new Vector2(600, 800), characterSettings));
-
-            
-            characterSettings.mode = 0;
-            gameObjects.Add(new Lizard(new Vector2(400, 600), characterSettings));
             characterSettings.rangeOfAttack = 30;
-            gameObjects.Add(new Zombie(new Vector2(300, 400), characterSettings));
-            gameObjects.Add(new Viking1(new Vector2(300, 300), characterSettings));
-            gameObjects.Add(new Viking2(new Vector2(300, 200), characterSettings));
-            gameObjects.Add(new Viking3(new Vector2(300, 100), characterSettings));
+            characterSettings.mode = 0;
+            gameObjects.Add(new Zombie(new Vector2(104 * tileSize, 38 * tileSize), characterSettings));
+            gameObjects.Add(new Lizard(new Vector2(163 * tileSize, 56 * tileSize), characterSettings));
+            gameObjects.Add(new Lizard(new Vector2(172 * tileSize, 59 * tileSize), characterSettings));
+            gameObjects.Add(new Lizard(new Vector2(165 * tileSize, 77 * tileSize), characterSettings));
+            gameObjects.Add(new Zombie(new Vector2(101 * tileSize, 43 * tileSize), characterSettings));
+            gameObjects.Add(new Viking1(new Vector2(59 * tileSize, 92 * tileSize), characterSettings));
+            gameObjects.Add(new Viking2(new Vector2(59 * tileSize, 93 * tileSize), characterSettings));
+            gameObjects.Add(new Viking3(new Vector2(61 * tileSize, 91 * tileSize), characterSettings));
+
 
             characterSettings.mode = CharcterMode.FollowPlayer;
+            gameObjects.Add(new Demon(new Vector2(110 * tileSize, 58 * tileSize), characterSettings));
 
-            gameObjects.Add(new Demon(new Vector2(290, 000), characterSettings));
+            triggers.Add(new Trigger(new Vector2(240 * tileSize, 30 * tileSize), new Vector2(200, 30), 1, scriptsList));
+            triggers.Add(new Trigger(new Vector2(246 * tileSize, 30 * tileSize), new Vector2(200, 30), 2, scriptsList));
+            triggers.Add(new Trigger(new Vector2(45 * tileSize, 62 * tileSize), new Vector2(75), 3, scriptsList));
+            triggers.Add(new Trigger(new Vector2(158 * tileSize, 78 * tileSize), new Vector2(75), 3, scriptsList));
+            triggers.Add(new Trigger(new Vector2(50 * tileSize, 95 * tileSize), new Vector2(75), 3, scriptsList));
 
-            triggers.Add(new Trigger(new Vector2(250, 0), new Vector2(200, 30), 1, scriptsList));
-            triggers.Add(new Trigger(new Vector2(1100, 1570), new Vector2(200, 30), 2, scriptsList));
-            triggers.Add(new Trigger(new Vector2(345, 665), new Vector2(75), 3, scriptsList));
-            triggers.Add(new Trigger(new Vector2(890, 1300), new Vector2(75), 3, scriptsList));
-            triggers.Add(new Trigger(new Vector2(1465, 25), new Vector2(75), 3, scriptsList));
-
-            triggers.Add(new Trigger(new Vector2(tileSpawnPointX * 30, tileSpawnPointX * 30), new Vector2(75), 4, scriptsList));
-            triggers.Add(new Trigger(new Vector2(tileSpawnPointX * 30, tileSpawnPointX * 30), new Vector2(75), 5, scriptsList, false));
+            triggers.Add(new Trigger(new Vector2(54 * tileSize, 56 * tileSize), new Vector2(75), 4, scriptsList));
+            triggers.Add(new Trigger(new Vector2(54 * tileSize, 56 * tileSize), new Vector2(75), 5, scriptsList, false));
 
 
             Camera.Initialize(zoomLevel: 1.0f);
@@ -166,7 +167,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if(nextState != null)
+            if (nextState != null)
             {
                 currentState = nextState;
                 nextState = null;
