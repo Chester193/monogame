@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 {
-    class Trigger : GameObject
+    public class Trigger : GameObject
     {
         private bool isCircel = false;
         private List<ScriptsController> scripts;

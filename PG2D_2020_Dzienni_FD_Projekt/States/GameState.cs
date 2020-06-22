@@ -49,6 +49,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
             // TODO: Add your update logic here
             _game.tiledMap.Update(gameTime, playerObject.position);
             UpdateGameObjects(_game.gameObjects, map: _game.tiledMap, gameTime);
+            UpdateTriggers(_game.gameObjects, _game.triggers, map: _game.tiledMap, gameTime);
             UpdateCamera(playerObject.position);
         }
 
@@ -70,6 +71,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
             //});
 
         }
+
+        public void UpdateTriggers(List<GameObject> gameObjects, List<Trigger> triggers, TiledMap map, GameTime gameTime)
+        {
+            foreach (var trigger in triggers)
+            {
+                trigger.Update(gameObjects, map, gameTime);
+            }
+        }
+
         public void DrawGameObjects(List<GameObject> gameObjects, SpriteBatch spriteBatch)
         {
             List<GameObject> sortedGameObjects = new List<GameObject>(gameObjects);

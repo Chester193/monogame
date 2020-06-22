@@ -26,6 +26,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
         public List<GameObject> gameObjects;
 
+        public List<Trigger> triggers;
+
         public TiledMap tiledMap;
 
         public GameHUD gameHUD = new GameHUD();
@@ -58,8 +60,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         {
             scriptsList = new List<ScriptsController>();
             gameObjects = new List<GameObject>();
+            triggers = new List<Trigger>();
 
-            Scripts scripts = new Scripts(gameObjects, gameHUD);
+            Scripts scripts = new Scripts(gameObjects, triggers, gameHUD, this);
             scriptsList.Add(new ScriptsController(scripts.TeleportTo1000_1000));
             scriptsList.Add(new ScriptsController(scripts.TeleportToLocationA));
             scriptsList.Add(new ScriptsController(scripts.TeleportToLocationB));
@@ -113,14 +116,14 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             gameObjects.Add(new Demon(new Vector2(290, 000), characterSettings));
 
-            gameObjects.Add(new Trigger(new Vector2(250, 0), new Vector2(200, 30), 1, scriptsList));
-            gameObjects.Add(new Trigger(new Vector2(1100, 1570), new Vector2(200, 30), 2, scriptsList));
-            gameObjects.Add(new Trigger(new Vector2(345, 665), new Vector2(75), 3, scriptsList));
-            gameObjects.Add(new Trigger(new Vector2(890, 1300), new Vector2(75), 3, scriptsList));
-            gameObjects.Add(new Trigger(new Vector2(1465, 25), new Vector2(75), 3, scriptsList));
+            triggers.Add(new Trigger(new Vector2(250, 0), new Vector2(200, 30), 1, scriptsList));
+            triggers.Add(new Trigger(new Vector2(1100, 1570), new Vector2(200, 30), 2, scriptsList));
+            triggers.Add(new Trigger(new Vector2(345, 665), new Vector2(75), 3, scriptsList));
+            triggers.Add(new Trigger(new Vector2(890, 1300), new Vector2(75), 3, scriptsList));
+            triggers.Add(new Trigger(new Vector2(1465, 25), new Vector2(75), 3, scriptsList));
 
-            gameObjects.Add(new Trigger(new Vector2(tileSpawnPointX * 30, tileSpawnPointX * 30), new Vector2(75), 4, scriptsList));
-            gameObjects.Add(new Trigger(new Vector2(tileSpawnPointX * 30, tileSpawnPointX * 30), new Vector2(75), 5, scriptsList, false));
+            triggers.Add(new Trigger(new Vector2(tileSpawnPointX * 30, tileSpawnPointX * 30), new Vector2(75), 4, scriptsList));
+            triggers.Add(new Trigger(new Vector2(tileSpawnPointX * 30, tileSpawnPointX * 30), new Vector2(75), 5, scriptsList, false));
 
 
             Camera.Initialize(zoomLevel: 1.0f);
@@ -184,6 +187,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             currentState.Draw(gameTime, spriteBatch);
 
             base.Draw(gameTime);
+        }
+        public void PauseGame()
+        {
+            ChangeState(new PausedGameState(this, graphics.GraphicsDevice, Content));
+        }
+
+        public void ContinueGame()
+        {
+            ChangeState(new GameState(this, graphics.GraphicsDevice, Content));
         }
 
         public void LoadInitializeGameObjects(List<GameObject> gameObjects)

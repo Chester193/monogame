@@ -15,14 +15,18 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
     public class Scripts
     {
         private List<GameObject> gameObjects;
+        private List<Trigger> triggers;
         private GameHUD hud;
+        private Game1 game;
 
         private bool startQuestDialog = false;
 
-        public Scripts(List<GameObject> gameObjects, GameHUD GameHud)
+        public Scripts(List<GameObject> gameObjects, List<Trigger> triggers, GameHUD GameHud, Game1 game1)
         {
             this.gameObjects = gameObjects;
+            this.triggers = triggers;
             this.hud = GameHud;
+            this.game = game1;
         }
 
         /*
@@ -99,8 +103,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
 
             if (Input.IsKeyDown(Keys.E))
             {
-                gameObjects[16].active = true;
-                gameObjects[15].active = false;
+                triggers[6].active = true;
+                triggers[5].active = false;
+                game.PauseGame();
                 //Console.WriteLine("SD");
             }
         }
@@ -113,8 +118,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
             if (Input.IsKeyDown(Keys.Q))
             {
                 hud.PrintMessage2(null);
-                gameObjects[16].active = false;
-                gameObjects[15].active = true;
+                triggers[6].active = false;
+                triggers[5].active = true;
+                game.ContinueGame();
                 ///Console.WriteLine("QD");
             }
 
