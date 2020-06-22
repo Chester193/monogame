@@ -13,8 +13,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         Vector2 nextPoint = new Vector2(0);
         int patrolTimer = 50;
 
-        private enum EState { IDLE, FOLLOW, ATTACK, PATROL, ESCAPE };
-        private enum ETrigger { STOP, FOLLOW_PLAYER, ATTACK, GO_PATROL, RUN_AWAY };
+        private enum EState { IDLE, FOLLOW, ATTACK, PATROL };
+        private enum ETrigger { STOP, FOLLOW_PLAYER, ATTACK, GO_PATROL };
 
         private Fsm<EState, ETrigger> enemyAiMachine;
 
@@ -37,7 +37,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     .TransitionTo(EState.FOLLOW).On(ETrigger.FOLLOW_PLAYER)
                     .TransitionTo(EState.ATTACK).On(ETrigger.ATTACK)
                     .TransitionTo(EState.PATROL).On(ETrigger.GO_PATROL)
-                    .TransitionTo(EState.ESCAPE).On(ETrigger.RUN_AWAY)
                     .Update(args =>
                     {
                         //Console.WriteLine("IDLE");
@@ -58,12 +57,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     {
                         //Console.WriteLine("PATROL");
                         Patrol();
-                    })
-                .State(EState.ESCAPE)
-                    .TransitionTo(EState.IDLE).On(ETrigger.STOP)
-                    .Update(args =>
-                    {
-                        RunAway();
                     })
             .Build();
         }
@@ -175,7 +168,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public void WaitForPlayer()
         {
-            CheckEscape();
             if (distanceToPlayer < rangeOfAttack)
                 enemyAiMachine.Trigger(ETrigger.ATTACK);
             else if (distanceToPlayer < 400)
@@ -192,7 +184,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public void Guard(int range)
         {
-            CheckEscape();
             float distanceToGuardPosition = Vector2.Distance(originalPosition, realPositon);
             if (distanceToPlayer < rangeOfAttack)
             {
@@ -251,23 +242,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             }
         }
 
-        private void RunAway()
-        {
-            //maxSpeed += maxSpeed/2;
-            var rand = new Random();
-            int x, y;
-            if (gameObjects[0].position.X < position.X)
-                x = rand.Next(200, 300);
-            else
-                x = - rand.Next(200, 300);
-            if (gameObjects[0].position.Y < position.Y)
-                y = rand.Next(200, 300);
-            else
-                y = -rand.Next(200, 300);
-            GoToPositon(map, gameObjects, new Vector2(x, y));
-        }
-
-
         public string DirectionToString()
         {
             string s = direction.ToString();
@@ -291,15 +265,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             Console.WriteLine("RP: " + rPoint);
 
             return rPoint;
-        }
-
-        private void CheckEscape()
-        {
-            var rand = new Random();
-            if (hp < (maxHp / 5) && (rand.NextDouble() < 0.2))
-                enemyAiMachine.Trigger(ETrigger.RUN_AWAY);
-            if (distanceToPlayer > 600)
-                enemyAiMachine.Trigger(ETrigger.STOP);
         }
     }
 }
