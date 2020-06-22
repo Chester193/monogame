@@ -59,7 +59,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public override void Update(List<GameObject> gameObjects, TiledMap map)
         {
-            if (!isAttacking && !isDead)
+            if(!isAttacking && !isHurting && !isDead)
                 CheckInput(gameObjects, map);
             base.Update(gameObjects, map);
         }
@@ -68,8 +68,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         {
             if (currentAnimation == null)
                 return;
-
-            base.UpdateAnimations();
 
             if (isDead)
             {
@@ -96,7 +94,33 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 }
             }
 
-            if (!isDead && isAttacking)
+            else if(isHurting)
+            {
+                currentAnimation.animationSpeed = 1;
+                velocity = Vector2.Zero;
+                if (direction.Y < 0 && AnimationIsNot(Animations.HurtBack))
+                {
+                    ChangeAnimation(Animations.HurtBack);
+                }
+                if (direction.Y > 0 && AnimationIsNot(Animations.HurtFront))
+                {
+                    ChangeAnimation(Animations.HurtFront);
+                }
+                if (direction.X < 0 && AnimationIsNot(Animations.HurtLeft))
+                {
+                    ChangeAnimation(Animations.HurtLeft);
+                }
+                if (direction.X > 0 && AnimationIsNot(Animations.HurtRight))
+                {
+                    ChangeAnimation(Animations.HurtRight);
+                }
+                if (IsAnimationComplete)
+                {
+                    isHurting = false;
+                }
+            }
+
+            else if (isAttacking)
             {
                 velocity = Vector2.Zero;
                 if (direction.Y < 0 && AnimationIsNot(Animations.SlashBack))
@@ -121,7 +145,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 }
             }
 
-            if (velocity != Vector2.Zero && isJumping == false && isAttacking == false && isDead == false)
+            else if (velocity != Vector2.Zero)
             {
                 if (direction.X < 0 && AnimationIsNot(Animations.WalkingLeft))
                 {
@@ -143,7 +167,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             }
 
-            else if (velocity == Vector2.Zero && isJumping == false && isAttacking == false && isDead == false)
+            else
+                //(velocity == Vector2.Zero && isJumping == false && isAttacking == false && isDead == false && isHurting == false)
             {
                 if (direction.X < 0 && AnimationIsNot(Animations.IdleLeft))
                 {
@@ -162,7 +187,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     ChangeAnimation(Animations.IdleFront);
                 }
             }
-
+            base.UpdateAnimations();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -200,9 +225,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         {
             Character enemyInRange = NearestEnemy(gameObjects);
             if (enemyInRange != null) Attack(enemyInRange, characterSettings.weaponAttack);
-
-            //Console.WriteLine("enmyInRange" + enemyInRange.ToString());
-
 
             //Console.WriteLine("Fire()");
             //HUD test
@@ -247,8 +269,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
 
             }
-
-            //Console.WriteLine("NearestEnemy() distance " + distance + " GO.count " + gameObjects.Count);
 
             return target; // = (Character)gameObjects[1];
         }

@@ -13,6 +13,21 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Characters/axe.atlas
+/copy:Characters/axe.atlas
+
+#begin Characters/axe.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Characters/axe.png
+
 #begin Characters/big_guy.atlas
 /copy:Characters/big_guy.atlas
 
@@ -85,6 +100,10 @@
 /processorParam:TextureFormat=Color
 /build:Characters/enemy.png
 
+#begin Characters/jhin.atlas
+/copy:Characters/jhin.atlas
+
+#begin Characters/jhin.png
 #begin Characters/Finn.atlas
 /copy:Characters/Finn.atlas
 
@@ -98,6 +117,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+/build:Characters/jhin.png
 /build:Characters/Finn.png
 
 #begin Characters/ginger_bandit.atlas
