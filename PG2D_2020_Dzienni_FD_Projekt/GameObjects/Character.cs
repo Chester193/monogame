@@ -45,6 +45,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         protected bool isDead = false;
         protected bool isAttacking = false;
         protected bool isJumping = false;
+        protected bool isHurting = false;
+
         public static bool applyGravity = false;
         const bool drawPath = false;
 
@@ -76,10 +78,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             pathHeight = 32;
         }
 
-        public override void Update(List<GameObject> gameObjects, TiledMap map)
+        public override void Update(List<GameObject> gameObjects, TiledMap map, GameTime gameTime)
         {
             UpdateMovement(gameObjects, map);
-            base.Update(gameObjects, map);
+            base.Update(gameObjects, map, gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -151,7 +153,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             Vector2 nextStep;
             if (!pathFinder.TryGetFirstStep(out nextStep) || GoToPoint(nextStep))
             {
-                bool pathFound = pathFinder.FindPath(map, gameObjects, new Vector2(BoundingBox.Center.X, BoundingBox.Center.Y), target);
+                List<GameObject> gameObjectsWithoutPlayer = new List<GameObject>(gameObjects);
+                gameObjectsWithoutPlayer.Remove(this);
+                bool pathFound = pathFinder.FindPath(map, gameObjectsWithoutPlayer, new Vector2(BoundingBox.Center.X, BoundingBox.Center.Y), target);
                 if (!pathFound)
                 {
                     timer.Time = 60;
@@ -213,7 +217,12 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             direction.Y = 0;
         }
 
-
+        public override void BulletResponse(int damageTaken)
+        {
+            isHurting = true;
+            this.Damage(damageTaken);
+            base.BulletResponse(damageTaken);
+        }
         protected void MoveDown()
         {
             velocity.Y += acceleration + deceleration;
@@ -405,6 +414,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 //Console.WriteLine("Character.Attack()[EndIF]()");
             }
         }
+
 
         public void SetMode(CharcterMode mode)
         {

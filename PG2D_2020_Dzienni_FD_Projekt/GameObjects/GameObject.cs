@@ -37,8 +37,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             }
         }
 
-
-
         public GameObject()
         {
 
@@ -71,7 +69,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         }
 
 
-        public virtual void Update(List<GameObject> gameObjects, TiledMap map)
+        public virtual void Update(List<GameObject> gameObjects, TiledMap map, GameTime gameTime)
         {
 
         }
@@ -81,7 +79,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             return BoundingBox.Intersects(input);
         }
 
-        public virtual void BulletResponse()
+        public virtual void BulletResponse(int damageTaken)
         {
 
         }
