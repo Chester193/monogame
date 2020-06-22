@@ -52,6 +52,8 @@
     <Compile Include="GameObjects\Enemies\BigGuy.cs" />
     <Compile Include="GameObjects\Enemies\Crow.cs" />
     <Compile Include="GameObjects\Enemies\Demon.cs" />
+    <Compile Include="GameObjects\Enemies\Jhin\IceCone.cs" />
+    <Compile Include="GameObjects\Enemies\Jhin\Jhin.cs" />
     <Compile Include="GameObjects\Enemies\Golems\EarthGolem.cs" />
     <Compile Include="GameObjects\Enemies\Finn.cs" />
     <Compile Include="GameObjects\Enemies\GingerBandit.cs" />

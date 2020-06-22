@@ -5,20 +5,19 @@ using Microsoft.Xna.Framework.Content;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities.SpriteAtlas;
 
-namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Orc
+namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Jhin
 {
-    class Axe : AnimatedObject
+    class IceCone : AnimatedObject
     {
         private const float Speed = 6.0f;
 
-        Orc owner;
+        Jhin owner;
 
         private int destroyTimer;
         private const int TimeToLive = 180;
 
-        public Axe()
+        public IceCone()
         {
-            scale = 0.12f;
             active = false;
         }
 
@@ -33,41 +32,41 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Orc
 
         public override void Load(ContentManager content)
         {
-            texture = TextureLoader.Load(@"characters/axe", content);
-            SpriteAtlasData atlas = SpriteAtlasLoader.ParseSpriteAtlas(@"characters/axe.atlas", texture, content);
+            texture = TextureLoader.Load(@"characters/jhin", content);
+            SpriteAtlasData atlas = SpriteAtlasLoader.ParseSpriteAtlas(@"characters/jhin.atlas", texture, content);
 
             LoadAnimations(atlas);
-            ChangeAnimation(AnimatedObject.Animations.OrcAxe);
+            ChangeAnimation(AnimatedObject.Animations.IceCone);
             base.Load(content);
 
-            boundingBoxOffset = new Vector2(55, 55);
-            boundingBoxWidth = 100;
-            boundingBoxHeight = 100;
+            boundingBoxOffset = new Vector2(110, 110);
+            boundingBoxWidth = 50;
+            boundingBoxHeight = 50;
         }
 
         public override void Update(List<GameObject> gameObjects, TiledMap map)
         {
             if (active == false)
                 return;
-
+   
             position += direction * Speed;
 
             CheckCollisions(gameObjects, map);
 
             destroyTimer--;
             if (destroyTimer <= 0 && active == true)
-            {
+            {               
                 Destroy();
             }
             base.Update(gameObjects, map);
         }
 
-        internal void Fire(Orc inputOwner, Vector2 inputPosition, Vector2 inputDirection)
+        internal void Fire(Jhin inputOwner, Vector2 inputPosition, Vector2 inputDirection)
         {
             owner = inputOwner;
             resetAnimation();
             //TODO fix this line with position(I have no idea ho to adjust this without hardcoding this vector2 parameter)
-            position = inputPosition - boundingBoxOffset + new Vector2(50, 50);
+            position = inputPosition - boundingBoxOffset + new Vector2(20, 20);
             direction = Vector2.Normalize(Vector2.Subtract(inputDirection, inputPosition));
             active = true;
             destroyTimer = TimeToLive;
@@ -86,13 +85,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Orc
                 Destroy();
                 gameObjects[0].BulletResponse(25);
                 return;
-            }
-
+            } 
+         
         }
 
         private void resetAnimation()
         {
-            ChangeAnimation(Animations.OrcAxe);
+            ChangeAnimation(Animations.IceCone);
         }
     }
 }

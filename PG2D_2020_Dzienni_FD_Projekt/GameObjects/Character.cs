@@ -45,6 +45,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         protected bool isDead = false;
         protected bool isAttacking = false;
         protected bool isJumping = false;
+        protected bool isHurting = false;
+
         public static bool applyGravity = false;
         const bool drawPath = false;
 
@@ -213,7 +215,12 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             direction.Y = 0;
         }
 
-
+        public override void BulletResponse(int damageTaken)
+        {
+            isHurting = true;
+            this.Damage(damageTaken);
+            base.BulletResponse(damageTaken);
+        }
         protected void MoveDown()
         {
             velocity.Y += acceleration + deceleration;
@@ -400,6 +407,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 //Console.WriteLine("Character.Attack()[EndIF]()");
             }
         }
+
 
         public void SetMode(CharcterMode mode)
         {
