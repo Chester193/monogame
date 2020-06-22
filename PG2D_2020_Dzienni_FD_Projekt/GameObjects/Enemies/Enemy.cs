@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System;
+using StateMachine;
 
 namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 {
@@ -9,34 +10,91 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
     {
         private int step = 0;
         private float distanceToPlayer;
+        Vector2 nextPoint = new Vector2(0);
+        int patrolTimer = 50;
 
-        public override void Update(List<GameObject> gameObjects, TiledMap map)
+        private enum EState { IDLE, FOLLOW, ATTACK, PATROL };
+        private enum ETrigger { STOP, FOLLOW_PLAYER, ATTACK, GO_PATROL };
+
+        private Fsm<EState, ETrigger> enemyAiMachine;
+
+        List<GameObject> gameObjects;
+        TiledMap map;
+
+        public Enemy()
         {
+            enemyAiMachine = Fsm<EState, ETrigger>.Builder(EState.IDLE)
+                .State(EState.FOLLOW)
+                    .TransitionTo(EState.IDLE).On(ETrigger.STOP)
+                    .TransitionTo(EState.ATTACK).On(ETrigger.ATTACK)
+                    .TransitionTo(EState.PATROL).On(ETrigger.GO_PATROL)
+                    .Update(args =>
+                    {
+                        //Console.WriteLine("FOLLOW");
+                        Follow(map, gameObjects);
+                    })
+                .State(EState.IDLE)
+                    .TransitionTo(EState.FOLLOW).On(ETrigger.FOLLOW_PLAYER)
+                    .TransitionTo(EState.ATTACK).On(ETrigger.ATTACK)
+                    .TransitionTo(EState.PATROL).On(ETrigger.GO_PATROL)
+                    .Update(args =>
+                    {
+                        //Console.WriteLine("IDLE");
+                    })
+                .State(EState.ATTACK)
+                    .TransitionTo(EState.IDLE).On(ETrigger.STOP)
+                    .TransitionTo(EState.FOLLOW).On(ETrigger.FOLLOW_PLAYER)
+                    .Update(args =>
+                    {
+                        //Console.WriteLine("ATTACK");
+                        AttackPlayer();
+                    })
+                .State(EState.PATROL)
+                    .TransitionTo(EState.IDLE).On(ETrigger.STOP)
+                    .TransitionTo(EState.ATTACK).On(ETrigger.ATTACK)
+                    .TransitionTo(EState.FOLLOW).On(ETrigger.FOLLOW_PLAYER)
+                    .Update(args =>
+                    {
+                        //Console.WriteLine("PATROL");
+                        Patrol();
+                    })
+            .Build();
+        }
+
+        public override void Update(List<GameObject> gameObjectsG, TiledMap mapG, GameTime gameTime)
+        {
+            gameObjects = gameObjectsG;
+            map = mapG;
+
             CharcterMode mode = GetMode();
             int range = GetRange();
             distanceToPlayer = countDistanceToPlayer((Player)gameObjects[0]);
+
+            if (nextPoint.Equals(new Vector2(0)))
+                nextPoint = originalPosition;
 
             if (!isDead)
             {
                 switch (mode)
                 {
                     case CharcterMode.WaitForPlayer:
-                        WaitForPlayer(gameObjects, range, map);
+                        WaitForPlayer();
                         break;
                     case CharcterMode.Guard:
-                        Guard(gameObjects, range, map);
+                        Guard(range);
                         break;
                     case CharcterMode.FollowPlayer:
-                        FollowPlayer(map, gameObjects);
+                        FollowPlayer();
                         break;
 
                     default:
-                        WaitForPlayer(gameObjects, range, map);
+                        WaitForPlayer();
                         break;
                 }
             }
+            enemyAiMachine.Update(TimeSpan.FromMilliseconds(gameTime.ElapsedGameTime.TotalMilliseconds));
 
-            base.Update(gameObjects, map);
+            base.Update(gameObjects, map, gameTime);
         }
 
         protected override void UpdateAnimations()
@@ -100,43 +158,52 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             base.UpdateAnimations();
         }
 
-        public void FollowPlayer(TiledMap map, List<GameObject> gameObjects)
+
+        public void FollowPlayer()
         {
-            Follow(map, gameObjects);
-            if (characterSettings.rangeOfAttack > 200) return;
-            Attack((Character)gameObjects[0], characterSettings.weaponAttack);
+            if (distanceToPlayer < characterSettings.rangeOfAttack)
+                enemyAiMachine.Trigger(ETrigger.ATTACK);
+            else
+                enemyAiMachine.Trigger(ETrigger.FOLLOW_PLAYER);
         }
 
-        public void WaitForPlayer(List<GameObject> gameObjects, int range, TiledMap map)
+        public void WaitForPlayer()
         {
-            Player player = (Player)gameObjects[0];
-            Vector2 v = new Vector2(range, range);
-
-            if (distanceToPlayer < range)
-            {
-                Follow(map, gameObjects);
-            }
-            if (characterSettings.rangeOfAttack > 200) return;
-            Attack(player, characterSettings.weaponAttack);
+            if (distanceToPlayer < characterSettings.rangeOfAttack)
+                enemyAiMachine.Trigger(ETrigger.ATTACK);
+            else if (distanceToPlayer < 400)
+                enemyAiMachine.Trigger(ETrigger.FOLLOW_PLAYER);
+            else if (distanceToPlayer > 800)
+                enemyAiMachine.Trigger(ETrigger.STOP);
         }
 
-        public void Guard(List<GameObject> gameObjects, int range, TiledMap map)
+        public void AttackPlayer()
         {
             Player player = (Player)gameObjects[0];
+            Attack(player, 20);
+        }
+
+        public void Guard(int range)
+        {
             float distanceToGuardPosition = Vector2.Distance(originalPosition, realPositon);
-            if (distanceToPlayer < range)
+            if (distanceToPlayer < characterSettings.rangeOfAttack)
+            {
+                Console.WriteLine("G  attack");
+                enemyAiMachine.Trigger(ETrigger.ATTACK);
+            }
+            else if (distanceToPlayer < range)
             {
                 if (distanceToGuardPosition <= 2 * range)
                 {
-                    Follow(map, gameObjects);
+                    Console.WriteLine("G  follow");
+                    enemyAiMachine.Trigger(ETrigger.FOLLOW_PLAYER);
                 }
             }
             else
             {
-                Patrol();
+                //Console.WriteLine("G  patrol");
+                enemyAiMachine.Trigger(ETrigger.GO_PATROL);
             }
-            if (characterSettings.rangeOfAttack > 200) return;
-            Attack(player, characterSettings.weaponAttack);
         }
 
         private float countDistanceToPlayer(Player player)
@@ -146,32 +213,33 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public void Patrol()
         {
-            float distance;
-            if (characterSettings.points != null)
+            if (step == 0)
             {
-                if (step > characterSettings.points.Count)
-                    step = 0;
-                else
-                {
-                    if (step == characterSettings.points.Count)
-                    {
-                        GoToPoint(originalPosition);
-                        distance = Vector2.Distance(realPositon, originalPosition);
-                        if (distance < 5) step++;
-                    }
-                    else
-                    {
-                        distance = Vector2.Distance(realPositon, characterSettings.points[step]);
-                        if (distance < 5)
-                            step++;
-                        else
-                            GoToPoint(characterSettings.points[step]);
-                        if (realPositon == originalPosition)
-                            step++;
-                    }
+                nextPoint = realPositon;
+                step++;
+            }
 
-                }
-                //Console.WriteLine("step: " + step);
+            if (step > 4)
+            {
+                nextPoint = originalPosition;
+                step = 0;
+            }
+
+            float distance = Vector2.Distance(realPositon, nextPoint);
+            if (patrolTimer <= 0 || patrolTimer > 150)
+            {
+                nextPoint = RandomPoint(100);
+                step++;
+                patrolTimer = 50;
+            }
+            if (distance < 15)
+            {
+                patrolTimer--;
+            }
+            else
+            {
+                GoToPositon(map, gameObjects, nextPoint);
+                patrolTimer++;
             }
         }
 
@@ -181,5 +249,23 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             return s;
         }
 
+        private Vector2 RandomPoint(int range)
+        {
+            Vector2 rPoint = new Vector2(originalPosition.X, originalPosition.Y);
+            Console.WriteLine("RP: " + rPoint + " org: " + originalPosition);
+            var rand = new Random();
+            if (rand.NextDouble() < 0.5)
+                rPoint.X += rand.Next(range / 2, range);
+            else
+                rPoint.X -= rand.Next(range / 2, range);
+
+            if (rand.NextDouble() < 0.5)
+                rPoint.Y += rand.Next(range / 2, range);
+            else
+                rPoint.Y -= rand.Next(range / 2, range);
+            Console.WriteLine("RP: " + rPoint);
+
+            return rPoint;
+        }
     }
 }

@@ -101,9 +101,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             currentAnimationY = currentAnimation.frames[currentAnimationFrame].Y;
         }
 
-        public override void Update(List<GameObject> gameObjects, TiledMap map)
+        public override void Update(List<GameObject> gameObjects, TiledMap map, GameTime gameTime)
         {
-            base.Update(gameObjects, map);
+            base.Update(gameObjects, map, gameTime);
             if (currentAnimation != null)
             {
                 UpdateAnimations();

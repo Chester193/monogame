@@ -57,11 +57,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             boundingBoxHeight = 32;
         }
 
-        public override void Update(List<GameObject> gameObjects, TiledMap map)
+        public override void Update(List<GameObject> gameObjects, TiledMap map, GameTime gameTime)
         {
             if(!isAttacking && !isHurting && !isDead)
                 CheckInput(gameObjects, map);
-            base.Update(gameObjects, map);
+            base.Update(gameObjects, map, gameTime);
         }
 
         protected override void UpdateAnimations()
