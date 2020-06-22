@@ -43,6 +43,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Animations\Animation.cs" />
+    <Compile Include="Component.cs" />
+    <Compile Include="Controls\Button.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameObjects\AnimatedObject.cs" />
     <Compile Include="GameObjects\Character.cs" />
@@ -78,6 +80,9 @@
     <Compile Include="PathFinder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="States\GameState.cs" />
+    <Compile Include="States\MenuState.cs" />
+    <Compile Include="States\State.cs" />
     <Compile Include="TiledMap.cs" />
     <Compile Include="Timer.cs" />
     <Compile Include="Utilities\Camera.cs" />
