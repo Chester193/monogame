@@ -95,7 +95,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
             hud.PrintMessage("Press ENTER to talk");
             if (Input.IsKeyDown(Keys.Enter))
             {
-
+                Player player = (Player)gameObjects[0];
+                hud.PrintMessage(player.Interact());
             }
         }
     }
