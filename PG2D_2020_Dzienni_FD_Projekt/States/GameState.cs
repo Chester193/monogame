@@ -48,7 +48,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
 
             // TODO: Add your update logic here
             _game.tiledMap.Update(gameTime, playerObject.position);
-            UpdateGameObjects(_game.gameObjects, map: _game.tiledMap);
+            UpdateGameObjects(_game.gameObjects, map: _game.tiledMap, gameTime);
             UpdateCamera(playerObject.position);
         }
 
@@ -57,11 +57,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
             Camera.Update(followPosition);
         }
 
-        public void UpdateGameObjects(List<GameObject> gameObjects, TiledMap map)
+        public void UpdateGameObjects(List<GameObject> gameObjects, TiledMap map, GameTime gameTime)
         {
             foreach (var gameObject in gameObjects)
             {
-                gameObject.Update(gameObjects, map);    //, gameTime    - aby nie zapomniec
+                gameObject.Update(gameObjects, map, gameTime);    //, gameTime    - aby nie zapomniec
             }
 
             //Parallel.ForEach(gameObjects, gameObject =>
