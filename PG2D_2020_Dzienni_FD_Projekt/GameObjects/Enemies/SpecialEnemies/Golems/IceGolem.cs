@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.SpecialEnemies;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities.SpriteAtlas;
 using System;
@@ -10,14 +11,11 @@ using System.Threading.Tasks;
 
 namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
 {
-    class EarthGolem : Enemy
+    class IceGolem : SpecialEnemy
     {
-        public EarthGolem(Vector2 startingPosition, CharacterSettings settings)
+        public IceGolem(Vector2 startingPosition, CharacterSettings settings)
+            : base(startingPosition, settings)
         {
-            this.position = startingPosition;
-            applyGravity = false;
-
-            base.SetCharacterSettings(settings);
         }
 
         public override void Initialize()
@@ -31,8 +29,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
         public override void Load(ContentManager content)
         {
 
-            texture = TextureLoader.Load(@"characters/Earth_golem", content);
-            SpriteAtlasData atlas = SpriteAtlasLoader.ParseSpriteAtlas(@"characters/Earth_golem.atlas", texture, content);
+            texture = TextureLoader.Load(@"characters/Ice Golem", content);
+            SpriteAtlasData atlas = SpriteAtlasLoader.ParseSpriteAtlas(@"characters/Ice Golem.atlas", texture, content);
 
             LoadAnimations(atlas);
             ChangeAnimation(AnimatedObject.Animations.WalkingRight);

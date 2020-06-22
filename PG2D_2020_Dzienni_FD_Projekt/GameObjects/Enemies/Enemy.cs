@@ -112,6 +112,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 if (IsAnimationComplete)
                 {
                     ChangeAnimation(null);
+                    isCollidable = false;
                 }
             }
             else
