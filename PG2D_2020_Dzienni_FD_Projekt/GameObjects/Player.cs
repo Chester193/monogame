@@ -19,21 +19,23 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             applyGravity = false;
         }
 
-        public Player(Vector2 startingPosition)
+        public Player(Vector2 startingPosition, Scripts.Scripts scripts)
         {
             this.position = startingPosition;
             applyGravity = false;
 
+            this.scripts = scripts;
         }
 
         public override void Initialize()
         {
-            maxHp = 800;
-            hp = 800;
-            maxMp = 10;
-            mp = 10;
+            characterSettings.maxHp = 80;
+            characterSettings.hp = 80;
+            characterSettings.maxMp = 10;
+            characterSettings.mp = 10;
 
-            rangeOfAttack = 150;
+            characterSettings.rangeOfAttack = 50;
+            characterSettings.weaponAttack = 200;
 
             base.Initialize();
         }
@@ -57,7 +59,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public override void Update(List<GameObject> gameObjects, TiledMap map, GameTime gameTime)
         {
-            if(!isAttacking && !isDead)
+            if(!isAttacking && !isHurting && !isDead)
                 CheckInput(gameObjects, map);
             base.Update(gameObjects, map, gameTime);
         }
@@ -66,8 +68,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         {
             if (currentAnimation == null)
                 return;
-
-            base.UpdateAnimations();
 
             if (isDead)
             {
@@ -87,9 +87,40 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 {
                     ChangeAnimation(Animations.DieRight);
                 }
+
+                if (IsAnimationComplete)
+                {
+                    scripts.PlayerRespawn();
+                }
             }
 
-            if (!isDead && isAttacking)
+            else if(isHurting)
+            {
+                currentAnimation.animationSpeed = 1;
+                velocity = Vector2.Zero;
+                if (direction.Y < 0 && AnimationIsNot(Animations.HurtBack))
+                {
+                    ChangeAnimation(Animations.HurtBack);
+                }
+                if (direction.Y > 0 && AnimationIsNot(Animations.HurtFront))
+                {
+                    ChangeAnimation(Animations.HurtFront);
+                }
+                if (direction.X < 0 && AnimationIsNot(Animations.HurtLeft))
+                {
+                    ChangeAnimation(Animations.HurtLeft);
+                }
+                if (direction.X > 0 && AnimationIsNot(Animations.HurtRight))
+                {
+                    ChangeAnimation(Animations.HurtRight);
+                }
+                if (IsAnimationComplete)
+                {
+                    isHurting = false;
+                }
+            }
+
+            else if (isAttacking)
             {
                 velocity = Vector2.Zero;
                 if (direction.Y < 0 && AnimationIsNot(Animations.SlashBack))
@@ -114,7 +145,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 }
             }
 
-            if (velocity != Vector2.Zero && isJumping == false && isAttacking == false && isDead == false)
+            else if (velocity != Vector2.Zero)
             {
                 if (direction.X < 0 && AnimationIsNot(Animations.WalkingLeft))
                 {
@@ -136,7 +167,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             }
 
-            else if (velocity == Vector2.Zero && isJumping == false && isAttacking == false && isDead == false)
+            else
+                //(velocity == Vector2.Zero && isJumping == false && isAttacking == false && isDead == false && isHurting == false)
             {
                 if (direction.X < 0 && AnimationIsNot(Animations.IdleLeft))
                 {
@@ -155,7 +187,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     ChangeAnimation(Animations.IdleFront);
                 }
             }
-
+            base.UpdateAnimations();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -186,16 +218,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             if (Input.KeyPressed(Keys.J) == true)
                 Heal(15);
             if (Input.KeyPressed(Keys.K) == true)
-               MaxHpAdd(50);
+                MaxHpAdd(50);
         }
 
         private void Fire(List<GameObject> gameObjects)
         {
             Character enemyInRange = NearestEnemy(gameObjects);
-            if(enemyInRange != null) Attack(enemyInRange, 1000);
-
-            //Console.WriteLine("enmyInRange" + enemyInRange.ToString());
-            
+            if (enemyInRange != null) Attack(enemyInRange, characterSettings.weaponAttack);
 
             //Console.WriteLine("Fire()");
             //HUD test
@@ -203,36 +232,43 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             {
                 ManaUse(1);
             }
-            catch(NotEnoughMpException e)
+            catch (NotEnoughMpException e)
             {
                 Damage(20);
             }
-            
+
         }
 
         private Character NearestEnemy(List<GameObject> gameObjects)
         {
-            float distans = 0, distansPrev = 0;
+            float distance = 0, distancePrev = 0;
             Character character;
             Character target = null;
 
             for (int i = 0; i < gameObjects.Count; i++)
             {
-                character = (Character)gameObjects[i];
-                if(!character.IsDead())
-                { 
-                    distans = Vector2.Distance(character.realPositon, realPositon);
-                    if (distansPrev == 0) distansPrev = distans;
-                    if (distans < distansPrev)
+                try
+                {
+                    character = (Character)gameObjects[i];
+                    if (!character.IsDead())
                     {
-                        distansPrev = distans;
-                        target = character;
-                        Console.WriteLine("NarestEnemy " + target.ToString());
+                        distance = Vector2.Distance(character.realPositon, realPositon);
+                        if (distancePrev == 0) distancePrev = distance;
+                        if (distance <= distancePrev)
+                        {
+                            distancePrev = distance;
+                            target = character;
+                        }
                     }
                 }
+
+                catch (InvalidCastException e)
+                {
+
+                }
+
+
             }
-            
-            //Console.WriteLine("NearestEnemy() distans " + distans + " GO.count " + gameObjects.Count);
 
             return target; // = (Character)gameObjects[1];
         }

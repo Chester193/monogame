@@ -5,6 +5,8 @@ using PG2D_2020_Dzienni_FD_Projekt.GameObjects;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using System.Collections.Generic;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies;
+using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts;
+using PG2D_2020_Dzienni_FD_Projekt.States;
 
 namespace PG2D_2020_Dzienni_FD_Projekt
 {
@@ -19,11 +21,21 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         int vResWidth = 1280, vResHeight = 720;
         int resWidth = 1280, resHeight = 720;
 
-        public List<GameObject> gameObjects = new List<GameObject>();
+        private State currentState;
+        private State nextState;
+
+        public List<GameObject> gameObjects;
 
         public TiledMap tiledMap;
 
-        GameHUD gameHUD = new GameHUD();
+        public GameHUD gameHUD = new GameHUD();
+
+        public List<ScriptsController> scriptsList;
+
+        public void ChangeState(State state)
+        {
+            nextState = state;
+        }
 
         public Game1()
         {
@@ -44,19 +56,37 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         /// </summary>
         protected override void Initialize()
         {
+            scriptsList = new List<ScriptsController>();
+            gameObjects = new List<GameObject>();
+
+            Scripts scripts = new Scripts(gameObjects, gameHUD);
+            scriptsList.Add(new ScriptsController(scripts.TeleportTo1000_1000));
+            scriptsList.Add(new ScriptsController(scripts.TeleportToLocationA));
+            scriptsList.Add(new ScriptsController(scripts.TeleportToLocationB));
+            scriptsList.Add(new ScriptsController(scripts.FastTravel));
+
+
             // TODO: Add your initialization logic here
             tiledMap = new TiledMap(vResWidth, vResHeight);
-            Player player = new Player();
-            player.position = new Vector2(400, 400);
-            gameObjects.Add(player);
 
+            int tileSpawnPointX = 59;
+            int tielSpawnPointY = 52;
+            Player player = new Player(new Vector2(tileSpawnPointX * 32, tielSpawnPointY * 32), scripts);
+
+            Vector2 realMapBeginning = new Vector2(tiledMap.tileSize * 31, tiledMap.tileSize * 31);
+            
+            gameObjects.Add(player);
             gameHUD.Player(player);
 
-            CharacterSettings characterSettings = new CharacterSettings();
-            characterSettings.maxHp = 100;
-            characterSettings.mode = CharcterMode.Guard;
-            characterSettings.range = 300;
-            characterSettings.rangeOfAttack = 30;
+            CharacterSettings characterSettings = new CharacterSettings
+            {
+                maxHp = 100,
+                mode = CharcterMode.Guard,
+                range = 300,
+                rangeOfAttack = 30,
+                weaponAttack = 20,
+            };
+
 
             List<Vector2> points = new List<Vector2>();
             //points.Add(new Vector2(650, 970));
@@ -65,10 +95,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             characterSettings.points = points;
 
-            gameObjects.Add(new Zombie(new Vector2(-100, -100), characterSettings));     //z jakiegoś powodu pierwszy przeciwnik jest zawsze niesmiertelny;
+            gameObjects.Add(new Zombie(new Vector2(1000, 1000), characterSettings));
             gameObjects.Add(new Lizard(new Vector2(720, 1000), characterSettings));
             gameObjects.Add(new Lizard(new Vector2(600, 800), characterSettings));
 
+            
             characterSettings.mode = 0;
             gameObjects.Add(new Lizard(new Vector2(400, 600), characterSettings));
             characterSettings.rangeOfAttack = 30;
@@ -76,10 +107,18 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(new Viking1(new Vector2(300, 300), characterSettings));
             gameObjects.Add(new Viking2(new Vector2(300, 200), characterSettings));
             gameObjects.Add(new Viking3(new Vector2(300, 100), characterSettings));
+
             characterSettings.mode = CharcterMode.FollowPlayer;
+
             gameObjects.Add(new Demon(new Vector2(290, 000), characterSettings));
 
-            
+            gameObjects.Add(new Trigger(new Vector2(250, 0), new Vector2(200, 30), 1, scriptsList));
+            gameObjects.Add(new Trigger(new Vector2(1100, 1570), new Vector2(200, 30), 2, scriptsList));
+            gameObjects.Add(new Trigger(new Vector2(345, 665), new Vector2(75), 3, scriptsList));
+            gameObjects.Add(new Trigger(new Vector2(890, 1300), new Vector2(75), 3, scriptsList));
+            gameObjects.Add(new Trigger(new Vector2(1465, 25), new Vector2(75), 3, scriptsList));
+
+
             Camera.Initialize(zoomLevel: 1.0f);
             base.Initialize();
         }
@@ -96,9 +135,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             LoadInitializeGameObjects(gameObjects);
 
             // TODO: use this.Content to load your game content here
-            tiledMap.Load(Content, @"Tilemaps/terrain.tmx");
+            tiledMap.Load(Content, @"Map/map.tmx");
 
             gameHUD.Load(Content);
+
+            currentState = new MenuState(this, graphics.GraphicsDevice, Content, false);
         }
 
         /// <summary>
@@ -117,16 +158,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            if(nextState != null)
+            {
+                currentState = nextState;
+                nextState = null;
+            }
 
-            Input.Update();
-            var playerObject = gameObjects[0];
-
-            // TODO: Add your update logic here
-            tiledMap.Update(gameTime, playerObject.position);
-            UpdateGameObjects(gameObjects, map: tiledMap, gameTime);
-            UpdateCamera(playerObject.position);
+            currentState.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -139,54 +177,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
-            ResolutionManager.BeginDraw();
-
-            var transformMatrix = Camera.GetTransformMatrix();
-
-            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.LinearClamp, null, null, null, transformMatrix);
-            tiledMap.Draw(spriteBatch);
-            DrawGameObjects(gameObjects);
-            spriteBatch.End();
-
-            gameHUD.Draw(spriteBatch);
+            currentState.Draw(gameTime, spriteBatch);
 
             base.Draw(gameTime);
         }
 
-        private void UpdateCamera(Vector2 followPosition)
-        {
-            Camera.Update(followPosition);
-        }
-
-        public void DrawGameObjects(List<GameObject> gameObjects)
-        {
-            List<GameObject> sortedGameObjects = new List<GameObject>(gameObjects);
-            sortedGameObjects.Sort((a, b) => a.BoundingBox.Y.CompareTo(b.BoundingBox.Y));
-            float depth = 0.1f;
-
-            foreach (var gameObject in sortedGameObjects)
-            {
-                gameObject.layerDepth = depth;
-                gameObject.Draw(spriteBatch);
-                depth -= 0.001f;
-            }
-
-        }
-
-        public void UpdateGameObjects(List<GameObject> gameObjects, TiledMap map, GameTime gameTime)
-        {
-            foreach (var gameObject in gameObjects)
-            {
-                gameObject.Update(gameObjects, map, gameTime);
-            }
-
-            //Parallel.ForEach(gameObjects, gameObject =>
-            //{
-            //    gameObject.Update(gameObjects);
-            //});
-
-        }
         public void LoadInitializeGameObjects(List<GameObject> gameObjects)
         {
             foreach (var gameObject in gameObjects)
@@ -203,6 +198,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             //});
         }
 
+        public void Restart()
+        {
+            Initialize();
+        }
 
     }
 }

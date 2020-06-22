@@ -136,7 +136,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     {
                         ChangeAnimation(Animations.SlashRight);
                     }
-                    if (IsAnimationComplete || distanceToPlayer >= rangeOfAttack)
+                    if (IsAnimationComplete || distanceToPlayer >= characterSettings.rangeOfAttack)
                     {
                         isAttacking = false;
                     }
@@ -157,6 +157,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             }
             base.UpdateAnimations();
         }
+
 
         public void FollowPlayer()
         {

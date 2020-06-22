@@ -122,5 +122,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         {
             return transformMatrix; //Return the transformMatrix we calculated earlier in this frame.
         }
+
+        public static Vector2 GetPosition() {
+            return position;
+        }
     }
 }
