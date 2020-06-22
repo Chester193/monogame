@@ -16,6 +16,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         List<string> fastTravelPlaces;
         int fastTraveTimer, messageTimer;
         string message = null;
+        string message2 = null;
 
         public void Load(ContentManager content)
         {
@@ -32,7 +33,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             spriteBatch.DrawString(fontDiamond, "MP: " + player.MpToString() + "/" + player.MaxMpToString(), new Vector2(10, 70), Color.Blue);
 
 
-            if (fastTravel && fastTraveTimer>0)
+            if (fastTravel && fastTraveTimer > 0)
             {
                 Vector2 v1 = new Vector2(500, 100);
                 spriteBatch.DrawString(fontDiamond, "[Click the number]", v1, Color.White);
@@ -44,7 +45,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 foreach (var place in fastTravelPlaces)
                 {
                     v2.Y += 38;
-                    spriteBatch.DrawString(fontDiamond, i + ". " +  place, v2, Color.White);
+                    spriteBatch.DrawString(fontDiamond, i + ". " + place, v2, Color.White);
                     i++;
                 }
 
@@ -56,11 +57,18 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 Vector2 v1 = new Vector2(500, 100);
                 spriteBatch.DrawString(fontDiamond, message, v1, Color.White);
 
+                if (message2 != null)
+                {
+                    Vector2 v2 = new Vector2(500, 300);
+                    spriteBatch.DrawString(fontDiamond, message2, v2, Color.White);
+                }
+
                 messageTimer--;
             }
             if (messageTimer <= 0)
             {
                 message = null;
+                message2 = null;
             }
 
             spriteBatch.End();
@@ -91,6 +99,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         public void PrintMessage(string msg)
         {
             message = msg;
+            messageTimer = 10;
+        }
+        public void PrintMessage2(string msg)
+        {
+            message2 = msg;
             messageTimer = 10;
         }
     }

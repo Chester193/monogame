@@ -64,6 +64,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             scriptsList.Add(new ScriptsController(scripts.TeleportToLocationA));
             scriptsList.Add(new ScriptsController(scripts.TeleportToLocationB));
             scriptsList.Add(new ScriptsController(scripts.FastTravel));
+            scriptsList.Add(new ScriptsController(scripts.StartDialog));
             scriptsList.Add(new ScriptsController(scripts.QuestDialog));
 
 
@@ -119,6 +120,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(new Trigger(new Vector2(1465, 25), new Vector2(75), 3, scriptsList));
 
             gameObjects.Add(new Trigger(new Vector2(tileSpawnPointX * 30, tileSpawnPointX * 30), new Vector2(75), 4, scriptsList));
+            gameObjects.Add(new Trigger(new Vector2(tileSpawnPointX * 30, tileSpawnPointX * 30), new Vector2(75), 5, scriptsList, false));
 
 
             Camera.Initialize(zoomLevel: 1.0f);

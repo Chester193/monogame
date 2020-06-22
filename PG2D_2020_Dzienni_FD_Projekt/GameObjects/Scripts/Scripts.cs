@@ -17,6 +17,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
         private List<GameObject> gameObjects;
         private GameHUD hud;
 
+        private bool startQuestDialog = false;
+
         public Scripts(List<GameObject> gameObjects, GameHUD GameHud)
         {
             this.gameObjects = gameObjects;
@@ -90,13 +92,40 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
                 hud.FastTravelStop();
             }
         }
+
+        public void StartDialog()
+        {
+            hud.PrintMessage("Press E to talk");
+
+            if (Input.IsKeyDown(Keys.E))
+            {
+                gameObjects[16].active = true;
+                gameObjects[15].active = false;
+                Console.WriteLine("SD");
+
+                gameObjects[0].active = false;
+            }
+        }
+
         public void QuestDialog()
         {
-            hud.PrintMessage("Press ENTER to talk");
-            if (Input.IsKeyDown(Keys.Enter))
+            Player player = (Player)gameObjects[0];
+            hud.PrintMessage(player.Interact());
+            hud.PrintMessage2("Press Q to end");
+            if (Input.IsKeyDown(Keys.Q))
             {
-                Player player = (Player)gameObjects[0];
-                hud.PrintMessage(player.Interact());
+                hud.PrintMessage2(null);
+                gameObjects[16].active = false;
+                gameObjects[15].active = true;
+                Console.WriteLine("QD");
+
+                gameObjects[0].active = true;
+            }
+
+            Quest currentQuest;
+            if (player.TryGetCurrentQuest(out currentQuest))
+            {
+                currentQuest.Confirm();
             }
         }
     }

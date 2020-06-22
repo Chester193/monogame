@@ -188,14 +188,14 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             float distanceToGuardPosition = Vector2.Distance(originalPosition, realPositon);
             if (distanceToPlayer < characterSettings.rangeOfAttack)
             {
-                Console.WriteLine("G  attack");
+                //Console.WriteLine("G  attack");
                 enemyAiMachine.Trigger(ETrigger.ATTACK);
             }
             else if (distanceToPlayer < range)
             {
                 if (distanceToGuardPosition <= 2 * range)
                 {
-                    Console.WriteLine("G  follow");
+                    //Console.WriteLine("G  follow");
                     enemyAiMachine.Trigger(ETrigger.FOLLOW_PLAYER);
                 }
             }
@@ -252,7 +252,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         private Vector2 RandomPoint(int range)
         {
             Vector2 rPoint = new Vector2(originalPosition.X, originalPosition.Y);
-            Console.WriteLine("RP: " + rPoint + " org: " + originalPosition);
+            //Console.WriteLine("RP: " + rPoint + " org: " + originalPosition);
             var rand = new Random();
             if (rand.NextDouble() < 0.5)
                 rPoint.X += rand.Next(range / 2, range);
@@ -263,7 +263,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 rPoint.Y += rand.Next(range / 2, range);
             else
                 rPoint.Y -= rand.Next(range / 2, range);
-            Console.WriteLine("RP: " + rPoint);
+            //Console.WriteLine("RP: " + rPoint);
 
             return rPoint;
         }
