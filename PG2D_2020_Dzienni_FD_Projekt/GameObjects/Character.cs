@@ -11,8 +11,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
     {
         WaitForPlayer,
         Guard,
-        FollowPlayer,
-        StandStill
+        FollowPlayer
     }
 
     public struct CharacterSettings
