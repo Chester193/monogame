@@ -94,7 +94,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             int tileSpawnPointX = 59;
             int tielSpawnPointY = 52;
             Player player = new Player(new Vector2(tileSpawnPointX * 32, tielSpawnPointY * 32), scripts, quests);
-            LoadInventory(player.Inventory);
+            LoadInventory(player);
 
             Vector2 realMapBeginning = new Vector2(tiledMap.tileSize * 31, tiledMap.tileSize * 31);
             
@@ -281,16 +281,28 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             return quests;
         }
 
-        private void LoadInventory(List<InventoryItem> inventory)
+        private void LoadInventory(Player player)
         {
+            List<InventoryItem> inventory = player.Inventory;
+
             Texture2D health_icon = Content.Load<Texture2D>("Other/health_potion");
             Texture2D mana_icon = Content.Load<Texture2D>("Other/mana_potion");
-            EventHandler handler = (s, e) => {};
+            EventHandler health_handler = (s, e) => 
+            { 
+                player.Heal(10);
+                inventory.Remove((InventoryItem)s);
+            };
 
-            for(int i = 0; i < 3; i++)
+            EventHandler mana_handler = (s, e) =>
             {
-                inventory.Add(new InventoryItem(health_icon, 50, handler));
-                inventory.Add(new InventoryItem(mana_icon, 30, handler));
+                player.ChargeMana(2);
+                inventory.Remove((InventoryItem)s);
+            };
+
+                for (int i = 0; i < 3; i++)
+            {
+                inventory.Add(new InventoryItem(health_icon, 50, health_handler));
+                inventory.Add(new InventoryItem(mana_icon, 30, mana_handler));
             }
         }
     }

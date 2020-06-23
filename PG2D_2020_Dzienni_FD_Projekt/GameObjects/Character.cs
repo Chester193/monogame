@@ -364,6 +364,12 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             if (characterSettings.hp >= characterSettings.maxHp) characterSettings.hp = characterSettings.maxHp;
         }
 
+        public void ChargeMana(int points)
+        {
+            characterSettings.mp += points;
+            if (characterSettings.mp >= characterSettings.maxMp) characterSettings.mp = characterSettings.maxMp;
+        }
+
         public void Heal()
         {
             characterSettings.hp = characterSettings.maxHp;
