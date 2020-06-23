@@ -45,6 +45,7 @@
     <Compile Include="Animations\Animation.cs" />
     <Compile Include="Component.cs" />
     <Compile Include="Controls\Button.cs" />
+    <Compile Include="Controls\InventoryItem.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameObjects\AnimatedObject.cs" />
     <Compile Include="GameObjects\Character.cs" />

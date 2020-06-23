@@ -96,6 +96,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.Controls
             }
         }
 
+        public Vector2 getSize()
+        {
+            return new Vector2(_texture.Width, _texture.Height);
+        }
+
         #endregion
     }
 }

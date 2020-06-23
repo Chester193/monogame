@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PG2D_2020_Dzienni_FD_Projekt.Controls
 {
-    class InventoryItem : Button
+    public class InventoryItem : Button
     {
         public int Value { get; set; }
 
