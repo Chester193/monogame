@@ -17,15 +17,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
     {
         private List<Component> _components;
         private Texture2D background;
-        private List<InventoryItem> items;
+        private Player player;
 
         public InventoryState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
           : base(game, graphicsDevice, content)
         {
-            background = _content.Load<Texture2D>("Other/background");
+            background = _content.Load<Texture2D>("Other/inventory");
 
             _game.IsMouseVisible = true;
-            items = ((Player)_game.gameObjects[0]).Inventory;
+            player = (Player)_game.gameObjects[0];
 
             UpdateComponents();
         }
@@ -41,7 +41,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
             foreach (var component in _components)
                 component.Update(gameTime);
 
-            if (items.Count != _components.Count)
+            if (player.Inventory.Count != _components.Count)
             {
                 UpdateComponents();
             }
@@ -52,6 +52,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
             spriteBatch.Begin();
 
             spriteBatch.Draw(background, new Rectangle(0, 0, ResolutionManager.VirtualWidth, ResolutionManager.VirtualHeight), Color.White);
+
+            player.DrawAnimation(spriteBatch, new Vector2(0, 100), 2f);
 
             foreach (var component in _components)
                 component.Draw(gameTime, spriteBatch);
@@ -68,7 +70,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
 
             _components = new List<Component>();
 
-            foreach (InventoryItem item in items)
+            foreach (InventoryItem item in player.Inventory)
             {
                 item.Position = currentPos;
                 _components.Add(item);
