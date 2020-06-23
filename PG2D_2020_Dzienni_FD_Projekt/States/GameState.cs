@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using PG2D_2020_Dzienni_FD_Projekt.Controls;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using System;
