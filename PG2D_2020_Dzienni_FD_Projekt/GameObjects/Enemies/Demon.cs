@@ -23,6 +23,12 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
             base.Initialize();
         }
 
+        protected override void UpdateAnimations()
+        {
+            if (isAttacking) currentAnimation.animationSpeed = 12;
+            base.UpdateAnimations();
+        }
+
         public override void Load(ContentManager content)
         {
 
@@ -34,7 +40,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
 
             base.Load(content);
 
-            boundingBoxOffset = new Vector2(78, 150);
+            boundingBoxOffset = new Vector2(110, 150);
             boundingBoxWidth = 35;
             boundingBoxHeight = 35;
         }
