@@ -454,6 +454,30 @@
 /processorParam:TextureFormat=Color
 /build:Map/hyptosis_tile-art-batch-4.png
 
+#begin Map/hyptosis_tile-art-batch-4.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Map/hyptosis_tile-art-batch-4.png
+
+#begin Map/hyptosis_tile-art-batch-5.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Map/hyptosis_tile-art-batch-5.png
+
 #begin Map/hyptosis_tile-art-batch-5.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -648,6 +672,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Map/tallgrass.png
+
+#begin Map/Terrain and Outside.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Map/Terrain and Outside.png
 
 #begin Map/terrain-v7.png
 /importer:TextureImporter

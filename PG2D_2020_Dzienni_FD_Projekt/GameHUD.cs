@@ -17,7 +17,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         int timer;
 
         bool pause = false;
-        bool gameStart = false;
+        bool gameStart = true;
 
         public void Load(ContentManager content)
         {
