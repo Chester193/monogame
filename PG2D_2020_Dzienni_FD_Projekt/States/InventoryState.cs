@@ -26,7 +26,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
             _game.IsMouseVisible = true;
             items = ((Player)_game.gameObjects[0]).Inventory;
 
-            Rectangle itemSpace = new Rectangle(10, 10, ResolutionManager.VirtualWidth - 20, ResolutionManager.VirtualHeight - 20);
+            Rectangle itemSpace = new Rectangle(250, 50, ResolutionManager.VirtualWidth - 500, ResolutionManager.VirtualHeight - 100);
 
             Vector2 currentPos = new Vector2(itemSpace.X, itemSpace.Y);
 

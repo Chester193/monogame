@@ -9,12 +9,12 @@ namespace PG2D_2020_Dzienni_FD_Projekt.Controls
 {
     public class InventoryItem : Button
     {
-        public int Value { get; set; }
+        public int Price { get; set; }
 
-        public InventoryItem(Texture2D texture, int value, EventHandler action)
+        public InventoryItem(Texture2D texture, int price, EventHandler action)
             :base(texture, null)
         {
-            Value = value;
+            Price = price;
             Click += action;
         }
     }
