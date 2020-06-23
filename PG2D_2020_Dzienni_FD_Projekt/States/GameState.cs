@@ -44,6 +44,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
                 _game.ChangeState(new MenuState(_game, _graphicsDevice, _content, true));
             }
 
+            if (Input.KeyPressed(Keys.I))
+            {
+                _game.ChangeState(new InventoryState(_game, _graphicsDevice, _content));
+            }
+
             Input.Update();
             var playerObject = _game.gameObjects[0];
 
