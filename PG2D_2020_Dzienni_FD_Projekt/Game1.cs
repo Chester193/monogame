@@ -8,6 +8,7 @@ using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts;
 using PG2D_2020_Dzienni_FD_Projekt.States;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.SpecialEnemies;
+using PG2D_2020_Dzienni_FD_Projekt.GameObjects.npc;
 
 namespace PG2D_2020_Dzienni_FD_Projekt
 {
@@ -132,6 +133,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             triggers.Add(new Trigger(new Vector2(tileSpawnPointX * 30, tileSpawnPointX * 30), new Vector2(75), 4, scriptsList));
             triggers.Add(new Trigger(new Vector2(tileSpawnPointX * 30, tileSpawnPointX * 30), new Vector2(75), 5, scriptsList, false));
+
+            characterSettings.mode = CharcterMode.WaitForPlayer;
+
+            gameObjects.Add(new NonplayableCharacter(new Vector2(tileSpawnPointX * 30 - 15, tileSpawnPointX * 30 - 15), characterSettings, NPCType.sage));
 
 
             Camera.Initialize(zoomLevel: 1.0f);
