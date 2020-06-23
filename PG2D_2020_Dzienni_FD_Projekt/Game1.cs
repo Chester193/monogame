@@ -289,14 +289,20 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             Texture2D mana_icon = Content.Load<Texture2D>("Other/mana_potion");
             EventHandler health_handler = (s, e) => 
             { 
-                player.Heal(10);
-                inventory.Remove((InventoryItem)s);
+                if(!player.IsHpFull())
+                {
+                    player.Heal(10);
+                    inventory.Remove((InventoryItem)s);
+                }
             };
 
             EventHandler mana_handler = (s, e) =>
             {
-                player.ChargeMana(2);
-                inventory.Remove((InventoryItem)s);
+                if (!player.IsMpFull())
+                {
+                    player.ChargeMana(2);
+                    inventory.Remove((InventoryItem)s);
+                }
             };
 
                 for (int i = 0; i < 3; i++)
