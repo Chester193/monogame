@@ -147,6 +147,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             else if (isAttacking)
             {
+                currentAnimation.animationSpeed = 1;
                 velocity = Vector2.Zero;
                 if (direction.Y < 0 && AnimationIsNot(Animations.SlashBack))
                 {
