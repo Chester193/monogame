@@ -51,7 +51,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             characterSettings.maxMp = 10;
             characterSettings.mp = 10;
 
-            characterSettings.rangeOfAttack = 50;
+            characterSettings.rangeOfAttack = 30;
             characterSettings.weaponAttack = 200;
 
             base.Initialize();
