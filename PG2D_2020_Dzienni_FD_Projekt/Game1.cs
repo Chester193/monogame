@@ -34,7 +34,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
         public List<ScriptsController> scriptsList;
 
-        public int tileSize = 32;
 
         public void ChangeState(State state)
         {
@@ -104,27 +103,27 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             characterSettings.points = points;
             characterSettings.rangeOfAttack = 30;
             characterSettings.mode = 0;
-            gameObjects.Add(new Zombie(new Vector2(104 * tileSize, 38 * tileSize), characterSettings));
-            gameObjects.Add(new Lizard(new Vector2(163 * tileSize, 56 * tileSize), characterSettings));
-            gameObjects.Add(new Lizard(new Vector2(172 * tileSize, 59 * tileSize), characterSettings));
-            gameObjects.Add(new Lizard(new Vector2(165 * tileSize, 77 * tileSize), characterSettings));
-            gameObjects.Add(new Zombie(new Vector2(101 * tileSize, 43 * tileSize), characterSettings));
-            gameObjects.Add(new Viking1(new Vector2(59 * tileSize, 92 * tileSize), characterSettings));
-            gameObjects.Add(new Viking2(new Vector2(59 * tileSize, 93 * tileSize), characterSettings));
-            gameObjects.Add(new Viking3(new Vector2(61 * tileSize, 91 * tileSize), characterSettings));
+            gameObjects.Add(new Zombie(new Vector2(104 * tiledMap.tileSize, 38 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Lizard(new Vector2(163 * tiledMap.tileSize, 56 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Lizard(new Vector2(172 * tiledMap.tileSize, 59 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Lizard(new Vector2(165 * tiledMap.tileSize, 77 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Zombie(new Vector2(101 * tiledMap.tileSize, 43 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking1(new Vector2(59 * tiledMap.tileSize, 92 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking2(new Vector2(59 * tiledMap.tileSize, 93 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking3(new Vector2(61 * tiledMap.tileSize, 91 * tiledMap.tileSize), characterSettings));
 
 
             characterSettings.mode = CharcterMode.FollowPlayer;
-            gameObjects.Add(new Demon(new Vector2(110 * tileSize, 58 * tileSize), characterSettings));
+            gameObjects.Add(new Demon(new Vector2(110 * tiledMap.tileSize, 58 * tiledMap.tileSize), characterSettings));
 
-            triggers.Add(new Trigger(new Vector2(240 * tileSize, 30 * tileSize), new Vector2(200, 30), 1, scriptsList));
-            triggers.Add(new Trigger(new Vector2(246 * tileSize, 30 * tileSize), new Vector2(200, 30), 2, scriptsList));
-            triggers.Add(new Trigger(new Vector2(45 * tileSize, 62 * tileSize), new Vector2(75), 3, scriptsList));
-            triggers.Add(new Trigger(new Vector2(158 * tileSize, 78 * tileSize), new Vector2(75), 3, scriptsList));
-            triggers.Add(new Trigger(new Vector2(50 * tileSize, 95 * tileSize), new Vector2(75), 3, scriptsList));
+            triggers.Add(new Trigger(new Vector2(240 * tiledMap.tileSize, 30 * tiledMap.tileSize), new Vector2(200, 30), 1, scriptsList));
+            triggers.Add(new Trigger(new Vector2(246 * tiledMap.tileSize, 30 * tiledMap.tileSize), new Vector2(200, 30), 2, scriptsList));
+            triggers.Add(new Trigger(new Vector2(45 * tiledMap.tileSize, 62 * tiledMap.tileSize), new Vector2(75), 3, scriptsList));
+            triggers.Add(new Trigger(new Vector2(158 * tiledMap.tileSize, 78 * tiledMap.tileSize), new Vector2(75), 3, scriptsList));
+            triggers.Add(new Trigger(new Vector2(50 * tiledMap.tileSize, 95 * tiledMap.tileSize), new Vector2(75), 3, scriptsList));
 
-            triggers.Add(new Trigger(new Vector2(54 * tileSize, 56 * tileSize), new Vector2(75), 4, scriptsList));
-            triggers.Add(new Trigger(new Vector2(54 * tileSize, 56 * tileSize), new Vector2(75), 5, scriptsList, false));
+            triggers.Add(new Trigger(new Vector2(54 * tiledMap.tileSize, 56 * tiledMap.tileSize), new Vector2(75), 4, scriptsList));
+            triggers.Add(new Trigger(new Vector2(54 * tiledMap.tileSize, 56 * tiledMap.tileSize), new Vector2(75), 5, scriptsList, false));
 
 
             Camera.Initialize(zoomLevel: 1.0f);
