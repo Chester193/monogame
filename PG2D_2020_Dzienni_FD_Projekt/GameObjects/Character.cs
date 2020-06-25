@@ -360,16 +360,12 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public bool IsHpFull()
         {
-            if (characterSettings.hp >= characterSettings.maxHp)
-                return true;
-            return false;
+            return characterSettings.hp >= characterSettings.maxHp;
         }
 
         public bool IsMpFull()
         {
-            if (characterSettings.mp >= characterSettings.maxMp)
-                return true;
-            return false;
+            return characterSettings.mp >= characterSettings.maxMp;
         }
 
         public void Heal(int points)
