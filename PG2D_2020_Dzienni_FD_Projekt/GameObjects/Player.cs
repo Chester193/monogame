@@ -250,18 +250,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         {
             Character enemyInRange = NearestEnemy(gameObjects);
             if (enemyInRange != null) Attack(enemyInRange, characterSettings.weaponAttack);
-
-            //Console.WriteLine("Fire()");
-            //HUD test
-            try
-            {
-                ManaUse(1);
-            }
-            catch (NotEnoughMpException e)
-            {
-                Damage(20);
-            }
-
         }
 
         private Character NearestEnemy(List<GameObject> gameObjects)
