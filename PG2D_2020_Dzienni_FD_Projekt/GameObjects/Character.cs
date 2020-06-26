@@ -358,10 +358,26 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             if (characterSettings.mp <= 0) characterSettings.mp = 0;
         }
 
+        public bool IsHpFull()
+        {
+            return characterSettings.hp >= characterSettings.maxHp;
+        }
+
+        public bool IsMpFull()
+        {
+            return characterSettings.mp >= characterSettings.maxMp;
+        }
+
         public void Heal(int points)
         {
             characterSettings.hp += points;
-            if (characterSettings.hp >= characterSettings.maxHp) characterSettings.hp = characterSettings.maxHp;
+            if (IsHpFull()) characterSettings.hp = characterSettings.maxHp;
+        }
+
+        public void ChargeMana(int points)
+        {
+            characterSettings.mp += points;
+            if (IsMpFull()) characterSettings.mp = characterSettings.maxMp;
         }
 
         public void Heal()

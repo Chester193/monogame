@@ -143,9 +143,14 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 base.Draw(spriteBatch);
             else
             {
-                spriteBatch.Draw(texture, position, new Rectangle(currentAnimationX, currentAnimationY, animationSet.frameWidth, animationSet.frameHeight), tintColor, rotation, Vector2.Zero, scale, spriteEffect, layerDepth);
+                DrawAnimation(spriteBatch, position, scale);
                 DrawBoundingBox(spriteBatch);
             }
+        }
+
+        public void DrawAnimation(SpriteBatch spriteBatch, Vector2 position, float scale)
+        {
+            spriteBatch.Draw(texture, position, new Rectangle(currentAnimationX, currentAnimationY, animationSet.frameWidth, animationSet.frameHeight), tintColor, rotation, Vector2.Zero, scale, spriteEffect, layerDepth);
         }
 
         protected virtual void ChangeAnimation(string newAnimation)
