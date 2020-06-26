@@ -182,7 +182,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         {
             isAttacking = true;
             Player player = (Player)gameObjects[0];
-            Attack(player, 20);
+            Attack(player, characterSettings.weaponAttack);
         }
 
         public void Guard(int range)
