@@ -46,13 +46,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public override void Initialize()
         {
-            characterSettings.maxHp = 80;
-            characterSettings.hp = 80;
+            characterSettings.maxHp = 100;
+            characterSettings.hp = 100;
             characterSettings.maxMp = 10;
             characterSettings.mp = 10;
 
             characterSettings.rangeOfAttack = 30;
-            characterSettings.weaponAttack = 200;
+            characterSettings.weaponAttack = 40;
 
             base.Initialize();
         }
@@ -256,9 +256,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         private Character NearestEnemy(List<GameObject> gameObjects)
         {
-            float distance = 0, distancePrev = 0;
+            float distance = 0, distancePrev = 0, weaponDistance = 0;
             Character character;
             Character target = null;
+            Vector2 weaponPositon = new Vector2(realPositon.X + (direction.X * characterSettings.rangeOfAttack), realPositon.Y + (direction.Y * characterSettings.rangeOfAttack));
 
             for (int i = 0; i < gameObjects.Count; i++)
             {
@@ -268,10 +269,12 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     if (!character.IsDead())
                     {
                         distance = Vector2.Distance(character.realPositon, realPositon);
-                        if (distancePrev == 0) distancePrev = distance;
-                        if (distance <= distancePrev)
+                        weaponDistance = Vector2.Distance(character.realPositon, weaponPositon);
+                        //Console.WriteLine("dist: " + distance + " W-dist: " + weaponDistance);
+                        if (distancePrev == 0) distancePrev = weaponDistance;
+                        if (weaponDistance <= distancePrev)
                         {
-                            distancePrev = distance;
+                            distancePrev = weaponDistance;
                             target = character;
                         }
                     }
