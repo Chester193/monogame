@@ -166,6 +166,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 }
                 if (IsAnimationComplete)
                 {
+                    hit = true;
                     isAttacking = false;
                 }
             }
@@ -234,7 +235,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             if (Input.KeyPressed(Keys.Space))
             {
-                Fire(gameObjects);
+                isAttacking = true;
+                MeleAttack(gameObjects);
             }
 
             //HUD tests:
@@ -246,7 +248,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 MaxHpAdd(50);
         }
 
-        private void Fire(List<GameObject> gameObjects)
+        private void MeleAttack(List<GameObject> gameObjects)
         {
             Character enemyInRange = NearestEnemy(gameObjects);
             if (enemyInRange != null) Attack(enemyInRange, characterSettings.weaponAttack);

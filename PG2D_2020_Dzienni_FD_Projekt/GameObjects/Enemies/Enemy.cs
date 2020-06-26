@@ -139,6 +139,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     if (IsAnimationComplete || distanceToPlayer >= characterSettings.rangeOfAttack)
                     {
                         isAttacking = false;
+                        hit = true;
                     }
                 }
 
@@ -179,6 +180,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public void AttackPlayer()
         {
+            isAttacking = true;
             Player player = (Player)gameObjects[0];
             Attack(player, 20);
         }
