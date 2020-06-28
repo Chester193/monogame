@@ -775,6 +775,12 @@
 /processorParam:TextureFormat=Color
 /build:Map/youngwheat.png
 
+#begin Music/JeffSpeed68_-_Jam_after_brunch.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/JeffSpeed68_-_Jam_after_brunch.mp3
+
 #begin Other/background.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
