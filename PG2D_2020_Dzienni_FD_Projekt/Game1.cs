@@ -136,7 +136,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             characterSettings.mode = CharcterMode.WaitForPlayer;
 
-            gameObjects.Add(new NonplayableCharacter(new Vector2(tileSpawnPointX * 30 - 15, tileSpawnPointX * 30 - 15), characterSettings, NPCType.sage));
+            gameObjects.Add(new NonplayableCharacter(new Vector2(tileSpawnPointX * 30, tileSpawnPointX * 30 - 25), characterSettings, NPCType.sage));
 
 
             Camera.Initialize(zoomLevel: 1.0f);

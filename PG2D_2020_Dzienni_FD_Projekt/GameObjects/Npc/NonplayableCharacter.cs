@@ -34,7 +34,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.npc
 
         public override void Initialize()
         {
-            scale = 0.5f;
+            scale = 0.3f;
             base.Initialize();
         }
 
@@ -67,9 +67,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.npc
 
             base.Load(content);
 
-            boundingBoxOffset = new Vector2(50, 50);
-            boundingBoxWidth = 50;
-            boundingBoxHeight = 50;
+            boundingBoxOffset = new Vector2(45, 70);
+            boundingBoxWidth = 60;
+            boundingBoxHeight = 60;
         }
     }
 }
