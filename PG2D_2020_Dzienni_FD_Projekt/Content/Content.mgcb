@@ -490,6 +490,30 @@
 /processorParam:TextureFormat=Color
 /build:Map/hyptosis_tile-art-batch-5.png
 
+#begin Map/Johans Castle Walls A5.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Map/Johans Castle Walls A5.png
+
+#begin Map/Johans Castle Walls B.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Map/Johans Castle Walls B.png
+
 #begin Map/map.tmx
 /copy:Map/map.tmx
 
@@ -516,6 +540,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Map/mountains.png
+
+#begin Map/mrozna_kraina.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Map/mrozna_kraina.png
 
 #begin Map/OutsideObjects.png
 /importer:TextureImporter
@@ -552,6 +588,42 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Map/PandaMaru_MV_IceCave_B32x32.png
+
+#begin Map/PandaMaru_MV_igloo.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Map/PandaMaru_MV_igloo.png
+
+#begin Map/PandaMaru_MV_nature3.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Map/PandaMaru_MV_nature3.png
+
+#begin Map/PandaMaru_MV_nobleinterior.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Map/PandaMaru_MV_nobleinterior.png
 
 #begin Map/plants.png
 /importer:TextureImporter

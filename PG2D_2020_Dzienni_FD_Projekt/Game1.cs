@@ -61,8 +61,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             // TODO: Add your initialization logic here
             tiledMap = new TiledMap(vResWidth, vResHeight);
 
-            int tileSpawnPointX = 83;
-            int tielSpawnPointY = 157;
+            int tileSpawnPointX = 258;
+            int tielSpawnPointY = 108;
             Player player = new Player(new Vector2(tileSpawnPointX * 32, tielSpawnPointY * 32), scripts);
 
             Vector2 realMapBeginning = new Vector2(tiledMap.tileSize * 31, tiledMap.tileSize * 31);
