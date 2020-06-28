@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using PG2D_2020_Dzienni_FD_Projekt.Controls;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities.SpriteAtlas;
 using System;
@@ -15,6 +16,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
     public class Player : Character
     {
         private List<Quest> quests;
+        public List<InventoryItem> Inventory { get; private set; }
+
         private int currentQuestIndex = 0;
 
         public Player()
@@ -29,6 +32,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             this.scripts = scripts;
             this.quests = quests;
+
+            Inventory = new List<InventoryItem>();
         }
 
         public bool TryGetCurrentQuest(out Quest currentQuest)
@@ -147,6 +152,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             else if (isAttacking)
             {
+                currentAnimation.animationSpeed = 1;
                 velocity = Vector2.Zero;
                 if (direction.Y < 0 && AnimationIsNot(Animations.SlashBack))
                 {

@@ -13,103 +13,96 @@ Left - Died
   index: 1
 Left - Died
   rotate: false
-  xy: 139, 2
+  xy: 413, 2
   size: 135, 135
   orig: 135, 135
   offset: 0, 0
   index: 2
 Left - Died
   rotate: false
-  xy: 276, 2
-  size: 135, 135
-  orig: 135, 135
-  offset: 0, 0
-  index: 4
-Left - Died
-  rotate: false
-  xy: 276, 2
-  size: 135, 135
-  orig: 135, 135
-  offset: 0, 0
-  index: 6
-Left - Died
-  rotate: false
-  xy: 276, 2
+  xy: 550, 2
   size: 135, 135
   orig: 135, 135
   offset: 0, 0
   index: 3
 Left - Died
   rotate: false
-  xy: 276, 2
-  size: 135, 135
-  orig: 135, 135
-  offset: 0, 0
-  index: 5
-Left - Died
-  rotate: false
-  xy: 413, 2
-  size: 135, 135
-  orig: 135, 135
-  offset: 0, 0
-  index: 7
-Left - Died
-  rotate: false
-  xy: 550, 2
-  size: 135, 135
-  orig: 135, 135
-  offset: 0, 0
-  index: 8
-Left - Died
-  rotate: false
   xy: 687, 2
   size: 135, 135
   orig: 135, 135
   offset: 0, 0
-  index: 9
+  index: 4
 Left - Died
   rotate: false
   xy: 824, 2
   size: 135, 135
   orig: 135, 135
   offset: 0, 0
-  index: 10
+  index: 5
 Left - Died
   rotate: false
   xy: 961, 2
   size: 135, 135
   orig: 135, 135
   offset: 0, 0
-  index: 11
+  index: 6
 Left - Died
   rotate: false
   xy: 1098, 2
   size: 135, 135
   orig: 135, 135
   offset: 0, 0
-  index: 12
+  index: 7
 Left - Died
   rotate: false
   xy: 1235, 2
   size: 135, 135
   orig: 135, 135
   offset: 0, 0
-  index: 13
+  index: 8
 Left - Died
   rotate: false
   xy: 1372, 2
   size: 135, 135
   orig: 135, 135
   offset: 0, 0
-  index: 14
-Left - Hurting
+  index: 9
+Left - Died
   rotate: false
-  xy: 1509, 2
+  xy: 139, 2
   size: 135, 135
   orig: 135, 135
   offset: 0, 0
-  index: 0
+  index: 10
 Left - Died
+  rotate: false
+  xy: 276, 2
+  size: 135, 135
+  orig: 135, 135
+  offset: 0, 0
+  index: 12
+Left - Died
+  rotate: false
+  xy: 276, 2
+  size: 135, 135
+  orig: 135, 135
+  offset: 0, 0
+  index: 14
+Left - Died
+  rotate: false
+  xy: 276, 2
+  size: 135, 135
+  orig: 135, 135
+  offset: 0, 0
+  index: 11
+Left - Died
+  rotate: false
+  xy: 276, 2
+  size: 135, 135
+  orig: 135, 135
+  offset: 0, 0
+  index: 13
+Left - Hurting
   rotate: false
   xy: 1509, 2
   size: 135, 135
@@ -795,13 +788,6 @@ Right - Died
   orig: 135, 135
   offset: 0, 0
   index: 11
-Right - Hurting
-  rotate: false
-  xy: 1098, 961
-  size: 135, 135
-  orig: 135, 135
-  offset: 0, 0
-  index: 0
 Right - Died
   rotate: false
   xy: 1098, 961
