@@ -406,6 +406,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public void Attack(Character target, int dmg)
         {
+            if (target == null) return;
             float distanceToTarget = Vector2.Distance(target.realPositon, realPositon);
             //Console.WriteLine("Character.Attack() " + distansToTarget + " / " + rangeOfAttack + " t.rPositon " + target.realPositon + " player.rPosioton" + realPositon);
             /*
@@ -420,8 +421,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             if (distanceToTarget < characterSettings.rangeOfAttack && hit)
             {
                 target.Damage(dmg);
-                hit = false;
             }
+            hit = false;
         }
 
 
