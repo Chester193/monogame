@@ -265,6 +265,21 @@
 /processorParam:TextureFormat=Color
 /build:Characters/Pirate.png
 
+#begin Characters/secondWarrior.atlas
+/copy:Characters/secondWarrior.atlas
+
+#begin Characters/secondWarrior.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Characters/secondWarrior.png
+
 #begin Characters/viking1.atlas
 /copy:Characters/viking1.atlas
 
