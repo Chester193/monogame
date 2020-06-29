@@ -47,6 +47,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             public static string HurtRight = "Right - Hurt";
             public static string IceCone = "iceCone";
             public static string OrcAxe = "orcAxe";
+            public static string Greeting = "greeting";
             //public static string Dying = "Dying";
         }
         //protected enum Animations

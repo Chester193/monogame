@@ -43,6 +43,21 @@
 /processorParam:TextureFormat=Color
 /build:Characters/big_guy.png
 
+#begin Characters/blacksmith.atlas
+/copy:Characters/blacksmith.atlas
+
+#begin Characters/blacksmith.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Characters/blacksmith.png
+
 #begin Characters/Crow.atlas
 /copy:Characters/Crow.atlas
 
@@ -175,6 +190,21 @@
 /processorParam:TextureFormat=Color
 /build:Characters/Ice Golem.png
 
+#begin Characters/jeweler.atlas
+/copy:Characters/jeweler.atlas
+
+#begin Characters/jeweler.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Characters/jeweler.png
+
 #begin Characters/jhin.atlas
 /copy:Characters/jhin.atlas
 
@@ -265,6 +295,22 @@
 /processorParam:TextureFormat=Color
 /build:Characters/Pirate.png
 
+
+#begin Characters/sage.atlas
+/copy:Characters/sage.atlas
+
+#begin Characters/sage.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Characters/sage.png
+
 #begin Characters/secondWarrior.atlas
 /copy:Characters/secondWarrior.atlas
 
@@ -324,6 +370,21 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Characters/viking3.png
+
+#begin Characters/warlord.atlas
+/copy:Characters/warlord.atlas
+
+#begin Characters/warlord.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Characters/warlord.png
 
 #begin Characters/warrior.atlas
 /copy:Characters/warrior.atlas
