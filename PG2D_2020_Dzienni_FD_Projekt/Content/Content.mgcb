@@ -300,7 +300,7 @@
 /copy:Characters/sage.atlas
 
 #begin Characters/sage.png
-importer:TextureImporter
+/importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
 /processorParam:ColorKeyEnabled=True
