@@ -292,9 +292,17 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             Texture2D health_icon = Content.Load<Texture2D>("Other/health_potion");
             Texture2D mana_icon = Content.Load<Texture2D>("Other/mana_potion");
+            EventHandler trade_handler = (s, e) =>
+            {
+                if (currentState is TradeState)
+                {
+                    ((TradeState)currentState).Move((InventoryItem)s);
+                }
+            };
+
             EventHandler health_handler = (s, e) => 
             { 
-                if(!player.IsHpFull())
+                if (!player.IsHpFull() && currentState is InventoryState)
                 {
                     player.Heal(10);
                     inventory.Remove((InventoryItem)s);
@@ -303,7 +311,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             EventHandler mana_handler = (s, e) =>
             {
-                if (!player.IsMpFull())
+                if (!player.IsMpFull() && currentState is InventoryState)
                 {
                     player.ChargeMana(2);
                     inventory.Remove((InventoryItem)s);
@@ -312,8 +320,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
                 for (int i = 0; i < 3; i++)
             {
-                inventory.Add(new InventoryItem(health_icon, 50, health_handler));
-                inventory.Add(new InventoryItem(mana_icon, 30, mana_handler));
+                inventory.Add(new InventoryItem(health_icon, 50, health_handler + trade_handler));
+                inventory.Add(new InventoryItem(mana_icon, 30, mana_handler + trade_handler));
             }
         }
     }

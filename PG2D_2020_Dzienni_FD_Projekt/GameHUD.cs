@@ -9,6 +9,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
     public class GameHUD
     {
         SpriteFont fontArial, fontDiamond, fontCocoonian;
+        Texture2D moneyIcon, expIcon;
         Player player;
         Enemy enemy;
 
@@ -23,15 +24,20 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             fontArial = content.Load<SpriteFont>("Fonts\\Arial");
             fontDiamond = content.Load<SpriteFont>("Fonts\\diamondfantasy");
             fontCocoonian = content.Load<SpriteFont>("Fonts\\cocoonian");
+            moneyIcon = content.Load<Texture2D>("Other/money");
+            expIcon = content.Load<Texture2D>("Other/exp");
         }
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
 
-            spriteBatch.DrawString(fontCocoonian, "To bedzie sumer gra!!!", new Vector2(10, 0), Color.Gold);
-            spriteBatch.DrawString(fontDiamond, "HP: " + player.HpToString() + "/" + player.MaxHpToString(), new Vector2(10, 30), Color.Red);
-            spriteBatch.DrawString(fontDiamond, "MP: " + player.MpToString() + "/" + player.MaxMpToString(), new Vector2(10, 70), Color.Blue);
-
+            //spriteBatch.DrawString(fontCocoonian, "To bedzie sumer gra!!!", new Vector2(10, 0), Color.Gold);
+            spriteBatch.Draw(moneyIcon, new Rectangle(10, 0, moneyIcon.Width, moneyIcon.Height), Color.Gold);
+            spriteBatch.DrawString(fontDiamond, player.Money.ToString(), new Vector2(35, 0), Color.Gold, 0f, Vector2.Zero, 0.7f, SpriteEffects.None, 0.1f);
+            spriteBatch.Draw(expIcon, new Rectangle(100, 0, expIcon.Width, expIcon.Height), Color.Silver);
+            spriteBatch.DrawString(fontDiamond, player.Exp.ToString(), new Vector2(125, 0), Color.Silver, 0f, Vector2.Zero, 0.7f, SpriteEffects.None, 0.1f);
+            spriteBatch.DrawString(fontDiamond, "HP: " + player.HpToString() + "/" + player.MaxHpToString(), new Vector2(10, 25), Color.Red);
+            spriteBatch.DrawString(fontDiamond, "MP: " + player.MpToString() + "/" + player.MaxMpToString(), new Vector2(10, 65), Color.Blue);
 
             if (fastTravel && fastTraveTimer > 0)
             {

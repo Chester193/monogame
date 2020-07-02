@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using PG2D_2020_Dzienni_FD_Projekt.Controls;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects;
+using PG2D_2020_Dzienni_FD_Projekt.GameObjects.npc;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using System;
 using System.Collections.Generic;
@@ -52,7 +53,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
             //TODO: Delete It
             if (Input.KeyPressed(Keys.R))
             {
-                _game.ChangeState(new TradeState(_game, _graphicsDevice, _content));
+                _game.ChangeState(new TradeState(_game, _graphicsDevice, _content, (Character)_game.gameObjects[14]));
             }
 
             Input.Update();

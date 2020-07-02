@@ -862,6 +862,18 @@
 /processorParam:TextureFormat=Color
 /build:Other/background.jpg
 
+#begin Other/exp.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Other/exp.png
+
 #begin Other/health_potion.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -897,6 +909,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Other/mana_potion.png
+
+#begin Other/money.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Other/money.png
 
 #begin Other/pixel.png
 /importer:TextureImporter

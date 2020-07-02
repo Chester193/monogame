@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using PG2D_2020_Dzienni_FD_Projekt.Controls;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
     public class Character : AnimatedObject
     {
+        public List<InventoryItem> Inventory { get; private set; }
         public PathFinder pathFinder = new PathFinder();
         public Timer timer = new Timer();
         public Vector2 velocity;
@@ -60,6 +62,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public Scripts.Scripts scripts;
         
         public CharacterSettings characterSettings;
+
+        public Character()
+        {
+            Inventory = new List<InventoryItem>();
+        }
 
         public override void Initialize()
         {

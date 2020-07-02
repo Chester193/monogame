@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using PG2D_2020_Dzienni_FD_Projekt.Controls;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects;
+using PG2D_2020_Dzienni_FD_Projekt.GameObjects.npc;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using System;
 using System.Collections.Generic;
@@ -18,9 +19,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
         private List<Component> _components;
         private Texture2D background;
         private Player player;
+        private Character npc;
         private SpriteFont font;
+        private int playerItemCount;
 
-        public TradeState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
+        public TradeState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, Character npc)
           : base(game, graphicsDevice, content)
         {
             background = _content.Load<Texture2D>("Other/trade");
@@ -28,8 +31,32 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
 
             _game.IsMouseVisible = true;
             player = (Player)_game.gameObjects[0];
-
+            this.npc = npc;
+            playerItemCount = player.Inventory.Count;
             UpdateComponents();
+        }
+
+        public void Move(InventoryItem item)
+        {
+            if(player.Inventory.IndexOf(item) >= 0)
+            {
+                player.EarnMoney(item.Price);
+                player.Inventory.Remove(item);
+                npc.Inventory.Add(item);
+            }
+            else if(npc.Inventory.IndexOf(item) >= 0)
+            {
+                try
+                {
+                    player.SpendMoney(item.Price);
+                    npc.Inventory.Remove(item);
+                    player.Inventory.Add(item);
+                }
+                catch(NotEnoughMoneyException)
+                {
+                    //TODO: Print info
+                }
+            }
         }
 
         public override void Update(GameTime gameTime)
@@ -43,9 +70,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
             foreach (var component in _components)
                 component.Update(gameTime);
 
-            if (player.Inventory.Count != _components.Count)
+            if (player.Inventory.Count != playerItemCount)
             {
                 UpdateComponents();
+                playerItemCount = player.Inventory.Count;
             }
         }
 
@@ -69,12 +97,18 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
 
         public void UpdateComponents()
         {
-            Rectangle itemSpace = new Rectangle(50, 150, ResolutionManager.VirtualWidth - 750, ResolutionManager.VirtualHeight - 175);
+            _components = new List<Component>();
+            Rectangle playerItemSpace = new Rectangle(50, 150, ResolutionManager.VirtualWidth - 750, ResolutionManager.VirtualHeight - 175);
+            Rectangle npcItemSpace = new Rectangle(725, 150, ResolutionManager.VirtualWidth - 750, ResolutionManager.VirtualHeight - 175);
+            UpdateComponentsFor(player, playerItemSpace);
+            UpdateComponentsFor(npc, npcItemSpace);
+        }
+
+        public void UpdateComponentsFor(Character character, Rectangle itemSpace)
+        {
             Vector2 currentPos = new Vector2(itemSpace.X, itemSpace.Y);
 
-            _components = new List<Component>();
-
-            foreach (InventoryItem item in player.Inventory)
+            foreach (InventoryItem item in character.Inventory)
             {
                 item.Position = currentPos;
                 _components.Add(item);
