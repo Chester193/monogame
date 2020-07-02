@@ -27,7 +27,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
             _game.IsMouseVisible = true;
 
             int xButtonPosition = ResolutionManager.VirtualWidth / 2 - buttonTexture.Width / 2;
-            int yButtonOffset = buttonTexture.Height * 2;
+            int yButtonOffset = (int)(buttonTexture.Height * 1.5);
             int yButtonPosition = 0;
 
             _components = new List<Component>();
