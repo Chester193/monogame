@@ -89,6 +89,7 @@
     <Compile Include="States\MenuState.cs" />
     <Compile Include="States\PausedGameState.cs" />
     <Compile Include="States\State.cs" />
+    <Compile Include="States\TradeState.cs" />
     <Compile Include="TiledMap.cs" />
     <Compile Include="Timer.cs" />
     <Compile Include="Utilities\Camera.cs" />

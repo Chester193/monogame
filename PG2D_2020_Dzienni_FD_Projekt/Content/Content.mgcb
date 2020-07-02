@@ -295,7 +295,6 @@
 /processorParam:TextureFormat=Color
 /build:Characters/Pirate.png
 
-
 #begin Characters/sage.atlas
 /copy:Characters/sage.atlas
 
@@ -910,6 +909,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Other/pixel.png
+
+#begin Other/trade.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Other/trade.png
 
 #begin Tilemaps/terrain.png
 /importer:TextureImporter
