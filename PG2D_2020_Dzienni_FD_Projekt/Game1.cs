@@ -13,6 +13,7 @@ using PG2D_2020_Dzienni_FD_Projekt.Controls;
 using Microsoft.Xna.Framework.Content;
 using System;
 using System.Runtime.Remoting.Messaging;
+using Microsoft.Xna.Framework.Media;
 
 namespace PG2D_2020_Dzienni_FD_Projekt
 {
@@ -23,6 +24,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Song song;
 
         int vResWidth = 1280, vResHeight = 720;
         int resWidth = 1280, resHeight = 720;
@@ -165,6 +167,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             // TODO: use this.Content to load your game content here
             tiledMap.Load(Content, @"Map/map.tmx");
+
+            this.song = Content.Load<Song>("Music/JeffSpeed68_-_Jam_after_brunch");
+            MediaPlayer.Play(song);
+            MediaPlayer.IsRepeating = true;
 
             gameHUD.Load(Content);
 
