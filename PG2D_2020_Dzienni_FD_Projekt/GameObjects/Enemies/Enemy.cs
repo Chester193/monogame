@@ -59,6 +59,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                         Patrol();
                     })
             .Build();
+
+
+            target = null;
         }
 
         public override void Update(List<GameObject> gameObjectsG, TiledMap mapG, GameTime gameTime)
@@ -72,6 +75,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             if (nextPoint.Equals(new Vector2(0)))
                 nextPoint = originalPosition;
+
+            if (hit) Attack(this.target, characterSettings.weaponAttack);
 
             if (!isDead)
             {
@@ -182,7 +187,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         {
             isAttacking = true;
             Player player = (Player)gameObjects[0];
-            Attack(player, characterSettings.weaponAttack);
+            target = player;
         }
 
         public void Guard(int range)

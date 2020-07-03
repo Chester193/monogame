@@ -62,6 +62,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public CharacterSettings characterSettings;
 
+        public Character target;
+
         public override void Initialize()
         {
             velocity = Vector2.Zero;

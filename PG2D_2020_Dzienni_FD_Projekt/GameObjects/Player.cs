@@ -16,7 +16,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
     {
         private List<Quest> quests;
         private int currentQuestIndex = 0;
-        private Character target = null;
+        
 
         public Player()
         {
@@ -30,6 +30,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             this.scripts = scripts;
             this.quests = quests;
+
+            target = null;
         }
 
         public bool TryGetCurrentQuest(out Quest currentQuest)
@@ -85,7 +87,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     currentQuestIndex++;
             }
 
-            if (hit) Attack(target, characterSettings.weaponAttack);
+            if (hit) Attack(this.target, characterSettings.weaponAttack);
 
             if (!isAttacking && !isHurting && !isDead)
                 CheckInput(gameObjects, map);
