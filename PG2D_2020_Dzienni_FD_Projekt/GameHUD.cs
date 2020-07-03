@@ -9,7 +9,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
     public class GameHUD
     {
         SpriteFont fontArial, fontDiamond, fontCocoonian;
-        Texture2D moneyIcon, expIcon;
+        Texture2D moneyIcon, expIcon, background;
         Player player;
         Enemy enemy;
 
@@ -26,18 +26,20 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             fontCocoonian = content.Load<SpriteFont>("Fonts\\cocoonian");
             moneyIcon = content.Load<Texture2D>("Other/money");
             expIcon = content.Load<Texture2D>("Other/exp");
+            background = content.Load<Texture2D>("Other/HUD_bg");
         }
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin();
 
+            spriteBatch.Draw(background, new Rectangle(0, 0, 230, 115), Color.White);
             //spriteBatch.DrawString(fontCocoonian, "To bedzie sumer gra!!!", new Vector2(10, 0), Color.Gold);
-            spriteBatch.Draw(moneyIcon, new Rectangle(10, 0, moneyIcon.Width, moneyIcon.Height), Color.Gold);
+            spriteBatch.Draw(moneyIcon, new Rectangle(20, 10, moneyIcon.Width, moneyIcon.Height), Color.Gold);
             spriteBatch.DrawString(fontDiamond, player.Money.ToString(), new Vector2(35, 0), Color.Gold, 0f, Vector2.Zero, 0.7f, SpriteEffects.None, 0.1f);
-            spriteBatch.Draw(expIcon, new Rectangle(100, 0, expIcon.Width, expIcon.Height), Color.Silver);
+            spriteBatch.Draw(expIcon, new Rectangle(110, 10, expIcon.Width, expIcon.Height), Color.Silver);
             spriteBatch.DrawString(fontDiamond, player.Exp.ToString(), new Vector2(125, 0), Color.Silver, 0f, Vector2.Zero, 0.7f, SpriteEffects.None, 0.1f);
-            spriteBatch.DrawString(fontDiamond, "HP: " + player.HpToString() + "/" + player.MaxHpToString(), new Vector2(10, 25), Color.Red);
-            spriteBatch.DrawString(fontDiamond, "MP: " + player.MpToString() + "/" + player.MaxMpToString(), new Vector2(10, 65), Color.Blue);
+            spriteBatch.DrawString(fontDiamond, "HP: " + player.HpToString() + "/" + player.MaxHpToString(), new Vector2(20, 35), Color.Red);
+            spriteBatch.DrawString(fontDiamond, "MP: " + player.MpToString() + "/" + player.MaxMpToString(), new Vector2(20, 75), Color.Blue);
 
             if (fastTravel && fastTraveTimer > 0)
             {
