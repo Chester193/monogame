@@ -75,7 +75,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             scriptsList.Add(new ScriptsController(scripts.FastTravel));
             scriptsList.Add(new ScriptsController(scripts.StartDialog));
             scriptsList.Add(new ScriptsController(scripts.QuestDialog));
-            scriptsList.Add(new ScriptsController(scripts.StartTradeDialog));
+            scriptsList.Add(new ScriptsController(scripts.StartTradeDialogNo1));
 
 
             // TODO: Add your initialization logic here
