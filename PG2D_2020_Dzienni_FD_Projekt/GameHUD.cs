@@ -37,9 +37,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             //spriteBatch.DrawString(fontCocoonian, "To bedzie sumer gra!!!", new Vector2(10, 0), Color.Gold);
             spriteBatch.Draw(moneyIcon, new Rectangle(20, 15, moneyIcon.Width, moneyIcon.Height), Color.Gold);
             spriteBatch.DrawString(fontDiamond, player.Money.ToString(), new Vector2(45, 15), Color.Gold, 0f, Vector2.Zero, 0.7f, SpriteEffects.None, 0.1f);
-            spriteBatch.Draw(expIcon, new Rectangle(110, 15, expIcon.Width, expIcon.Height), Color.Silver);
-            spriteBatch.DrawString(fontDiamond, player.Exp.ToString(), new Vector2(135, 15), Color.Silver, 0f, Vector2.Zero, 0.7f, SpriteEffects.None, 0.1f);
-            spriteBatch.DrawString(fontDiamond, "HP: " + player.HpToString() + "/" + player.MaxHpToString(), new Vector2(20, 40), Color.Red);
+            spriteBatch.Draw(expIcon, new Rectangle(110, 15, expIcon.Width, expIcon.Height), Color.Azure);
+            spriteBatch.DrawString(fontDiamond, player.Exp.ToString(), new Vector2(135, 15), Color.Azure, 0f, Vector2.Zero, 0.7f, SpriteEffects.None, 0.1f);
+            spriteBatch.DrawString(fontDiamond, "HP: " + player.HpToString() + "/" + player.MaxHpToString(), new Vector2(20, 40), new Color(249, 22, 29));
             spriteBatch.DrawString(fontDiamond, "MP: " + player.MpToString() + "/" + player.MaxMpToString(), new Vector2(20, 80), Color.Blue);
 
             if (fastTravel && fastTraveTimer > 0)
@@ -74,7 +74,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 if (message2 != null)
                 {
                     Vector2 v2 = new Vector2(800, 85);
-                    spriteBatch.DrawString(fontDiamond, message2, v2, Color.White);
+                    spriteBatch.DrawString(fontDiamond, message2, v2, Color.Black);
                 }
 
                 messageTimer--;

@@ -88,7 +88,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
 
             spriteBatch.DrawString(font, "Trader", new Vector2(730, 90), Color.Gold);
 
-            spriteBatch.DrawString(font, "Press Q to quit", new Vector2(40, 675), Color.White);
+            spriteBatch.DrawString(font, "Press Q to quit", new Vector2(40, 675), new Color(249, 22, 29));
 
             foreach (var component in _components)
                 component.Draw(gameTime, spriteBatch);
