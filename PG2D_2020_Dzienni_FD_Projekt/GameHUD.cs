@@ -9,7 +9,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
     public class GameHUD
     {
         SpriteFont fontArial, fontDiamond, fontCocoonian;
-        Texture2D moneyIcon, expIcon, background;
+        Texture2D moneyIcon, expIcon, background, backgroundText;
         Player player;
         Enemy enemy;
 
@@ -27,6 +27,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             moneyIcon = content.Load<Texture2D>("Other/money");
             expIcon = content.Load<Texture2D>("Other/exp");
             background = content.Load<Texture2D>("Other/HUD_bg");
+            backgroundText = content.Load<Texture2D>("Other/HUD_text_bg");
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -60,14 +61,19 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 fastTraveTimer -= 1;
             }
 
+            if (message != null || message2 != null)
+            {
+                spriteBatch.Draw(backgroundText, new Rectangle(230, 0, backgroundText.Width, 130), Color.White);
+            }
+
             if (message != null && messageTimer > 0)
             {
-                Vector2 v1 = new Vector2(500, 100);
+                Vector2 v1 = new Vector2(500, 5);
                 spriteBatch.DrawString(fontDiamond, message, v1, Color.White);
 
                 if (message2 != null)
                 {
-                    Vector2 v2 = new Vector2(500, 300);
+                    Vector2 v2 = new Vector2(800, 85);
                     spriteBatch.DrawString(fontDiamond, message2, v2, Color.White);
                 }
 
@@ -104,15 +110,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             fastTravel = false;
         }
 
-        public void PrintMessage(string msg)
+        public void PrintMessage(string msg, int timer = 10)
         {
             message = msg;
-            messageTimer = 10;
+            messageTimer = timer;
         }
-        public void PrintMessage2(string msg)
+        public void PrintMessage2(string msg, int timer = 10)
         {
             message2 = msg;
-            messageTimer = 10;
+            messageTimer = timer;
         }
     }
 }

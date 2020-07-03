@@ -54,7 +54,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
                 }
                 catch(NotEnoughMoneyException)
                 {
-                    //TODO: Print info
+                    _game.gameHUD.PrintMessage("Not enough money!", 100);
+                    
                 }
             }
         }

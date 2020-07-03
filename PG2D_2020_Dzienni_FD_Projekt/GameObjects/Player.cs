@@ -17,7 +17,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
     {
         private List<Quest> quests;
         private int currentQuestIndex = 0;
-        public int Money { get; private set; } = 0;
+        public int Money { get; private set; } = -10;
         public int Exp { get; private set; } = 0;
 
         public Player()
