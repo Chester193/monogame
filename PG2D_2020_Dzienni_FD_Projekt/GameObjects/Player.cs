@@ -16,9 +16,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
     public class Player : Character
     {
         private List<Quest> quests;
-        public List<InventoryItem> Inventory { get; private set; }
-
         private int currentQuestIndex = 0;
+        public int Money { get; private set; } = 0;
+        public int Exp { get; private set; } = 0;
 
         public Player()
         {
@@ -32,8 +32,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             this.scripts = scripts;
             this.quests = quests;
-
-            Inventory = new List<InventoryItem>();
         }
 
         public bool TryGetCurrentQuest(out Quest currentQuest)
@@ -317,5 +315,27 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 return Quest.defaultDialog;
             }
         }
+
+        public void EarnMoney(int amount)
+        {
+            Money += amount;
+        }
+
+        public void SpendMoney(int amount)
+        {
+            if (Money - amount < 0)
+                throw new NotEnoughMoneyException();
+
+            Money -= amount;
+        }
+
+        public void GainExperience(int amount)
+        {
+            Exp += amount;
+        }
     }
+}
+public class NotEnoughMoneyException : Exception
+{
+    public NotEnoughMoneyException() : base() { }
 }

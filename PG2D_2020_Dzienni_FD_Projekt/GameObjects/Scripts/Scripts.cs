@@ -19,7 +19,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
         private GameHUD hud;
         private Game1 game;
 
-        private bool startQuestDialog = false;
 
         public Scripts(List<GameObject> gameObjects, List<Trigger> triggers, GameHUD GameHud, Game1 game1)
         {
@@ -42,6 +41,16 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
             Character character = (Character)who;
             character.Respawn();
             character.Heal();
+        }
+
+        private void Trade(int i)
+        {
+            hud.PrintMessage("Press E to trade");
+
+            if (Input.IsKeyDown(Keys.E))
+            {
+                game.StartTrade(i);
+            }
         }
 
         /*
@@ -125,10 +134,16 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
                 Quest currentQuest;
                 if (player.TryGetCurrentQuest(out currentQuest))
                 {
-                    currentQuest.Confirm();
+                    currentQuest.Confirm(player);
                 }
                 ///Console.WriteLine("QD");
             }
         }
+
+        public void StartTradeDialogNo1()
+        {
+            Trade(14);
+        }
+
     }
 }
