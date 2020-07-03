@@ -298,6 +298,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         {
             List<InventoryItem> inventory = player.Inventory;
 
+            SpriteFont font = Content.Load<SpriteFont>("Fonts\\diamondfantasy");
             Texture2D health_icon = Content.Load<Texture2D>("Other/health_potion");
             Texture2D mana_icon = Content.Load<Texture2D>("Other/mana_potion");
             EventHandler trade_handler = (s, e) =>
@@ -328,8 +329,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             for (int i = 0; i < 3; i++)
             {
-                inventory.Add(new InventoryItem(health_icon, 50, health_handler + trade_handler));
-                inventory.Add(new InventoryItem(mana_icon, 30, mana_handler + trade_handler));
+                inventory.Add(new InventoryItem(health_icon, font, 50, health_handler + trade_handler));
+                inventory.Add(new InventoryItem(mana_icon, font, 30, mana_handler + trade_handler));
             }
         }
     }

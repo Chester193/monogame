@@ -15,7 +15,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.Controls
 
         private MouseState _currentMouse;
 
-        private SpriteFont _font;
+        protected SpriteFont _font;
 
         private bool _isHovering;
 
