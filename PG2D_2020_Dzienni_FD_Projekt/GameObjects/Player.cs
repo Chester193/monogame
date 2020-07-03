@@ -16,7 +16,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
     {
         private List<Quest> quests;
         private int currentQuestIndex = 0;
-        
 
         public Player()
         {
@@ -49,8 +48,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public override void Initialize()
         {
-            characterSettings.maxHp = 100;
-            characterSettings.hp = 100;
+            characterSettings.maxHp = 80;
+            characterSettings.hp = 80;
             characterSettings.maxMp = 10;
             characterSettings.mp = 10;
 
@@ -256,7 +255,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         private void MeleAttack(List<GameObject> gameObjects)
         {
             target = NearestEnemy(gameObjects);
-            //if (enemyInRange != null) Attack(enemyInRange, characterSettings.weaponAttack);
         }
 
         private Character NearestEnemy(List<GameObject> gameObjects)
@@ -271,13 +269,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 try
                 {
                     character = (Character)gameObjects[i];
-                    //Console.WriteLine("i: " + i + " hp " + character.HpToString());
 
                     if (!character.IsDead())
                     {
                         distance = Vector2.Distance(character.realPositon, realPositon);
                         weaponDistance = Vector2.Distance(character.realPositon, weaponPositon);
-                        Console.WriteLine("dist: " + distance + " W-dist: " + weaponDistance);
                         if (distancePrev == 0) distancePrev = weaponDistance;
                         if (weaponDistance <= distancePrev)
                         {
@@ -291,11 +287,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 {
 
                 }
-
-
             }
-
-            Console.WriteLine(target);
 
             return target;
         }

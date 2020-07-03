@@ -59,9 +59,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                         Patrol();
                     })
             .Build();
-
-
-            target = null;
         }
 
         public override void Update(List<GameObject> gameObjectsG, TiledMap mapG, GameTime gameTime)

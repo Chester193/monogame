@@ -34,7 +34,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
         public List<ScriptsController> scriptsList;
 
-
         public void ChangeState(State state)
         {
             nextState = state;
@@ -74,7 +73,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             // TODO: Add your initialization logic here
             tiledMap = new TiledMap(vResWidth, vResHeight);
-
 
             int tileSpawnPointX = 59;
             int tielSpawnPointY = 52;

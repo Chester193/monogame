@@ -45,6 +45,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         protected bool isDead = false;
         protected bool isAttacking = false;
         protected bool hit = false;
+        protected Character target = null;
         protected bool isJumping = false;
         protected bool isHurting = false;
 
@@ -62,7 +63,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public CharacterSettings characterSettings;
 
-        public Character target;
 
         public override void Initialize()
         {

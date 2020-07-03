@@ -108,7 +108,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
                 triggers[6].active = true;
                 triggers[5].active = false;
                 game.PauseGame();
-                Console.WriteLine("SD");
             }
         }
 
@@ -123,7 +122,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
                 triggers[6].active = false;
                 triggers[5].active = true;
                 game.ContinueGame();
-                Console.WriteLine("QD");
             }
 
             Quest currentQuest;
