@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using PG2D_2020_Dzienni_FD_Projekt.States;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using System;
 using System.Collections.Generic;
@@ -20,6 +22,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
         private Game1 game;
 
         private bool startQuestDialog = false;
+        private GraphicsDevice graphicsDevice;
 
         public Scripts(List<GameObject> gameObjects, List<Trigger> triggers, GameHUD GameHud, Game1 game1)
         {
@@ -128,6 +131,16 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
                     currentQuest.Confirm(player);
                 }
                 ///Console.WriteLine("QD");
+            }
+        }
+
+        public void StartTradeDialog()
+        {
+            hud.PrintMessage("Press E to trade");
+
+            if (Input.IsKeyDown(Keys.E))
+            {
+                game.StartTrade(14);
             }
         }
     }

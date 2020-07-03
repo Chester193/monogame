@@ -75,6 +75,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             scriptsList.Add(new ScriptsController(scripts.FastTravel));
             scriptsList.Add(new ScriptsController(scripts.StartDialog));
             scriptsList.Add(new ScriptsController(scripts.QuestDialog));
+            scriptsList.Add(new ScriptsController(scripts.StartTradeDialog));
 
 
             // TODO: Add your initialization logic here
@@ -98,7 +99,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             LoadInventory(player);
 
             Vector2 realMapBeginning = new Vector2(tiledMap.tileSize * 31, tiledMap.tileSize * 31);
-            
+
             gameObjects.Add(player);
             gameHUD.Player(player);
 
@@ -112,7 +113,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(new Lizard(new Vector2(720, 1000), characterSettings));
             gameObjects.Add(new Lizard(new Vector2(600, 800), characterSettings));
 
-            
+
             characterSettings.mode = 0;
             gameObjects.Add(new Lizard(new Vector2(400, 600), characterSettings));
             characterSettings.rangeOfAttack = 30;
@@ -121,7 +122,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(new Viking2(new Vector2(300, 200), characterSettings));
             gameObjects.Add(new Viking3(new Vector2(300, 100), characterSettings));
 
-            foreach(SpecialEnemy specEnemy in specialEnemies)
+            foreach (SpecialEnemy specEnemy in specialEnemies)
             {
                 gameObjects.Add(specEnemy);
             }
@@ -138,6 +139,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             triggers.Add(new Trigger(new Vector2(tileSpawnPointX * 30, tileSpawnPointX * 30), new Vector2(75), 4, scriptsList));
             triggers.Add(new Trigger(new Vector2(tileSpawnPointX * 30, tileSpawnPointX * 30), new Vector2(75), 5, scriptsList, false));
+
+            triggers.Add(new Trigger(new Vector2(52 * tiledMap.tileSize), new Vector2(75), 6, scriptsList));
 
             characterSettings.mode = CharcterMode.WaitForPlayer;
 
@@ -184,7 +187,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if(nextState != null)
+            if (nextState != null)
             {
                 currentState = nextState;
                 nextState = null;
@@ -215,6 +218,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         public void ContinueGame()
         {
             ChangeState(new GameState(this, graphics.GraphicsDevice, Content));
+        }
+
+        public void StartTrade(int index)
+        {
+            ChangeState(new TradeState(this, graphics.GraphicsDevice, Content, (Character)this.gameObjects[index]));
         }
 
         public void LoadInitializeGameObjects(List<GameObject> gameObjects)
@@ -300,8 +308,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 }
             };
 
-            EventHandler health_handler = (s, e) => 
-            { 
+            EventHandler health_handler = (s, e) =>
+            {
                 if (!player.IsHpFull() && currentState is InventoryState)
                 {
                     player.Heal(10);
@@ -318,7 +326,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 }
             };
 
-                for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 3; i++)
             {
                 inventory.Add(new InventoryItem(health_icon, 50, health_handler + trade_handler));
                 inventory.Add(new InventoryItem(mana_icon, 30, mana_handler + trade_handler));

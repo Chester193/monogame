@@ -61,7 +61,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
 
         public override void Update(GameTime gameTime)
         {
-            if (Input.KeyPressed(Keys.R))
+            if (Input.KeyPressed(Keys.Q))
             {
                 _game.ChangeState(new GameState(_game, _graphicsDevice, _content));
             }
