@@ -32,14 +32,14 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         {
             spriteBatch.Begin();
 
-            spriteBatch.Draw(background, new Rectangle(0, 0, 230, 115), Color.White);
+            spriteBatch.Draw(background, new Rectangle(0, 0, 230, 130), Color.White);
             //spriteBatch.DrawString(fontCocoonian, "To bedzie sumer gra!!!", new Vector2(10, 0), Color.Gold);
-            spriteBatch.Draw(moneyIcon, new Rectangle(20, 10, moneyIcon.Width, moneyIcon.Height), Color.Gold);
-            spriteBatch.DrawString(fontDiamond, player.Money.ToString(), new Vector2(35, 0), Color.Gold, 0f, Vector2.Zero, 0.7f, SpriteEffects.None, 0.1f);
-            spriteBatch.Draw(expIcon, new Rectangle(110, 10, expIcon.Width, expIcon.Height), Color.Silver);
-            spriteBatch.DrawString(fontDiamond, player.Exp.ToString(), new Vector2(125, 0), Color.Silver, 0f, Vector2.Zero, 0.7f, SpriteEffects.None, 0.1f);
-            spriteBatch.DrawString(fontDiamond, "HP: " + player.HpToString() + "/" + player.MaxHpToString(), new Vector2(20, 35), Color.Red);
-            spriteBatch.DrawString(fontDiamond, "MP: " + player.MpToString() + "/" + player.MaxMpToString(), new Vector2(20, 75), Color.Blue);
+            spriteBatch.Draw(moneyIcon, new Rectangle(20, 15, moneyIcon.Width, moneyIcon.Height), Color.Gold);
+            spriteBatch.DrawString(fontDiamond, player.Money.ToString(), new Vector2(45, 15), Color.Gold, 0f, Vector2.Zero, 0.7f, SpriteEffects.None, 0.1f);
+            spriteBatch.Draw(expIcon, new Rectangle(110, 15, expIcon.Width, expIcon.Height), Color.Silver);
+            spriteBatch.DrawString(fontDiamond, player.Exp.ToString(), new Vector2(135, 15), Color.Silver, 0f, Vector2.Zero, 0.7f, SpriteEffects.None, 0.1f);
+            spriteBatch.DrawString(fontDiamond, "HP: " + player.HpToString() + "/" + player.MaxHpToString(), new Vector2(20, 40), Color.Red);
+            spriteBatch.DrawString(fontDiamond, "MP: " + player.MpToString() + "/" + player.MaxMpToString(), new Vector2(20, 80), Color.Blue);
 
             if (fastTravel && fastTraveTimer > 0)
             {

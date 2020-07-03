@@ -53,7 +53,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
 
             spriteBatch.Draw(background, new Rectangle(0, 0, ResolutionManager.VirtualWidth, ResolutionManager.VirtualHeight), Color.White);
 
-            player.DrawAnimation(spriteBatch, new Vector2(0, 100), 2f);
+            player.DrawAnimation(spriteBatch, new Vector2(8, 160), 2f);
 
             foreach (var component in _components)
                 component.Draw(gameTime, spriteBatch);
