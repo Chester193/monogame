@@ -41,5 +41,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
             boundingBoxWidth = 39;
             boundingBoxHeight = 40;
         }
+
+        public override void hurt()
+        {
+            golemsEffects[new Random().Next(0, 5)].Play();
+            base.hurt();
+        }
     }
 }

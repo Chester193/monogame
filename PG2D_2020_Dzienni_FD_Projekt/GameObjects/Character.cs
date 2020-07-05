@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using PG2D_2020_Dzienni_FD_Projekt.Controls;
@@ -34,6 +35,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
     {
         public List<InventoryItem> Inventory { get; private set; }
         public PathFinder pathFinder = new PathFinder();
+        public SoundEffect soundEffecct;
         public Timer timer = new Timer();
         public Vector2 velocity;
         protected float acceleration = 0.4f;
@@ -433,6 +435,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             if (distanceToTarget < characterSettings.rangeOfAttack && !isAttacking)
             {
                 isAttacking = true;
+                target.hurt();
                 target.Damage(dmg);
                 //Console.WriteLine("Character.Attack()[EndIF]()");
             }
@@ -482,6 +485,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             this.characterSettings.maxMp = settings.maxMp;
             this.characterSettings.mp = settings.mp;
+        }
+
+        public virtual void hurt()
+        {
+            isHurting = true;
         }
     }
 

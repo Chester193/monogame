@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System;
 using StateMachine;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
 
 namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 {
@@ -20,6 +22,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         List<GameObject> gameObjects;
         TiledMap map;
+
+        public List<SoundEffect> golemsEffects;
 
         public Enemy()
         {
@@ -59,6 +63,21 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                         Patrol();
                     })
             .Build();
+        }
+        public override void Initialize()
+        {
+            golemsEffects = new List<SoundEffect>();
+            base.Initialize();
+        }
+
+        public override void Load(ContentManager content)
+        {
+            golemsEffects.Add(content.Load<SoundEffect>(@"SoundEffects/giant1"));
+            golemsEffects.Add(content.Load<SoundEffect>(@"SoundEffects/giant2"));
+            golemsEffects.Add(content.Load<SoundEffect>(@"SoundEffects/giant3"));
+            golemsEffects.Add(content.Load<SoundEffect>(@"SoundEffects/giant4"));
+            golemsEffects.Add(content.Load<SoundEffect>(@"SoundEffects/giant5"));
+            base.Load(content);
         }
 
         public override void Update(List<GameObject> gameObjectsG, TiledMap mapG, GameTime gameTime)
@@ -178,7 +197,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 enemyAiMachine.Trigger(ETrigger.STOP);
         }
 
-        public void AttackPlayer()
+        public virtual void AttackPlayer()
         {
             Player player = (Player)gameObjects[0];
             Attack(player, 20);

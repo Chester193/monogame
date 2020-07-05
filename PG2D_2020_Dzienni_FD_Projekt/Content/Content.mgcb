@@ -976,6 +976,168 @@
 /processorParam:TextureFormat=Color
 /build:Other/trade.png
 
+#begin SoundEffects/armor-light.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/armor-light.wav
+
+#begin SoundEffects/cloth.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/cloth.wav
+
+#begin SoundEffects/coin.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/coin.wav
+
+#begin SoundEffects/damage1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/damage1.wav
+
+#begin SoundEffects/damage2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/damage2.wav
+
+#begin SoundEffects/damage3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/damage3.wav
+
+#begin SoundEffects/death.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/death.wav
+
+#begin SoundEffects/footstep00.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/footstep00.ogg
+
+#begin SoundEffects/footstep06.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/footstep06.ogg
+
+#begin SoundEffects/giant1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/giant1.wav
+
+#begin SoundEffects/giant2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/giant2.wav
+
+#begin SoundEffects/giant3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/giant3.wav
+
+#begin SoundEffects/giant4.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/giant4.wav
+
+#begin SoundEffects/giant5.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/giant5.wav
+
+#begin SoundEffects/mnstr1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/mnstr1.wav
+
+#begin SoundEffects/mnstr2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/mnstr2.wav
+
+#begin SoundEffects/mnstr3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/mnstr3.wav
+
+#begin SoundEffects/mnstr4.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/mnstr4.wav
+
+#begin SoundEffects/potion.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/potion.wav
+
+#begin SoundEffects/roar.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/roar.wav
+
+#begin SoundEffects/shade10.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/shade10.wav
+
+#begin SoundEffects/shade11.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/shade11.wav
+
+#begin SoundEffects/shade7.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/shade7.wav
+
+#begin SoundEffects/shade8.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/shade8.wav
+
+#begin SoundEffects/shade9.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/shade9.wav
+
+#begin SoundEffects/swing.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/swing.wav
+
+#begin SoundEffects/sword-unsheathe.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/sword-unsheathe.wav
+
 #begin Tilemaps/terrain.png
 /importer:TextureImporter
 /processor:TextureProcessor
