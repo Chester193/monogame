@@ -143,6 +143,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     if (IsAnimationComplete || distanceToPlayer >= characterSettings.rangeOfAttack)
                     {
                         isAttacking = false;
+                    }
+                    if (IsAnimationComplete && distanceToPlayer <= characterSettings.rangeOfAttack)
+                    {
                         hit = true;
                     }
                 }
