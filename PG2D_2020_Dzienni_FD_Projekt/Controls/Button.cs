@@ -15,7 +15,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.Controls
 
         private MouseState _currentMouse;
 
-        private SpriteFont _font;
+        protected SpriteFont _font;
 
         private bool _isHovering;
 
@@ -55,7 +55,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.Controls
 
             _font = font;
 
-            PenColour = Color.Black;
+            PenColour = Color.White;
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -94,6 +94,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.Controls
                     Click?.Invoke(this, new EventArgs());
                 }
             }
+        }
+
+        public Vector2 getSize()
+        {
+            return new Vector2(_texture.Width, _texture.Height);
         }
 
         #endregion

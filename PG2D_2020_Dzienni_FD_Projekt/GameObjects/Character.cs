@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using PG2D_2020_Dzienni_FD_Projekt.Controls;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
     public class Character : AnimatedObject
     {
+        public List<InventoryItem> Inventory { get; private set; }
         public PathFinder pathFinder = new PathFinder();
         public Timer timer = new Timer();
         public Vector2 velocity;
@@ -63,6 +65,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public CharacterSettings characterSettings;
 
+        public Character()
+        {
+            Inventory = new List<InventoryItem>();
+        }
 
         public override void Initialize()
         {
@@ -74,6 +80,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public override void Load(ContentManager content)
         {
             pathTexture = TextureLoader.Load(@"other/pixel", content);
+
             base.Load(content);
 
             pathColor = new Color(0, 0, 255, 128);
@@ -90,6 +97,16 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
+            if (active && !isDead && characterSettings.hp < characterSettings.maxHp && this is Enemy)
+            {
+                int maxLength = 100;
+                Vector2 pos = new Vector2(BoundingBox.Center.X - maxLength / 2, position.Y);
+                Rectangle currentLevel = new Rectangle((int)pos.X, (int)pos.Y, characterSettings.hp * maxLength / characterSettings.maxHp, 10);
+                Rectangle background = new Rectangle((int)pos.X, (int)pos.Y, maxLength, 10);
+                spriteBatch.Draw(pathTexture, pos, currentLevel, Color.Green, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.09f);
+                spriteBatch.Draw(pathTexture, pos, background, Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.1f);
+            }
+
             if (drawPath)
             {
                 //foreach (Point item in pathFinder.visited_test)
@@ -361,10 +378,26 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             if (characterSettings.mp <= 0) characterSettings.mp = 0;
         }
 
+        public bool IsHpFull()
+        {
+            return characterSettings.hp >= characterSettings.maxHp;
+        }
+
+        public bool IsMpFull()
+        {
+            return characterSettings.mp >= characterSettings.maxMp;
+        }
+
         public void Heal(int points)
         {
             characterSettings.hp += points;
-            if (characterSettings.hp >= characterSettings.maxHp) characterSettings.hp = characterSettings.maxHp;
+            if (IsHpFull()) characterSettings.hp = characterSettings.maxHp;
+        }
+
+        public void ChargeMana(int points)
+        {
+            characterSettings.mp += points;
+            if (IsMpFull()) characterSettings.mp = characterSettings.maxMp;
         }
 
         public void Heal()

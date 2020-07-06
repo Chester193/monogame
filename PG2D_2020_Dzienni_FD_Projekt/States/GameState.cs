@@ -2,7 +2,9 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using PG2D_2020_Dzienni_FD_Projekt.Controls;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects;
+using PG2D_2020_Dzienni_FD_Projekt.GameObjects.npc;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using System;
 using System.Collections.Generic;
@@ -42,6 +44,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
             if (Input.KeyPressed(Keys.Escape))
             {
                 _game.ChangeState(new MenuState(_game, _graphicsDevice, _content, true));
+            }
+
+            if (Input.KeyPressed(Keys.Tab))
+            {
+                _game.ChangeState(new InventoryState(_game, _graphicsDevice, _content));
             }
 
             Input.Update();

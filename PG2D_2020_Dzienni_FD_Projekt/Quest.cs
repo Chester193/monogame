@@ -68,7 +68,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             }
         }
 
-        public void Confirm()
+        public void Confirm(Player player)
         {
             if (State == QuestState.Available)
             {
@@ -79,7 +79,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             if (State == QuestState.CollectReward)
             {
                 State = QuestState.Done;
-                //TODO: GIVE EXP TO PLAYER
+                player.GainExperience(prize);
             }
         }
 

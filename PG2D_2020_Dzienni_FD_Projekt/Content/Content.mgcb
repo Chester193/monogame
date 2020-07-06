@@ -3,7 +3,7 @@
 
 /outputDir:bin
 /intermediateDir:obj
-/platform:Windows
+/platform:DesktopGL
 /config:
 /profile:Reach
 /compress:False
@@ -42,6 +42,21 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Characters/big_guy.png
+
+#begin Characters/blacksmith.atlas
+/copy:Characters/blacksmith.atlas
+
+#begin Characters/blacksmith.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Characters/blacksmith.png
 
 #begin Characters/Crow.atlas
 /copy:Characters/Crow.atlas
@@ -100,10 +115,6 @@
 /processorParam:TextureFormat=Color
 /build:Characters/enemy.png
 
-#begin Characters/jhin.atlas
-/copy:Characters/jhin.atlas
-
-#begin Characters/jhin.png
 #begin Characters/Finn.atlas
 /copy:Characters/Finn.atlas
 
@@ -117,7 +128,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Characters/jhin.png
 /build:Characters/Finn.png
 
 #begin Characters/ginger_bandit.atlas
@@ -179,6 +189,36 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Characters/Ice Golem.png
+
+#begin Characters/jeweler.atlas
+/copy:Characters/jeweler.atlas
+
+#begin Characters/jeweler.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Characters/jeweler.png
+
+#begin Characters/jhin.atlas
+/copy:Characters/jhin.atlas
+
+#begin Characters/jhin.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Characters/jhin.png
 
 #begin Characters/lava_golem.atlas
 /copy:Characters/lava_golem.atlas
@@ -255,6 +295,36 @@
 /processorParam:TextureFormat=Color
 /build:Characters/Pirate.png
 
+#begin Characters/sage.atlas
+/copy:Characters/sage.atlas
+
+#begin Characters/sage.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Characters/sage.png
+
+#begin Characters/secondWarrior.atlas
+/copy:Characters/secondWarrior.atlas
+
+#begin Characters/secondWarrior.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Characters/secondWarrior.png
+
 #begin Characters/viking1.atlas
 /copy:Characters/viking1.atlas
 
@@ -299,6 +369,21 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Characters/viking3.png
+
+#begin Characters/warlord.atlas
+/copy:Characters/warlord.atlas
+
+#begin Characters/warlord.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Characters/warlord.png
 
 #begin Characters/warrior.atlas
 /copy:Characters/warrior.atlas
@@ -377,19 +462,6 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/diamondfantasy.spritefont
-
-
-#begin Other/background.jpg
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Other/background.jpg
 
 #begin Map/desert.png
 /importer:TextureImporter
@@ -778,6 +850,108 @@
 /processorParam:TextureFormat=Color
 /build:Map/youngwheat.png
 
+#begin Music/JeffSpeed68_-_Jam_after_brunch.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/JeffSpeed68_-_Jam_after_brunch.mp3
+
+#begin Other/background.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Other/background.jpg
+
+#begin Other/exp.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Other/exp.png
+
+#begin Other/health_potion.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Other/health_potion.png
+
+#begin Other/HUD_bg.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Other/HUD_bg.png
+
+#begin Other/HUD_text_bg.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Other/HUD_text_bg.png
+
+#begin Other/inventory.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Other/inventory.png
+
+#begin Other/mana_potion.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Other/mana_potion.png
+
+#begin Other/money.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Other/money.png
+
 #begin Other/pixel.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -789,6 +963,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Other/pixel.png
+
+#begin Other/trade.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Other/trade.png
 
 #begin Tilemaps/terrain.png
 /importer:TextureImporter

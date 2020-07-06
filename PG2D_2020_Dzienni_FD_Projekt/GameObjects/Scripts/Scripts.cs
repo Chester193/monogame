@@ -46,6 +46,16 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
             character.Heal();
         }
 
+        private void Trade(int i)
+        {
+            hud.PrintMessage("Press E to trade");
+
+            if (Input.IsKeyDown(Keys.E))
+            {
+                game.StartTrade(i);
+            }
+        }
+
         /*
          * Poniżej znajdują się gotowe skrypty
          * WAŻNE: skrypty NIE przyjmują parametrów
@@ -122,13 +132,20 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
                 triggers[6].active = false;
                 triggers[5].active = true;
                 game.ContinueGame();
-            }
 
-            Quest currentQuest;
-            if (player.TryGetCurrentQuest(out currentQuest))
-            {
-                currentQuest.Confirm();
+                Quest currentQuest;
+                if (player.TryGetCurrentQuest(out currentQuest))
+                {
+                    currentQuest.Confirm(player);
+                }
+                ///Console.WriteLine("QD");
             }
         }
+
+        public void StartTradeDialogNo1()
+        {
+            Trade(14);
+        }
+
     }
 }

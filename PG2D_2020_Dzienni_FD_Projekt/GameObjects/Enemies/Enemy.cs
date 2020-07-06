@@ -73,9 +73,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             if (nextPoint.Equals(new Vector2(0)))
                 nextPoint = originalPosition;
 
+
             if (hit) Attack(this.target, characterSettings.weaponAttack);
 
-            if (!isDead)
+            if (!isDead && active)
             {
                 switch (mode)
                 {
@@ -114,6 +115,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 if (IsAnimationComplete)
                 {
                     ChangeAnimation(null);
+                    isCollidable = false;
                 }
             }
             else
