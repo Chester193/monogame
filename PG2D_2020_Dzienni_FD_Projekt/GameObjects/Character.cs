@@ -78,6 +78,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public override void Load(ContentManager content)
         {
             pathTexture = TextureLoader.Load(@"other/pixel", content);
+
             base.Load(content);
 
             pathColor = new Color(0, 0, 255, 128);
@@ -94,6 +95,16 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
+            if (active && !isDead && characterSettings.hp < characterSettings.maxHp && this is Enemy)
+            {
+                int maxLength = 100;
+                Vector2 pos = new Vector2(BoundingBox.Center.X - maxLength / 2, position.Y);
+                Rectangle currentLevel = new Rectangle((int)pos.X, (int)pos.Y, characterSettings.hp * maxLength / characterSettings.maxHp, 10);
+                Rectangle background = new Rectangle((int)pos.X, (int)pos.Y, maxLength, 10);
+                spriteBatch.Draw(pathTexture, pos, currentLevel, Color.Green, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.09f);
+                spriteBatch.Draw(pathTexture, pos, background, Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.1f);
+            }
+
             if (drawPath)
             {
                 //foreach (Point item in pathFinder.visited_test)
