@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -23,11 +24,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
         private SpriteFont font;
         private int playerItemCount;
 
+        SoundEffect pay;
+
         public TradeState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, Character npc)
           : base(game, graphicsDevice, content)
         {
             background = _content.Load<Texture2D>("Other/trade");
             font = content.Load<SpriteFont>("Fonts\\diamondfantasy");
+
+            pay = content.Load<SoundEffect>(@"SoundEffects/coin");
 
             _game.IsMouseVisible = true;
             player = (Player)_game.gameObjects[0];
@@ -64,6 +69,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
         {
             if (Input.KeyPressed(Keys.Q))
             {
+                pay.Play();
                 _game.ChangeState(new GameState(_game, _graphicsDevice, _content));
             }
             Input.Update();

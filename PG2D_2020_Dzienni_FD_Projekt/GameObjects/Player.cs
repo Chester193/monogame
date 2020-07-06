@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -19,6 +20,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         private int currentQuestIndex = 0;
         public int Money { get; private set; } = 0;
         public int Exp { get; private set; } = 0;
+
+        SoundEffect slash;
+        SoundEffect inventoryOpen;
+        SoundEffect dyingEffect;
+        SoundEffectInstance step;
+        List<SoundEffect> hurtingEffects;
+        //SoundEffect slash;
 
         public Player()
         {
@@ -59,6 +67,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             characterSettings.rangeOfAttack = 30;
             characterSettings.weaponAttack = 30;
 
+            hurtingEffects = new List<SoundEffect>();
+
             base.Initialize();
         }
 
@@ -71,6 +81,16 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             LoadAnimations(atlas);
             ChangeAnimation(Animations.IdleRight);
+
+            slash = content.Load<SoundEffect>(@"SoundEffects/swing");
+            inventoryOpen = content.Load<SoundEffect>(@"SoundEffects/cloth");
+            hurtingEffects.Add(content.Load<SoundEffect>(@"SoundEffects/damage1"));
+            hurtingEffects.Add(content.Load<SoundEffect>(@"SoundEffects/damage2"));
+            hurtingEffects.Add(content.Load<SoundEffect>(@"SoundEffects/damage3"));
+            dyingEffect = content.Load<SoundEffect>(@"SoundEffects/death");
+            step = content.Load<SoundEffect>(@"SoundEffects/footstep06").CreateInstance();
+            step.IsLooped = true;
+            step.Volume = 0.4f;
 
             base.Load(content);
 
@@ -92,7 +112,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             if (hit) Attack(this.target, characterSettings.weaponAttack);
 
             if (!isAttacking && !isHurting && !isDead)
+            {
+                if (!velocity.Equals(Vector2.Zero))
+                    step.Play();
+                else
+                    step.Stop();
+                    
                 CheckInput(gameObjects, map);
+            }
+
             base.Update(gameObjects, map, gameTime);
         }
 
@@ -243,9 +271,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             if (Input.KeyPressed(Keys.Space))
             {
+                slash.Play();
                 isAttacking = true;
                 MeleAttack(gameObjects);
             }
+
+            if (Input.KeyPressed(Keys.Tab))
+                inventoryOpen.Play();
 
             //HUD tests:
             if (Input.KeyPressed(Keys.H) == true)
@@ -326,6 +358,22 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public void GainExperience(int amount)
         {
             Exp += amount;
+        }
+
+        public override void hurt()
+        {
+            if (!isDead)
+            {
+                isHurting = true;
+                hurtingEffects[new Random().Next(0, 3)].Play();         
+            }
+        }
+
+        public override void Die()
+        {
+            if(!isDead)
+                dyingEffect.Play();
+            base.Die();
         }
     }
 }

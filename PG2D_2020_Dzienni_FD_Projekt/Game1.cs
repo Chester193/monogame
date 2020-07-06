@@ -14,6 +14,7 @@ using Microsoft.Xna.Framework.Content;
 using System;
 using System.Runtime.Remoting.Messaging;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 
 namespace PG2D_2020_Dzienni_FD_Projekt
 {
@@ -304,6 +305,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             SpriteFont font = Content.Load<SpriteFont>("Fonts\\diamondfantasy");
             Texture2D health_icon = Content.Load<Texture2D>("Other/health_potion");
             Texture2D mana_icon = Content.Load<Texture2D>("Other/mana_potion");
+
+            SoundEffect drink = Content.Load<SoundEffect>(@"SoundEffects/potion");
+
             EventHandler trade_handler = (s, e) =>
             {
                 if (currentState is TradeState)
@@ -316,6 +320,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             {
                 if (!player.IsHpFull() && currentState is InventoryState)
                 {
+                    drink.Play();
                     player.Heal(10);
                     inventory.Remove((InventoryItem)s);
                 }
@@ -325,6 +330,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             {
                 if (!player.IsMpFull() && currentState is InventoryState)
                 {
+                    drink.Play();
                     player.ChargeMana(2);
                     inventory.Remove((InventoryItem)s);
                 }
