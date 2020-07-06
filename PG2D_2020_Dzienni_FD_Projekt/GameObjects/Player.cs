@@ -40,6 +40,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             this.scripts = scripts;
             this.quests = quests;
+
+            target = null;
         }
 
         public bool TryGetCurrentQuest(out Quest currentQuest)
@@ -62,8 +64,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             characterSettings.maxMp = 10;
             characterSettings.mp = 10;
 
-            characterSettings.rangeOfAttack = 50;
-            characterSettings.weaponAttack = 200;
+            characterSettings.rangeOfAttack = 30;
+            characterSettings.weaponAttack = 30;
 
             hurtingEffects = new List<SoundEffect>();
 
@@ -107,12 +109,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     currentQuestIndex++;
             }
 
+            if (hit) Attack(this.target, characterSettings.weaponAttack);
+
             if (!isAttacking && !isHurting && !isDead)
             {
                 if (!velocity.Equals(Vector2.Zero))
                     step.Play();
                 else
                     step.Stop();
+                    
                 CheckInput(gameObjects, map);
             }
 
@@ -149,7 +154,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 }
             }
 
-            else if(isHurting)
+            else if (isHurting)
             {
                 currentAnimation.animationSpeed = 1;
                 velocity = Vector2.Zero;
@@ -197,6 +202,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 }
                 if (IsAnimationComplete)
                 {
+                    hit = true;
                     isAttacking = false;
                 }
             }
@@ -224,7 +230,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             }
 
             else
-                //(velocity == Vector2.Zero && isJumping == false && isAttacking == false && isDead == false && isHurting == false)
+            //(velocity == Vector2.Zero && isJumping == false && isAttacking == false && isDead == false && isHurting == false)
             {
                 if (direction.X < 0 && AnimationIsNot(Animations.IdleLeft))
                 {
@@ -266,7 +272,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             if (Input.KeyPressed(Keys.Space))
             {
                 slash.Play();
-                Fire(gameObjects);
+                isAttacking = true;
+                MeleAttack(gameObjects);
             }
 
             if (Input.KeyPressed(Keys.Tab))
@@ -281,44 +288,33 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 MaxHpAdd(50);
         }
 
-        private void Fire(List<GameObject> gameObjects)
+        private void MeleAttack(List<GameObject> gameObjects)
         {
-            Character enemyInRange = NearestEnemy(gameObjects);
-            if (enemyInRange != null) Attack(enemyInRange, characterSettings.weaponAttack);
-
-            //Console.WriteLine("Fire()");
-            //HUD test
-            try
-            {
-                ManaUse(1);
-            }
-            catch (NotEnoughMpException e)
-            {
-                hurt();
-                Damage(20);
-            }
-
+            target = NearestEnemy(gameObjects);
         }
 
         private Character NearestEnemy(List<GameObject> gameObjects)
         {
-            float distance = 0, distancePrev = 0;
+            float distance = 0, distancePrev = 0, weaponDistance = 0;
             Character character;
             Character target = null;
+            Vector2 weaponPositon = new Vector2(realPositon.X + (direction.X * characterSettings.rangeOfAttack), realPositon.Y + (direction.Y * characterSettings.rangeOfAttack));
 
-            for (int i = 0; i < gameObjects.Count; i++)
+            for (int i = 1; i < gameObjects.Count; i++)
             {
                 try
                 {
                     character = (Character)gameObjects[i];
+
                     if (!character.IsDead())
                     {
                         distance = Vector2.Distance(character.realPositon, realPositon);
-                        if (distancePrev == 0) distancePrev = distance;
-                        if (distance <= distancePrev)
+                        weaponDistance = Vector2.Distance(character.realPositon, weaponPositon);
+                        if (distancePrev == 0) distancePrev = weaponDistance;
+                        if (weaponDistance <= distancePrev)
                         {
-                            distancePrev = distance;
-                            target = character;
+                            distancePrev = weaponDistance;
+                            if (distance < characterSettings.rangeOfAttack && weaponDistance < characterSettings.rangeOfAttack) target = character;
                         }
                     }
                 }
@@ -327,11 +323,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 {
 
                 }
-
-
             }
 
-            return target; // = (Character)gameObjects[1];
+            return target;
         }
 
         public string Interact()

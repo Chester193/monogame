@@ -48,6 +48,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         protected bool isDead = false;
         protected bool isAttacking = false;
+        protected bool hit = false;
+        protected Character target = null;
         protected bool isJumping = false;
         protected bool isHurting = false;
 
@@ -62,7 +64,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public Vector2 realPositon;
 
         public Scripts.Scripts scripts;
-        
+
         public CharacterSettings characterSettings;
 
         public Character()
@@ -80,6 +82,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public override void Load(ContentManager content)
         {
             pathTexture = TextureLoader.Load(@"other/pixel", content);
+
             base.Load(content);
 
             pathColor = new Color(0, 0, 255, 128);
@@ -96,6 +99,16 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
+            if (active && !isDead && characterSettings.hp < characterSettings.maxHp && this is Enemy)
+            {
+                int maxLength = 100;
+                Vector2 pos = new Vector2(BoundingBox.Center.X - maxLength / 2, position.Y);
+                Rectangle currentLevel = new Rectangle((int)pos.X, (int)pos.Y, characterSettings.hp * maxLength / characterSettings.maxHp, 10);
+                Rectangle background = new Rectangle((int)pos.X, (int)pos.Y, maxLength, 10);
+                spriteBatch.Draw(pathTexture, pos, currentLevel, Color.Green, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.09f);
+                spriteBatch.Draw(pathTexture, pos, background, Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.1f);
+            }
+
             if (drawPath)
             {
                 //foreach (Point item in pathFinder.visited_test)
@@ -430,8 +443,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public void Attack(Character target, int dmg)
         {
+            if (target == null) return;
             float distanceToTarget = Vector2.Distance(target.realPositon, realPositon);
             //Console.WriteLine("Character.Attack() " + distansToTarget + " / " + rangeOfAttack + " t.rPositon " + target.realPositon + " player.rPosioton" + realPositon);
+            /*
             if (distanceToTarget < characterSettings.rangeOfAttack && !isAttacking)
             {
                 isAttacking = true;
@@ -439,6 +454,14 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 target.Damage(dmg);
                 //Console.WriteLine("Character.Attack()[EndIF]()");
             }
+            */
+
+            if (distanceToTarget < characterSettings.rangeOfAttack && hit)
+            {
+                target.hurt();
+                target.Damage(dmg);
+            }
+            hit = false;
         }
 
 
@@ -470,7 +493,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public void Respawn()
         {
             isDead = false;
-        }    
+        }
 
         public void SetCharacterSettings(CharacterSettings settings)
         {
