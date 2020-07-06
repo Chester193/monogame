@@ -201,7 +201,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 enemyAiMachine.Trigger(ETrigger.STOP);
         }
 
-        public virtual void AttackPlayer()
+        public void AttackPlayer()
         {
             isAttacking = true;
             Player player = (Player)gameObjects[0];

@@ -48,11 +48,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
             boundingBoxHeight = 35;
         }
 
-        public override void AttackPlayer()
+        public override void Attack(Character target, int dmg)
         {
-            if(!isAttacking)
+            if (!isAttacking)
                 roar.Play();
-            base.AttackPlayer();
+            base.Attack(target, dmg);
         }
 
         public override void Die()

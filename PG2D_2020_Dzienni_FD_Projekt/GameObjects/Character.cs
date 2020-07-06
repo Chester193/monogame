@@ -441,7 +441,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             characterSettings.maxHp = newMaxHp;
         }
 
-        public void Attack(Character target, int dmg)
+        public virtual void Attack(Character target, int dmg)
         {
             if (target == null) return;
             float distanceToTarget = Vector2.Distance(target.realPositon, realPositon);

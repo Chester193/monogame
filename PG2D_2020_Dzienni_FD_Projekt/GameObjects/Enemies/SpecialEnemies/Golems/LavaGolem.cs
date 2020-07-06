@@ -42,6 +42,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
             boundingBoxHeight = 40;
         }
 
+        public override void Attack(Character target, int dmg)
+        {
+            if (!isAttacking)
+                golemsEffects[new Random().Next(0, 5)].Play();
+            base.Attack(target, dmg);
+        }
+
         public override void hurt()
         {
             golemsEffects[new Random().Next(0, 5)].Play();
