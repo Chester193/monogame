@@ -46,6 +46,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         protected bool isDead = false;
         protected bool isAttacking = false;
+        protected bool hit = false;
+        protected Character target = null;
         protected bool isJumping = false;
         protected bool isHurting = false;
 
@@ -60,7 +62,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public Vector2 realPositon;
 
         public Scripts.Scripts scripts;
-        
+
         public CharacterSettings characterSettings;
 
         public Character()
@@ -439,14 +441,23 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public void Attack(Character target, int dmg)
         {
+            if (target == null) return;
             float distanceToTarget = Vector2.Distance(target.realPositon, realPositon);
             //Console.WriteLine("Character.Attack() " + distansToTarget + " / " + rangeOfAttack + " t.rPositon " + target.realPositon + " player.rPosioton" + realPositon);
+            /*
             if (distanceToTarget < characterSettings.rangeOfAttack && !isAttacking)
             {
                 isAttacking = true;
-                target.Damage(dmg);
+
                 //Console.WriteLine("Character.Attack()[EndIF]()");
             }
+            */
+
+            if (distanceToTarget < characterSettings.rangeOfAttack && hit)
+            {
+                target.Damage(dmg);
+            }
+            hit = false;
         }
 
 
@@ -478,7 +489,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public void Respawn()
         {
             isDead = false;
-        }    
+        }
 
         public void SetCharacterSettings(CharacterSettings settings)
         {
