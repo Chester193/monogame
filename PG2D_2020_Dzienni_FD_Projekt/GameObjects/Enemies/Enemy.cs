@@ -50,6 +50,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 .State(EState.ATTACK)
                     .TransitionTo(EState.IDLE).On(ETrigger.STOP)
                     .TransitionTo(EState.FOLLOW).On(ETrigger.FOLLOW_PLAYER)
+                    .TransitionTo(EState.PATROL).On(ETrigger.GO_PATROL)
                     .Update(args =>
                     {
                         //if (this is Viking1) Console.WriteLine("ATTACK " + distanceToPlayer);
@@ -193,17 +194,20 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         {
             if (distanceToPlayer < characterSettings.rangeOfAttack && !player.IsDead())
                 enemyAiMachine.Trigger(ETrigger.ATTACK);
+            else if (player.IsDead()) enemyAiMachine.Trigger(ETrigger.STOP);
             else
                 enemyAiMachine.Trigger(ETrigger.FOLLOW_PLAYER);
         }
 
         public void WaitForPlayer()
         {
+            Console.WriteLine(player.IsDead());
             if (distanceToPlayer < characterSettings.rangeOfAttack && !player.IsDead())
                 enemyAiMachine.Trigger(ETrigger.ATTACK);
+            else if (player.IsDead()) enemyAiMachine.Trigger(ETrigger.STOP);
             else if (distanceToPlayer < 400 && !player.IsDead())
                 enemyAiMachine.Trigger(ETrigger.FOLLOW_PLAYER);
-            else if (distanceToPlayer > 800 && player.IsDead())
+            else if (distanceToPlayer > 800 && player.IsDead() || player.IsDead())
                 enemyAiMachine.Trigger(ETrigger.STOP);
         }
 
@@ -215,11 +219,16 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public void Guard(int range)
         {
+            Console.WriteLine(player.IsDead());
             float distanceToGuardPosition = Vector2.Distance(originalPosition, realPositon);
-            if (distanceToPlayer < characterSettings.rangeOfAttack)
+            if (distanceToPlayer < characterSettings.rangeOfAttack && !player.IsDead())
             {
                 //Console.WriteLine("G  attack");
                 enemyAiMachine.Trigger(ETrigger.ATTACK);
+            }
+            else if (player.IsDead())
+            {
+                enemyAiMachine.Trigger(ETrigger.GO_PATROL);
             }
             else if (distanceToPlayer < range && distanceToGuardPosition <= 2 * range)
             {
