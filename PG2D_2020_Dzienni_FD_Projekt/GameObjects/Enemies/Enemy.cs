@@ -221,13 +221,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 //Console.WriteLine("G  attack");
                 enemyAiMachine.Trigger(ETrigger.ATTACK);
             }
-            else if (distanceToPlayer < range)
+            else if (distanceToPlayer < range && distanceToGuardPosition <= 2 * range)
             {
-                if (distanceToGuardPosition <= 2 * range)
-                {
-                    //Console.WriteLine("G  follow");
-                    enemyAiMachine.Trigger(ETrigger.FOLLOW_PLAYER);
-                }
+                //Console.WriteLine("G  follow");
+                enemyAiMachine.Trigger(ETrigger.FOLLOW_PLAYER);
             }
             else
             {
