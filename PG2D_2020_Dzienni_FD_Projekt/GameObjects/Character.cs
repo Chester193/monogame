@@ -443,6 +443,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public virtual void Attack(Character target, int dmg)
         {
+            hit = false;
             if (target == null) return;
             float distanceToTarget = Vector2.Distance(target.realPositon, realPositon);
             //Console.WriteLine("Character.Attack() " + distansToTarget + " / " + rangeOfAttack + " t.rPositon " + target.realPositon + " player.rPosioton" + realPositon);
@@ -456,12 +457,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             }
             */
 
-            if (distanceToTarget < characterSettings.rangeOfAttack && hit)
+            if (distanceToTarget < characterSettings.rangeOfAttack)
             {
                 target.hurt();
                 target.Damage(dmg);
             }
-            hit = false;
         }
 
 
