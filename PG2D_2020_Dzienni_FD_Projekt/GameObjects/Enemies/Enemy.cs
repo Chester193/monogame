@@ -36,7 +36,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     .TransitionTo(EState.PATROL).On(ETrigger.GO_PATROL)
                     .Update(args =>
                     {
-                        if (this is Viking1) Console.WriteLine("FOLLOW " + distanceToPlayer);
+                        //if (this is Viking1) Console.WriteLine("FOLLOW " + distanceToPlayer);
                         Follow(map, gameObjects);
                     })
                 .State(EState.IDLE)
@@ -45,14 +45,14 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     .TransitionTo(EState.PATROL).On(ETrigger.GO_PATROL)
                     .Update(args =>
                     {
-                        if (this is Viking1) Console.WriteLine("IDLE " + distanceToPlayer);
+                        //if (this is Viking1) Console.WriteLine("IDLE " + distanceToPlayer);
                     })
                 .State(EState.ATTACK)
                     .TransitionTo(EState.IDLE).On(ETrigger.STOP)
                     .TransitionTo(EState.FOLLOW).On(ETrigger.FOLLOW_PLAYER)
                     .Update(args =>
                     {
-                        if (this is Viking1) Console.WriteLine("ATTACK " + distanceToPlayer);
+                        //if (this is Viking1) Console.WriteLine("ATTACK " + distanceToPlayer);
                         AttackPlayer();
                     })
                 .State(EState.PATROL)
@@ -61,7 +61,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     .TransitionTo(EState.FOLLOW).On(ETrigger.FOLLOW_PLAYER)
                     .Update(args =>
                     {
-                        if (this is Viking1) Console.WriteLine("PATROL " + distanceToPlayer);
+                        //if (this is Viking1) Console.WriteLine("PATROL " + distanceToPlayer);
                         Patrol();
                     })
             .Build();
@@ -103,15 +103,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 switch (mode)
                 {
                     case CharcterMode.WaitForPlayer:
-                        if (this is Viking1) Console.WriteLine("WaitForPlayer ");
+                        //if (this is Viking1) Console.WriteLine("WaitForPlayer ");
                         WaitForPlayer();
                         break;
                     case CharcterMode.Guard:
-                        if (this is Viking1) Console.WriteLine("Guard ");
+                        //if (this is Viking1) Console.WriteLine("Guard ");
                         Guard(range);
                         break;
                     case CharcterMode.FollowPlayer:
-                        if (this is Viking1) Console.WriteLine("FollowPlayer ");
+                        //if (this is Viking1) Console.WriteLine("FollowPlayer ");
                         FollowPlayer();
                         break;
 
