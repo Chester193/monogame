@@ -23,7 +23,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public CharcterMode mode;
         public int range;
-        public List<Vector2> points;
         public int rangeOfAttack;
         public int weaponAttack;
 
@@ -502,7 +501,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             SetMode(settings.mode);
             SetRange(settings.range);
-            characterSettings.points = settings.points;
             this.characterSettings.rangeOfAttack = settings.rangeOfAttack;
             this.characterSettings.weaponAttack = settings.weaponAttack;
 

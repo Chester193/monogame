@@ -87,7 +87,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             CharacterSettings characterSettings = new CharacterSettings
             {
                 maxHp = 100,
-                mode = CharcterMode.Guard,
+                mode = CharcterMode.WaitForPlayer,
                 range = 300,
                 rangeOfAttack = 30,
                 weaponAttack = 20,
@@ -106,14 +106,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(player);
             gameHUD.Player(player);
 
-            List<Vector2> points = new List<Vector2>();
-            //points.Add(new Vector2(650, 970));
-            //points.Add(new Vector2(650, 1070));
-            //points.Add(new Vector2(850, 1070));
-
-            characterSettings.points = points;
+            characterSettings.mode = CharcterMode.Guard;
             characterSettings.rangeOfAttack = 30;
-            characterSettings.mode = 0;
             gameObjects.Add(new Zombie(new Vector2(104 * tiledMap.tileSize, 38 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new Lizard(new Vector2(163 * tiledMap.tileSize, 56 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new Lizard(new Vector2(172 * tiledMap.tileSize, 59 * tiledMap.tileSize), characterSettings));
