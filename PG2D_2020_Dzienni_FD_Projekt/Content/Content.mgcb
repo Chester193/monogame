@@ -370,6 +370,18 @@
 /processorParam:TextureFormat=Color
 /build:Map/building2.png
 
+#begin Map/buildings3.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Map/buildings3.png
+
 #begin Map/desert.png
 /importer:TextureImporter
 /processor:TextureProcessor
