@@ -1156,3 +1156,9 @@
 #begin Tilemaps/Terrain.tsx
 /copy:Tilemaps/Terrain.tsx
 
+#begin visualEffects/Portal.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:visualEffects/Portal.fx
+
