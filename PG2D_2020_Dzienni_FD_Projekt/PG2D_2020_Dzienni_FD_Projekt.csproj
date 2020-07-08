@@ -77,8 +77,10 @@
     <Compile Include="GameObjects\GameObject.cs" />
     <Compile Include="GameObjects\Npc\NonplayableCharacter.cs" />
     <Compile Include="GameObjects\Player.cs" />
+    <Compile Include="GameObjects\Portal.cs" />
     <Compile Include="GameObjects\Scripts\Scripts.cs" />
     <Compile Include="GameObjects\Scripts\ScriptsController.cs" />
+    <Compile Include="GameObjects\ShaderObject.cs" />
     <Compile Include="GameObjects\Trigger.cs" />
     <Compile Include="PathFinder.cs" />
     <Compile Include="Program.cs" />
@@ -170,6 +172,9 @@
   <ItemGroup>
     <Folder Include="Content\Fonts\" />
     <Folder Include="Content\Tilemaps\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\VisualEffects\Portal.fx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

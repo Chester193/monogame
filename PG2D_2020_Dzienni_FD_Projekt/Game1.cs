@@ -35,6 +35,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
         public List<GameObject> gameObjects;
 
+        public List<ShaderObject> shaderObjects;
+
         public List<Trigger> triggers;
 
         public TiledMap tiledMap;
@@ -69,7 +71,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         {
             scriptsList = new List<ScriptsController>();
             gameObjects = new List<GameObject>();
+            shaderObjects = new List<ShaderObject>();
             triggers = new List<Trigger>();
+
+            shaderObjects.Add(new Portal(new Vector2(2500, 1500)));
 
             Scripts scripts = new Scripts(gameObjects, triggers, gameHUD, this);
             scriptsList.Add(new ScriptsController(scripts.TeleportTo1000_1000));
@@ -162,6 +167,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             LoadInitializeGameObjects(gameObjects);
             LoadInitializeTrigger(triggers);
+            LoadInitializeShaderObjects(shaderObjects);
 
             // TODO: use this.Content to load your game content here
             tiledMap.Load(Content, @"Map/map.tmx");
@@ -251,6 +257,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             {
                 trigger.Initialize();
                 trigger.Load(content: Content);
+            }
+        }
+
+        public void LoadInitializeShaderObjects(List<ShaderObject> shaderObjects)
+        {
+            foreach (var item in shaderObjects)
+            {
+                item.Initialize();
+                item.Load(content: Content);
             }
         }
 
