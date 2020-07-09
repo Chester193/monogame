@@ -346,6 +346,18 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/diamondfantasy.spritefont
 
+#begin Map/aztekowie.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Map/aztekowie.png
+
 #begin Map/building1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -537,6 +549,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Map/Johans Castle Walls B.png
+
+#begin Map/kamienie.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Map/kamienie.png
 
 #begin Map/map.tmx
 /copy:Map/map.tmx
