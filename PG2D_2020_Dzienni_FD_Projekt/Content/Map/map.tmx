@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" width="460" height="260" tilewidth="32" tileheight="32" infinite="0" nextlayerid="17" nextobjectid="1420">
+<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" width="460" height="260" tilewidth="32" tileheight="32" infinite="0" nextlayerid="17" nextobjectid="1449">
  <tileset firstgid="1" name="tileset_preview" tilewidth="32" tileheight="32" tilecount="432" columns="24">
   <image source="tileset_preview.png" width="768" height="576"/>
  </tileset>
@@ -5150,5 +5150,34 @@
   <object id="1417" x="11513" y="5537" width="83" height="30"/>
   <object id="1418" x="11624" y="5460" width="17" height="72"/>
   <object id="1419" x="11230" y="5530" width="66" height="53"/>
+  <object id="1420" x="7142.67" y="1661.33" width="20" height="33.3333"/>
+  <object id="1421" x="7398" y="1758" width="20" height="33.3333"/>
+  <object id="1422" x="7175.33" y="1854" width="20" height="33.3333"/>
+  <object id="1423" x="7367.33" y="1919.33" width="20" height="33.3333"/>
+  <object id="1424" x="7012.67" y="1916.67" width="20" height="33.3333"/>
+  <object id="1425" x="7175.33" y="2047.33" width="20" height="33.3333"/>
+  <object id="1426" x="7367.33" y="2112.67" width="20" height="33.3333"/>
+  <object id="1427" x="7206" y="2175.33" width="20" height="33.3333"/>
+  <object id="1428" x="7014" y="2046" width="20" height="33.3333"/>
+  <object id="1429" x="7078" y="2334" width="20" height="33.3333"/>
+  <object id="1430" x="7078" y="2463.33" width="20" height="33.3333"/>
+  <object id="1431" x="7208.67" y="2562" width="20" height="33.3333"/>
+  <object id="1432" x="7303.33" y="2399.33" width="20" height="33.3333"/>
+  <object id="1433" x="7879.33" y="2590" width="20" height="33.3333"/>
+  <object id="1434" x="7815.33" y="2399.33" width="20" height="33.3333"/>
+  <object id="1435" x="7782" y="2175.33" width="20" height="33.3333"/>
+  <object id="1436" x="7815.33" y="1915.33" width="20" height="33.3333"/>
+  <object id="1437" x="7782" y="1823.33" width="20" height="33.3333"/>
+  <object id="1438" x="7750" y="1660.67" width="20" height="33.3333"/>
+  <object id="1439" x="7975.33" y="2398" width="20" height="33.3333"/>
+  <object id="1440" x="7943.33" y="2203.33" width="20" height="33.3333"/>
+  <object id="1441" x="7943.33" y="2014" width="20" height="33.3333"/>
+  <object id="1442" x="8070" y="1980.67" width="20" height="33.3333"/>
+  <object id="1443" x="8166" y="1787.33" width="20" height="33.3333"/>
+  <object id="1444" x="7974" y="1727.33" width="20" height="33.3333"/>
+  <object id="1445" x="7974" y="1564.67" width="20" height="33.3333"/>
+  <object id="1446" x="7620.67" y="1502" width="20" height="33.3333"/>
+  <object id="1447" x="8134" y="1471.33" width="20" height="33.3333"/>
+  <object id="1448" x="8228.67" y="1630" width="20" height="33.3333"/>
  </objectgroup>
 </map>
