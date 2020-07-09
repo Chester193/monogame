@@ -988,6 +988,30 @@
 /processorParam:TextureFormat=Color
 /build:Other/portal_frame.png
 
+#begin Other/sphere.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Other/sphere.png
+
+#begin Other/sphere_bg.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Other/sphere_bg.png
+
 #begin Other/trade.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1197,4 +1221,10 @@
 /processor:EffectProcessor
 /processorParam:DebugMode=Auto
 /build:visualEffects/Portal.fx
+
+#begin visualEffects/Sphere.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:visualEffects/Sphere.fx
 

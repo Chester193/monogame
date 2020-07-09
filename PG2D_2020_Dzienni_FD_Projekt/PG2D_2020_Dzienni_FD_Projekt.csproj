@@ -82,6 +82,8 @@
     <Compile Include="GameObjects\Scripts\Scripts.cs" />
     <Compile Include="GameObjects\Scripts\ScriptsController.cs" />
     <Compile Include="GameObjects\ShaderObject.cs" />
+    <Compile Include="GameObjects\Sphere.cs" />
+    <Compile Include="GameObjects\SphereBackground.cs" />
     <Compile Include="GameObjects\Trigger.cs" />
     <Compile Include="PathFinder.cs" />
     <Compile Include="Program.cs" />
@@ -176,6 +178,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\VisualEffects\Portal.fx" />
+    <Content Include="Content\VisualEffects\Sphere.fx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
