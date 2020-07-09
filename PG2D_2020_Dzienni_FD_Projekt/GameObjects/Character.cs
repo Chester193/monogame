@@ -23,7 +23,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public CharcterMode mode;
         public int range;
-        public List<Vector2> points;
         public int rangeOfAttack;
         public int weaponAttack;
 
@@ -105,7 +104,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 Vector2 pos = new Vector2(BoundingBox.Center.X - maxLength / 2, position.Y);
                 Rectangle currentLevel = new Rectangle((int)pos.X, (int)pos.Y, characterSettings.hp * maxLength / characterSettings.maxHp, 10);
                 Rectangle background = new Rectangle((int)pos.X, (int)pos.Y, maxLength, 10);
-                spriteBatch.Draw(pathTexture, pos, currentLevel, Color.Green, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.09f);
+                spriteBatch.Draw(pathTexture, pos, currentLevel, Color.DarkGreen, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.09f);
                 spriteBatch.Draw(pathTexture, pos, background, Color.Red, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0.1f);
             }
 
@@ -502,7 +501,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             SetMode(settings.mode);
             SetRange(settings.range);
-            characterSettings.points = settings.points;
             this.characterSettings.rangeOfAttack = settings.rangeOfAttack;
             this.characterSettings.weaponAttack = settings.weaponAttack;
 

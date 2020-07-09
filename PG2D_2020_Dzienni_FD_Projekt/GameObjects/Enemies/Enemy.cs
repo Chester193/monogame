@@ -5,6 +5,7 @@ using System;
 using StateMachine;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
+using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies;
 
 namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 {
@@ -14,6 +15,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         private float distanceToPlayer;
         Vector2 nextPoint = new Vector2(0);
         int patrolTimer = 50;
+        Player player;
 
         private enum EState { IDLE, FOLLOW, ATTACK, PATROL };
         private enum ETrigger { STOP, FOLLOW_PLAYER, ATTACK, GO_PATROL };
@@ -34,7 +36,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     .TransitionTo(EState.PATROL).On(ETrigger.GO_PATROL)
                     .Update(args =>
                     {
-                        //Console.WriteLine("FOLLOW");
+                        //if (this is Viking1) Console.WriteLine("FOLLOW " + distanceToPlayer);
                         Follow(map, gameObjects);
                     })
                 .State(EState.IDLE)
@@ -43,14 +45,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     .TransitionTo(EState.PATROL).On(ETrigger.GO_PATROL)
                     .Update(args =>
                     {
-                        //Console.WriteLine("IDLE");
+                        //if (this is Viking1) Console.WriteLine("IDLE " + distanceToPlayer);
                     })
                 .State(EState.ATTACK)
                     .TransitionTo(EState.IDLE).On(ETrigger.STOP)
                     .TransitionTo(EState.FOLLOW).On(ETrigger.FOLLOW_PLAYER)
+                    .TransitionTo(EState.PATROL).On(ETrigger.GO_PATROL)
                     .Update(args =>
                     {
-                        //Console.WriteLine("ATTACK");
+                        //if (this is Viking1) Console.WriteLine("ATTACK " + distanceToPlayer);
                         AttackPlayer();
                     })
                 .State(EState.PATROL)
@@ -59,7 +62,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     .TransitionTo(EState.FOLLOW).On(ETrigger.FOLLOW_PLAYER)
                     .Update(args =>
                     {
-                        //Console.WriteLine("PATROL");
+                        //if (this is Viking1) Console.WriteLine("PATROL " + distanceToPlayer);
                         Patrol();
                     })
             .Build();
@@ -84,10 +87,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         {
             gameObjects = gameObjectsG;
             map = mapG;
+            player = (Player)gameObjects[0];
 
             CharcterMode mode = GetMode();
             int range = GetRange();
-            distanceToPlayer = countDistanceToPlayer((Player)gameObjects[0]);
+            distanceToPlayer = countDistanceToPlayer(player);
 
             if (nextPoint.Equals(new Vector2(0)))
                 nextPoint = originalPosition;
@@ -100,12 +104,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 switch (mode)
                 {
                     case CharcterMode.WaitForPlayer:
+                        //if (this is Viking1) Console.WriteLine("WaitForPlayer ");
                         WaitForPlayer();
                         break;
                     case CharcterMode.Guard:
+                        //if (this is Viking1) Console.WriteLine("Guard ");
                         Guard(range);
                         break;
                     case CharcterMode.FollowPlayer:
+                        //if (this is Viking1) Console.WriteLine("FollowPlayer ");
                         FollowPlayer();
                         break;
 
@@ -188,44 +195,46 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public void FollowPlayer()
         {
-            if (distanceToPlayer < characterSettings.rangeOfAttack)
+            if (player.IsDead()) enemyAiMachine.Trigger(ETrigger.STOP);
+            else if (distanceToPlayer < characterSettings.rangeOfAttack)
                 enemyAiMachine.Trigger(ETrigger.ATTACK);
-            else
-                enemyAiMachine.Trigger(ETrigger.FOLLOW_PLAYER);
+            else enemyAiMachine.Trigger(ETrigger.FOLLOW_PLAYER);
         }
 
         public void WaitForPlayer()
         {
-            if (distanceToPlayer < characterSettings.rangeOfAttack)
+            //Console.WriteLine(player.IsDead());
+            if (player.IsDead()) enemyAiMachine.Trigger(ETrigger.STOP);
+            else if (distanceToPlayer < characterSettings.rangeOfAttack)
                 enemyAiMachine.Trigger(ETrigger.ATTACK);
             else if (distanceToPlayer < 400)
                 enemyAiMachine.Trigger(ETrigger.FOLLOW_PLAYER);
             else if (distanceToPlayer > 800)
-                enemyAiMachine.Trigger(ETrigger.STOP);
+                enemyAiMachine.Trigger(ETrigger.GO_PATROL);
         }
 
         public void AttackPlayer()
         {
             isAttacking = true;
-            Player player = (Player)gameObjects[0];
             target = player;
         }
 
         public void Guard(int range)
         {
+            Console.WriteLine(player.IsDead());
             float distanceToGuardPosition = Vector2.Distance(originalPosition, realPositon);
-            if (distanceToPlayer < characterSettings.rangeOfAttack)
+            float distancePlayerToGuardPosition = Vector2.Distance(player.position, originalPosition);
+
+            if (player.IsDead()) enemyAiMachine.Trigger(ETrigger.GO_PATROL);
+            else if (distanceToPlayer < characterSettings.rangeOfAttack)
             {
                 //Console.WriteLine("G  attack");
                 enemyAiMachine.Trigger(ETrigger.ATTACK);
             }
-            else if (distanceToPlayer < range)
+            else if (distanceToPlayer < range && distanceToGuardPosition <= 2 * range && distancePlayerToGuardPosition <= 2 * range)
             {
-                if (distanceToGuardPosition <= 2 * range)
-                {
-                    //Console.WriteLine("G  follow");
-                    enemyAiMachine.Trigger(ETrigger.FOLLOW_PLAYER);
-                }
+                //Console.WriteLine("G  follow");
+                enemyAiMachine.Trigger(ETrigger.FOLLOW_PLAYER);
             }
             else
             {
