@@ -78,6 +78,7 @@
     <Compile Include="GameObjects\Npc\NonplayableCharacter.cs" />
     <Compile Include="GameObjects\Player.cs" />
     <Compile Include="GameObjects\Portal.cs" />
+    <Compile Include="GameObjects\PortalFrame.cs" />
     <Compile Include="GameObjects\Scripts\Scripts.cs" />
     <Compile Include="GameObjects\Scripts\ScriptsController.cs" />
     <Compile Include="GameObjects\ShaderObject.cs" />

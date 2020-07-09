@@ -74,7 +74,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             shaderObjects = new List<ShaderObject>();
             triggers = new List<Trigger>();
 
-            shaderObjects.Add(new Portal(new Vector2(2500, 1500)));
+            shaderObjects.Add(new Portal(new Vector2(2080, 974)));
 
             Scripts scripts = new Scripts(gameObjects, triggers, gameHUD, this);
             scriptsList.Add(new ScriptsController(scripts.TeleportTo1000_1000));
@@ -127,6 +127,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(new Viking1(new Vector2(59 * tiledMap.tileSize, 92 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new Viking2(new Vector2(59 * tiledMap.tileSize, 93 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new Viking3(new Vector2(61 * tiledMap.tileSize, 91 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new PortalFrame(new Vector2(65 * tiledMap.tileSize, 972)));
 
             foreach (SpecialEnemy specEnemy in specialEnemies)
             {

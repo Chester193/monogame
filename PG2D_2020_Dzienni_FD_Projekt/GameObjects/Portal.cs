@@ -18,19 +18,22 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             : base(startingPosition)
         {
             timer = 0f;
+            scale = 0.6f;
         }
 
         public override void Load(ContentManager content)
         {
             texture = content.Load<Texture2D>("Other/portal");
+            Texture2D lightmap = content.Load<Texture2D>("visualEffects/lightmap");
             shader = content.Load<Effect>("visualEffects/portal");
+            shader.Parameters["Lightmap"].SetValue(lightmap);
             base.Load(content);
             boundingBoxHeight = 0;
         }
 
         public override void Update(List<GameObject> gameObjects, TiledMap map, GameTime gameTime)
         {
-            timer = (timer + 0.01f) % 1;
+            timer = (timer + 0.07f) % (float)(2 * Math.PI);
             shader.Parameters["Timer"].SetValue(timer);
             base.Update(gameObjects, map, gameTime);
         }
