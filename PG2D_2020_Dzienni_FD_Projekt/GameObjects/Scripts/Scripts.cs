@@ -68,12 +68,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
 
         private void toggleTriggers(int activate, int deactivate)
         {
-            if (Input.IsKeyDown(Keys.E))
-            {
-                triggers[activate].active = true;
-                triggers[deactivate].active = false;
-                game.PauseGame();
-            }
+
+            triggers[activate].active = true;
+            triggers[deactivate].active = false;
         }
 
         /*
@@ -133,7 +130,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
         {
             hud.PrintMessage("Press E to talk");
 
-            toggleTriggers(6, 5);
+            if (Input.IsKeyDown(Keys.E))
+            {
+                toggleTriggers(6, 5);
+                game.PauseGame();
+            }
         }
 
         public void QuestDialog()
