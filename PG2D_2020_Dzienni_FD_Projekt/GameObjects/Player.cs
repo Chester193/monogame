@@ -20,7 +20,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         private int currentQuestIndex = 0;
         private GameHUD hud;
 
-        private bool isRanged = false;
+        public bool isRanged = false;
         private int fireDelay;
         Fireball fireBall;
 

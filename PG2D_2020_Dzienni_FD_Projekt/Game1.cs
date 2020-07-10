@@ -319,6 +319,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             Texture2D mana_icon = Content.Load<Texture2D>("Other/mana_potion");
             Texture2D default_sword = Content.Load<Texture2D>("Other/default_sword");
             Texture2D better_sword = Content.Load<Texture2D>("Other/better_sword");
+            Texture2D fire_ball = Content.Load<Texture2D>("Other/fire_ball");
 
             SoundEffect drink = Content.Load<SoundEffect>(@"SoundEffects/potion");
 
@@ -355,6 +356,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 if (currentState is InventoryState)
                 {
                     player.Weapon = (InventoryItem)s;
+                    player.isRanged = false;
                     player.characterSettings.weaponAttack = 10;
                 }
             };
@@ -364,12 +366,23 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 if (currentState is InventoryState)
                 {
                     player.Weapon = (InventoryItem)s;
+                    player.isRanged = false;
                     player.characterSettings.weaponAttack = 50;
+                }
+            };
+
+            EventHandler fire_ball_handler = (s, e) =>
+            {
+                if (currentState is InventoryState)
+                {
+                    player.Weapon = (InventoryItem)s;
+                    player.isRanged = true;
                 }
             };
 
             inventory.Add(new InventoryItem(default_sword, font, 100, default_sword_handler + trade_handler));
             inventory.Add(new InventoryItem(better_sword, font, 150, better_sword_handler + trade_handler));
+            inventory.Add(new InventoryItem(fire_ball, font, 200, fire_ball_handler + trade_handler));
             for (int i = 0; i < 3; i++)
             {
                 inventory.Add(new InventoryItem(health_icon, font, 50, health_handler + trade_handler));
