@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" width="460" height="260" tilewidth="32" tileheight="32" infinite="0" nextlayerid="17" nextobjectid="1493">
+<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" width="460" height="260" tilewidth="32" tileheight="32" infinite="0" nextlayerid="17" nextobjectid="1507">
  <tileset firstgid="1" name="tileset_preview" tilewidth="32" tileheight="32" tilecount="432" columns="24">
   <image source="tileset_preview.png" width="768" height="576"/>
  </tileset>
@@ -110,7 +110,7 @@
  <tileset firstgid="14821" name="inside2" tilewidth="32" tileheight="32" tilecount="357" columns="17">
   <image source="inside2.jpg" width="564" height="689"/>
  </tileset>
- <tileset firstgid="15178" name="battlefield" tilewidth="32" tileheight="32" tilecount="576" columns="16">
+ <tileset firstgid="15178" name="battlefield" tilewidth="32" tileheight="32" tilecount="256" columns="16">
   <image source="battlefield.png" width="512" height="512"/>
  </tileset>
  <layer id="1" name="1.0 - Terrain Town" width="460" height="260">
@@ -5226,5 +5226,19 @@
   <object id="1490" x="7014.5" y="2817.5" width="25" height="27"/>
   <object id="1491" x="6945.5" y="2850.5" width="25" height="27"/>
   <object id="1492" x="8228.5" y="2943.5" width="25" height="27"/>
+  <object id="1493" x="3924" y="4753.33" width="661.333" height="213.333"/>
+  <object id="1494" x="4365.33" y="4914.67" width="382.667" height="245.333"/>
+  <object id="1495" x="2724" y="6084" width="285" height="185"/>
+  <object id="1496" x="2625" y="6179" width="93" height="283"/>
+  <object id="1497" x="2718" y="6307" width="97" height="383"/>
+  <object id="1498" x="2816" y="6530" width="96" height="285"/>
+  <object id="1499" x="2910" y="6656" width="192" height="190"/>
+  <object id="1500" x="3102" y="6688" width="98" height="191"/>
+  <object id="1501" x="3197" y="6623" width="100" height="194"/>
+  <object id="1502" x="2913" y="6434" width="29" height="61"/>
+  <object id="1503" x="3169" y="6562" width="31" height="61"/>
+  <object id="1504" x="3298" y="6563" width="95" height="187"/>
+  <object id="1505" x="3394" y="6497" width="93" height="190"/>
+  <object id="1506" x="3487" y="6466" width="98" height="190"/>
  </objectgroup>
 </map>
