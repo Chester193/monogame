@@ -317,6 +317,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             SpriteFont font = Content.Load<SpriteFont>("Fonts\\diamondfantasy");
             Texture2D health_icon = Content.Load<Texture2D>("Other/health_potion");
             Texture2D mana_icon = Content.Load<Texture2D>("Other/mana_potion");
+            Texture2D default_sword = Content.Load<Texture2D>("Other/default_sword");
+            Texture2D better_sword = Content.Load<Texture2D>("Other/better_sword");
 
             SoundEffect drink = Content.Load<SoundEffect>(@"SoundEffects/potion");
 
@@ -348,6 +350,26 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 }
             };
 
+            EventHandler default_sword_handler = (s, e) =>
+            {
+                if (currentState is InventoryState)
+                {
+                    player.Weapon = (InventoryItem)s;
+                    player.characterSettings.weaponAttack = 10;
+                }
+            };
+
+            EventHandler better_sword_handler = (s, e) =>
+            {
+                if (currentState is InventoryState)
+                {
+                    player.Weapon = (InventoryItem)s;
+                    player.characterSettings.weaponAttack = 50;
+                }
+            };
+
+            inventory.Add(new InventoryItem(default_sword, font, 100, default_sword_handler + trade_handler));
+            inventory.Add(new InventoryItem(better_sword, font, 150, better_sword_handler + trade_handler));
             for (int i = 0; i < 3; i++)
             {
                 inventory.Add(new InventoryItem(health_icon, font, 50, health_handler + trade_handler));

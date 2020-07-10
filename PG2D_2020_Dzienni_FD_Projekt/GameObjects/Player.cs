@@ -20,12 +20,14 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         private int currentQuestIndex = 0;
         private GameHUD hud;
 
-        private bool isRanged = true;
+        private bool isRanged = false;
         private int fireDelay;
         Fireball fireBall;
 
         public int Money { get; private set; } = 0;
         public int Exp { get; private set; } = 0;
+        public InventoryItem Weapon { get; set; }
+        public InventoryItem Armour { get; set; }
 
         SoundEffect slash;
         SoundEffect inventoryOpen;
@@ -73,12 +75,14 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             characterSettings.mp = 10;
 
             characterSettings.rangeOfAttack = 30;
-            characterSettings.weaponAttack = 30;
+            characterSettings.weaponAttack = 10;
 
             fireDelay = 0;
             fireBall = new Fireball();
 
             hurtingEffects = new List<SoundEffect>();
+            Weapon = Inventory[0];
+            Armour = Inventory[1];
 
             base.Initialize();
         }
@@ -297,7 +301,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 else {
                     try
                     {
-                        ManaUse(10);
+                        ManaUse(1);
                         isHurting = true;
                         Fire();
                     }catch(NotEnoughMpException e)

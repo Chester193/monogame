@@ -58,6 +58,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
             foreach (var component in _components)
                 component.Draw(gameTime, spriteBatch);
 
+            Texture2D weaponTexture = player.Weapon.Texture, armourTexture = player.Armour.Texture;
+            spriteBatch.Draw(weaponTexture, new Rectangle(40, 390, weaponTexture.Width, weaponTexture.Height), Color.White);
+            spriteBatch.Draw(armourTexture, new Rectangle(145, 390, armourTexture.Width, armourTexture.Height), Color.White);
+
             spriteBatch.End();
 
             _game.gameHUD.Draw(spriteBatch);
