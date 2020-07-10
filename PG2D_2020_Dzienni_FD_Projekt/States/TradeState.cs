@@ -23,6 +23,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
         protected Character npc;
         private SpriteFont font;
         protected string characterName;
+        private InventoryItem hovered;
 
         protected SoundEffect sound;
 
@@ -74,8 +75,14 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
             }
             Input.Update();
 
+            hovered = null;
             foreach (var component in _components)
+            {
                 component.Update(gameTime);
+                InventoryItem item = (InventoryItem)component;
+                if (item.IsHovering)
+                    hovered = item;
+            }
 
             UpdateComponents();
         }
@@ -94,6 +101,14 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
 
             foreach (var component in _components)
                 component.Draw(gameTime, spriteBatch);
+
+            if (hovered != null)
+            {
+                spriteBatch.DrawString(font, "Name: " + hovered.Name, new Vector2(800, 10), Color.White, 0f, Vector2.Zero, 0.7f, SpriteEffects.None, 0.1f);
+                spriteBatch.DrawString(font, "Price: " + hovered.Price.ToString(), new Vector2(1100, 10), Color.White, 0f, Vector2.Zero, 0.7f, SpriteEffects.None, 0.1f);
+                spriteBatch.DrawString(font, "Description:", new Vector2(800, 50), Color.White, 0f, Vector2.Zero, 0.7f, SpriteEffects.None, 0.1f);
+                spriteBatch.DrawString(font, hovered.Description, new Vector2(945, 50), Color.White, 0f, Vector2.Zero, 0.7f, SpriteEffects.None, 0.1f);
+            }
 
             spriteBatch.End();
 
