@@ -35,6 +35,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
         public List<GameObject> gameObjects;
 
+        public List<ShaderObject> shaderObjects;
+
         public List<Trigger> triggers;
 
         public TiledMap tiledMap;
@@ -69,7 +71,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         {
             scriptsList = new List<ScriptsController>();
             gameObjects = new List<GameObject>();
+            shaderObjects = new List<ShaderObject>();
             triggers = new List<Trigger>();
+
+            shaderObjects.Add(new Portal(new Vector2(2080, 974)));
+            shaderObjects.Add(new Sphere(new Vector2(1730, 2920)));
 
             Scripts scripts = new Scripts(gameObjects, triggers, gameHUD, this);
             scriptsList.Add(new ScriptsController(scripts.TeleportTo1000_1000));
@@ -116,6 +122,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(new Viking1(new Vector2(59 * tiledMap.tileSize, 92 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new Viking2(new Vector2(59 * tiledMap.tileSize, 93 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new Viking3(new Vector2(61 * tiledMap.tileSize, 91 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new PortalFrame(new Vector2(65 * tiledMap.tileSize, 972)));
+            gameObjects.Add(new SphereBackground(new Vector2(1730, 2920)));
 
             foreach (SpecialEnemy specEnemy in specialEnemies)
             {
@@ -127,7 +135,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             triggers.Add(new Trigger(new Vector2(240 * tiledMap.tileSize, 30 * tiledMap.tileSize), new Vector2(200, 30), 1, scriptsList));
             triggers.Add(new Trigger(new Vector2(246 * tiledMap.tileSize, 30 * tiledMap.tileSize), new Vector2(200, 30), 2, scriptsList));
-            triggers.Add(new Trigger(new Vector2(45 * tiledMap.tileSize, 62 * tiledMap.tileSize), new Vector2(75), 3, scriptsList));
+            triggers.Add(new Trigger(new Vector2(65 * tiledMap.tileSize, 31 * tiledMap.tileSize), new Vector2(75), 3, scriptsList));
             triggers.Add(new Trigger(new Vector2(158 * tiledMap.tileSize, 78 * tiledMap.tileSize), new Vector2(75), 3, scriptsList));
             triggers.Add(new Trigger(new Vector2(50 * tiledMap.tileSize, 95 * tiledMap.tileSize), new Vector2(75), 3, scriptsList));
 
@@ -156,6 +164,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             LoadInitializeGameObjects(gameObjects);
             LoadInitializeTrigger(triggers);
+            LoadInitializeShaderObjects(shaderObjects);
 
             // TODO: use this.Content to load your game content here
             tiledMap.Load(Content, @"Map/map.tmx");
@@ -245,6 +254,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             {
                 trigger.Initialize();
                 trigger.Load(content: Content);
+            }
+        }
+
+        public void LoadInitializeShaderObjects(List<ShaderObject> shaderObjects)
+        {
+            foreach (var item in shaderObjects)
+            {
+                item.Initialize();
+                item.Load(content: Content);
             }
         }
 

@@ -94,7 +94,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
 
             if (Input.IsKeyDown(Keys.NumPad1) || Input.IsKeyDown(Keys.D1))
             {
-                Teleport(gameObjects[0], gameObjects[0].originalPosition - new Vector2(0, 100));
+                Teleport(gameObjects[0], new Vector2(65 * tileSize, 32 * tileSize));
                 hud.FastTravelStop();
             }
             if (Input.IsKeyDown(Keys.NumPad2) || Input.IsKeyDown(Keys.D2))
