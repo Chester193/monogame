@@ -339,21 +339,14 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             secondAtlas = tmpAtlas;
             LoadAnimations(atlas);
             ChangeAnimation(Animations.IdleFront);
-            if (characterSettings.maxHp == 80)
+            if (armour == 1)
             {
-                ChangeMaxHp(120);
+                armour = 0.6f;
             }
             else
             {
-                ChangeMaxHp(80);
+                armour = 1f;
             }
-        }
-
-        public void ChangeMaxHp(int value)
-        {
-            float percentage = (float)characterSettings.hp / characterSettings.maxHp;
-            characterSettings.maxHp = value;
-            characterSettings.hp = (int)Math.Ceiling(value * percentage);
         }
 
         public void Fire()
