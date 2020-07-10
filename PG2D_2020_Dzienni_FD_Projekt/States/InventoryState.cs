@@ -41,10 +41,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
             foreach (var component in _components)
                 component.Update(gameTime);
 
-            if (player.Inventory.Count != _components.Count)
-            {
-                UpdateComponents();
-            }
+            UpdateComponents();
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -56,7 +53,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
             player.DrawAnimation(spriteBatch, new Vector2(8, 160), 2f);
 
             foreach (var component in _components)
+            {
                 component.Draw(gameTime, spriteBatch);
+            }
+
+            Texture2D weaponTexture = player.Weapon.Texture, armourTexture = player.Armour.Texture;
+            spriteBatch.Draw(weaponTexture, new Rectangle(40, 390, weaponTexture.Width, weaponTexture.Height), Color.White);
+            spriteBatch.Draw(armourTexture, new Rectangle(145, 390, armourTexture.Width, armourTexture.Height), Color.White);
 
             spriteBatch.End();
 

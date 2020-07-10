@@ -16,16 +16,20 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 {
     public class Player : Character
     {
+        private Texture2D secondTexture;
+        private SpriteAtlasData atlas, secondAtlas;
         private List<Quest> quests;
         private int currentQuestIndex = 0;
         private GameHUD hud;
 
-        private bool isRanged = true;
+        public bool isRanged = false;
         private int fireDelay;
         Fireball fireBall;
 
         public int Money { get; private set; } = 0;
         public int Exp { get; private set; } = 0;
+        public InventoryItem Weapon { get; set; }
+        public InventoryItem Armour { get; set; }
 
         SoundEffect slash;
         SoundEffect inventoryOpen;
@@ -73,12 +77,17 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             characterSettings.mp = 10;
 
             characterSettings.rangeOfAttack = 30;
-            characterSettings.weaponAttack = 30;
+            characterSettings.weaponAttack = 10;
 
             fireDelay = 0;
             fireBall = new Fireball();
 
             hurtingEffects = new List<SoundEffect>();
+            Weapon = Inventory[0];
+            Inventory.RemoveAt(0);
+
+            Armour = Inventory[0];
+            Inventory.RemoveAt(0);
 
             base.Initialize();
         }
@@ -86,9 +95,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public override void Load(ContentManager content)
         {
-
             texture = TextureLoader.Load(@"characters/warrior", content);
-            SpriteAtlasData atlas = SpriteAtlasLoader.ParseSpriteAtlas(@"characters/warrior.atlas", texture, content);
+            secondTexture = TextureLoader.Load(@"characters/secondWarrior", content);
+            atlas = SpriteAtlasLoader.ParseSpriteAtlas(@"characters/warrior.atlas", texture, content);
+            secondAtlas = SpriteAtlasLoader.ParseSpriteAtlas(@"characters/secondWarrior.atlas", texture, content);
 
             LoadAnimations(atlas);
             ChangeAnimation(Animations.IdleRight);
@@ -297,7 +307,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 else {
                     try
                     {
-                        ManaUse(10);
+                        ManaUse(1);
                         isHurting = true;
                         Fire();
                     }catch(NotEnoughMpException e)
@@ -317,6 +327,26 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 Heal(15);
             if (Input.KeyPressed(Keys.K) == true)
                 MaxHpAdd(50);
+        }
+
+        public void ChangeArmour()
+        {
+            Texture2D tmpTexture = texture;
+            texture = secondTexture;
+            secondTexture = tmpTexture;
+            SpriteAtlasData tmpAtlas = atlas;
+            atlas = secondAtlas;
+            secondAtlas = tmpAtlas;
+            LoadAnimations(atlas);
+            ChangeAnimation(Animations.IdleFront);
+            if (armour == 1)
+            {
+                armour = 0.6f;
+            }
+            else
+            {
+                armour = 1f;
+            }
         }
 
         public void Fire()

@@ -21,11 +21,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.Controls
 
         private MouseState _previousMouse;
 
-        private Texture2D _texture;
-
         #endregion
 
         #region Properties
+
+        public Texture2D Texture { get; private set; }
 
         public event EventHandler Click;
 
@@ -39,7 +39,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.Controls
         {
             get
             {
-                return new Rectangle((int)Position.X, (int)Position.Y, _texture.Width, _texture.Height);
+                return new Rectangle((int)Position.X, (int)Position.Y, Texture.Width, Texture.Height);
             }
         }
 
@@ -51,7 +51,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.Controls
 
         public Button(Texture2D texture, SpriteFont font)
         {
-            _texture = texture;
+            Texture = texture;
 
             _font = font;
 
@@ -65,7 +65,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.Controls
             if (_isHovering)
                 colour = Color.Gray;
 
-            spriteBatch.Draw(_texture, Rectangle, colour);
+            spriteBatch.Draw(Texture, Rectangle, colour);
 
             if (!string.IsNullOrEmpty(Text))
             {
@@ -98,7 +98,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.Controls
 
         public Vector2 getSize()
         {
-            return new Vector2(_texture.Width, _texture.Height);
+            return new Vector2(Texture.Width, Texture.Height);
         }
 
         #endregion

@@ -22,7 +22,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
         protected Player player;
         protected Character npc;
         private SpriteFont font;
-        private int playerItemCount;
         protected string characterName;
 
         protected SoundEffect sound;
@@ -39,7 +38,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
             _game.IsMouseVisible = true;
             player = (Player)_game.gameObjects[0];
             this.npc = npc;
-            playerItemCount = player.Inventory.Count;
             UpdateComponents();
         }
 
@@ -79,11 +77,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
             foreach (var component in _components)
                 component.Update(gameTime);
 
-            if (player.Inventory.Count != playerItemCount)
-            {
-                UpdateComponents();
-                playerItemCount = player.Inventory.Count;
-            }
+            UpdateComponents();
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

@@ -327,6 +327,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             SpriteFont font = Content.Load<SpriteFont>("Fonts\\diamondfantasy");
             Texture2D health_icon = Content.Load<Texture2D>("Other/health_potion");
             Texture2D mana_icon = Content.Load<Texture2D>("Other/mana_potion");
+            Texture2D default_sword = Content.Load<Texture2D>("Other/default_sword");
+            Texture2D better_sword = Content.Load<Texture2D>("Other/better_sword");
+            Texture2D fire_ball = Content.Load<Texture2D>("Other/fire_ball");
+            Texture2D default_armour = Content.Load<Texture2D>("Other/default_armour");
+            Texture2D better_armour = Content.Load<Texture2D>("Other/better_armour");
 
             SoundEffect drink = Content.Load<SoundEffect>(@"SoundEffects/potion");
 
@@ -357,6 +362,62 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                     inventory.Remove((InventoryItem)s);
                 }
             };
+
+            EventHandler change_weapon_handler = (s, e) =>
+            {
+                if (currentState is InventoryState)
+                {
+                    InventoryItem sender = (InventoryItem)s;
+                    int index = player.Inventory.IndexOf(sender);
+                    player.Inventory[index] = player.Weapon;
+                    player.Weapon = sender;
+                }
+            };
+
+            EventHandler default_sword_handler = (s, e) =>
+            {
+                if (currentState is InventoryState)
+                {
+                    player.isRanged = false;
+                    player.characterSettings.weaponAttack = 10;
+                }
+            } + change_weapon_handler;
+
+            EventHandler better_sword_handler = (s, e) =>
+            {
+                if (currentState is InventoryState)
+                {
+                    player.isRanged = false;
+                    player.characterSettings.weaponAttack = 50;
+                }
+            } + change_weapon_handler;
+
+            EventHandler fire_ball_handler = (s, e) =>
+            {
+                if (currentState is InventoryState)
+                {
+                    player.isRanged = true;
+                }
+            } + change_weapon_handler;
+
+            EventHandler armour_handler = (s, e) =>
+            {
+                if (currentState is InventoryState)
+                {
+                    InventoryItem sender = (InventoryItem)s;
+                    int index = player.Inventory.IndexOf(sender);
+                    player.Inventory[index] = player.Armour;
+                    player.Armour = sender;
+                    // Disabled until animation has been fixed
+                    //player.ChangeArmour();
+                }
+            };
+
+            inventory.Add(new InventoryItem(default_sword, font, 100, default_sword_handler + trade_handler));
+            inventory.Add(new InventoryItem(default_armour, font, 10, armour_handler + trade_handler));
+            inventory.Add(new InventoryItem(better_armour, font, 300, armour_handler + trade_handler));
+            inventory.Add(new InventoryItem(better_sword, font, 150, better_sword_handler + trade_handler));
+            inventory.Add(new InventoryItem(fire_ball, font, 200, fire_ball_handler + trade_handler));
 
             for (int i = 0; i < 3; i++)
             {
