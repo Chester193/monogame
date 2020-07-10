@@ -16,6 +16,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 {
     public class Player : Character
     {
+        private Texture2D secondTexture;
+        private SpriteAtlasData atlas, secondAtlas;
         private List<Quest> quests;
         private int currentQuestIndex = 0;
         private GameHUD hud;
@@ -93,9 +95,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public override void Load(ContentManager content)
         {
-
             texture = TextureLoader.Load(@"characters/warrior", content);
-            SpriteAtlasData atlas = SpriteAtlasLoader.ParseSpriteAtlas(@"characters/warrior.atlas", texture, content);
+            secondTexture = TextureLoader.Load(@"characters/secondWarrior", content);
+            atlas = SpriteAtlasLoader.ParseSpriteAtlas(@"characters/warrior.atlas", texture, content);
+            secondAtlas = SpriteAtlasLoader.ParseSpriteAtlas(@"characters/secondWarrior.atlas", texture, content);
 
             LoadAnimations(atlas);
             ChangeAnimation(Animations.IdleRight);
@@ -324,6 +327,33 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 Heal(15);
             if (Input.KeyPressed(Keys.K) == true)
                 MaxHpAdd(50);
+        }
+
+        public void ChangeArmour()
+        {
+            Texture2D tmpTexture = texture;
+            texture = secondTexture;
+            secondTexture = tmpTexture;
+            SpriteAtlasData tmpAtlas = atlas;
+            atlas = secondAtlas;
+            secondAtlas = tmpAtlas;
+            LoadAnimations(atlas);
+            ChangeAnimation(Animations.IdleFront);
+            if (characterSettings.maxHp == 80)
+            {
+                ChangeMaxHp(120);
+            }
+            else
+            {
+                ChangeMaxHp(80);
+            }
+        }
+
+        public void ChangeMaxHp(int value)
+        {
+            float percentage = (float)characterSettings.hp / characterSettings.maxHp;
+            characterSettings.maxHp = value;
+            characterSettings.hp = (int)Math.Ceiling(value * percentage);
         }
 
         public void Fire()
