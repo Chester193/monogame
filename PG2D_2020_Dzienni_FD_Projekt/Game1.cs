@@ -320,6 +320,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             Texture2D default_sword = Content.Load<Texture2D>("Other/default_sword");
             Texture2D better_sword = Content.Load<Texture2D>("Other/better_sword");
             Texture2D fire_ball = Content.Load<Texture2D>("Other/fire_ball");
+            Texture2D default_armour = Content.Load<Texture2D>("Other/default_armour");
+            Texture2D better_armour = Content.Load<Texture2D>("Other/better_armour");
 
             SoundEffect drink = Content.Load<SoundEffect>(@"SoundEffects/potion");
 
@@ -380,7 +382,17 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 }
             };
 
+            EventHandler armour_handler = (s, e) =>
+            {
+                if (currentState is InventoryState)
+                {
+                    player.Armour = (InventoryItem)s;
+                }
+            };
+
             inventory.Add(new InventoryItem(default_sword, font, 100, default_sword_handler + trade_handler));
+            inventory.Add(new InventoryItem(default_armour, font, 10, armour_handler + trade_handler));
+            inventory.Add(new InventoryItem(better_armour, font, 300, armour_handler + trade_handler));
             inventory.Add(new InventoryItem(better_sword, font, 150, better_sword_handler + trade_handler));
             inventory.Add(new InventoryItem(fire_ball, font, 200, fire_ball_handler + trade_handler));
             for (int i = 0; i < 3; i++)
