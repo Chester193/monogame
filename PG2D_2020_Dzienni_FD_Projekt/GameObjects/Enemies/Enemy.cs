@@ -221,7 +221,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public void Guard(int range)
         {
-            Console.WriteLine(player.IsDead());
             float distanceToGuardPosition = Vector2.Distance(originalPosition, realPositon);
             float distancePlayerToGuardPosition = Vector2.Distance(player.position, originalPosition);
 
