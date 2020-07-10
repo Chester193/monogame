@@ -89,6 +89,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quest.cs" />
+    <Compile Include="States\ChestState.cs" />
     <Compile Include="States\GameState.cs" />
     <Compile Include="States\InventoryState.cs" />
     <Compile Include="States\MenuState.cs" />

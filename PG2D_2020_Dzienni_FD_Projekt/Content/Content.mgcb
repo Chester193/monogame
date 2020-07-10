@@ -1246,6 +1246,12 @@
 /processorParam:Quality=Best
 /build:SoundEffects/death.wav
 
+#begin SoundEffects/door.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/door.wav
+
 #begin SoundEffects/footstep00.ogg
 /importer:OggImporter
 /processor:SoundEffectProcessor
