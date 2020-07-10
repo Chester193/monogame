@@ -18,6 +18,12 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
     {
         private List<Quest> quests;
         private int currentQuestIndex = 0;
+        private GameHUD hud;
+
+        private bool isRanged = true;
+        private int fireDelay;
+        Fireball fireBall;
+
         public int Money { get; private set; } = 0;
         public int Exp { get; private set; } = 0;
 
@@ -33,13 +39,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             applyGravity = false;
         }
 
-        public Player(Vector2 startingPosition, Scripts.Scripts scripts, List<Quest> quests)
+        public Player(Vector2 startingPosition, Scripts.Scripts scripts, List<Quest> quests, GameHUD hud)
         {
             this.position = startingPosition;
             applyGravity = false;
 
             this.scripts = scripts;
             this.quests = quests;
+
+            this.hud = hud;
 
             target = null;
         }
@@ -67,6 +75,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             characterSettings.rangeOfAttack = 30;
             characterSettings.weaponAttack = 30;
 
+            fireDelay = 0;
+            fireBall = new Fireball();
+
             hurtingEffects = new List<SoundEffect>();
 
             base.Initialize();
@@ -81,6 +92,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             LoadAnimations(atlas);
             ChangeAnimation(Animations.IdleRight);
+
+            fireBall.Load(content);
 
             slash = content.Load<SoundEffect>(@"SoundEffects/swing");
             inventoryOpen = content.Load<SoundEffect>(@"SoundEffects/cloth");
@@ -102,6 +115,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public override void Update(List<GameObject> gameObjects, TiledMap map, GameTime gameTime)
         {
             Quest currentQuest;
+            fireDelay--;
+            fireBall.Update(gameObjects, map, gameTime);
+
             if (TryGetCurrentQuest(out currentQuest))
             {
                 currentQuest.Update();
@@ -120,7 +136,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     
                 CheckInput(gameObjects, map);
             }
-
             base.Update(gameObjects, map, gameTime);
         }
 
@@ -255,6 +270,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            fireBall.Draw(spriteBatch);
             base.Draw(spriteBatch);
         }
 
@@ -272,9 +288,23 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             if (Input.KeyPressed(Keys.Space))
             {
-                slash.Play();
-                isAttacking = true;
-                MeleAttack(gameObjects);
+                if (!isRanged)
+                {
+                    isAttacking = true;
+                    slash.Play();
+                    MeleAttack(gameObjects);
+                }
+                else {
+                    try
+                    {
+                        ManaUse(10);
+                        isHurting = true;
+                        Fire();
+                    }catch(NotEnoughMpException e)
+                    {
+                        hud.PrintMessage("Not enough Mana", 100);
+                    }
+                }
             }
 
             if (Input.KeyPressed(Keys.Tab))
@@ -287,6 +317,14 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 Heal(15);
             if (Input.KeyPressed(Keys.K) == true)
                 MaxHpAdd(50);
+        }
+
+        public void Fire()
+        {
+            if (fireBall.active == false && !isDead)
+            {
+                fireBall.Fire(this, new Vector2(this.BoundingBox.X, this.BoundingBox.Y));
+            }
         }
 
         private void MeleAttack(List<GameObject> gameObjects)
@@ -375,6 +413,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             if(!isDead)
                 dyingEffect.Play();
             base.Die();
+        }
+
+        public void resetFireDelay()
+        {
+            this.fireDelay = 80;
         }
     }
 }
