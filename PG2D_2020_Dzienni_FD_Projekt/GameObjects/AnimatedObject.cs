@@ -45,6 +45,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             public static string HurtFront = "Front - Hurt";
             public static string HurtLeft = "Left - Hurt";
             public static string HurtRight = "Right - Hurt";
+            public static string IceCone = "iceCone";
+            public static string OrcAxe = "orcAxe";
+            public static string Greeting = "greeting";
             //public static string Dying = "Dying";
         }
         //protected enum Animations
@@ -70,7 +73,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 var rects = atlasData.SourceRects[animationName];
 
                 //TODO: Change to framerate
-                var anim = new Animation(name: animationName, frames: rects, animationSpeed: 3);
+                var anim = new Animation(name: animationName, frames: rects, animationSpeed: 5);
                 animations.Add(anim);
 
                 frameWidth = rects[0].Width;
@@ -99,9 +102,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             currentAnimationY = currentAnimation.frames[currentAnimationFrame].Y;
         }
 
-        public override void Update(List<GameObject> gameObjects, TiledMap map)
+        public override void Update(List<GameObject> gameObjects, TiledMap map, GameTime gameTime)
         {
-            base.Update(gameObjects, map);
+            base.Update(gameObjects, map, gameTime);
             if (currentAnimation != null)
             {
                 UpdateAnimations();
@@ -141,9 +144,14 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 base.Draw(spriteBatch);
             else
             {
-                spriteBatch.Draw(texture, position, new Rectangle(currentAnimationX, currentAnimationY, animationSet.frameWidth, animationSet.frameHeight), tintColor, rotation, Vector2.Zero, scale, spriteEffect, layerDepth);
+                DrawAnimation(spriteBatch, position, scale);
                 DrawBoundingBox(spriteBatch);
             }
+        }
+
+        public void DrawAnimation(SpriteBatch spriteBatch, Vector2 position, float scale)
+        {
+            spriteBatch.Draw(texture, position, new Rectangle(currentAnimationX, currentAnimationY, animationSet.frameWidth, animationSet.frameHeight), tintColor, rotation, Vector2.Zero, scale, spriteEffect, layerDepth);
         }
 
         protected virtual void ChangeAnimation(string newAnimation)

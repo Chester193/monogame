@@ -6,6 +6,15 @@ using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using System.Collections.Generic;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts;
+using PG2D_2020_Dzienni_FD_Projekt.States;
+using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.SpecialEnemies;
+using PG2D_2020_Dzienni_FD_Projekt.GameObjects.npc;
+using PG2D_2020_Dzienni_FD_Projekt.Controls;
+using Microsoft.Xna.Framework.Content;
+using System;
+using System.Runtime.Remoting.Messaging;
+using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 
 namespace PG2D_2020_Dzienni_FD_Projekt
 {
@@ -16,21 +25,28 @@ namespace PG2D_2020_Dzienni_FD_Projekt
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Song song;
 
         int vResWidth = 1280, vResHeight = 720;
         int resWidth = 1280, resHeight = 720;
 
-        bool gameStarted = true;
-        bool gamePaused = false;
+        private State currentState;
+        private State nextState;
 
-        public List<GameObject> gameObjects = new List<GameObject>();
+        public List<GameObject> gameObjects;
+
+        public List<Trigger> triggers;
 
         public TiledMap tiledMap;
 
-        GameHUD gameHUD = new GameHUD();
+        public GameHUD gameHUD = new GameHUD();
 
-        public List<ScriptsController> scriptsList = new List<ScriptsController>();
+        public List<ScriptsController> scriptsList;
 
+        public void ChangeState(State state)
+        {
+            nextState = state;
+        }
 
         public Game1()
         {
@@ -51,62 +67,78 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         /// </summary>
         protected override void Initialize()
         {
-            Scripts scripts = new Scripts(gameObjects, gameHUD);
+            scriptsList = new List<ScriptsController>();
+            gameObjects = new List<GameObject>();
+            triggers = new List<Trigger>();
+
+            Scripts scripts = new Scripts(gameObjects, triggers, gameHUD, this);
             scriptsList.Add(new ScriptsController(scripts.TeleportTo1000_1000));
             scriptsList.Add(new ScriptsController(scripts.TeleportToLocationA));
             scriptsList.Add(new ScriptsController(scripts.TeleportToLocationB));
             scriptsList.Add(new ScriptsController(scripts.FastTravel));
+            scriptsList.Add(new ScriptsController(scripts.StartDialog));
+            scriptsList.Add(new ScriptsController(scripts.QuestDialog));
+            scriptsList.Add(new ScriptsController(scripts.StartTradeDialogNo1));
 
 
             // TODO: Add your initialization logic here
             tiledMap = new TiledMap(vResWidth, vResHeight);
 
-            int tileSpawnPointX = 78;
-            int tielSpawnPointY = 110;
-            Player player = new Player(new Vector2(tileSpawnPointX * 32, tielSpawnPointY * 32), scripts);
-
-            Vector2 realMapBeginning = new Vector2(tiledMap.tileSize * 31, tiledMap.tileSize * 31);
-            
-            gameObjects.Add(player);
-            gameHUD.Player(player);
-
             CharacterSettings characterSettings = new CharacterSettings
             {
                 maxHp = 100,
-                mode = CharcterMode.Guard,
+                mode = CharcterMode.WaitForPlayer,
                 range = 300,
                 rangeOfAttack = 30,
                 weaponAttack = 20,
             };
 
+            List<SpecialEnemy> specialEnemies;
+            List<Quest> quests = PrepareQuests(characterSettings, out specialEnemies);
 
-            List<Vector2> points = new List<Vector2>();
-            points.Add(new Vector2(650, 970));
-            points.Add(new Vector2(650, 1070));
-            points.Add(new Vector2(850, 1070));
+            int tileSpawnPointX = 59;
+            int tielSpawnPointY = 52;
+            Player player = new Player(new Vector2(tileSpawnPointX * 32, tielSpawnPointY * 32), scripts, quests);
+            LoadInventory(player);
 
-            characterSettings.points = points;
+            Vector2 realMapBeginning = new Vector2(tiledMap.tileSize * 31, tiledMap.tileSize * 31);
 
-            gameObjects.Add(new Zombie(new Vector2(1000, 1000), characterSettings));
-            gameObjects.Add(new Lizard(new Vector2(720, 1000), characterSettings));
+            gameObjects.Add(player);
+            gameHUD.Player(player);
 
-            /*
-            characterSettings.mode = 0;
-            gameObjects.Add(new Lizard(new Vector2(400, 600), characterSettings));
+            characterSettings.mode = CharcterMode.Guard;
             characterSettings.rangeOfAttack = 30;
-            gameObjects.Add(new Zombie(new Vector2(300, 400), characterSettings));
-            gameObjects.Add(new Viking1(new Vector2(300, 300), characterSettings));
-            gameObjects.Add(new Viking2(new Vector2(300, 200), characterSettings));
-            gameObjects.Add(new Viking3(new Vector2(300, 100), characterSettings));
-            characterSettings.mode = CharcterMode.FollowPlayer;
-            gameObjects.Add(new Demon(new Vector2(290, 000), characterSettings));
-            */
+            gameObjects.Add(new Zombie(new Vector2(104 * tiledMap.tileSize, 38 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Lizard(new Vector2(163 * tiledMap.tileSize, 56 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Lizard(new Vector2(172 * tiledMap.tileSize, 59 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Lizard(new Vector2(165 * tiledMap.tileSize, 77 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Zombie(new Vector2(101 * tiledMap.tileSize, 43 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking1(new Vector2(59 * tiledMap.tileSize, 92 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking2(new Vector2(59 * tiledMap.tileSize, 93 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking3(new Vector2(61 * tiledMap.tileSize, 91 * tiledMap.tileSize), characterSettings));
 
-            gameObjects.Add(new Trigger(new Vector2(250, 0), new Vector2(200, 30), 1, scriptsList));
-            gameObjects.Add(new Trigger(new Vector2(1100, 1570), new Vector2(200, 30), 2, scriptsList));
-            gameObjects.Add(new Trigger(new Vector2(345, 665), new Vector2(75), 3, scriptsList));
-            gameObjects.Add(new Trigger(new Vector2(890, 1300), new Vector2(75), 3, scriptsList));
-            gameObjects.Add(new Trigger(new Vector2(1465, 25), new Vector2(75), 3, scriptsList));
+            foreach (SpecialEnemy specEnemy in specialEnemies)
+            {
+                gameObjects.Add(specEnemy);
+            }
+
+            characterSettings.mode = CharcterMode.FollowPlayer;
+            gameObjects.Add(new Demon(new Vector2(110 * tiledMap.tileSize, 58 * tiledMap.tileSize), characterSettings));
+
+            triggers.Add(new Trigger(new Vector2(240 * tiledMap.tileSize, 30 * tiledMap.tileSize), new Vector2(200, 30), 1, scriptsList));
+            triggers.Add(new Trigger(new Vector2(246 * tiledMap.tileSize, 30 * tiledMap.tileSize), new Vector2(200, 30), 2, scriptsList));
+            triggers.Add(new Trigger(new Vector2(45 * tiledMap.tileSize, 62 * tiledMap.tileSize), new Vector2(75), 3, scriptsList));
+            triggers.Add(new Trigger(new Vector2(158 * tiledMap.tileSize, 78 * tiledMap.tileSize), new Vector2(75), 3, scriptsList));
+            triggers.Add(new Trigger(new Vector2(50 * tiledMap.tileSize, 95 * tiledMap.tileSize), new Vector2(75), 3, scriptsList));
+
+            triggers.Add(new Trigger(new Vector2(54 * tiledMap.tileSize, 56 * tiledMap.tileSize), new Vector2(75), 4, scriptsList));
+            triggers.Add(new Trigger(new Vector2(54 * tiledMap.tileSize, 56 * tiledMap.tileSize), new Vector2(75), 5, scriptsList, false));
+
+            triggers.Add(new Trigger(new Vector2(52 * tiledMap.tileSize), new Vector2(75), 6, scriptsList));
+
+            characterSettings.mode = CharcterMode.WaitForPlayer;
+
+            gameObjects.Add(new NonplayableCharacter(new Vector2(55 * tiledMap.tileSize, 54 * tiledMap.tileSize), characterSettings, NPCType.sage));
 
 
             Camera.Initialize(zoomLevel: 1.0f);
@@ -123,11 +155,18 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             LoadInitializeGameObjects(gameObjects);
+            LoadInitializeTrigger(triggers);
 
             // TODO: use this.Content to load your game content here
             tiledMap.Load(Content, @"Map/map.tmx");
 
+            this.song = Content.Load<Song>("Music/JeffSpeed68_-_Jam_after_brunch");
+            MediaPlayer.Play(song);
+            MediaPlayer.IsRepeating = true;
+
             gameHUD.Load(Content);
+
+            currentState = new MenuState(this, graphics.GraphicsDevice, Content, false);
         }
 
         /// <summary>
@@ -146,28 +185,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (!gameStarted && Input.KeyPressed(Keys.Enter))
+            if (nextState != null)
             {
-                gameStarted = true;
-                gameHUD.StartGame();
-            }
-            if (Input.KeyPressed(Keys.P))
-            {
-                gameHUD.TogglePause();
-                gamePaused = !gamePaused;
+                currentState = nextState;
+                nextState = null;
             }
 
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
-
-            Input.Update();
-            var playerObject = gameObjects[0];
-
-            // TODO: Add your update logic here
-            tiledMap.Update(gameTime, playerObject.position);
-            UpdateGameObjects(gameObjects, map: tiledMap);
-            UpdateCamera(playerObject.position);
+            currentState.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -180,63 +204,25 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
-            ResolutionManager.BeginDraw();
-
-            var transformMatrix = Camera.GetTransformMatrix();
-
-            if (gameStarted)
-            {
-                spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.LinearClamp, null, null, null, transformMatrix);
-                tiledMap.Draw(spriteBatch);
-                DrawGameObjects(gameObjects);
-                spriteBatch.End();
-            }
-
-            gameHUD.Draw(spriteBatch);
+            currentState.Draw(gameTime, spriteBatch);
 
             base.Draw(gameTime);
         }
-
-        private void UpdateCamera(Vector2 followPosition)
+        public void PauseGame()
         {
-            Camera.Update(followPosition);
+            ChangeState(new PausedGameState(this, graphics.GraphicsDevice, Content));
         }
 
-        public void DrawGameObjects(List<GameObject> gameObjects)
+        public void ContinueGame()
         {
-            List<GameObject> sortedGameObjects = new List<GameObject>(gameObjects);
-            sortedGameObjects.Sort((a, b) => a.BoundingBox.Y.CompareTo(b.BoundingBox.Y));
-            float depth = 0.1f;
-
-            foreach (var gameObject in sortedGameObjects)
-            {
-                gameObject.layerDepth = depth;
-                gameObject.Draw(spriteBatch);
-                depth -= 0.001f;
-            }
-
+            ChangeState(new GameState(this, graphics.GraphicsDevice, Content));
         }
 
-        public void UpdateGameObjects(List<GameObject> gameObjects, TiledMap map)
+        public void StartTrade(int index)
         {
-            if (gameStarted)
-            {
-                if (!gamePaused)
-                {
-                    foreach (var gameObject in gameObjects)
-                    {
-                        gameObject.Update(gameObjects, map);    //, gameTime    - aby nie zapomniec
-                    }
-                }
-            }
-
-            //Parallel.ForEach(gameObjects, gameObject =>
-            //{
-            //    gameObject.Update(gameObjects);
-            //});
-
+            ChangeState(new TradeState(this, graphics.GraphicsDevice, Content, (Character)this.gameObjects[index]));
         }
+
         public void LoadInitializeGameObjects(List<GameObject> gameObjects)
         {
             foreach (var gameObject in gameObjects)
@@ -253,6 +239,102 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             //});
         }
 
+        public void LoadInitializeTrigger(List<Trigger> triggers)
+        {
+            foreach (var trigger in triggers)
+            {
+                trigger.Initialize();
+                trigger.Load(content: Content);
+            }
+        }
 
+        public void Restart()
+        {
+            Initialize();
+        }
+
+        private List<Quest> PrepareQuests(CharacterSettings characterSettings, out List<SpecialEnemy> specialEnemies)
+        {
+            List<Quest> quests = new List<Quest>();
+            specialEnemies = new List<SpecialEnemy>();
+
+            //Quest 1
+            List<SpecialEnemy> objectives = new List<SpecialEnemy>();
+            SpecialEnemy specialEnemy = new Wolf(new Vector2(1500, 1500), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            string startDialog = "Hi, can you kill one wolf for me ? \n It always came from North";
+            string endDialog = "You killed this beast, thank you";
+            string alternativeDialog = "Did you killed wolf yet ?";
+            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 100));
+
+            //Quest 2
+            objectives = new List<SpecialEnemy>();
+
+            specialEnemy = new EarthGolem(new Vector2(2500, 1500), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new IceGolem(new Vector2(1500, 2500), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new LavaGolem(new Vector2(3500, 1500), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            startDialog = "Kill 3 golems";
+            endDialog = "You killed this beasts, thank you";
+            alternativeDialog = "Did you killed golems yet ?";
+            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 200));
+
+            return quests;
+        }
+
+        private void LoadInventory(Player player)
+        {
+            List<InventoryItem> inventory = player.Inventory;
+
+            SpriteFont font = Content.Load<SpriteFont>("Fonts\\diamondfantasy");
+            Texture2D health_icon = Content.Load<Texture2D>("Other/health_potion");
+            Texture2D mana_icon = Content.Load<Texture2D>("Other/mana_potion");
+
+            SoundEffect drink = Content.Load<SoundEffect>(@"SoundEffects/potion");
+
+            EventHandler trade_handler = (s, e) =>
+            {
+                if (currentState is TradeState)
+                {
+                    ((TradeState)currentState).Move((InventoryItem)s);
+                }
+            };
+
+            EventHandler health_handler = (s, e) =>
+            {
+                if (!player.IsHpFull() && currentState is InventoryState)
+                {
+                    drink.Play();
+                    player.Heal(10);
+                    inventory.Remove((InventoryItem)s);
+                }
+            };
+
+            EventHandler mana_handler = (s, e) =>
+            {
+                if (!player.IsMpFull() && currentState is InventoryState)
+                {
+                    drink.Play();
+                    player.ChargeMana(2);
+                    inventory.Remove((InventoryItem)s);
+                }
+            };
+
+            for (int i = 0; i < 3; i++)
+            {
+                inventory.Add(new InventoryItem(health_icon, font, 50, health_handler + trade_handler));
+                inventory.Add(new InventoryItem(mana_icon, font, 30, mana_handler + trade_handler));
+            }
+        }
     }
 }

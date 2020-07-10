@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.SpecialEnemies;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities.SpriteAtlas;
 using System;
@@ -10,14 +11,11 @@ using System.Threading.Tasks;
 
 namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
 {
-    class IceGolem : Enemy
+    class IceGolem : SpecialEnemy
     {
         public IceGolem(Vector2 startingPosition, CharacterSettings settings)
+            : base(startingPosition, settings)
         {
-            this.position = startingPosition;
-            applyGravity = false;
-
-            base.SetCharacterSettings(settings);
         }
 
         public override void Initialize()
@@ -42,6 +40,19 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
             boundingBoxOffset = new Vector2(60, 70);
             boundingBoxWidth = 39;
             boundingBoxHeight = 40;
+        }
+
+        public override void Attack(Character target, int dmg)
+        {
+            if (!isAttacking)
+                golemsEffects[new Random().Next(0, 5)].Play();
+            base.Attack(target, dmg);
+        }
+
+        public override void hurt()
+        {
+            golemsEffects[new Random().Next(0, 5)].Play();
+            base.hurt();
         }
     }
 }

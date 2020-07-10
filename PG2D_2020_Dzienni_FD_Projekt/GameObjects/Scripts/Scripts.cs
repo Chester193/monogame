@@ -15,12 +15,20 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
     public class Scripts
     {
         private List<GameObject> gameObjects;
+        private List<Trigger> triggers;
         private GameHUD hud;
+        private Game1 game;
 
-        public Scripts(List<GameObject> gameObjects, GameHUD GameHud)
+        int tileSize = 32;
+
+        private bool startQuestDialog = false;
+
+        public Scripts(List<GameObject> gameObjects, List<Trigger> triggers, GameHUD GameHud, Game1 game1)
         {
             this.gameObjects = gameObjects;
+            this.triggers = triggers;
             this.hud = GameHud;
+            this.game = game1;
         }
 
         /*
@@ -36,6 +44,16 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
             Character character = (Character)who;
             character.Respawn();
             character.Heal();
+        }
+
+        private void Trade(int i)
+        {
+            hud.PrintMessage("Press E to trade");
+
+            if (Input.IsKeyDown(Keys.E))
+            {
+                game.StartTrade(i);
+            }
         }
 
         /*
@@ -76,19 +94,58 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
 
             if (Input.IsKeyDown(Keys.NumPad1) || Input.IsKeyDown(Keys.D1))
             {
-                Teleport(gameObjects[0], gameObjects[0].originalPosition);
+                Teleport(gameObjects[0], gameObjects[0].originalPosition - new Vector2(0, 100));
                 hud.FastTravelStop();
             }
             if (Input.IsKeyDown(Keys.NumPad2) || Input.IsKeyDown(Keys.D2))
             {
-                Teleport(gameObjects[0], new Vector2(1450, 25));
+                Teleport(gameObjects[0], new Vector2(158 * tileSize, 79 * tileSize));
                 hud.FastTravelStop();
             }
             if (Input.IsKeyDown(Keys.NumPad3) || Input.IsKeyDown(Keys.D3))
             {
-                Teleport(gameObjects[0], new Vector2(845, 1290));
+                Teleport(gameObjects[0], new Vector2(50 * tileSize, 96 * tileSize));
                 hud.FastTravelStop();
             }
         }
+
+        public void StartDialog()
+        {
+            hud.PrintMessage("Press E to talk");
+
+            if (Input.IsKeyDown(Keys.E))
+            {
+                triggers[6].active = true;
+                triggers[5].active = false;
+                game.PauseGame();
+            }
+        }
+
+        public void QuestDialog()
+        {
+            Player player = (Player)gameObjects[0];
+            hud.PrintMessage(player.Interact());
+            hud.PrintMessage2("Press Q to end");
+            if (Input.IsKeyDown(Keys.Q))
+            {
+                hud.PrintMessage2(null);
+                triggers[6].active = false;
+                triggers[5].active = true;
+                game.ContinueGame();
+
+                Quest currentQuest;
+                if (player.TryGetCurrentQuest(out currentQuest))
+                {
+                    currentQuest.Confirm(player);
+                }
+                ///Console.WriteLine("QD");
+            }
+        }
+
+        public void StartTradeDialogNo1()
+        {
+            Trade(14);
+        }
+
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace PG2D_2020_Dzienni_FD_Projekt
+﻿using System;
+
+namespace PG2D_2020_Dzienni_FD_Projekt
 {
     public class ScriptsController
     {

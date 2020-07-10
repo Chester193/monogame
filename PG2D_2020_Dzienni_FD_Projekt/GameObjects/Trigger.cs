@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 {
-    class Trigger : GameObject
+    public class Trigger : GameObject
     {
         private bool isCircel = false;
         private List<ScriptsController> scripts;
@@ -15,7 +15,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         private ScriptsController lastScript;
 
-        public Trigger(Vector2 location, Vector2 size, int scriptID, List<ScriptsController> scriptsList)
+        public Trigger(Vector2 location, Vector2 size, int scriptID, List<ScriptsController> scriptsList, bool isActive = true)
         {
             position = location;
             boundingBoxHeight = (int)size.Y;
@@ -23,25 +23,23 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             isCollidable = false;
             scripts = scriptsList;
             scriptId = scriptID;
+            active = isActive;
         }
 
-        public Trigger(Vector2 positon, int radius, int scriptID, List<ScriptsController> scripts)
+        public override void Update(List<GameObject> gameObjects, TiledMap map, GameTime gameTime)
         {
-            isCircel = true;
-
-
-        }
-
-        public override void Update(List<GameObject> gameObjects, TiledMap map)
-        {
-            if (CheckCollision(gameObjects[0].BoundingBox))
+            if (active)
             {
-                ActivScript();
-            }
-            else
-            {
+                if (CheckCollision(gameObjects[0].BoundingBox))
+                {
+                    ActivScript();
+                }
+                else
+                {
 
+                }
             }
+
         }
 
         private void ActivScript()
