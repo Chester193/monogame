@@ -75,6 +75,7 @@
     <Compile Include="GameObjects\Enemies\Zombie.cs" />
     <Compile Include="GameObjects\Enemies\Enemy.cs" />
     <Compile Include="GameObjects\GameObject.cs" />
+    <Compile Include="GameObjects\Npc\Chest.cs" />
     <Compile Include="GameObjects\Npc\NonplayableCharacter.cs" />
     <Compile Include="GameObjects\Player.cs" />
     <Compile Include="GameObjects\Portal.cs" />

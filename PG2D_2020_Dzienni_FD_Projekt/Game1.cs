@@ -15,6 +15,7 @@ using System;
 using System.Runtime.Remoting.Messaging;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
+using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Npc;
 
 namespace PG2D_2020_Dzienni_FD_Projekt
 {
@@ -105,7 +106,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             int tileSpawnPointX = 59;
             int tielSpawnPointY = 52;
             Player player = new Player(new Vector2(tileSpawnPointX * 32, tielSpawnPointY * 32), scripts, quests);
-            LoadInventory(player);
 
             Vector2 realMapBeginning = new Vector2(tiledMap.tileSize * 31, tiledMap.tileSize * 31);
 
@@ -147,7 +147,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             characterSettings.mode = CharcterMode.WaitForPlayer;
 
             gameObjects.Add(new NonplayableCharacter(new Vector2(55 * tiledMap.tileSize, 54 * tiledMap.tileSize), characterSettings, NPCType.sage));
-
+            gameObjects.Add(new Chest(new Vector2(60 * tiledMap.tileSize, 51 * tiledMap.tileSize), characterSettings));
+            LoadInventory(player);
 
             Camera.Initialize(zoomLevel: 1.0f);
             base.Initialize();
@@ -353,6 +354,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 inventory.Add(new InventoryItem(health_icon, font, 50, health_handler + trade_handler));
                 inventory.Add(new InventoryItem(mana_icon, font, 30, mana_handler + trade_handler));
             }
+            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem(health_icon, font, 50, health_handler + trade_handler));
         }
     }
 }

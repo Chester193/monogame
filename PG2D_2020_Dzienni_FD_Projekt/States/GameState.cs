@@ -52,10 +52,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
             {
                 _game.ChangeState(new InventoryState(_game, _graphicsDevice, _content));
             }
-
+            //TODO: Delete it
             if (Input.KeyPressed(Keys.R))
             {
-                _game.ChangeState(new ChestState(_game, _graphicsDevice, _content, (NonplayableCharacter)_game.gameObjects[16]));
+                _game.ChangeState(new ChestState(_game, _graphicsDevice, _content, (Character)_game.gameObjects[17]));
             }
 
             Input.Update();
