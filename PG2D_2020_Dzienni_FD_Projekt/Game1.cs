@@ -86,6 +86,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             scriptsList.Add(new ScriptsController(scripts.StartDialog));
             scriptsList.Add(new ScriptsController(scripts.QuestDialog));
             scriptsList.Add(new ScriptsController(scripts.StartTradeDialogNo1));
+            scriptsList.Add(new ScriptsController(scripts.OpenChestNo1));
 
 
             // TODO: Add your initialization logic here
@@ -143,6 +144,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             triggers.Add(new Trigger(new Vector2(54 * tiledMap.tileSize, 56 * tiledMap.tileSize), new Vector2(75), 5, scriptsList, false));
 
             triggers.Add(new Trigger(new Vector2(52 * tiledMap.tileSize), new Vector2(75), 6, scriptsList));
+
+            triggers.Add(new Trigger(new Vector2(60 * tiledMap.tileSize, 51 * tiledMap.tileSize), new Vector2(75), 7, scriptsList));
 
             characterSettings.mode = CharcterMode.WaitForPlayer;
 
@@ -231,6 +234,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         public void StartTrade(int index)
         {
             ChangeState(new TradeState(this, graphics.GraphicsDevice, Content, (Character)this.gameObjects[index]));
+        }
+
+        public void OpenChest(int index)
+        {
+            ChangeState(new ChestState(this, graphics.GraphicsDevice, Content, (Character)this.gameObjects[index]));
         }
 
         public void LoadInitializeGameObjects(List<GameObject> gameObjects)
