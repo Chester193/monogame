@@ -19,19 +19,21 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
     {
         private List<Component> _components;
         private Texture2D background;
-        private Player player;
-        private Character npc;
+        protected Player player;
+        protected Character npc;
         private SpriteFont font;
+        protected string characterName;
 
-        SoundEffect pay;
+        protected SoundEffect sound;
 
         public TradeState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, Character npc)
           : base(game, graphicsDevice, content)
         {
+            characterName = "Trader";
             background = _content.Load<Texture2D>("Other/trade");
             font = content.Load<SpriteFont>("Fonts\\diamondfantasy");
 
-            pay = content.Load<SoundEffect>(@"SoundEffects/coin");
+            sound = content.Load<SoundEffect>(@"SoundEffects/coin");
 
             _game.IsMouseVisible = true;
             player = (Player)_game.gameObjects[0];
@@ -39,7 +41,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
             UpdateComponents();
         }
 
-        public void Move(InventoryItem item)
+        public virtual void Move(InventoryItem item)
         {
             if(player.Inventory.IndexOf(item) >= 0)
             {
@@ -67,7 +69,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
         {
             if (Input.KeyPressed(Keys.Q))
             {
-                pay.Play();
+                sound.Play();
                 _game.ChangeState(new GameState(_game, _graphicsDevice, _content));
             }
             Input.Update();
@@ -86,7 +88,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
 
             spriteBatch.DrawString(font, "Player", new Vector2(435, 90), Color.Gold);
 
-            spriteBatch.DrawString(font, "Trader", new Vector2(730, 90), Color.Gold);
+            spriteBatch.DrawString(font, characterName, new Vector2(730, 90), Color.Gold);
 
             spriteBatch.DrawString(font, "Press Q to quit", new Vector2(40, 675), new Color(249, 22, 29));
 
