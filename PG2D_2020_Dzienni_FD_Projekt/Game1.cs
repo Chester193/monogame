@@ -353,40 +353,51 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 }
             };
 
+            EventHandler change_weapon_handler = (s, e) =>
+            {
+                if (currentState is InventoryState)
+                {
+                    InventoryItem sender = (InventoryItem)s;
+                    int index = player.Inventory.IndexOf(sender);
+                    player.Inventory[index] = player.Weapon;
+                    player.Weapon = sender;
+                }
+            };
+
             EventHandler default_sword_handler = (s, e) =>
             {
                 if (currentState is InventoryState)
                 {
-                    player.Weapon = (InventoryItem)s;
                     player.isRanged = false;
                     player.characterSettings.weaponAttack = 10;
                 }
-            };
+            } + change_weapon_handler;
 
             EventHandler better_sword_handler = (s, e) =>
             {
                 if (currentState is InventoryState)
                 {
-                    player.Weapon = (InventoryItem)s;
                     player.isRanged = false;
                     player.characterSettings.weaponAttack = 50;
                 }
-            };
+            } + change_weapon_handler;
 
             EventHandler fire_ball_handler = (s, e) =>
             {
                 if (currentState is InventoryState)
                 {
-                    player.Weapon = (InventoryItem)s;
                     player.isRanged = true;
                 }
-            };
+            } + change_weapon_handler;
 
             EventHandler armour_handler = (s, e) =>
             {
                 if (currentState is InventoryState)
                 {
-                    player.Armour = (InventoryItem)s;
+                    InventoryItem sender = (InventoryItem)s;
+                    int index = player.Inventory.IndexOf(sender);
+                    player.Inventory[index] = player.Armour;
+                    player.Armour = sender;
                 }
             };
 
@@ -395,6 +406,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             inventory.Add(new InventoryItem(better_armour, font, 300, armour_handler + trade_handler));
             inventory.Add(new InventoryItem(better_sword, font, 150, better_sword_handler + trade_handler));
             inventory.Add(new InventoryItem(fire_ball, font, 200, fire_ball_handler + trade_handler));
+
             for (int i = 0; i < 3; i++)
             {
                 inventory.Add(new InventoryItem(health_icon, font, 50, health_handler + trade_handler));

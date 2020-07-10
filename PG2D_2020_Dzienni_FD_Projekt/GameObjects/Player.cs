@@ -82,7 +82,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             hurtingEffects = new List<SoundEffect>();
             Weapon = Inventory[0];
-            Armour = Inventory[1];
+            Inventory.RemoveAt(0);
+
+            Armour = Inventory[0];
+            Inventory.RemoveAt(0);
 
             base.Initialize();
         }
