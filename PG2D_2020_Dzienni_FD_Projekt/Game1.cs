@@ -398,7 +398,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                     int index = player.Inventory.IndexOf(sender);
                     player.Inventory[index] = player.Armour;
                     player.Armour = sender;
-                    player.ChangeArmour();
+                    // Disabled until animation has been fixed
+                    //player.ChangeArmour();
                 }
             };
 
