@@ -133,7 +133,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
         {
             hud.PrintMessage("Press E to talk");
 
-            toggleTriggers(5, 6);
+            toggleTriggers(6, 5);
         }
 
         public void QuestDialog()
