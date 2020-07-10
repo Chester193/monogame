@@ -58,6 +58,18 @@
 /processorParam:TextureFormat=Color
 /build:Characters/blacksmith.png
 
+#begin Characters/chest.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Characters/chest.png
+
 #begin Characters/Crow.atlas
 /copy:Characters/Crow.atlas
 
@@ -1257,6 +1269,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundEffects/death.wav
+
+#begin SoundEffects/door.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/door.wav
 
 #begin SoundEffects/footstep00.ogg
 /importer:OggImporter

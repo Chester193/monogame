@@ -56,6 +56,23 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
             }
         }
 
+        private void Chest(int i)
+        {
+            hud.PrintMessage("Press E to open");
+
+            if (Input.IsKeyDown(Keys.E))
+            {
+                game.OpenChest(i);
+            }
+        }
+
+        private void toggleTriggers(int activate, int deactivate)
+        {
+
+            triggers[activate].active = true;
+            triggers[deactivate].active = false;
+        }
+
         /*
          * Poniżej znajdują się gotowe skrypty
          * WAŻNE: skrypty NIE przyjmują parametrów
@@ -115,8 +132,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
 
             if (Input.IsKeyDown(Keys.E))
             {
-                triggers[6].active = true;
-                triggers[5].active = false;
+                toggleTriggers(6, 5);
                 game.PauseGame();
             }
         }
@@ -129,8 +145,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
             if (Input.IsKeyDown(Keys.Q))
             {
                 hud.PrintMessage2(null);
-                triggers[6].active = false;
-                triggers[5].active = true;
+                toggleTriggers(5, 6);
                 game.ContinueGame();
 
                 Quest currentQuest;
@@ -146,6 +161,12 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
         {
             Trade(14);
         }
+
+        public void OpenChestNo1()
+        {
+            Chest(17);
+        }
+
 
     }
 }
