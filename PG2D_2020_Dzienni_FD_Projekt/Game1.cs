@@ -104,7 +104,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             int tileSpawnPointX = 59;
             int tielSpawnPointY = 52;
-            Player player = new Player(new Vector2(tileSpawnPointX * 32, tielSpawnPointY * 32), scripts, quests);
+            Player player = new Player(new Vector2(tileSpawnPointX * 32, tielSpawnPointY * 32), scripts, quests, gameHUD);
             LoadInventory(player);
 
             Vector2 realMapBeginning = new Vector2(tiledMap.tileSize * 31, tiledMap.tileSize * 31);
