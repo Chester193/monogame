@@ -18,7 +18,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
     class TradeState : State
     {
         private List<Component> _components;
-        private Texture2D background;
+        private Texture2D background, moneyIcon;
         protected Player player;
         protected Character npc;
         private SpriteFont font;
@@ -33,6 +33,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
             characterName = "Trader";
             background = _content.Load<Texture2D>("Other/trade");
             font = content.Load<SpriteFont>("Fonts\\diamondfantasy");
+            moneyIcon = content.Load<Texture2D>("Other/money");
 
             sound = content.Load<SoundEffect>(@"SoundEffects/coin");
 
@@ -105,7 +106,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
             if (hovered != null)
             {
                 spriteBatch.DrawString(font, "Name: " + hovered.Name, new Vector2(800, 10), Color.White, 0f, Vector2.Zero, 0.7f, SpriteEffects.None, 0.1f);
-                spriteBatch.DrawString(font, "Price: " + hovered.Price.ToString(), new Vector2(1100, 10), Color.White, 0f, Vector2.Zero, 0.7f, SpriteEffects.None, 0.1f);
+                spriteBatch.DrawString(font, "Price:", new Vector2(1100, 10), Color.White, 0f, Vector2.Zero, 0.7f, SpriteEffects.None, 0.1f);
+                spriteBatch.DrawString(font, hovered.Price.ToString(), new Vector2(1170, 10), Color.Gold, 0f, Vector2.Zero, 0.7f, SpriteEffects.None, 0.1f);
+                Vector2 offset = font.MeasureString(hovered.Price.ToString());
+                spriteBatch.Draw(moneyIcon, new Rectangle((int)(1160 + offset.X), 10, moneyIcon.Width, moneyIcon.Height), Color.Gold);
                 spriteBatch.DrawString(font, "Description:", new Vector2(800, 50), Color.White, 0f, Vector2.Zero, 0.7f, SpriteEffects.None, 0.1f);
                 spriteBatch.DrawString(font, hovered.Description, new Vector2(945, 50), Color.White, 0f, Vector2.Zero, 0.7f, SpriteEffects.None, 0.1f);
             }
