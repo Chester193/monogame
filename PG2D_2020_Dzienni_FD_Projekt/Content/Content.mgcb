@@ -1774,6 +1774,12 @@
 #begin Tilemaps/Terrain.tsx
 /copy:Tilemaps/Terrain.tsx
 
+#begin visualEffects/HPotion.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:visualEffects/HPotion.fx
+
 #begin visualEffects/lightmap.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1785,6 +1791,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:visualEffects/lightmap.jpg
+
+#begin visualEffects/MPotion.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:visualEffects/MPotion.fx
 
 #begin visualEffects/Portal.fx
 /importer:EffectImporter

@@ -20,6 +20,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
         private Player player;
         private InventoryItem hovered;
         private SpriteFont font;
+        Effect hPotion;
 
         public InventoryState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
           : base(game, graphicsDevice, content)
@@ -81,6 +82,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
                 spriteBatch.DrawString(font, "Description:\n" + hovered.Description, new Vector2(1000, 300), Color.White, 0f, Vector2.Zero, 0.7f, SpriteEffects.None, 0.1f);
             }
 
+            spriteBatch.End();
+
+            spriteBatch.Begin(effect: hPotion);
+            spriteBatch.Draw(background, new Rectangle(0, 0, ResolutionManager.VirtualWidth, ResolutionManager.VirtualHeight), Color.White);
             spriteBatch.End();
 
             _game.gameHUD.Draw(spriteBatch);
