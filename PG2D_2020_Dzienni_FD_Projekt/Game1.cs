@@ -446,7 +446,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             objectives.Add(specialEnemy);
             specialEnemies.Add(specialEnemy);
 
-            string startDialog = "Can you get rid of this annoying wolfs from north";
+            string startDialog = "Can you get rid of this annoying wolfs from north?";
             string endDialog = "You killed it, thank you";
             string alternativeDialog = "Did you killed wolfs yet ?";
             quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 100));
@@ -599,7 +599,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             string betterSwordDescription = "Deals 50 Damage";
             string defaultArmourDescription = "Totally useless";
             string betterArmourDescription = "Blocks 40 percent of \n damage";
-            string fireBallDescription = "Deals ?? Damage";
+            string fireBallDescription = "Deals 25 Damage";
             string healthPotionDescription = "Heals 10 health points";
             string manaPotionDescription = "Restores 2 mana points";
             string purseDescription = "20 coins inside";
