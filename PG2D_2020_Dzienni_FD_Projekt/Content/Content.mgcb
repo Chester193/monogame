@@ -1306,6 +1306,12 @@
 /processorParam:Quality=Best
 /build:SoundEffects/coin.wav
 
+#begin SoundEffects/crow.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/crow.mp3
+
 #begin SoundEffects/damage1.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -1330,11 +1336,47 @@
 /processorParam:Quality=Best
 /build:SoundEffects/death.wav
 
+#begin SoundEffects/demonDie.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/demonDie.ogg
+
+#begin SoundEffects/demonHit.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/demonHit.ogg
+
+#begin SoundEffects/demonHurt.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/demonHurt.ogg
+
 #begin SoundEffects/door.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundEffects/door.wav
+
+#begin SoundEffects/Fireball1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/Fireball1.wav
+
+#begin SoundEffects/Fireball2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/Fireball2.wav
+
+#begin SoundEffects/Fireball3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/Fireball3.wav
 
 #begin SoundEffects/footstep00.ogg
 /importer:OggImporter
@@ -1377,6 +1419,54 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundEffects/giant5.wav
+
+#begin SoundEffects/goblinDie.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/goblinDie.mp3
+
+#begin SoundEffects/goblinhurt.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/goblinhurt.mp3
+
+#begin SoundEffects/goblinSlash.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/goblinSlash.mp3
+
+#begin SoundEffects/gorillaDie.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/gorillaDie.ogg
+
+#begin SoundEffects/gorillaHit.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/gorillaHit.ogg
+
+#begin SoundEffects/gorillaHurt.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/gorillaHurt.ogg
+
+#begin SoundEffects/iceCone.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/iceCone.ogg
+
+#begin SoundEffects/lizard.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/lizard.mp3
 
 #begin SoundEffects/mnstr1.wav
 /importer:WavImporter
@@ -1455,6 +1545,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundEffects/sword-unsheathe.wav
+
+#begin SoundEffects/zombie.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/zombie.mp3
 
 #begin Tilemaps/terrain.png
 /importer:TextureImporter

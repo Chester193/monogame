@@ -26,6 +26,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         TiledMap map;
 
         public List<SoundEffect> golemsEffects;
+        public List<SoundEffect> goblinEffects;
 
         public Enemy()
         {
@@ -70,6 +71,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public override void Initialize()
         {
             golemsEffects = new List<SoundEffect>();
+            goblinEffects = new List<SoundEffect>();
             base.Initialize();
         }
 
@@ -80,6 +82,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             golemsEffects.Add(content.Load<SoundEffect>(@"SoundEffects/giant3"));
             golemsEffects.Add(content.Load<SoundEffect>(@"SoundEffects/giant4"));
             golemsEffects.Add(content.Load<SoundEffect>(@"SoundEffects/giant5"));
+            goblinEffects.Add(content.Load<SoundEffect>(@"SoundEffects/goblinHurt"));
+            goblinEffects.Add(content.Load<SoundEffect>(@"SoundEffects/goblinSlash"));
+            goblinEffects.Add(content.Load<SoundEffect>(@"SoundEffects/goblinDie"));
             base.Load(content);
         }
 

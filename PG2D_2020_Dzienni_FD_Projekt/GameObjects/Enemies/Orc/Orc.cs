@@ -63,6 +63,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Orc
         {
             if (axe.active == false && !isDead && Vector2.Distance(player.position, position) <= characterSettings.rangeOfAttack && attackDelay <= 0)
             {
+                goblinEffects[1].Play();
                 isAttacking = true;
                 axe.Fire(this, new Vector2(this.BoundingBox.X, this.BoundingBox.Y), new Vector2(player.BoundingBox.X, player.BoundingBox.Y));
             }
@@ -77,6 +78,18 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Orc
         public void resetAttackDelay()
         {
             this.attackDelay = 80;
+        }
+
+        public override void hurt()
+        {
+            goblinEffects[0].Play();
+            base.hurt();
+        }
+
+        public override void Die()
+        {
+            goblinEffects[2].Play();
+            base.Die();
         }
     }
 }
