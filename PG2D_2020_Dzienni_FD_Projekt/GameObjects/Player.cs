@@ -433,6 +433,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public void GainExperience(int amount)
         {
             Exp += amount;
+            characterSettings.maxHp = 80 + Exp / 50;
         }
 
         public override void hurt()
