@@ -6,6 +6,13 @@ filter: Nearest,Nearest
 repeat: none
 Left - Died
   rotate: false
+  xy: 1509, 2
+  size: 135, 135
+  orig: 135, 135
+  offset: 0, 0
+  index: 0
+Left - Died
+  rotate: false
   xy: 2, 2
   size: 135, 135
   orig: 135, 135
@@ -94,22 +101,15 @@ Left - Died
   size: 135, 135
   orig: 135, 135
   offset: 0, 0
-  index: 14
+  index: 13
 Left - Died
   rotate: false
   xy: 1372, 2
   size: 135, 135
   orig: 135, 135
   offset: 0, 0
-  index: 13
+  index: 14
 Left - Hurting
-  rotate: false
-  xy: 1509, 2
-  size: 135, 135
-  orig: 135, 135
-  offset: 0, 0
-  index: 0
-Left - Died
   rotate: false
   xy: 1509, 2
   size: 135, 135
