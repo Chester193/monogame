@@ -413,18 +413,26 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 }
             };
 
-            inventory.Add(new InventoryItem(default_sword, font, 100, default_sword_handler + trade_handler));
-            inventory.Add(new InventoryItem(default_armour, font, 10, armour_handler + trade_handler));
-            inventory.Add(new InventoryItem(better_armour, font, 300, armour_handler + trade_handler));
-            inventory.Add(new InventoryItem(better_sword, font, 150, better_sword_handler + trade_handler));
-            inventory.Add(new InventoryItem(fire_ball, font, 200, fire_ball_handler + trade_handler));
+            string defaultSwordDescription = "Deals 10 Damage";
+            string betterSwordDescription = "Deals 50 Damage";
+            string defaultArmourDescription = "Totally useless";
+            string betterArmourDescription = "Blocks 40 percent of \n damage";
+            string fireBallDescription = "Deals ?? Damage";
+            string healthPotionDescription = "Heals 10 health points";
+            string manaPotionDescription = "Restores 2 mana points";
+
+            inventory.Add(new InventoryItem("Short sword", defaultSwordDescription, default_sword, font, 100, default_sword_handler + trade_handler));
+            inventory.Add(new InventoryItem("Leather armour", defaultArmourDescription, default_armour, font, 10, armour_handler + trade_handler));
+            inventory.Add(new InventoryItem("Warrior armour", betterArmourDescription, better_armour, font, 300, armour_handler + trade_handler));
+            inventory.Add(new InventoryItem("Ninja sword", betterSwordDescription, better_sword, font, 150, better_sword_handler + trade_handler));
+            inventory.Add(new InventoryItem("Fire ball", fireBallDescription, fire_ball, font, 200, fire_ball_handler + trade_handler));
 
             for (int i = 0; i < 3; i++)
             {
-                inventory.Add(new InventoryItem(health_icon, font, 50, health_handler + trade_handler));
-                inventory.Add(new InventoryItem(mana_icon, font, 30, mana_handler + trade_handler));
+                inventory.Add(new InventoryItem("Health potion", healthPotionDescription, health_icon, font, 50, health_handler + trade_handler));
+                inventory.Add(new InventoryItem("Mana potion", manaPotionDescription, mana_icon, font, 30, mana_handler + trade_handler));
             }
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem(health_icon, font, 50, health_handler + trade_handler));
+            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Health potion", healthPotionDescription, health_icon, font, 50, health_handler + trade_handler));
         }
     }
 }

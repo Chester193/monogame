@@ -17,13 +17,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt.Controls
 
         protected SpriteFont _font;
 
-        private bool _isHovering;
-
         private MouseState _previousMouse;
 
         #endregion
 
         #region Properties
+
+        public bool IsHovering { get; private set; }
 
         public Texture2D Texture { get; private set; }
 
@@ -62,7 +62,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.Controls
         {
             var colour = Color.White;
 
-            if (_isHovering)
+            if (IsHovering)
                 colour = Color.Gray;
 
             spriteBatch.Draw(Texture, Rectangle, colour);
@@ -83,11 +83,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.Controls
 
             var mouseRectangle = new Rectangle(_currentMouse.X, _currentMouse.Y, 1, 1);
 
-            _isHovering = false;
+            IsHovering = false;
 
             if (mouseRectangle.Intersects(Rectangle))
             {
-                _isHovering = true;
+                IsHovering = true;
 
                 if (_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
                 {

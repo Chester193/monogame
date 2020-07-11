@@ -12,9 +12,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt.Controls
     {
         public int Price { get; set; }
 
-        public InventoryItem(Texture2D texture, SpriteFont font, int price, EventHandler action)
+        public string Name { get; set; }
+
+        public string Description { get; set; }
+
+        public InventoryItem(string name, string description, Texture2D texture, SpriteFont font, int price, EventHandler action)
             : base(texture, font)
         {
+            Name = name;
+            Description = description;
             Price = price;
             Click += action;
         }
@@ -22,7 +28,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.Controls
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             base.Draw(gameTime, spriteBatch);
-            spriteBatch.DrawString(_font, Price.ToString(), new Vector2(Rectangle.X - 10, Rectangle.Y - 10), Color.Gold, 0f, Vector2.Zero, 0.6f, SpriteEffects.None, 0.1f);
+            //spriteBatch.DrawString(_font, Price.ToString(), new Vector2(Rectangle.X - 10, Rectangle.Y - 10), Color.Gold, 0f, Vector2.Zero, 0.6f, SpriteEffects.None, 0.1f);
         }
     }
 }
