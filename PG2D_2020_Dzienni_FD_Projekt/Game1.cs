@@ -342,6 +342,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             Texture2D gold_bracelet_icon = Content.Load<Texture2D>("InventoryItems/gold_bracelet");
             Texture2D gems_bracelet_icon = Content.Load<Texture2D>("InventoryItems/gems_bracelet");
             Texture2D expensive_bracelet_icon = Content.Load<Texture2D>("InventoryItems/expensive_bracelet");
+            Texture2D ruby_ring_icon = Content.Load<Texture2D>("InventoryItems/ruby_ring");
+            Texture2D sapphire_ring_icon = Content.Load<Texture2D>("InventoryItems/sapphire_ring");
 
             SoundEffect drink = Content.Load<SoundEffect>(@"SoundEffects/potion");
             SoundEffect money = Content.Load<SoundEffect>(@"SoundEffects/coin");
@@ -467,6 +469,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Gold bracelet", jeveleryDescription, gold_bracelet_icon, font, 40, trade_handler));
             ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Bracelet with gems", jeveleryDescription, gems_bracelet_icon, font, 60, trade_handler));
             ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Expensive bracelet", jeveleryDescription, expensive_bracelet_icon, font, 100, trade_handler));
+            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Ring with ruby", jeveleryDescription, ruby_ring_icon, font, 60, trade_handler));
+            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Ring with sapphire", jeveleryDescription, sapphire_ring_icon, font, 70, trade_handler));
         }
     }
 }
