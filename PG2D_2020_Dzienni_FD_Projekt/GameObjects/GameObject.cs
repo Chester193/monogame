@@ -25,7 +25,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         Texture2D boundingBoxTexture;
         const bool drawBoundingBoxes = true;
 
-        protected Vector2 direction = new Vector2(1, 0);
+        public Vector2 direction = new Vector2(1, 0);
 
         public Vector2 startPosition = new Vector2(-1, -1);
 
@@ -69,7 +69,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         }
 
 
-        public virtual void Update(List<GameObject> gameObjects, TiledMap map)
+        public virtual void Update(List<GameObject> gameObjects, TiledMap map, GameTime gameTime)
         {
 
         }
@@ -79,7 +79,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             return BoundingBox.Intersects(input);
         }
 
-        public virtual void BulletResponse()
+        public virtual void BulletResponse(int damageTaken)
         {
 
         }

@@ -15,12 +15,20 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
     public class Scripts
     {
         private List<GameObject> gameObjects;
+        private List<Trigger> triggers;
         private GameHUD hud;
+        private Game1 game;
 
-        public Scripts(List<GameObject> gameObjects, GameHUD GameHud)
+        int tileSize = 32;
+
+        private bool startQuestDialog = false;
+
+        public Scripts(List<GameObject> gameObjects, List<Trigger> triggers, GameHUD GameHud, Game1 game1)
         {
             this.gameObjects = gameObjects;
+            this.triggers = triggers;
             this.hud = GameHud;
+            this.game = game1;
         }
 
         /*
@@ -36,6 +44,33 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
             Character character = (Character)who;
             character.Respawn();
             character.Heal();
+        }
+
+        private void Trade(int i)
+        {
+            hud.PrintMessage("Press E to trade");
+
+            if (Input.IsKeyDown(Keys.E))
+            {
+                game.StartTrade(i);
+            }
+        }
+
+        private void Chest(int i)
+        {
+            hud.PrintMessage("Press E to open");
+
+            if (Input.IsKeyDown(Keys.E))
+            {
+                game.OpenChest(i);
+            }
+        }
+
+        private void toggleTriggers(int activate, int deactivate)
+        {
+
+            triggers[activate].active = true;
+            triggers[deactivate].active = false;
         }
 
         /*
@@ -68,27 +103,124 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
         public void FastTravel()
         {
             List<string> fastTravelPlaces = new List<string>();
-            fastTravelPlaces.Add("Miasto poczatkowe");
-            fastTravelPlaces.Add("Wodospad");
-            fastTravelPlaces.Add("Labirynt");
+            fastTravelPlaces.Add("Town");
+            fastTravelPlaces.Add("Forest");
+            fastTravelPlaces.Add("Market");
+            fastTravelPlaces.Add("Piramid");
+            fastTravelPlaces.Add("Ice vilage");
 
             hud.FastTravelStart(fastTravelPlaces);
 
             if (Input.IsKeyDown(Keys.NumPad1) || Input.IsKeyDown(Keys.D1))
             {
-                Teleport(gameObjects[0], gameObjects[0].originalPosition);
+                Teleport(gameObjects[0], new Vector2(65 * tileSize, 32 * tileSize));
                 hud.FastTravelStop();
             }
             if (Input.IsKeyDown(Keys.NumPad2) || Input.IsKeyDown(Keys.D2))
             {
-                Teleport(gameObjects[0], new Vector2(1450, 25));
+                Teleport(gameObjects[0], new Vector2(158 * tileSize, 79 * tileSize));
                 hud.FastTravelStop();
             }
             if (Input.IsKeyDown(Keys.NumPad3) || Input.IsKeyDown(Keys.D3))
             {
-                Teleport(gameObjects[0], new Vector2(845, 1290));
+                Teleport(gameObjects[0], new Vector2(56 * tileSize, 93 * tileSize));
                 hud.FastTravelStop();
             }
+            if (Input.IsKeyDown(Keys.NumPad4) || Input.IsKeyDown(Keys.D4))
+            {
+                Teleport(gameObjects[0], new Vector2(227 * tileSize, 183 * tileSize));
+                hud.FastTravelStop();
+            }
+            if (Input.IsKeyDown(Keys.NumPad5) || Input.IsKeyDown(Keys.D5))
+            {
+                Teleport(gameObjects[0], new Vector2(43 * tileSize, 222 * tileSize));
+                hud.FastTravelStop();
+            }
+        }
+
+        public void StartDialog()
+        {
+            hud.PrintMessage("Press E to talk");
+
+            if (Input.IsKeyDown(Keys.E))
+            {
+                toggleTriggers(6, 5);
+                game.PauseGame();
+            }
+        }
+
+        public void QuestDialog()
+        {
+            Player player = (Player)gameObjects[0];
+            hud.PrintMessage(player.Interact());
+            hud.PrintMessage2("Press Q to end");
+            if (Input.IsKeyDown(Keys.Q))
+            {
+                hud.PrintMessage2(null);
+                toggleTriggers(5, 6);
+                game.ContinueGame();
+
+                Quest currentQuest;
+                if (player.TryGetCurrentQuest(out currentQuest))
+                {
+                    currentQuest.Confirm(player);
+                }
+                ///Console.WriteLine("QD");
+            }
+        }
+
+        public void StartTradeDialogNo1()
+        {
+            Trade(1);
+        }
+
+        public void OpenChestNo1()
+        {
+            Chest(2);
+        }
+
+        public void EnterHomeNo1()
+        {
+            Console.WriteLine("enter H1");
+            Teleport(gameObjects[0], new Vector2(tileSize * 353, tileSize * 172));
+        }
+
+        public void ExitHomeNo1()
+        {
+            Console.WriteLine("exit H1");
+            Teleport(gameObjects[0], new Vector2(tileSize * 239, tileSize * 78));
+        }
+
+        public void EnterHomeNo2()
+        {
+            Console.WriteLine("enter H2");
+            Teleport(gameObjects[0], new Vector2(tileSize * 344, tileSize * 239));
+        }
+        public void ExitHomeNo2()
+        {
+            Console.WriteLine("exit H2");
+            Teleport(gameObjects[0], new Vector2(tileSize * 67, tileSize * 109));
+        }
+
+        public void EnterHomeNo3()
+        {
+            Console.WriteLine("enter H3");
+            Teleport(gameObjects[0], new Vector2(tileSize * 359, tileSize * 31));
+        }
+        public void ExitHomeNo3()
+        {
+            Console.WriteLine("exit H3");
+            Teleport(gameObjects[0], new Vector2(tileSize * 66, tileSize * 79));
+        }
+        public void EnterCave()
+        {
+            Console.WriteLine("enter");
+            Teleport(gameObjects[0], new Vector2(tileSize * 419, tileSize * 42));
+        }
+        public void ExitCave()
+        {
+            Console.WriteLine("exit");
+            Teleport(gameObjects[0], new Vector2(tileSize * 154, tileSize * 28));
         }
     }
 }

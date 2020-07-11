@@ -2,41 +2,133 @@
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using System;
+using StateMachine;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies;
 
 namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 {
-    class Enemy : Character
+    public class Enemy : Character
     {
         private int step = 0;
         private float distanceToPlayer;
+        Vector2 nextPoint = new Vector2(0);
+        int patrolTimer = 50;
+        Player player;
 
-        public override void Update(List<GameObject> gameObjects, TiledMap map)
+        private enum EState { IDLE, FOLLOW, ATTACK, PATROL };
+        private enum ETrigger { STOP, FOLLOW_PLAYER, ATTACK, GO_PATROL };
+
+        private Fsm<EState, ETrigger> enemyAiMachine;
+
+        List<GameObject> gameObjects;
+        TiledMap map;
+
+        public List<SoundEffect> golemsEffects;
+        public List<SoundEffect> goblinEffects;
+
+        public Enemy()
         {
+            enemyAiMachine = Fsm<EState, ETrigger>.Builder(EState.IDLE)
+                .State(EState.FOLLOW)
+                    .TransitionTo(EState.IDLE).On(ETrigger.STOP)
+                    .TransitionTo(EState.ATTACK).On(ETrigger.ATTACK)
+                    .TransitionTo(EState.PATROL).On(ETrigger.GO_PATROL)
+                    .Update(args =>
+                    {
+                        //if (this is Viking1) Console.WriteLine("FOLLOW " + distanceToPlayer);
+                        Follow(map, gameObjects);
+                    })
+                .State(EState.IDLE)
+                    .TransitionTo(EState.FOLLOW).On(ETrigger.FOLLOW_PLAYER)
+                    .TransitionTo(EState.ATTACK).On(ETrigger.ATTACK)
+                    .TransitionTo(EState.PATROL).On(ETrigger.GO_PATROL)
+                    .Update(args =>
+                    {
+                        //if (this is Viking1) Console.WriteLine("IDLE " + distanceToPlayer);
+                    })
+                .State(EState.ATTACK)
+                    .TransitionTo(EState.IDLE).On(ETrigger.STOP)
+                    .TransitionTo(EState.FOLLOW).On(ETrigger.FOLLOW_PLAYER)
+                    .TransitionTo(EState.PATROL).On(ETrigger.GO_PATROL)
+                    .Update(args =>
+                    {
+                        //if (this is Viking1) Console.WriteLine("ATTACK " + distanceToPlayer);
+                        AttackPlayer();
+                    })
+                .State(EState.PATROL)
+                    .TransitionTo(EState.IDLE).On(ETrigger.STOP)
+                    .TransitionTo(EState.ATTACK).On(ETrigger.ATTACK)
+                    .TransitionTo(EState.FOLLOW).On(ETrigger.FOLLOW_PLAYER)
+                    .Update(args =>
+                    {
+                        //if (this is Viking1) Console.WriteLine("PATROL " + distanceToPlayer);
+                        Patrol();
+                    })
+            .Build();
+        }
+        public override void Initialize()
+        {
+            golemsEffects = new List<SoundEffect>();
+            goblinEffects = new List<SoundEffect>();
+            base.Initialize();
+        }
+
+        public override void Load(ContentManager content)
+        {
+            golemsEffects.Add(content.Load<SoundEffect>(@"SoundEffects/giant1"));
+            golemsEffects.Add(content.Load<SoundEffect>(@"SoundEffects/giant2"));
+            golemsEffects.Add(content.Load<SoundEffect>(@"SoundEffects/giant3"));
+            golemsEffects.Add(content.Load<SoundEffect>(@"SoundEffects/giant4"));
+            golemsEffects.Add(content.Load<SoundEffect>(@"SoundEffects/giant5"));
+            goblinEffects.Add(content.Load<SoundEffect>(@"SoundEffects/goblinHurt"));
+            goblinEffects.Add(content.Load<SoundEffect>(@"SoundEffects/goblinSlash"));
+            goblinEffects.Add(content.Load<SoundEffect>(@"SoundEffects/goblinDie"));
+            base.Load(content);
+        }
+
+        public override void Update(List<GameObject> gameObjectsG, TiledMap mapG, GameTime gameTime)
+        {
+            gameObjects = gameObjectsG;
+            map = mapG;
+            player = (Player)gameObjects[0];
+
             CharcterMode mode = GetMode();
             int range = GetRange();
-            distanceToPlayer = countDistanceToPlayer((Player)gameObjects[0]);
+            distanceToPlayer = countDistanceToPlayer(player);
 
-            if (!isDead)
+            if (nextPoint.Equals(new Vector2(0)))
+                nextPoint = originalPosition;
+
+
+            if (hit) Attack(this.target, characterSettings.weaponAttack);
+
+            if (!isDead && active)
             {
                 switch (mode)
                 {
                     case CharcterMode.WaitForPlayer:
-                        WaitForPlayer(gameObjects, range, map);
+                        //if (this is Viking1) Console.WriteLine("WaitForPlayer ");
+                        WaitForPlayer();
                         break;
                     case CharcterMode.Guard:
-                        Guard(gameObjects, range, map);
+                        //if (this is Viking1) Console.WriteLine("Guard ");
+                        Guard(range);
                         break;
                     case CharcterMode.FollowPlayer:
-                        FollowPlayer(map, gameObjects);
+                        //if (this is Viking1) Console.WriteLine("FollowPlayer ");
+                        FollowPlayer();
                         break;
 
                     default:
-                        WaitForPlayer(gameObjects, range, map);
+                        WaitForPlayer();
                         break;
                 }
             }
+            enemyAiMachine.Update(TimeSpan.FromMilliseconds(gameTime.ElapsedGameTime.TotalMilliseconds));
 
-            base.Update(gameObjects, map);
+            base.Update(gameObjects, map, gameTime);
         }
 
         protected override void UpdateAnimations()
@@ -54,6 +146,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 if (IsAnimationComplete)
                 {
                     ChangeAnimation(null);
+                    isCollidable = false;
                 }
             }
             else
@@ -82,6 +175,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     {
                         isAttacking = false;
                     }
+                    if (IsAnimationComplete && distanceToPlayer <= characterSettings.rangeOfAttack)
+                    {
+                        hit = true;
+                    }
                 }
 
                 if (velocity == Vector2.Zero && isJumping == false && isAttacking == false)
@@ -100,40 +197,54 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             base.UpdateAnimations();
         }
 
-        public void FollowPlayer(TiledMap map, List<GameObject> gameObjects)
+
+        public void FollowPlayer()
         {
-            Follow(map, gameObjects);
-            Attack((Character)gameObjects[0], characterSettings.weaponAttack);
+            if (player.IsDead()) enemyAiMachine.Trigger(ETrigger.STOP);
+            else if (distanceToPlayer < characterSettings.rangeOfAttack)
+                enemyAiMachine.Trigger(ETrigger.ATTACK);
+            else enemyAiMachine.Trigger(ETrigger.FOLLOW_PLAYER);
         }
 
-        public void WaitForPlayer(List<GameObject> gameObjects, int range, TiledMap map)
+        public void WaitForPlayer()
         {
-            Player player = (Player)gameObjects[0];
-            Vector2 v = new Vector2(range, range);
-
-            if (distanceToPlayer < range)
-            {
-                Follow(map, gameObjects);
-            }
-            Attack(player, characterSettings.weaponAttack);
+            //Console.WriteLine(player.IsDead());
+            if (player.IsDead()) enemyAiMachine.Trigger(ETrigger.STOP);
+            else if (distanceToPlayer < characterSettings.rangeOfAttack)
+                enemyAiMachine.Trigger(ETrigger.ATTACK);
+            else if (distanceToPlayer < characterSettings.range)
+                enemyAiMachine.Trigger(ETrigger.FOLLOW_PLAYER);
+            else if (distanceToPlayer > characterSettings.range * 2)
+                enemyAiMachine.Trigger(ETrigger.GO_PATROL);
         }
 
-        public void Guard(List<GameObject> gameObjects, int range, TiledMap map)
+        public void AttackPlayer()
         {
-            Player player = (Player)gameObjects[0];
+            isAttacking = true;
+            target = player;
+        }
+
+        public void Guard(int range)
+        {
             float distanceToGuardPosition = Vector2.Distance(originalPosition, realPositon);
-            if (distanceToPlayer < range)
+            float distancePlayerToGuardPosition = Vector2.Distance(player.position, originalPosition);
+
+            if (player.IsDead()) enemyAiMachine.Trigger(ETrigger.GO_PATROL);
+            else if (distanceToPlayer < characterSettings.rangeOfAttack)
             {
-                if (distanceToGuardPosition <= 2 * range)
-                {
-                    Follow(map, gameObjects);
-                }
+                //Console.WriteLine("G  attack");
+                enemyAiMachine.Trigger(ETrigger.ATTACK);
+            }
+            else if (distanceToPlayer < range && distanceToGuardPosition <= 2 * range && distancePlayerToGuardPosition <= 2 * range)
+            {
+                //Console.WriteLine("G  follow");
+                enemyAiMachine.Trigger(ETrigger.FOLLOW_PLAYER);
             }
             else
             {
-                Patrol();
+                //Console.WriteLine("G  patrol");
+                enemyAiMachine.Trigger(ETrigger.GO_PATROL);
             }
-            Attack(player, characterSettings.weaponAttack);
         }
 
         private float countDistanceToPlayer(Player player)
@@ -143,32 +254,33 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public void Patrol()
         {
-            float distance;
-            if (characterSettings.points != null)
+            if (step == 0)
             {
-                if (step > characterSettings.points.Count)
-                    step = 0;
-                else
-                {
-                    if (step == characterSettings.points.Count)
-                    {
-                        GoToPoint(originalPosition);
-                        distance = Vector2.Distance(realPositon, originalPosition);
-                        if (distance < 5) step++;
-                    }
-                    else
-                    {
-                        distance = Vector2.Distance(realPositon, characterSettings.points[step]);
-                        if (distance < 5)
-                            step++;
-                        else
-                            GoToPoint(characterSettings.points[step]);
-                        if (realPositon == originalPosition)
-                            step++;
-                    }
+                nextPoint = realPositon;
+                step++;
+            }
 
-                }
-                //Console.WriteLine("step: " + step);
+            if (step > 4)
+            {
+                nextPoint = originalPosition;
+                step = 0;
+            }
+
+            float distance = Vector2.Distance(realPositon, nextPoint);
+            if (patrolTimer <= 0 || patrolTimer > 150)
+            {
+                nextPoint = RandomPoint(100);
+                step++;
+                patrolTimer = 50;
+            }
+            if (distance < 15)
+            {
+                patrolTimer--;
+            }
+            else
+            {
+                GoToPositon(map, gameObjects, nextPoint);
+                patrolTimer++;
             }
         }
 
@@ -178,5 +290,23 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             return s;
         }
 
+        private Vector2 RandomPoint(int range)
+        {
+            Vector2 rPoint = new Vector2(originalPosition.X, originalPosition.Y);
+            //Console.WriteLine("RP: " + rPoint + " org: " + originalPosition);
+            var rand = new Random();
+            if (rand.NextDouble() < 0.5)
+                rPoint.X += rand.Next(range / 2, range);
+            else
+                rPoint.X -= rand.Next(range / 2, range);
+
+            if (rand.NextDouble() < 0.5)
+                rPoint.Y += rand.Next(range / 2, range);
+            else
+                rPoint.Y -= rand.Next(range / 2, range);
+            //Console.WriteLine("RP: " + rPoint);
+
+            return rPoint;
+        }
     }
 }

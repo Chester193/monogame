@@ -1,314 +1,314 @@
 
 lizard.png
-size: 1548, 1806
+size: 2048,2048
 format: RGBA8888
-filter: Linear,Linear
+filter: Nearest,Nearest
 repeat: none
 Left - Died
   rotate: false
-  xy: 1, 1
+  xy: 1034, 2
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 0
 Left - Died
   rotate: false
-  xy: 1, 259
+  xy: 2, 2
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 1
 Left - Died
   rotate: false
-  xy: 1, 517
+  xy: 2, 2
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 2
 Left - Died
   rotate: false
-  xy: 1, 775
+  xy: 260, 2
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 3
 Left - Died
   rotate: false
-  xy: 1, 1033
+  xy: 518, 2
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 4
 Left - Died
   rotate: false
-  xy: 1, 1291
+  xy: 776, 2
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
-Left - Hurt
+  index: 5
+Left - Hurting
   rotate: false
-  xy: 1, 1
+  xy: 1034, 2
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
-Left - Hurt
+  index: 0
+Left - Hurting
   rotate: false
-  xy: 1, 259
+  xy: 1292, 2
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 1
 Left - Idle
   rotate: false
-  xy: 1, 1549
+  xy: 1550, 2
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 0
 Left - Idle
   rotate: false
-  xy: 259, 1
+  xy: 2, 260
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 1
 Left - Idle
   rotate: false
-  xy: 259, 259
+  xy: 260, 260
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 2
 Left - Slashing
   rotate: false
-  xy: 259, 517
+  xy: 518, 260
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 0
 Left - Slashing
   rotate: false
-  xy: 259, 775
+  xy: 776, 260
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 1
 Left - Slashing
   rotate: false
-  xy: 259, 1033
+  xy: 1034, 260
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 2
 Left - Slashing
   rotate: false
-  xy: 259, 1291
+  xy: 1292, 260
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 3
 Left - Slashing
   rotate: false
-  xy: 259, 1549
+  xy: 1550, 260
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 4
 Left - Walking
   rotate: false
-  xy: 517, 1
+  xy: 2, 518
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 0
 Left - Walking
   rotate: false
-  xy: 517, 259
+  xy: 260, 518
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 1
 Left - Walking
   rotate: false
-  xy: 517, 517
+  xy: 518, 518
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 2
 Left - Walking
   rotate: false
-  xy: 517, 775
+  xy: 776, 518
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 3
 Left - Walking
   rotate: false
-  xy: 517, 1033
+  xy: 1034, 518
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 4
 Left - Walking
   rotate: false
-  xy: 517, 1291
+  xy: 1292, 518
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 5
 Right - Died
   rotate: false
-  xy: 517, 1549
+  xy: 1550, 518
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 0
+Right - Hurting
+  rotate: false
+  xy: 1550, 518
+  size: 256, 256
+  orig: 256, 256
+  offset: 0, 0
+  index: 0
 Right - Died
   rotate: false
-  xy: 775, 1
+  xy: 2, 776
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 1
 Right - Died
   rotate: false
-  xy: 775, 259
+  xy: 2, 776
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 2
 Right - Died
   rotate: false
-  xy: 775, 517
+  xy: 260, 776
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 3
 Right - Died
   rotate: false
-  xy: 775, 775
+  xy: 518, 776
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 4
 Right - Died
   rotate: false
-  xy: 775, 1033
+  xy: 776, 776
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
-Right - Hurt
+  index: 5
+Right - Hurting
   rotate: false
-  xy: 517, 1549
+  xy: 1034, 776
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
-Right - Hurt
-  rotate: false
-  xy: 775, 1
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
+  index: 1
 Right - Idle
   rotate: false
-  xy: 775, 1291
+  xy: 1292, 776
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 0
 Right - Idle
   rotate: false
-  xy: 775, 1549
+  xy: 1550, 776
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 1
 Right - Idle
   rotate: false
-  xy: 1033, 1
+  xy: 2, 1034
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 2
 Right - Slashing
   rotate: false
-  xy: 1033, 259
+  xy: 260, 1034
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 0
 Right - Slashing
   rotate: false
-  xy: 1033, 517
+  xy: 518, 1034
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 1
 Right - Slashing
   rotate: false
-  xy: 1033, 775
+  xy: 776, 1034
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 2
 Right - Slashing
   rotate: false
-  xy: 1033, 1033
+  xy: 1034, 1034
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 3
 Right - Slashing
   rotate: false
-  xy: 1033, 1291
+  xy: 1292, 1034
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 4
 Right - Walking
   rotate: false
-  xy: 1033, 1549
+  xy: 1550, 1034
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 0
 Right - Walking
   rotate: false
-  xy: 1291, 1
+  xy: 2, 1292
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 1
 Right - Walking
   rotate: false
-  xy: 1291, 259
+  xy: 260, 1292
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 2
 Right - Walking
   rotate: false
-  xy: 1291, 517
+  xy: 518, 1292
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 3
 Right - Walking
   rotate: false
-  xy: 1291, 775
+  xy: 776, 1292
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 4
 Right - Walking
   rotate: false
-  xy: 1291, 1033
+  xy: 1034, 1292
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
-  index: -1
+  index: 5
