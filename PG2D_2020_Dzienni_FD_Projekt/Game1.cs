@@ -57,12 +57,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             scriptsList.Add(new ScriptsController(scripts.TeleportToLocationB));
             scriptsList.Add(new ScriptsController(scripts.FastTravel));
 
-
             // TODO: Add your initialization logic here
             tiledMap = new TiledMap(vResWidth, vResHeight);
 
-            int tileSpawnPointX = 78;
-            int tielSpawnPointY = 110;
+            int tileSpawnPointX = 340;
+            int tielSpawnPointY = 87;
             Player player = new Player(new Vector2(tileSpawnPointX * 32, tielSpawnPointY * 32), scripts);
 
             Vector2 realMapBeginning = new Vector2(tiledMap.tileSize * 31, tiledMap.tileSize * 31);
