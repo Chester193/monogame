@@ -332,8 +332,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             Texture2D fire_ball = Content.Load<Texture2D>("Other/fire_ball");
             Texture2D default_armour = Content.Load<Texture2D>("Other/default_armour");
             Texture2D better_armour = Content.Load<Texture2D>("Other/better_armour");
+            Texture2D purse_icon = Content.Load<Texture2D>("InventoryItems/purse");
 
             SoundEffect drink = Content.Load<SoundEffect>(@"SoundEffects/potion");
+            SoundEffect money = Content.Load<SoundEffect>(@"SoundEffects/coin");
 
             EventHandler trade_handler = (s, e) =>
             {
@@ -360,6 +362,17 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                     drink.Play();
                     player.ChargeMana(2);
                     inventory.Remove((InventoryItem)s);
+                }
+            };
+
+            EventHandler purse_handler = (s, e) =>
+            {
+                if (currentState is InventoryState)
+                {
+                    InventoryItem sender = (InventoryItem)s;
+                    money.Play();
+                    player.EarnMoney(sender.Price);
+                    inventory.Remove(sender);
                 }
             };
 
@@ -420,6 +433,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             string fireBallDescription = "Deals ?? Damage";
             string healthPotionDescription = "Heals 10 health points";
             string manaPotionDescription = "Restores 2 mana points";
+            string purseDescription = "50 coins inside";
 
             inventory.Add(new InventoryItem("Short sword", defaultSwordDescription, default_sword, font, 100, default_sword_handler + trade_handler));
             inventory.Add(new InventoryItem("Leather armour", defaultArmourDescription, default_armour, font, 10, armour_handler + trade_handler));
@@ -433,6 +447,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 inventory.Add(new InventoryItem("Mana potion", manaPotionDescription, mana_icon, font, 30, mana_handler + trade_handler));
             }
             ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Health potion", healthPotionDescription, health_icon, font, 50, health_handler + trade_handler));
+            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Purse", purseDescription, purse_icon, font, 50, purse_handler + trade_handler));
         }
     }
 }
