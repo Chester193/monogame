@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities.SpriteAtlas;
@@ -7,6 +8,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
 {
     class Zombie : Enemy
     {
+
+        SoundEffect groan;
+
         public Zombie(Vector2 startingPosition, CharacterSettings settings)
         {
             this.position = startingPosition;
@@ -29,6 +33,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
             texture = TextureLoader.Load(@"characters/zombie", content);
             SpriteAtlasData atlas = SpriteAtlasLoader.ParseSpriteAtlas(@"characters/zombie.atlas", texture, content);
 
+            groan = content.Load<SoundEffect>(@"SoundEffects/zombie");
+
             LoadAnimations(atlas);
             ChangeAnimation(AnimatedObject.Animations.WalkingRight);
 
@@ -37,6 +43,18 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
             boundingBoxOffset = new Vector2(30, 110);
             boundingBoxWidth = 80;
             boundingBoxHeight = 80;
+        }
+
+        public override void hurt()
+        {
+            groan.Play();
+            base.hurt();
+        }
+
+        public override void Attack(Character target, int dmg)
+        {
+            groan.Play();
+            base.Attack(target, dmg);
         }
     }
 }

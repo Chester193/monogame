@@ -43,5 +43,23 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
             boundingBoxWidth = 39;
             boundingBoxHeight = 40;
         }
+
+        public override void hurt()
+        {
+            goblinEffects[0].Play();
+            base.hurt();
+        }
+
+        public override void Attack(Character target, int dmg)
+        {
+            goblinEffects[1].Play();
+            base.Attack(target, dmg);
+        }
+
+        public override void Die()
+        {
+            goblinEffects[2].Play();
+            base.Die();
+        }
     }
 }

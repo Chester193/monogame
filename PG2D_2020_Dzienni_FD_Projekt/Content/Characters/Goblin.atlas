@@ -6,6 +6,13 @@ filter: Nearest,Nearest
 repeat: none
 Left - Died
   rotate: false
+  xy: 1509, 2
+  size: 135, 135
+  orig: 135, 135
+  offset: 0, 0
+  index: 0
+Left - Died
+  rotate: false
   xy: 2, 2
   size: 135, 135
   orig: 135, 135
@@ -87,7 +94,7 @@ Left - Died
   size: 135, 135
   orig: 135, 135
   offset: 0, 0
-  index: 14
+  index: 12
 Left - Died
   rotate: false
   xy: 1372, 2
@@ -101,15 +108,8 @@ Left - Died
   size: 135, 135
   orig: 135, 135
   offset: 0, 0
-  index: 12
+  index: 14
 Left - Hurting
-  rotate: false
-  xy: 1509, 2
-  size: 135, 135
-  orig: 135, 135
-  offset: 0, 0
-  index: 0
-Left - Died
   rotate: false
   xy: 1509, 2
   size: 135, 135
@@ -699,6 +699,13 @@ Left - Walking
   index: 23
 Right - Died
   rotate: false
+  xy: 1098, 961
+  size: 135, 135
+  orig: 135, 135
+  offset: 0, 0
+  index: 0
+Right - Died
+  rotate: false
   xy: 1509, 824
   size: 135, 135
   orig: 135, 135
@@ -773,20 +780,6 @@ Right - Died
   size: 135, 135
   orig: 135, 135
   offset: 0, 0
-  index: 12
-Right - Died
-  rotate: false
-  xy: 961, 961
-  size: 135, 135
-  orig: 135, 135
-  offset: 0, 0
-  index: 14
-Right - Died
-  rotate: false
-  xy: 961, 961
-  size: 135, 135
-  orig: 135, 135
-  offset: 0, 0
   index: 11
 Right - Died
   rotate: false
@@ -794,15 +787,22 @@ Right - Died
   size: 135, 135
   orig: 135, 135
   offset: 0, 0
-  index: 13
-Right - Hurting
+  index: 12
+Right - Died
   rotate: false
-  xy: 1098, 961
+  xy: 961, 961
   size: 135, 135
   orig: 135, 135
   offset: 0, 0
-  index: 0
+  index: 13
 Right - Died
+  rotate: false
+  xy: 961, 961
+  size: 135, 135
+  orig: 135, 135
+  offset: 0, 0
+  index: 14
+Right - Hurting
   rotate: false
   xy: 1098, 961
   size: 135, 135

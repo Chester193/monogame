@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities;
@@ -11,6 +12,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Jhin
     {
         IceCone cone;
         private int attackDelay;
+
+        SoundEffect iceCone;
 
         public Jhin(Vector2 startingPosition, CharacterSettings settings)
         {
@@ -51,6 +54,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Jhin
             texture = TextureLoader.Load(@"characters/jhin", content);
             SpriteAtlasData atlas = SpriteAtlasLoader.ParseSpriteAtlas(@"characters/jhin.atlas", texture, content);
 
+            iceCone = content.Load<SoundEffect>(@"SoundEffects/iceCone");
+
             LoadAnimations(atlas);
             ChangeAnimation(AnimatedObject.Animations.IdleRight);
 
@@ -66,6 +71,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Jhin
         {
             if (cone.active == false && !isDead && Vector2.Distance(player.position, position) <= characterSettings.rangeOfAttack && attackDelay <= 0)
                 {
+                    iceCone.Play();
                     isAttacking = true;
                     cone.Fire(this, new Vector2(this.BoundingBox.X, this.BoundingBox.Y), new Vector2(player.BoundingBox.X, player.BoundingBox.Y));
                 }

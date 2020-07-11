@@ -36,7 +36,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         SoundEffect dyingEffect;
         SoundEffectInstance step;
         List<SoundEffect> hurtingEffects;
-        //SoundEffect slash;
+        List<SoundEffect> fireBallSound;
 
         public Player()
         {
@@ -83,6 +83,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             fireBall = new Fireball();
 
             hurtingEffects = new List<SoundEffect>();
+            fireBallSound = new List<SoundEffect>();
             Weapon = Inventory[0];
             Inventory.RemoveAt(0);
 
@@ -110,6 +111,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             hurtingEffects.Add(content.Load<SoundEffect>(@"SoundEffects/damage1"));
             hurtingEffects.Add(content.Load<SoundEffect>(@"SoundEffects/damage2"));
             hurtingEffects.Add(content.Load<SoundEffect>(@"SoundEffects/damage3"));
+            fireBallSound.Add(content.Load<SoundEffect>(@"SoundEffects/Fireball1"));
+            fireBallSound.Add(content.Load<SoundEffect>(@"SoundEffects/Fireball2"));
+            fireBallSound.Add(content.Load<SoundEffect>(@"SoundEffects/Fireball3"));
             dyingEffect = content.Load<SoundEffect>(@"SoundEffects/death");
             step = content.Load<SoundEffect>(@"SoundEffects/footstep06").CreateInstance();
             step.IsLooped = true;
@@ -304,13 +308,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     slash.Play();
                     MeleAttack(gameObjects);
                 }
-                else {
+                else if(!fireBall.active){
                     try
                     {
                         ManaUse(1);
                         isHurting = true;
                         Fire();
-                    }catch(NotEnoughMpException e)
+                        fireBallSound[new Random().Next(0, 3)].Play();
+                    }
+                    catch(NotEnoughMpException e)
                     {
                         hud.PrintMessage("Not enough Mana", 100);
                     }

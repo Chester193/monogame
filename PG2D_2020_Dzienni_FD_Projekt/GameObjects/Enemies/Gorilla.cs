@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities.SpriteAtlas;
@@ -12,6 +13,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
 {
     class Gorilla : Enemy
     {
+        SoundEffect hitting;
+        SoundEffect hurting;
+        SoundEffect dying;
+
         public Gorilla(Vector2 startingPosition, CharacterSettings settings)
         {
             this.position = startingPosition;
@@ -34,6 +39,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
             texture = TextureLoader.Load(@"characters/Gorilla", content);
             SpriteAtlasData atlas = SpriteAtlasLoader.ParseSpriteAtlas(@"characters/Gorilla.atlas", texture, content);
 
+            hitting = content.Load<SoundEffect>(@"SoundEffects/gorillaHit");
+            hurting = content.Load<SoundEffect>(@"SoundEffects/gorillaHurt");
+            dying = content.Load<SoundEffect>(@"SoundEffects/gorillaDie");
+
             LoadAnimations(atlas);
             ChangeAnimation(AnimatedObject.Animations.WalkingRight);
 
@@ -42,6 +51,24 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
             boundingBoxOffset = new Vector2(90, 100);
             boundingBoxWidth = 50;
             boundingBoxHeight = 50;
+        }
+
+        public override void hurt()
+        {
+            hurting.Play();
+            base.hurt();
+        }
+
+        public override void Attack(Character target, int dmg)
+        {
+            hitting.Play();
+            base.Attack(target, dmg);
+        }
+
+        public override void Die()
+        {
+            dying.Play();
+            base.Die();
         }
     }
 }
