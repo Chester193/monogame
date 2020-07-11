@@ -333,6 +333,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             Texture2D default_armour = Content.Load<Texture2D>("Other/default_armour");
             Texture2D better_armour = Content.Load<Texture2D>("Other/better_armour");
             Texture2D purse_icon = Content.Load<Texture2D>("InventoryItems/purse");
+            Texture2D ruby_icon = Content.Load<Texture2D>("InventoryItems/ruby");
+            Texture2D emerald_icon = Content.Load<Texture2D>("InventoryItems/emerald");
+            Texture2D sapphire_icon = Content.Load<Texture2D>("InventoryItems/sapphire");
 
             SoundEffect drink = Content.Load<SoundEffect>(@"SoundEffects/potion");
             SoundEffect money = Content.Load<SoundEffect>(@"SoundEffects/coin");
@@ -433,21 +436,25 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             string fireBallDescription = "Deals ?? Damage";
             string healthPotionDescription = "Heals 10 health points";
             string manaPotionDescription = "Restores 2 mana points";
-            string purseDescription = "50 coins inside";
+            string purseDescription = "20 coins inside";
+            string jeveleryDescription = "Useless but expensive";
 
-            inventory.Add(new InventoryItem("Short sword", defaultSwordDescription, default_sword, font, 100, default_sword_handler + trade_handler));
+            inventory.Add(new InventoryItem("Short sword", defaultSwordDescription, default_sword, font, 10, default_sword_handler + trade_handler));
             inventory.Add(new InventoryItem("Leather armour", defaultArmourDescription, default_armour, font, 10, armour_handler + trade_handler));
-            inventory.Add(new InventoryItem("Warrior armour", betterArmourDescription, better_armour, font, 300, armour_handler + trade_handler));
-            inventory.Add(new InventoryItem("Ninja sword", betterSwordDescription, better_sword, font, 150, better_sword_handler + trade_handler));
-            inventory.Add(new InventoryItem("Fire ball", fireBallDescription, fire_ball, font, 200, fire_ball_handler + trade_handler));
+            inventory.Add(new InventoryItem("Warrior armour", betterArmourDescription, better_armour, font, 120, armour_handler + trade_handler));
+            inventory.Add(new InventoryItem("Ninja sword", betterSwordDescription, better_sword, font, 100, better_sword_handler + trade_handler));
+            inventory.Add(new InventoryItem("Fire ball", fireBallDescription, fire_ball, font, 80, fire_ball_handler + trade_handler));
 
             for (int i = 0; i < 3; i++)
             {
-                inventory.Add(new InventoryItem("Health potion", healthPotionDescription, health_icon, font, 50, health_handler + trade_handler));
-                inventory.Add(new InventoryItem("Mana potion", manaPotionDescription, mana_icon, font, 30, mana_handler + trade_handler));
+                inventory.Add(new InventoryItem("Health potion", healthPotionDescription, health_icon, font, 10, health_handler + trade_handler));
+                inventory.Add(new InventoryItem("Mana potion", manaPotionDescription, mana_icon, font, 5, mana_handler + trade_handler));
             }
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Health potion", healthPotionDescription, health_icon, font, 50, health_handler + trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Purse", purseDescription, purse_icon, font, 50, purse_handler + trade_handler));
+            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Health potion", healthPotionDescription, health_icon, font, 10, health_handler + trade_handler));
+            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Purse", purseDescription, purse_icon, font, 20, purse_handler + trade_handler));
+            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Ruby", jeveleryDescription, ruby_icon, font, 50, trade_handler));
+            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Emerald", jeveleryDescription, emerald_icon, font, 70, trade_handler));
+            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Sapphire", jeveleryDescription, sapphire_icon, font, 80, trade_handler));
         }
     }
 }
