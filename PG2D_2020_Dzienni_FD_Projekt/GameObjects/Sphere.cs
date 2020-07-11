@@ -18,6 +18,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         {
             timer = 0f;
             scale = 0.6f;
+            isCollidable = false;
         }
 
         public override void Load(ContentManager content)

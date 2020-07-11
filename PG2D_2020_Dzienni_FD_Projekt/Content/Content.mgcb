@@ -487,6 +487,30 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/diamondfantasy.spritefont
 
+#begin InventoryItems/bloody_dagger.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:InventoryItems/bloody_dagger.png
+
+#begin InventoryItems/bloody_sword.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:InventoryItems/bloody_sword.png
+
 #begin InventoryItems/chalice.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -510,6 +534,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:InventoryItems/emerald.png
+
+#begin InventoryItems/enchanted_dagger.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:InventoryItems/enchanted_dagger.png
+
+#begin InventoryItems/enchanted_sword.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:InventoryItems/enchanted_sword.png
 
 #begin InventoryItems/expensive_bracelet.png
 /importer:TextureImporter
@@ -582,6 +630,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:InventoryItems/normal_dish.png
+
+#begin InventoryItems/poisonous_dagger.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:InventoryItems/poisonous_dagger.png
+
+#begin InventoryItems/poisonous_sword.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:InventoryItems/poisonous_sword.png
 
 #begin InventoryItems/purse.png
 /importer:TextureImporter
