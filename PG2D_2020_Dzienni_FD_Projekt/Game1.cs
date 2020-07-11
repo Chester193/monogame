@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts;
 using PG2D_2020_Dzienni_FD_Projekt.States;
-using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.SpecialEnemies;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects.npc;
 using PG2D_2020_Dzienni_FD_Projekt.Controls;
 using Microsoft.Xna.Framework.Content;
@@ -16,6 +15,8 @@ using System.Runtime.Remoting.Messaging;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Npc;
+using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Jhin;
+using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Orc;
 
 namespace PG2D_2020_Dzienni_FD_Projekt
 {
@@ -112,7 +113,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 weaponAttack = 20,
             };
 
-            List<SpecialEnemy> specialEnemies;
+            List<Character> specialEnemies;
             List<Quest> quests = PrepareQuests(characterSettings, out specialEnemies);
 
             int tileSpawnPointX = 59;
@@ -125,29 +126,14 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(player);
             gameHUD.Player(player);
 
-            characterSettings.mode = CharcterMode.Guard;
-            characterSettings.rangeOfAttack = 30;
-            gameObjects.Add(new Zombie(new Vector2(104 * tiledMap.tileSize, 38 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Lizard(new Vector2(163 * tiledMap.tileSize, 56 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Lizard(new Vector2(172 * tiledMap.tileSize, 59 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Lizard(new Vector2(165 * tiledMap.tileSize, 77 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Zombie(new Vector2(101 * tiledMap.tileSize, 43 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Viking1(new Vector2(59 * tiledMap.tileSize, 92 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Viking2(new Vector2(59 * tiledMap.tileSize, 93 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Viking3(new Vector2(61 * tiledMap.tileSize, 91 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new NonplayableCharacter(new Vector2(55 * tiledMap.tileSize, 54 * tiledMap.tileSize), characterSettings, NPCType.sage));
+            gameObjects.Add(new Chest(new Vector2(60 * tiledMap.tileSize, 51 * tiledMap.tileSize), characterSettings));
+
             gameObjects.Add(new PortalFrame(new Vector2(65 * tiledMap.tileSize, 972)));
             gameObjects.Add(new SphereBackground(new Vector2(1730, 2920)));
 
             gameObjects.Add(new SphereBackground(new Vector2(40 * tiledMap.tileSize, 225 * tiledMap.tileSize)));
             gameObjects.Add(new SphereBackground(new Vector2(227 * tiledMap.tileSize, 186 * tiledMap.tileSize)));
-
-            foreach (SpecialEnemy specEnemy in specialEnemies)
-            {
-                gameObjects.Add(specEnemy);
-            }
-
-            characterSettings.mode = CharcterMode.FollowPlayer;
-            gameObjects.Add(new Demon(new Vector2(110 * tiledMap.tileSize, 58 * tiledMap.tileSize), characterSettings));
 
             triggers.Add(new Trigger(new Vector2(154 * tiledMap.tileSize, 27 * tiledMap.tileSize), new Vector2(tiledMap.tileSize*2, 30), 14, scriptsList));
             triggers.Add(new Trigger(new Vector2(418 * tiledMap.tileSize, 44 * tiledMap.tileSize), new Vector2(180, 30), 15, scriptsList));
@@ -164,7 +150,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             triggers.Add(new Trigger(new Vector2(52 * tiledMap.tileSize), new Vector2(75), 6, scriptsList));
 
             triggers.Add(new Trigger(new Vector2(60 * tiledMap.tileSize, 51 * tiledMap.tileSize), new Vector2(75), 7, scriptsList));
-
+            
             triggers.Add(new Trigger(new Vector2(239 * tiledMap.tileSize, 77 * tiledMap.tileSize), new Vector2(tiledMap.tileSize), 8, scriptsList));
             triggers.Add(new Trigger(new Vector2(354 * tiledMap.tileSize, 175 * tiledMap.tileSize), new Vector2(tiledMap.tileSize), 9, scriptsList));
 
@@ -174,10 +160,144 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             triggers.Add(new Trigger(new Vector2(66 * tiledMap.tileSize, 78 * tiledMap.tileSize), new Vector2(tiledMap.tileSize*2), 12, scriptsList));
             triggers.Add(new Trigger(new Vector2(359 * tiledMap.tileSize, 33 * tiledMap.tileSize), new Vector2(tiledMap.tileSize), 13, scriptsList));
 
-            characterSettings.mode = CharcterMode.WaitForPlayer;
+            characterSettings.mode = CharcterMode.Guard;
+            characterSettings.maxHp = 60;
+            characterSettings.weaponAttack = 10;
+            gameObjects.Add(new Zombie(new Vector2(88 * tiledMap.tileSize, 38 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Zombie(new Vector2(92 * tiledMap.tileSize, 38 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Zombie(new Vector2(96 * tiledMap.tileSize, 38 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Zombie(new Vector2(100 * tiledMap.tileSize, 38 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Zombie(new Vector2(88 * tiledMap.tileSize, 43 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Zombie(new Vector2(92 * tiledMap.tileSize, 43 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Zombie(new Vector2(96 * tiledMap.tileSize, 43 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Zombie(new Vector2(100 * tiledMap.tileSize, 43 * tiledMap.tileSize), characterSettings));
 
-            gameObjects.Add(new NonplayableCharacter(new Vector2(55 * tiledMap.tileSize, 54 * tiledMap.tileSize), characterSettings, NPCType.sage));
-            gameObjects.Add(new Chest(new Vector2(60 * tiledMap.tileSize, 51 * tiledMap.tileSize), characterSettings));
+            characterSettings.maxHp = 20;
+            characterSettings.weaponAttack = 5;
+            gameObjects.Add(new Crow(new Vector2(83 * tiledMap.tileSize, 68 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Crow(new Vector2(90 * tiledMap.tileSize, 75 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Crow(new Vector2(96 * tiledMap.tileSize, 62 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Crow(new Vector2(103 * tiledMap.tileSize, 76 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Crow(new Vector2(113 * tiledMap.tileSize, 80 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Crow(new Vector2(128 * tiledMap.tileSize, 78 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Crow(new Vector2(110 * tiledMap.tileSize, 62 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Crow(new Vector2(127 * tiledMap.tileSize, 64 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Crow(new Vector2(135 * tiledMap.tileSize, 48 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Crow(new Vector2(116 * tiledMap.tileSize, 52 * tiledMap.tileSize), characterSettings));
+
+            characterSettings.maxHp = 80;
+            characterSettings.weaponAttack = 25;
+            gameObjects.Add(new Wolf(new Vector2(155 * tiledMap.tileSize, 29 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Wolf(new Vector2(173 * tiledMap.tileSize, 31 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Wolf(new Vector2(158 * tiledMap.tileSize, 39 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Wolf(new Vector2(177 * tiledMap.tileSize, 40 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Wolf(new Vector2(147 * tiledMap.tileSize, 45 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Wolf(new Vector2(177 * tiledMap.tileSize, 48 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Wolf(new Vector2(162 * tiledMap.tileSize, 56 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Wolf(new Vector2(154 * tiledMap.tileSize, 64 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Wolf(new Vector2(182 * tiledMap.tileSize, 54 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Wolf(new Vector2(144 * tiledMap.tileSize, 71 * tiledMap.tileSize), characterSettings));
+
+            characterSettings.mode = CharcterMode.WaitForPlayer;
+            gameObjects.Add(new Wolf(new Vector2(77 * tiledMap.tileSize, 40 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Wolf(new Vector2(64 * tiledMap.tileSize, 38 * tiledMap.tileSize), characterSettings));
+
+            characterSettings.maxHp = 250;
+            characterSettings.weaponAttack = 40;
+            characterSettings.mode = CharcterMode.Guard;
+            gameObjects.Add(new LavaGolem(new Vector2(140 * tiledMap.tileSize, 33 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new LavaGolem(new Vector2(85 * tiledMap.tileSize, 70 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new LavaGolem(new Vector2(124 * tiledMap.tileSize, 83 * tiledMap.tileSize), characterSettings));
+
+            gameObjects.Add(new IceGolem(new Vector2(36 * tiledMap.tileSize, 165 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new IceGolem(new Vector2(151 * tiledMap.tileSize, 241 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new IceGolem(new Vector2(140 * tiledMap.tileSize, 220 * tiledMap.tileSize), characterSettings));
+
+            gameObjects.Add(new EarthGolem(new Vector2(203 * tiledMap.tileSize, 220 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new EarthGolem(new Vector2(238 * tiledMap.tileSize, 211 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new EarthGolem(new Vector2(242 * tiledMap.tileSize, 173 * tiledMap.tileSize), characterSettings));
+
+            characterSettings.maxHp = 60;
+            characterSettings.rangeOfAttack = 200;
+            gameObjects.Add(new Jhin(new Vector2(61 * tiledMap.tileSize, 167 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Jhin(new Vector2(89 * tiledMap.tileSize, 172 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Jhin(new Vector2(70 * tiledMap.tileSize, 170 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Jhin(new Vector2(91 * tiledMap.tileSize, 198 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Jhin(new Vector2(101 * tiledMap.tileSize, 203 * tiledMap.tileSize), characterSettings));
+
+            characterSettings.maxHp = 80;
+            gameObjects.Add(new Orc(new Vector2(253 * tiledMap.tileSize, 92 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Orc(new Vector2(222 * tiledMap.tileSize, 93 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Orc(new Vector2(241 * tiledMap.tileSize, 61 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Orc(new Vector2(233 * tiledMap.tileSize, 33 * tiledMap.tileSize), characterSettings));
+
+            characterSettings.maxHp = 100;
+            characterSettings.weaponAttack = 25;
+            characterSettings.rangeOfAttack = 30;
+            gameObjects.Add(new Goblin(new Vector2(211 * tiledMap.tileSize, 42 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Goblin(new Vector2(225 * tiledMap.tileSize, 45 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Goblin(new Vector2(249 * tiledMap.tileSize, 57 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Goblin(new Vector2(220 * tiledMap.tileSize, 67 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Goblin(new Vector2(252 * tiledMap.tileSize, 112 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Goblin(new Vector2(258 * tiledMap.tileSize, 115 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Ogre(new Vector2(247 * tiledMap.tileSize, 96 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Ogre(new Vector2(242 * tiledMap.tileSize, 83 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Ogre(new Vector2(222 * tiledMap.tileSize, 60 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Ogre(new Vector2(226 * tiledMap.tileSize, 29 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Ogre(new Vector2(237 * tiledMap.tileSize, 59 * tiledMap.tileSize), characterSettings));
+
+            characterSettings.maxHp = 70;
+            characterSettings.weaponAttack = 15;
+            characterSettings.mode = CharcterMode.WaitForPlayer;
+            gameObjects.Add(new Pirate(new Vector2(216 * tiledMap.tileSize, 122 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Pirate(new Vector2(216 * tiledMap.tileSize, 124 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Pirate(new Vector2(214 * tiledMap.tileSize, 118 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Pirate(new Vector2(217 * tiledMap.tileSize, 128 * tiledMap.tileSize), characterSettings));
+
+            characterSettings.maxHp = 120;
+            characterSettings.weaponAttack = 30;
+            characterSettings.mode = CharcterMode.Guard;
+            gameObjects.Add(new Lizard(new Vector2(200 * tiledMap.tileSize, 184 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Lizard(new Vector2(212 * tiledMap.tileSize, 164 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Lizard(new Vector2(200 * tiledMap.tileSize, 150 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Lizard(new Vector2(182 * tiledMap.tileSize, 171 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Lizard(new Vector2(290 * tiledMap.tileSize, 159 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Lizard(new Vector2(224 * tiledMap.tileSize, 197 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Lizard(new Vector2(246 * tiledMap.tileSize, 163 * tiledMap.tileSize), characterSettings));
+
+            characterSettings.maxHp = 200;
+            characterSettings.weaponAttack = 35;
+            gameObjects.Add(new Gorilla(new Vector2(183 * tiledMap.tileSize, 211 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Gorilla(new Vector2(169 * tiledMap.tileSize, 196 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Gorilla(new Vector2(167 * tiledMap.tileSize, 219 * tiledMap.tileSize), characterSettings));
+
+            characterSettings.maxHp = 50;
+            characterSettings.weaponAttack = 10;
+            gameObjects.Add(new GingerBandit(new Vector2(141 * tiledMap.tileSize, 99 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new GingerBandit(new Vector2(139 * tiledMap.tileSize, 105 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new GingerBandit(new Vector2(123 * tiledMap.tileSize, 90 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new GingerBandit(new Vector2(133 * tiledMap.tileSize, 90 * tiledMap.tileSize), characterSettings));
+
+            characterSettings.maxHp = 80;
+            characterSettings.weaponAttack = 20;
+            gameObjects.Add(new Finn(new Vector2(146 * tiledMap.tileSize, 99 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Finn(new Vector2(139 * tiledMap.tileSize, 94 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Finn(new Vector2(127 * tiledMap.tileSize, 91 * tiledMap.tileSize), characterSettings));
+
+            characterSettings.maxHp = 120;
+            characterSettings.weaponAttack = 30;
+            gameObjects.Add(new BigGuy(new Vector2(144 * tiledMap.tileSize, 105 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new BigGuy(new Vector2(135 * tiledMap.tileSize, 95 * tiledMap.tileSize), characterSettings));
+
+
+
+
+
+            foreach (Character specEnemy in specialEnemies)
+            {
+                gameObjects.Add(specEnemy);
+            }
+
             LoadInventory(player);
 
             Camera.Initialize(zoomLevel: 1.0f);
@@ -307,24 +427,32 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             Initialize();
         }
 
-        private List<Quest> PrepareQuests(CharacterSettings characterSettings, out List<SpecialEnemy> specialEnemies)
+        private List<Quest> PrepareQuests(CharacterSettings characterSettings, out List<Character> specialEnemies)
         {
             List<Quest> quests = new List<Quest>();
-            specialEnemies = new List<SpecialEnemy>();
+            specialEnemies = new List<Character>();
 
             //Quest 1
-            List<SpecialEnemy> objectives = new List<SpecialEnemy>();
-            SpecialEnemy specialEnemy = new Wolf(new Vector2(1500, 1500), characterSettings);
+            List<Character> objectives = new List<Character>();
+            Character specialEnemy = new Wolf(new Vector2(70 * tiledMap.tileSize, 39 * tiledMap.tileSize), characterSettings);
             objectives.Add(specialEnemy);
             specialEnemies.Add(specialEnemy);
 
-            string startDialog = "Hi, can you kill one wolf for me ? \n It always came from North";
-            string endDialog = "You killed this beast, thank you";
-            string alternativeDialog = "Did you killed wolf yet ?";
+            specialEnemy = new Wolf(new Vector2(63 * tiledMap.tileSize, 35 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new Wolf(new Vector2(75 * tiledMap.tileSize, 34 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            string startDialog = "Can you get rid of this annoying wolfs from north";
+            string endDialog = "You killed it, thank you";
+            string alternativeDialog = "Did you killed wolfs yet ?";
             quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 100));
 
             //Quest 2
-            objectives = new List<SpecialEnemy>();
+            objectives = new List<Character>();
 
             specialEnemy = new EarthGolem(new Vector2(2500, 1500), characterSettings);
             objectives.Add(specialEnemy);
@@ -488,24 +616,24 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 inventory.Add(new InventoryItem("Health potion", healthPotionDescription, health_icon, font, 10, health_handler + trade_handler));
                 inventory.Add(new InventoryItem("Mana potion", manaPotionDescription, mana_icon, font, 5, mana_handler + trade_handler));
             }
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Health potion", healthPotionDescription, health_icon, font, 10, health_handler + trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Purse", purseDescription, purse_icon, font, 20, purse_handler + trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Ruby", jeveleryDescription, ruby_icon, font, 50, trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Emerald", jeveleryDescription, emerald_icon, font, 70, trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Sapphire", jeveleryDescription, sapphire_icon, font, 80, trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Small gems", jeveleryDescription, small_gems_icon, font, 40, trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Tiny gems", jeveleryDescription, tiny_gems_icon, font, 30, trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Silver bracelet", jeveleryDescription, silver_bracelet_icon, font, 20, trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Gold bracelet", jeveleryDescription, gold_bracelet_icon, font, 40, trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Bracelet with gems", jeveleryDescription, gems_bracelet_icon, font, 60, trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Expensive bracelet", jeveleryDescription, expensive_bracelet_icon, font, 100, trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Ring with ruby", jeveleryDescription, ruby_ring_icon, font, 60, trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Ring with sapphire", jeveleryDescription, sapphire_ring_icon, font, 70, trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Chalice", jeveleryDescription, chalice_icon, font, 30, trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Ruby chalice", jeveleryDescription, ruby_chalice_icon, font, 50, trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Expensive chalice", jeveleryDescription, expensive_chalice_icon, font, 80, trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Gold dish", jeveleryDescription, gold_dish_icon, font, 20, trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Normal dish", jeveleryDescription, normal_dish_icon, font, 5, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Health potion", healthPotionDescription, health_icon, font, 10, health_handler + trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Purse", purseDescription, purse_icon, font, 20, purse_handler + trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Ruby", jeveleryDescription, ruby_icon, font, 50, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Emerald", jeveleryDescription, emerald_icon, font, 70, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Sapphire", jeveleryDescription, sapphire_icon, font, 80, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Small gems", jeveleryDescription, small_gems_icon, font, 40, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Tiny gems", jeveleryDescription, tiny_gems_icon, font, 30, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Silver bracelet", jeveleryDescription, silver_bracelet_icon, font, 20, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Gold bracelet", jeveleryDescription, gold_bracelet_icon, font, 40, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Bracelet with gems", jeveleryDescription, gems_bracelet_icon, font, 60, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Expensive bracelet", jeveleryDescription, expensive_bracelet_icon, font, 100, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Ring with ruby", jeveleryDescription, ruby_ring_icon, font, 60, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Ring with sapphire", jeveleryDescription, sapphire_ring_icon, font, 70, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Chalice", jeveleryDescription, chalice_icon, font, 30, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Ruby chalice", jeveleryDescription, ruby_chalice_icon, font, 50, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Expensive chalice", jeveleryDescription, expensive_chalice_icon, font, 80, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Gold dish", jeveleryDescription, gold_dish_icon, font, 20, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Normal dish", jeveleryDescription, normal_dish_icon, font, 5, trade_handler));
         }
     }
 }

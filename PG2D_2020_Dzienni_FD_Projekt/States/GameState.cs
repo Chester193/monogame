@@ -109,7 +109,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
             {
                 gameObject.layerDepth = depth;
                 gameObject.Draw(spriteBatch);
-                depth -= 0.001f;
+                depth -= 0.0001f;
             }
 
         }

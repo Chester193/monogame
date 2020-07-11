@@ -67,6 +67,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public CharacterSettings characterSettings;
 
+        public Quest Quest { get; set; } = null;
+
         public Character()
         {
             Inventory = new List<InventoryItem>();
@@ -370,6 +372,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public virtual void Die()
         {
+            if (Quest != null)
+            {
+                Quest.Action();
+            }
             isDead = true;
         }
 

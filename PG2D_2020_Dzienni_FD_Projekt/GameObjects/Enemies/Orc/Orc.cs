@@ -59,6 +59,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Orc
             boundingBoxHeight = 12;
         }
 
+        public override void Attack(Character target, int dmg)
+        {
+            //Do nothing
+        }
+
         public void Fire(GameObject player)
         {
             if (axe.active == false && !isDead && Vector2.Distance(player.position, position) <= characterSettings.rangeOfAttack && attackDelay <= 0)
