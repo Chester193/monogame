@@ -336,6 +336,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             Texture2D ruby_icon = Content.Load<Texture2D>("InventoryItems/ruby");
             Texture2D emerald_icon = Content.Load<Texture2D>("InventoryItems/emerald");
             Texture2D sapphire_icon = Content.Load<Texture2D>("InventoryItems/sapphire");
+            Texture2D small_gems_icon = Content.Load<Texture2D>("InventoryItems/small_gems");
+            Texture2D tiny_gems_icon = Content.Load<Texture2D>("InventoryItems/tiny_gems");
 
             SoundEffect drink = Content.Load<SoundEffect>(@"SoundEffects/potion");
             SoundEffect money = Content.Load<SoundEffect>(@"SoundEffects/coin");
@@ -455,6 +457,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Ruby", jeveleryDescription, ruby_icon, font, 50, trade_handler));
             ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Emerald", jeveleryDescription, emerald_icon, font, 70, trade_handler));
             ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Sapphire", jeveleryDescription, sapphire_icon, font, 80, trade_handler));
+            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Small gems", jeveleryDescription, small_gems_icon, font, 40, trade_handler));
+            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Tiny gems", jeveleryDescription, tiny_gems_icon, font, 30, trade_handler));
         }
     }
 }
