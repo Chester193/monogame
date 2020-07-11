@@ -212,9 +212,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             if (player.IsDead()) enemyAiMachine.Trigger(ETrigger.STOP);
             else if (distanceToPlayer < characterSettings.rangeOfAttack)
                 enemyAiMachine.Trigger(ETrigger.ATTACK);
-            else if (distanceToPlayer < 400)
+            else if (distanceToPlayer < characterSettings.range)
                 enemyAiMachine.Trigger(ETrigger.FOLLOW_PLAYER);
-            else if (distanceToPlayer > 800)
+            else if (distanceToPlayer > characterSettings.range * 2)
                 enemyAiMachine.Trigger(ETrigger.GO_PATROL);
         }
 

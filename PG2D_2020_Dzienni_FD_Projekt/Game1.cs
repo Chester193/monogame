@@ -198,8 +198,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(new Wolf(new Vector2(182 * tiledMap.tileSize, 54 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new Wolf(new Vector2(144 * tiledMap.tileSize, 71 * tiledMap.tileSize), characterSettings));
 
+            characterSettings.mode = CharcterMode.WaitForPlayer;
+            gameObjects.Add(new Wolf(new Vector2(77 * tiledMap.tileSize, 40 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Wolf(new Vector2(64 * tiledMap.tileSize, 38 * tiledMap.tileSize), characterSettings));
+
             characterSettings.maxHp = 250;
             characterSettings.weaponAttack = 40;
+            characterSettings.mode = CharcterMode.Guard;
             gameObjects.Add(new LavaGolem(new Vector2(140 * tiledMap.tileSize, 33 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new LavaGolem(new Vector2(85 * tiledMap.tileSize, 70 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new LavaGolem(new Vector2(124 * tiledMap.tileSize, 83 * tiledMap.tileSize), characterSettings));
@@ -429,13 +434,21 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             //Quest 1
             List<Character> objectives = new List<Character>();
-            Character specialEnemy = new Wolf(new Vector2(1500, 1500), characterSettings);
+            Character specialEnemy = new Wolf(new Vector2(70 * tiledMap.tileSize, 39 * tiledMap.tileSize), characterSettings);
             objectives.Add(specialEnemy);
             specialEnemies.Add(specialEnemy);
 
-            string startDialog = "Hi, can you kill one wolf for me ? \n It always came from North";
-            string endDialog = "You killed this beast, thank you";
-            string alternativeDialog = "Did you killed wolf yet ?";
+            specialEnemy = new Wolf(new Vector2(63 * tiledMap.tileSize, 35 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new Wolf(new Vector2(75 * tiledMap.tileSize, 34 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            string startDialog = "Can you get rid of this annoying wolfs from north";
+            string endDialog = "You killed it, thank you";
+            string alternativeDialog = "Did you killed wolfs yet ?";
             quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 100));
 
             //Quest 2
