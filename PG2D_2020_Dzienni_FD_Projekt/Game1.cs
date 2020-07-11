@@ -344,6 +344,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             Texture2D expensive_bracelet_icon = Content.Load<Texture2D>("InventoryItems/expensive_bracelet");
             Texture2D ruby_ring_icon = Content.Load<Texture2D>("InventoryItems/ruby_ring");
             Texture2D sapphire_ring_icon = Content.Load<Texture2D>("InventoryItems/sapphire_ring");
+            Texture2D chalice_icon = Content.Load<Texture2D>("InventoryItems/chalice");
+            Texture2D ruby_chalice_icon = Content.Load<Texture2D>("InventoryItems/ruby_chalice");
+            Texture2D expensive_chalice_icon = Content.Load<Texture2D>("InventoryItems/expensive_chalice");
+            Texture2D gold_dish_icon = Content.Load<Texture2D>("InventoryItems/gold_dish");
+            Texture2D normal_dish_icon = Content.Load<Texture2D>("InventoryItems/normal_dish");
 
             SoundEffect drink = Content.Load<SoundEffect>(@"SoundEffects/potion");
             SoundEffect money = Content.Load<SoundEffect>(@"SoundEffects/coin");
@@ -471,6 +476,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Expensive bracelet", jeveleryDescription, expensive_bracelet_icon, font, 100, trade_handler));
             ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Ring with ruby", jeveleryDescription, ruby_ring_icon, font, 60, trade_handler));
             ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Ring with sapphire", jeveleryDescription, sapphire_ring_icon, font, 70, trade_handler));
+            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Chalice", jeveleryDescription, chalice_icon, font, 30, trade_handler));
+            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Ruby chalice", jeveleryDescription, ruby_chalice_icon, font, 50, trade_handler));
+            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Expensive chalice", jeveleryDescription, expensive_chalice_icon, font, 80, trade_handler));
+            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Gold dish", jeveleryDescription, gold_dish_icon, font, 20, trade_handler));
+            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Normal dish", jeveleryDescription, normal_dish_icon, font, 5, trade_handler));
         }
     }
 }

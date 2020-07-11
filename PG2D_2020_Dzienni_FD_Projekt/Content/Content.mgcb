@@ -487,6 +487,18 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/diamondfantasy.spritefont
 
+#begin InventoryItems/chalice.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:InventoryItems/chalice.png
+
 #begin InventoryItems/emerald.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -510,6 +522,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:InventoryItems/expensive_bracelet.png
+
+#begin InventoryItems/expensive_chalice.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:InventoryItems/expensive_chalice.png
 
 #begin InventoryItems/gems_bracelet.png
 /importer:TextureImporter
@@ -535,6 +559,30 @@
 /processorParam:TextureFormat=Color
 /build:InventoryItems/gold_bracelet.png
 
+#begin InventoryItems/gold_dish.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:InventoryItems/gold_dish.png
+
+#begin InventoryItems/normal_dish.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:InventoryItems/normal_dish.png
+
 #begin InventoryItems/purse.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -558,6 +606,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:InventoryItems/ruby.png
+
+#begin InventoryItems/ruby_chalice.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:InventoryItems/ruby_chalice.png
 
 #begin InventoryItems/ruby_ring.png
 /importer:TextureImporter
