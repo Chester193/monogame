@@ -149,6 +149,39 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
             }
         }
 
+        public void StartDialog1()
+        {
+            hud.PrintMessage("Press E to talk");
+
+            if (Input.IsKeyDown(Keys.E))
+            {
+                toggleTriggers(28, 27);
+                game.PauseGame();
+            }
+        }
+
+        public void StartDialog2()
+        {
+            hud.PrintMessage("Press E to talk");
+
+            if (Input.IsKeyDown(Keys.E))
+            {
+                toggleTriggers(30, 29);
+                game.PauseGame();
+            }
+        }
+
+        public void StartDialog3()
+        {
+            hud.PrintMessage("Press E to talk");
+
+            if (Input.IsKeyDown(Keys.E))
+            {
+                toggleTriggers(32, 31);
+                game.PauseGame();
+            }
+        }
+
         public void QuestDialog()
         {
             Player player = (Player)gameObjects[0];
@@ -169,14 +202,116 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
             }
         }
 
+        public void QuestDialog1()
+        {
+            Player player = (Player)gameObjects[0];
+            hud.PrintMessage(player.Interact());
+            hud.PrintMessage2("Press Q to end");
+            if (Input.IsKeyDown(Keys.Q))
+            {
+                hud.PrintMessage2(null);
+                toggleTriggers(27, 28);
+                game.ContinueGame();
+
+                Quest currentQuest;
+                if (player.TryGetCurrentQuest(out currentQuest))
+                {
+                    currentQuest.Confirm(player);
+                }
+                ///Console.WriteLine("QD");
+            }
+        }
+
+        public void QuestDialog2()
+        {
+            Player player = (Player)gameObjects[0];
+            hud.PrintMessage(player.Interact());
+            hud.PrintMessage2("Press Q to end");
+            if (Input.IsKeyDown(Keys.Q))
+            {
+                hud.PrintMessage2(null);
+                toggleTriggers(29, 30);
+                game.ContinueGame();
+
+                Quest currentQuest;
+                if (player.TryGetCurrentQuest(out currentQuest))
+                {
+                    currentQuest.Confirm(player);
+                }
+                ///Console.WriteLine("QD");
+            }
+        }
+
+        public void QuestDialog3()
+        {
+            Player player = (Player)gameObjects[0];
+            hud.PrintMessage(player.Interact());
+            hud.PrintMessage2("Press Q to end");
+            if (Input.IsKeyDown(Keys.Q))
+            {
+                hud.PrintMessage2(null);
+                toggleTriggers(31, 32);
+                game.ContinueGame();
+
+                Quest currentQuest;
+                if (player.TryGetCurrentQuest(out currentQuest))
+                {
+                    currentQuest.Confirm(player);
+                }
+                ///Console.WriteLine("QD");
+            }
+        }
+
         public void StartTradeDialogNo1()
         {
             Trade(1);
         }
 
+        public void StartTradeDialogNo2()
+        {
+            Trade(2);
+        }
+
         public void OpenChestNo1()
         {
-            Chest(2);
+            Chest(5);
+        }
+
+        public void OpenChestNo2()
+        {
+            Chest(6);
+        }
+        public void OpenChestNo3()
+        {
+            Chest(7);
+        }
+        public void OpenChestNo4()
+        {
+            Chest(8);
+        }
+        public void OpenChestNo5()
+        {
+            Chest(9);
+        }
+        public void OpenChestNo6()
+        {
+            Chest(10);
+        }
+        public void OpenChestNo7()
+        {
+            Chest(11);
+        }
+        public void OpenChestNo8()
+        {
+            Chest(12);
+        }
+        public void OpenChestNo9()
+        {
+            Chest(13);
+        }
+        public void OpenChestNo10()
+        {
+            Chest(14);
         }
 
         public void EnterHomeNo1()
