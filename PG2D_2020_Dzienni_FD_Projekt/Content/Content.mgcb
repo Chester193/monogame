@@ -499,6 +499,42 @@
 /processorParam:TextureFormat=Color
 /build:InventoryItems/emerald.png
 
+#begin InventoryItems/expensive_bracelet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:InventoryItems/expensive_bracelet.png
+
+#begin InventoryItems/gems_bracelet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:InventoryItems/gems_bracelet.png
+
+#begin InventoryItems/gold_bracelet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:InventoryItems/gold_bracelet.png
+
 #begin InventoryItems/purse.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -534,6 +570,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:InventoryItems/sapphire.png
+
+#begin InventoryItems/silver_bracelet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:InventoryItems/silver_bracelet.png
 
 #begin InventoryItems/small_gems.png
 /importer:TextureImporter

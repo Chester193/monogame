@@ -338,6 +338,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             Texture2D sapphire_icon = Content.Load<Texture2D>("InventoryItems/sapphire");
             Texture2D small_gems_icon = Content.Load<Texture2D>("InventoryItems/small_gems");
             Texture2D tiny_gems_icon = Content.Load<Texture2D>("InventoryItems/tiny_gems");
+            Texture2D silver_bracelet_icon = Content.Load<Texture2D>("InventoryItems/silver_bracelet");
+            Texture2D gold_bracelet_icon = Content.Load<Texture2D>("InventoryItems/gold_bracelet");
+            Texture2D gems_bracelet_icon = Content.Load<Texture2D>("InventoryItems/gems_bracelet");
+            Texture2D expensive_bracelet_icon = Content.Load<Texture2D>("InventoryItems/expensive_bracelet");
 
             SoundEffect drink = Content.Load<SoundEffect>(@"SoundEffects/potion");
             SoundEffect money = Content.Load<SoundEffect>(@"SoundEffects/coin");
@@ -459,6 +463,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Sapphire", jeveleryDescription, sapphire_icon, font, 80, trade_handler));
             ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Small gems", jeveleryDescription, small_gems_icon, font, 40, trade_handler));
             ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Tiny gems", jeveleryDescription, tiny_gems_icon, font, 30, trade_handler));
+            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Silver bracelet", jeveleryDescription, silver_bracelet_icon, font, 20, trade_handler));
+            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Gold bracelet", jeveleryDescription, gold_bracelet_icon, font, 40, trade_handler));
+            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Bracelet with gems", jeveleryDescription, gems_bracelet_icon, font, 60, trade_handler));
+            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Expensive bracelet", jeveleryDescription, expensive_bracelet_icon, font, 100, trade_handler));
         }
     }
 }
