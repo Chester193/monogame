@@ -144,7 +144,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
 
             if (Input.IsKeyDown(Keys.E))
             {
-                toggleTriggers(6, 5);
+                toggleTriggers(8, 7);
                 game.PauseGame();
             }
         }
@@ -157,7 +157,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
             if (Input.IsKeyDown(Keys.Q))
             {
                 hud.PrintMessage2(null);
-                toggleTriggers(5, 6);
+                toggleTriggers(7, 8);
                 game.ContinueGame();
 
                 Quest currentQuest;
