@@ -15,6 +15,8 @@ using System.Runtime.Remoting.Messaging;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Npc;
+using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Jhin;
+using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Orc;
 
 namespace PG2D_2020_Dzienni_FD_Projekt
 {
@@ -146,18 +148,78 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             characterSettings.maxHp = 20;
             characterSettings.weaponAttack = 5;
-            gameObjects.Add(new Crow(new Vector2(94 * tiledMap.tileSize, 66 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Crow(new Vector2(94 * tiledMap.tileSize, 66 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Crow(new Vector2(94 * tiledMap.tileSize, 66 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Crow(new Vector2(94 * tiledMap.tileSize, 66 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Crow(new Vector2(94 * tiledMap.tileSize, 66 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Crow(new Vector2(94 * tiledMap.tileSize, 66 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Crow(new Vector2(94 * tiledMap.tileSize, 66 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Crow(new Vector2(94 * tiledMap.tileSize, 66 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Crow(new Vector2(94 * tiledMap.tileSize, 66 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Crow(new Vector2(94 * tiledMap.tileSize, 66 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Crow(new Vector2(83 * tiledMap.tileSize, 68 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Crow(new Vector2(90 * tiledMap.tileSize, 75 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Crow(new Vector2(96 * tiledMap.tileSize, 62 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Crow(new Vector2(103 * tiledMap.tileSize, 76 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Crow(new Vector2(113 * tiledMap.tileSize, 80 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Crow(new Vector2(128 * tiledMap.tileSize, 78 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Crow(new Vector2(110 * tiledMap.tileSize, 62 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Crow(new Vector2(127 * tiledMap.tileSize, 64 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Crow(new Vector2(135 * tiledMap.tileSize, 48 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Crow(new Vector2(116 * tiledMap.tileSize, 52 * tiledMap.tileSize), characterSettings));
 
-           
+            characterSettings.maxHp = 80;
+            characterSettings.weaponAttack = 25;
+            gameObjects.Add(new Wolf(new Vector2(155 * tiledMap.tileSize, 29 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Wolf(new Vector2(173 * tiledMap.tileSize, 31 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Wolf(new Vector2(158 * tiledMap.tileSize, 39 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Wolf(new Vector2(177 * tiledMap.tileSize, 40 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Wolf(new Vector2(147 * tiledMap.tileSize, 45 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Wolf(new Vector2(177 * tiledMap.tileSize, 48 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Wolf(new Vector2(162 * tiledMap.tileSize, 56 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Wolf(new Vector2(154 * tiledMap.tileSize, 64 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Wolf(new Vector2(182 * tiledMap.tileSize, 54 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Wolf(new Vector2(144 * tiledMap.tileSize, 71 * tiledMap.tileSize), characterSettings));
+
+            characterSettings.maxHp = 250;
+            characterSettings.weaponAttack = 40;
+            gameObjects.Add(new LavaGolem(new Vector2(140 * tiledMap.tileSize, 33 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new LavaGolem(new Vector2(85 * tiledMap.tileSize, 70 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new LavaGolem(new Vector2(124 * tiledMap.tileSize, 83 * tiledMap.tileSize), characterSettings));
+
+            gameObjects.Add(new IceGolem(new Vector2(36 * tiledMap.tileSize, 165 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new IceGolem(new Vector2(151 * tiledMap.tileSize, 241 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new IceGolem(new Vector2(140 * tiledMap.tileSize, 220 * tiledMap.tileSize), characterSettings));
+
+            gameObjects.Add(new EarthGolem(new Vector2(203 * tiledMap.tileSize, 220 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new EarthGolem(new Vector2(238 * tiledMap.tileSize, 211 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new EarthGolem(new Vector2(242 * tiledMap.tileSize, 173 * tiledMap.tileSize), characterSettings));
+
+            characterSettings.maxHp = 60;
+            characterSettings.rangeOfAttack = 200;
+            gameObjects.Add(new Jhin(new Vector2(61 * tiledMap.tileSize, 167 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Jhin(new Vector2(89 * tiledMap.tileSize, 172 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Jhin(new Vector2(70 * tiledMap.tileSize, 170 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Jhin(new Vector2(91 * tiledMap.tileSize, 198 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Jhin(new Vector2(101 * tiledMap.tileSize, 203 * tiledMap.tileSize), characterSettings));
+
+            characterSettings.maxHp = 80;
+            gameObjects.Add(new Orc(new Vector2(253 * tiledMap.tileSize, 92 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Orc(new Vector2(222 * tiledMap.tileSize, 93 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Orc(new Vector2(241 * tiledMap.tileSize, 61 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Orc(new Vector2(233 * tiledMap.tileSize, 33 * tiledMap.tileSize), characterSettings));
+
+            characterSettings.maxHp = 100;
+            characterSettings.weaponAttack = 25;
+            characterSettings.rangeOfAttack = 30;
+            gameObjects.Add(new Goblin(new Vector2(211 * tiledMap.tileSize, 42 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Goblin(new Vector2(225 * tiledMap.tileSize, 45 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Goblin(new Vector2(249 * tiledMap.tileSize, 57 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Goblin(new Vector2(220 * tiledMap.tileSize, 67 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Goblin(new Vector2(252 * tiledMap.tileSize, 112 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Goblin(new Vector2(258 * tiledMap.tileSize, 115 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Ogre(new Vector2(247 * tiledMap.tileSize, 96 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Ogre(new Vector2(242 * tiledMap.tileSize, 83 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Ogre(new Vector2(222 * tiledMap.tileSize, 60 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Ogre(new Vector2(226 * tiledMap.tileSize, 29 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Ogre(new Vector2(237 * tiledMap.tileSize, 59 * tiledMap.tileSize), characterSettings));
+
+            //gameObjects.Add(new Pirate(new Vector2(237 * tiledMap.tileSize, 59 * tiledMap.tileSize), characterSettings));
+
+
+
+
 
             foreach (Character specEnemy in specialEnemies)
             {
