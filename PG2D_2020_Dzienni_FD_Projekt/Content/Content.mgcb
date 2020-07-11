@@ -1774,6 +1774,36 @@
 #begin Tilemaps/Terrain.tsx
 /copy:Tilemaps/Terrain.tsx
 
+#begin visualEffects/Blood.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:visualEffects/Blood.fx
+
+#begin visualEffects/bloodMap.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:visualEffects/bloodMap.png
+
+#begin visualEffects/bloodMap1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:visualEffects/bloodMap1.png
+
 #begin visualEffects/lightmap.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1785,6 +1815,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:visualEffects/lightmap.jpg
+
+#begin visualEffects/lightmapInverted.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:visualEffects/lightmapInverted.png
+
+#begin visualEffects/lightmapRed.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:visualEffects/lightmapRed.png
 
 #begin visualEffects/Portal.fx
 /importer:EffectImporter

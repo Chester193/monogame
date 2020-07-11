@@ -120,6 +120,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             Player player = new Player(new Vector2(tileSpawnPointX * 32, tielSpawnPointY * 32), scripts, quests, gameHUD);
 
+            shaderObjects.Add(new BloodShader(new Vector2(0, 0), player));
+
             Vector2 realMapBeginning = new Vector2(tiledMap.tileSize * 31, tiledMap.tileSize * 31);
 
             gameObjects.Add(player);

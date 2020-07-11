@@ -19,9 +19,14 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, SamplerState.LinearClamp, null, null, shader, Camera.GetTransformMatrix());
+            spriteBatch.Begin(blendState: BlendState.AlphaBlend, effect: shader);
             base.Draw(spriteBatch);
             spriteBatch.End();
+        }
+
+        public void baseDraw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
         }
     }
 }
