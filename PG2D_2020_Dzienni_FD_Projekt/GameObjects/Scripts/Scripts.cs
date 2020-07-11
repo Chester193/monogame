@@ -103,9 +103,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
         public void FastTravel()
         {
             List<string> fastTravelPlaces = new List<string>();
-            fastTravelPlaces.Add("Miasto poczatkowe");
-            fastTravelPlaces.Add("Wodospad");
-            fastTravelPlaces.Add("Labirynt");
+            fastTravelPlaces.Add("Town");
+            fastTravelPlaces.Add("Forest");
+            fastTravelPlaces.Add("Market");
+            fastTravelPlaces.Add("Piramid");
+            fastTravelPlaces.Add("Ice vilage");
 
             hud.FastTravelStart(fastTravelPlaces);
 
@@ -121,7 +123,17 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
             }
             if (Input.IsKeyDown(Keys.NumPad3) || Input.IsKeyDown(Keys.D3))
             {
-                Teleport(gameObjects[0], new Vector2(50 * tileSize, 96 * tileSize));
+                Teleport(gameObjects[0], new Vector2(56 * tileSize, 93 * tileSize));
+                hud.FastTravelStop();
+            }
+            if (Input.IsKeyDown(Keys.NumPad4) || Input.IsKeyDown(Keys.D4))
+            {
+                Teleport(gameObjects[0], new Vector2(227 * tileSize, 183 * tileSize));
+                hud.FastTravelStop();
+            }
+            if (Input.IsKeyDown(Keys.NumPad5) || Input.IsKeyDown(Keys.D5))
+            {
+                Teleport(gameObjects[0], new Vector2(43 * tileSize, 222 * tileSize));
                 hud.FastTravelStop();
             }
         }
@@ -167,6 +179,48 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
             Chest(2);
         }
 
+        public void EnterHomeNo1()
+        {
+            Console.WriteLine("enter H1");
+            Teleport(gameObjects[0], new Vector2(tileSize * 353, tileSize * 172));
+        }
 
+        public void ExitHomeNo1()
+        {
+            Console.WriteLine("exit H1");
+            Teleport(gameObjects[0], new Vector2(tileSize * 239, tileSize * 78));
+        }
+
+        public void EnterHomeNo2()
+        {
+            Console.WriteLine("enter H2");
+            Teleport(gameObjects[0], new Vector2(tileSize * 344, tileSize * 239));
+        }
+        public void ExitHomeNo2()
+        {
+            Console.WriteLine("exit H2");
+            Teleport(gameObjects[0], new Vector2(tileSize * 67, tileSize * 109));
+        }
+
+        public void EnterHomeNo3()
+        {
+            Console.WriteLine("enter H3");
+            Teleport(gameObjects[0], new Vector2(tileSize * 359, tileSize * 31));
+        }
+        public void ExitHomeNo3()
+        {
+            Console.WriteLine("exit H3");
+            Teleport(gameObjects[0], new Vector2(tileSize * 66, tileSize * 79));
+        }
+        public void EnterCave()
+        {
+            Console.WriteLine("enter");
+            Teleport(gameObjects[0], new Vector2(tileSize * 419, tileSize * 42));
+        }
+        public void ExitCave()
+        {
+            Console.WriteLine("exit");
+            Teleport(gameObjects[0], new Vector2(tileSize * 154, tileSize * 28));
+        }
     }
 }

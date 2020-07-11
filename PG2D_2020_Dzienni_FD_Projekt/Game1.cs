@@ -80,18 +80,29 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             shaderObjects.Add(new Sphere(new Vector2(1730, 2920)));
 
             Scripts scripts = new Scripts(gameObjects, triggers, gameHUD, this);
-            scriptsList.Add(new ScriptsController(scripts.TeleportTo1000_1000));
-            scriptsList.Add(new ScriptsController(scripts.TeleportToLocationA));
+            scriptsList.Add(new ScriptsController(scripts.TeleportTo1000_1000));    //0
+            scriptsList.Add(new ScriptsController(scripts.TeleportToLocationA));    //1
             scriptsList.Add(new ScriptsController(scripts.TeleportToLocationB));
-            scriptsList.Add(new ScriptsController(scripts.FastTravel));
+            scriptsList.Add(new ScriptsController(scripts.FastTravel));             //3
             scriptsList.Add(new ScriptsController(scripts.StartDialog));
             scriptsList.Add(new ScriptsController(scripts.QuestDialog));
             scriptsList.Add(new ScriptsController(scripts.StartTradeDialogNo1));
             scriptsList.Add(new ScriptsController(scripts.OpenChestNo1));
+            scriptsList.Add(new ScriptsController(scripts.EnterHomeNo1));           //8
+            scriptsList.Add(new ScriptsController(scripts.ExitHomeNo1));            //9
+            scriptsList.Add(new ScriptsController(scripts.EnterHomeNo2));
+            scriptsList.Add(new ScriptsController(scripts.ExitHomeNo2));
+            scriptsList.Add(new ScriptsController(scripts.EnterHomeNo3));
+            scriptsList.Add(new ScriptsController(scripts.ExitHomeNo3));
+            scriptsList.Add(new ScriptsController(scripts.EnterCave));              //14
+            scriptsList.Add(new ScriptsController(scripts.ExitCave));               //15
 
 
             // TODO: Add your initialization logic here
             tiledMap = new TiledMap(vResWidth, vResHeight);
+
+            shaderObjects.Add(new Sphere(new Vector2(40 * tiledMap.tileSize, 225 * tiledMap.tileSize)));
+            shaderObjects.Add(new Sphere(new Vector2(227 * tiledMap.tileSize, 186 * tiledMap.tileSize)));
 
             CharacterSettings characterSettings = new CharacterSettings
             {
@@ -121,11 +132,17 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(new PortalFrame(new Vector2(65 * tiledMap.tileSize, 972)));
             gameObjects.Add(new SphereBackground(new Vector2(1730, 2920)));
 
-            triggers.Add(new Trigger(new Vector2(240 * tiledMap.tileSize, 30 * tiledMap.tileSize), new Vector2(200, 30), 1, scriptsList));
-            triggers.Add(new Trigger(new Vector2(246 * tiledMap.tileSize, 30 * tiledMap.tileSize), new Vector2(200, 30), 2, scriptsList));
+            gameObjects.Add(new SphereBackground(new Vector2(40 * tiledMap.tileSize, 225 * tiledMap.tileSize)));
+            gameObjects.Add(new SphereBackground(new Vector2(227 * tiledMap.tileSize, 186 * tiledMap.tileSize)));
+
+            triggers.Add(new Trigger(new Vector2(154 * tiledMap.tileSize, 27 * tiledMap.tileSize), new Vector2(tiledMap.tileSize*2, 30), 14, scriptsList));
+            triggers.Add(new Trigger(new Vector2(418 * tiledMap.tileSize, 44 * tiledMap.tileSize), new Vector2(180, 30), 15, scriptsList));
+
             triggers.Add(new Trigger(new Vector2(65 * tiledMap.tileSize, 31 * tiledMap.tileSize), new Vector2(75), 3, scriptsList));
-            triggers.Add(new Trigger(new Vector2(158 * tiledMap.tileSize, 78 * tiledMap.tileSize), new Vector2(75), 3, scriptsList));
-            triggers.Add(new Trigger(new Vector2(50 * tiledMap.tileSize, 95 * tiledMap.tileSize), new Vector2(75), 3, scriptsList));
+            triggers.Add(new Trigger(new Vector2(158 * tiledMap.tileSize, 78 * tiledMap.tileSize), new Vector2(100), 3, scriptsList));
+            triggers.Add(new Trigger(new Vector2(54 * tiledMap.tileSize, 91 * tiledMap.tileSize), new Vector2(100), 3, scriptsList));
+            triggers.Add(new Trigger(new Vector2(40 * tiledMap.tileSize, 225 * tiledMap.tileSize), new Vector2(100), 3, scriptsList));
+            triggers.Add(new Trigger(new Vector2(227 * tiledMap.tileSize, 186 * tiledMap.tileSize), new Vector2(100), 3, scriptsList));
 
             triggers.Add(new Trigger(new Vector2(54 * tiledMap.tileSize, 56 * tiledMap.tileSize), new Vector2(75), 4, scriptsList));
             triggers.Add(new Trigger(new Vector2(54 * tiledMap.tileSize, 56 * tiledMap.tileSize), new Vector2(75), 5, scriptsList, false));
@@ -133,6 +150,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             triggers.Add(new Trigger(new Vector2(52 * tiledMap.tileSize), new Vector2(75), 6, scriptsList));
 
             triggers.Add(new Trigger(new Vector2(60 * tiledMap.tileSize, 51 * tiledMap.tileSize), new Vector2(75), 7, scriptsList));
+            
+            triggers.Add(new Trigger(new Vector2(239 * tiledMap.tileSize, 77 * tiledMap.tileSize), new Vector2(tiledMap.tileSize), 8, scriptsList));
+            triggers.Add(new Trigger(new Vector2(354 * tiledMap.tileSize, 175 * tiledMap.tileSize), new Vector2(tiledMap.tileSize), 9, scriptsList));
+
+            triggers.Add(new Trigger(new Vector2(67 * tiledMap.tileSize, 108 * tiledMap.tileSize), new Vector2(tiledMap.tileSize*4, tiledMap.tileSize), 10, scriptsList));
+            triggers.Add(new Trigger(new Vector2(342 * tiledMap.tileSize, 239 * tiledMap.tileSize), new Vector2(tiledMap.tileSize*4), 11, scriptsList));
+
+            triggers.Add(new Trigger(new Vector2(66 * tiledMap.tileSize, 78 * tiledMap.tileSize), new Vector2(tiledMap.tileSize*2), 12, scriptsList));
+            triggers.Add(new Trigger(new Vector2(359 * tiledMap.tileSize, 33 * tiledMap.tileSize), new Vector2(tiledMap.tileSize), 13, scriptsList));
 
             characterSettings.mode = CharcterMode.Guard;
             characterSettings.maxHp = 60;
