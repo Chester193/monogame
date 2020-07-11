@@ -215,7 +215,48 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(new Ogre(new Vector2(226 * tiledMap.tileSize, 29 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new Ogre(new Vector2(237 * tiledMap.tileSize, 59 * tiledMap.tileSize), characterSettings));
 
-            //gameObjects.Add(new Pirate(new Vector2(237 * tiledMap.tileSize, 59 * tiledMap.tileSize), characterSettings));
+            characterSettings.maxHp = 70;
+            characterSettings.weaponAttack = 15;
+            characterSettings.mode = CharcterMode.WaitForPlayer;
+            gameObjects.Add(new Pirate(new Vector2(216 * tiledMap.tileSize, 122 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Pirate(new Vector2(216 * tiledMap.tileSize, 124 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Pirate(new Vector2(214 * tiledMap.tileSize, 118 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Pirate(new Vector2(217 * tiledMap.tileSize, 128 * tiledMap.tileSize), characterSettings));
+
+            characterSettings.maxHp = 120;
+            characterSettings.weaponAttack = 30;
+            characterSettings.mode = CharcterMode.Guard;
+            gameObjects.Add(new Lizard(new Vector2(200 * tiledMap.tileSize, 184 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Lizard(new Vector2(212 * tiledMap.tileSize, 164 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Lizard(new Vector2(200 * tiledMap.tileSize, 150 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Lizard(new Vector2(182 * tiledMap.tileSize, 171 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Lizard(new Vector2(290 * tiledMap.tileSize, 159 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Lizard(new Vector2(224 * tiledMap.tileSize, 197 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Lizard(new Vector2(246 * tiledMap.tileSize, 163 * tiledMap.tileSize), characterSettings));
+
+            characterSettings.maxHp = 200;
+            characterSettings.weaponAttack = 35;
+            gameObjects.Add(new Gorilla(new Vector2(183 * tiledMap.tileSize, 211 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Gorilla(new Vector2(169 * tiledMap.tileSize, 196 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Gorilla(new Vector2(167 * tiledMap.tileSize, 219 * tiledMap.tileSize), characterSettings));
+
+            characterSettings.maxHp = 50;
+            characterSettings.weaponAttack = 10;
+            gameObjects.Add(new GingerBandit(new Vector2(141 * tiledMap.tileSize, 99 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new GingerBandit(new Vector2(139 * tiledMap.tileSize, 105 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new GingerBandit(new Vector2(123 * tiledMap.tileSize, 90 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new GingerBandit(new Vector2(133 * tiledMap.tileSize, 90 * tiledMap.tileSize), characterSettings));
+
+            characterSettings.maxHp = 80;
+            characterSettings.weaponAttack = 20;
+            gameObjects.Add(new Finn(new Vector2(146 * tiledMap.tileSize, 99 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Finn(new Vector2(139 * tiledMap.tileSize, 94 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Finn(new Vector2(127 * tiledMap.tileSize, 91 * tiledMap.tileSize), characterSettings));
+
+            characterSettings.maxHp = 120;
+            characterSettings.weaponAttack = 30;
+            gameObjects.Add(new BigGuy(new Vector2(144 * tiledMap.tileSize, 105 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new BigGuy(new Vector2(135 * tiledMap.tileSize, 95 * tiledMap.tileSize), characterSettings));
 
 
 
