@@ -23,7 +23,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         protected int boundingBoxWidth, boundingBoxHeight;
         protected Vector2 boundingBoxOffset = Vector2.Zero;
         Texture2D boundingBoxTexture;
-        const bool drawBoundingBoxes = false;
+        const bool drawBoundingBoxes = true;
 
         public Vector2 direction = new Vector2(1, 0);
 
