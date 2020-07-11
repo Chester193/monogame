@@ -133,7 +133,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             List<Quest> quests = PrepareQuests(characterSettings, out specialEnemies);
 
             int tileSpawnPointX = 59;
-            int tielSpawnPointY = 52;
+            int tielSpawnPointY = 49;
 
             Player player = new Player(new Vector2(tileSpawnPointX * 32, tielSpawnPointY * 32), scripts, quests, gameHUD);
 
@@ -838,56 +838,56 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             ((Character)gameObjects[14]).Inventory.Add(new InventoryItem("Health potion", healthPotionDescription, health_icon, font, healthPotionPrice, health_handler + trade_handler));
             ((Character)gameObjects[14]).Inventory.Add(new InventoryItem("Mana potion", manaPotionDescription, mana_icon, font, manaPotionPrice, mana_handler + trade_handler));
 
-            //Chest 11
-            ((Character)gameObjects[15]).Inventory.Add(new InventoryItem("Bracelet with gems", jeveleryDescription, gems_bracelet_icon, font, 60, trade_handler));
-            for (int i = 0; i < 5; i++)
-            {
-                ((Character)gameObjects[15]).Inventory.Add(new InventoryItem("Mana potion", manaPotionDescription, mana_icon, font, manaPotionPrice, mana_handler + trade_handler));
-            }
+            ////Chest 11
+            //((Character)gameObjects[15]).Inventory.Add(new InventoryItem("Bracelet with gems", jeveleryDescription, gems_bracelet_icon, font, 60, trade_handler));
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    ((Character)gameObjects[15]).Inventory.Add(new InventoryItem("Mana potion", manaPotionDescription, mana_icon, font, manaPotionPrice, mana_handler + trade_handler));
+            //}
 
-            //Chest 12
-            ((Character)gameObjects[16]).Inventory.Add(new InventoryItem("Purse", purseDescription, purse_icon, font, pursePrice, purse_handler + trade_handler));
-            ((Character)gameObjects[16]).Inventory.Add(new InventoryItem("Expensive bracelet", jeveleryDescription, expensive_bracelet_icon, font, 100, trade_handler));
+            ////Chest 12
+            //((Character)gameObjects[16]).Inventory.Add(new InventoryItem("Purse", purseDescription, purse_icon, font, pursePrice, purse_handler + trade_handler));
+            //((Character)gameObjects[16]).Inventory.Add(new InventoryItem("Expensive bracelet", jeveleryDescription, expensive_bracelet_icon, font, 100, trade_handler));
             
-            //Chest 13
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Ring with ruby", jeveleryDescription, ruby_ring_icon, font, 60, trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Purse", purseDescription, purse_icon, font, pursePrice, purse_handler + trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Purse", purseDescription, purse_icon, font, pursePrice, purse_handler + trade_handler));
-            for (int i = 0; i < 2; i++)
-            {
-                ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Health potion", healthPotionDescription, health_icon, font, healthPotionPrice, health_handler + trade_handler));
-            }
-            for (int i = 0; i < 3; i++)
-            {
-                ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Mana potion", manaPotionDescription, mana_icon, font, manaPotionPrice, mana_handler + trade_handler));
-            }
+            ////Chest 13
+            //((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Ring with ruby", jeveleryDescription, ruby_ring_icon, font, 60, trade_handler));
+            //((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Purse", purseDescription, purse_icon, font, pursePrice, purse_handler + trade_handler));
+            //((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Purse", purseDescription, purse_icon, font, pursePrice, purse_handler + trade_handler));
+            //for (int i = 0; i < 2; i++)
+            //{
+            //    ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Health potion", healthPotionDescription, health_icon, font, healthPotionPrice, health_handler + trade_handler));
+            //}
+            //for (int i = 0; i < 3; i++)
+            //{
+            //    ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Mana potion", manaPotionDescription, mana_icon, font, manaPotionPrice, mana_handler + trade_handler));
+            //}
 
-            //Chest 14
-            ((Character)gameObjects[18]).Inventory.Add(new InventoryItem("Chalice", jeveleryDescription, chalice_icon, font, 30, trade_handler));
-            ((Character)gameObjects[18]).Inventory.Add(new InventoryItem("Purse", purseDescription, purse_icon, font, pursePrice, purse_handler + trade_handler));
-            for (int i = 0; i < 4; i++)
-            {
-                ((Character)gameObjects[18]).Inventory.Add(new InventoryItem("Health potion", healthPotionDescription, health_icon, font, healthPotionPrice, health_handler + trade_handler));
-            }
-            for (int i = 0; i < 5; i++)
-            {
-                ((Character)gameObjects[18]).Inventory.Add(new InventoryItem("Mana potion", manaPotionDescription, mana_icon, font, manaPotionPrice, mana_handler + trade_handler));
-            }
+            ////Chest 14
+            //((Character)gameObjects[18]).Inventory.Add(new InventoryItem("Chalice", jeveleryDescription, chalice_icon, font, 30, trade_handler));
+            //((Character)gameObjects[18]).Inventory.Add(new InventoryItem("Purse", purseDescription, purse_icon, font, pursePrice, purse_handler + trade_handler));
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    ((Character)gameObjects[18]).Inventory.Add(new InventoryItem("Health potion", healthPotionDescription, health_icon, font, healthPotionPrice, health_handler + trade_handler));
+            //}
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    ((Character)gameObjects[18]).Inventory.Add(new InventoryItem("Mana potion", manaPotionDescription, mana_icon, font, manaPotionPrice, mana_handler + trade_handler));
+            //}
 
-            //Chest 15
-            ((Character)gameObjects[19]).Inventory.Add(new InventoryItem("Ruby chalice", jeveleryDescription, ruby_chalice_icon, font, 50, trade_handler));
-            for (int i = 0; i < 6; i++)
-            {
-                ((Character)gameObjects[19]).Inventory.Add(new InventoryItem("Purse", purseDescription, purse_icon, font, pursePrice, purse_handler + trade_handler));
-            }
-            for (int i = 0; i < 4; i++)
-            {
-                ((Character)gameObjects[19]).Inventory.Add(new InventoryItem("Health potion", healthPotionDescription, health_icon, font, healthPotionPrice, health_handler + trade_handler));
-            }
-            for (int i = 0; i < 5; i++)
-            {
-                ((Character)gameObjects[19]).Inventory.Add(new InventoryItem("Mana potion", manaPotionDescription, mana_icon, font, manaPotionPrice, mana_handler + trade_handler));
-            }
+            ////Chest 15
+            //((Character)gameObjects[19]).Inventory.Add(new InventoryItem("Ruby chalice", jeveleryDescription, ruby_chalice_icon, font, 50, trade_handler));
+            //for (int i = 0; i < 6; i++)
+            //{
+            //    ((Character)gameObjects[19]).Inventory.Add(new InventoryItem("Purse", purseDescription, purse_icon, font, pursePrice, purse_handler + trade_handler));
+            //}
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    ((Character)gameObjects[19]).Inventory.Add(new InventoryItem("Health potion", healthPotionDescription, health_icon, font, healthPotionPrice, health_handler + trade_handler));
+            //}
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    ((Character)gameObjects[19]).Inventory.Add(new InventoryItem("Mana potion", manaPotionDescription, mana_icon, font, manaPotionPrice, mana_handler + trade_handler));
+            //}
         }
     }
 }
