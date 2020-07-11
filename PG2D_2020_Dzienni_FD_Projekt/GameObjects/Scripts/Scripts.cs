@@ -159,12 +159,12 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
 
         public void StartTradeDialogNo1()
         {
-            Trade(14);
+            Trade(1);
         }
 
         public void OpenChestNo1()
         {
-            Chest(17);
+            Chest(2);
         }
 
 

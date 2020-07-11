@@ -1,5 +1,4 @@
 ﻿using PG2D_2020_Dzienni_FD_Projekt.GameObjects;
-using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.SpecialEnemies;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +18,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
     public class Quest
     {
         public QuestState State { get; private set; } = QuestState.Available;
-        private List<SpecialEnemy> objectives;
+        private List<Character> objectives;
 
         private int actionsCount = 0;
         private int prize;
@@ -29,13 +28,18 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         private string endDialog;
         private string alternativeDialog;
 
-        public Quest(List<SpecialEnemy> objectives, string startDialog, string endDialog, string alternativeDialog, int prize)
+        public Quest(List<Character> objectives, string startDialog, string endDialog, string alternativeDialog, int prize)
         {
             this.objectives = objectives;
             this.startDialog = startDialog;
             this.endDialog = endDialog;
             this.alternativeDialog = alternativeDialog;
             this.prize = prize;
+
+            foreach(Character item in objectives)
+            {
+                item.active = false;
+            }
         }
 
         public string getDialog()
@@ -85,7 +89,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
         private void ActivateObjectives()
         {
-            foreach(SpecialEnemy item in objectives)
+            foreach(Character item in objectives)
             {
                 item.active = true;
                 item.Quest = this;

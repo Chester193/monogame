@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.SpecialEnemies;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities.SpriteAtlas;
 using System;
@@ -11,48 +11,57 @@ using System.Threading.Tasks;
 
 namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
 {
-    class EarthGolem : SpecialEnemy
+    public class Wolf : Enemy
     {
-        public EarthGolem(Vector2 startingPosition, CharacterSettings settings)
-            : base(startingPosition, settings)
+
+        SoundEffect roar;
+
+        public Wolf(Vector2 startingPosition, CharacterSettings settings)
         {
+            this.position = startingPosition;
+            applyGravity = false;
+
+            base.SetCharacterSettings(settings);
         }
 
         public override void Initialize()
         {
-            maxSpeed = 1.0f;
+            maxSpeed = 3.0f;
             acceleration = 0.5f;
-            scale = 0.5f;
+            scale = 0.4f;
             base.Initialize();
         }
 
         public override void Load(ContentManager content)
         {
 
-            texture = TextureLoader.Load(@"characters/Earth_golem", content);
-            SpriteAtlasData atlas = SpriteAtlasLoader.ParseSpriteAtlas(@"characters/Earth_golem.atlas", texture, content);
+            texture = TextureLoader.Load(@"characters/Wolf", content);
+            SpriteAtlasData atlas = SpriteAtlasLoader.ParseSpriteAtlas(@"characters/Wolf.atlas", texture, content);
+
+            roar = content.Load<SoundEffect>(@"SoundEffects/roar");
 
             LoadAnimations(atlas);
             ChangeAnimation(AnimatedObject.Animations.WalkingRight);
 
             base.Load(content);
 
-            boundingBoxOffset = new Vector2(60, 70);
-            boundingBoxWidth = 39;
-            boundingBoxHeight = 40;
+            boundingBoxOffset = new Vector2(90, 124);
+            boundingBoxWidth = 35;
+            boundingBoxHeight = 35;
         }
 
         public override void Attack(Character target, int dmg)
         {
             if (!isAttacking)
-                golemsEffects[new Random().Next(0, 5)].Play();
+                roar.Play();
             base.Attack(target, dmg);
         }
 
-        public override void hurt()
+        public override void Die()
         {
-            golemsEffects[new Random().Next(0, 5)].Play();
-            base.hurt();
+            if(!isDead)
+                roar.Play();
+            base.Die();
         }
     }
 }

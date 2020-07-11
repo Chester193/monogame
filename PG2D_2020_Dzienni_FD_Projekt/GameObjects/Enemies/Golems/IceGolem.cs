@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
-using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.SpecialEnemies;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities.SpriteAtlas;
 using System;
@@ -11,11 +10,14 @@ using System.Threading.Tasks;
 
 namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
 {
-    class IceGolem : SpecialEnemy
+    class IceGolem : Enemy
     {
         public IceGolem(Vector2 startingPosition, CharacterSettings settings)
-            : base(startingPosition, settings)
         {
+            this.position = startingPosition;
+            applyGravity = false;
+
+            base.SetCharacterSettings(settings);
         }
 
         public override void Initialize()

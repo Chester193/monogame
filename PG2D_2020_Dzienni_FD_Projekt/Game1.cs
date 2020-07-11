@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts;
 using PG2D_2020_Dzienni_FD_Projekt.States;
-using PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.SpecialEnemies;
 using PG2D_2020_Dzienni_FD_Projekt.GameObjects.npc;
 using PG2D_2020_Dzienni_FD_Projekt.Controls;
 using Microsoft.Xna.Framework.Content;
@@ -101,7 +100,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 weaponAttack = 20,
             };
 
-            List<SpecialEnemy> specialEnemies;
+            List<Character> specialEnemies;
             List<Quest> quests = PrepareQuests(characterSettings, out specialEnemies);
 
             int tileSpawnPointX = 59;
@@ -114,26 +113,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(player);
             gameHUD.Player(player);
 
-            characterSettings.mode = CharcterMode.Guard;
-            characterSettings.rangeOfAttack = 30;
-            gameObjects.Add(new Zombie(new Vector2(104 * tiledMap.tileSize, 38 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Lizard(new Vector2(163 * tiledMap.tileSize, 56 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Lizard(new Vector2(172 * tiledMap.tileSize, 59 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Lizard(new Vector2(165 * tiledMap.tileSize, 77 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Zombie(new Vector2(101 * tiledMap.tileSize, 43 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Viking1(new Vector2(59 * tiledMap.tileSize, 92 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Viking2(new Vector2(59 * tiledMap.tileSize, 93 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Viking3(new Vector2(61 * tiledMap.tileSize, 91 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new NonplayableCharacter(new Vector2(55 * tiledMap.tileSize, 54 * tiledMap.tileSize), characterSettings, NPCType.sage));
+            gameObjects.Add(new Chest(new Vector2(60 * tiledMap.tileSize, 51 * tiledMap.tileSize), characterSettings));
+
             gameObjects.Add(new PortalFrame(new Vector2(65 * tiledMap.tileSize, 972)));
             gameObjects.Add(new SphereBackground(new Vector2(1730, 2920)));
-
-            foreach (SpecialEnemy specEnemy in specialEnemies)
-            {
-                gameObjects.Add(specEnemy);
-            }
-
-            characterSettings.mode = CharcterMode.FollowPlayer;
-            gameObjects.Add(new Demon(new Vector2(110 * tiledMap.tileSize, 58 * tiledMap.tileSize), characterSettings));
 
             triggers.Add(new Trigger(new Vector2(240 * tiledMap.tileSize, 30 * tiledMap.tileSize), new Vector2(200, 30), 1, scriptsList));
             triggers.Add(new Trigger(new Vector2(246 * tiledMap.tileSize, 30 * tiledMap.tileSize), new Vector2(200, 30), 2, scriptsList));
@@ -148,10 +132,38 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             triggers.Add(new Trigger(new Vector2(60 * tiledMap.tileSize, 51 * tiledMap.tileSize), new Vector2(75), 7, scriptsList));
 
-            characterSettings.mode = CharcterMode.WaitForPlayer;
+            characterSettings.mode = CharcterMode.Guard;
+            characterSettings.maxHp = 60;
+            characterSettings.weaponAttack = 10;
+            gameObjects.Add(new Zombie(new Vector2(88 * tiledMap.tileSize, 38 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Zombie(new Vector2(92 * tiledMap.tileSize, 38 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Zombie(new Vector2(96 * tiledMap.tileSize, 38 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Zombie(new Vector2(100 * tiledMap.tileSize, 38 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Zombie(new Vector2(88 * tiledMap.tileSize, 43 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Zombie(new Vector2(92 * tiledMap.tileSize, 43 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Zombie(new Vector2(96 * tiledMap.tileSize, 43 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Zombie(new Vector2(100 * tiledMap.tileSize, 43 * tiledMap.tileSize), characterSettings));
 
-            gameObjects.Add(new NonplayableCharacter(new Vector2(55 * tiledMap.tileSize, 54 * tiledMap.tileSize), characterSettings, NPCType.sage));
-            gameObjects.Add(new Chest(new Vector2(60 * tiledMap.tileSize, 51 * tiledMap.tileSize), characterSettings));
+            characterSettings.maxHp = 20;
+            characterSettings.weaponAttack = 5;
+            gameObjects.Add(new Crow(new Vector2(94 * tiledMap.tileSize, 66 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Crow(new Vector2(94 * tiledMap.tileSize, 66 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Crow(new Vector2(94 * tiledMap.tileSize, 66 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Crow(new Vector2(94 * tiledMap.tileSize, 66 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Crow(new Vector2(94 * tiledMap.tileSize, 66 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Crow(new Vector2(94 * tiledMap.tileSize, 66 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Crow(new Vector2(94 * tiledMap.tileSize, 66 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Crow(new Vector2(94 * tiledMap.tileSize, 66 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Crow(new Vector2(94 * tiledMap.tileSize, 66 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Crow(new Vector2(94 * tiledMap.tileSize, 66 * tiledMap.tileSize), characterSettings));
+
+           
+
+            foreach (Character specEnemy in specialEnemies)
+            {
+                gameObjects.Add(specEnemy);
+            }
+
             LoadInventory(player);
 
             Camera.Initialize(zoomLevel: 1.0f);
@@ -281,14 +293,14 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             Initialize();
         }
 
-        private List<Quest> PrepareQuests(CharacterSettings characterSettings, out List<SpecialEnemy> specialEnemies)
+        private List<Quest> PrepareQuests(CharacterSettings characterSettings, out List<Character> specialEnemies)
         {
             List<Quest> quests = new List<Quest>();
-            specialEnemies = new List<SpecialEnemy>();
+            specialEnemies = new List<Character>();
 
             //Quest 1
-            List<SpecialEnemy> objectives = new List<SpecialEnemy>();
-            SpecialEnemy specialEnemy = new Wolf(new Vector2(1500, 1500), characterSettings);
+            List<Character> objectives = new List<Character>();
+            Character specialEnemy = new Wolf(new Vector2(1500, 1500), characterSettings);
             objectives.Add(specialEnemy);
             specialEnemies.Add(specialEnemy);
 
@@ -298,7 +310,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 100));
 
             //Quest 2
-            objectives = new List<SpecialEnemy>();
+            objectives = new List<Character>();
 
             specialEnemy = new EarthGolem(new Vector2(2500, 1500), characterSettings);
             objectives.Add(specialEnemy);
@@ -462,24 +474,24 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 inventory.Add(new InventoryItem("Health potion", healthPotionDescription, health_icon, font, 10, health_handler + trade_handler));
                 inventory.Add(new InventoryItem("Mana potion", manaPotionDescription, mana_icon, font, 5, mana_handler + trade_handler));
             }
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Health potion", healthPotionDescription, health_icon, font, 10, health_handler + trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Purse", purseDescription, purse_icon, font, 20, purse_handler + trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Ruby", jeveleryDescription, ruby_icon, font, 50, trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Emerald", jeveleryDescription, emerald_icon, font, 70, trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Sapphire", jeveleryDescription, sapphire_icon, font, 80, trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Small gems", jeveleryDescription, small_gems_icon, font, 40, trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Tiny gems", jeveleryDescription, tiny_gems_icon, font, 30, trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Silver bracelet", jeveleryDescription, silver_bracelet_icon, font, 20, trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Gold bracelet", jeveleryDescription, gold_bracelet_icon, font, 40, trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Bracelet with gems", jeveleryDescription, gems_bracelet_icon, font, 60, trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Expensive bracelet", jeveleryDescription, expensive_bracelet_icon, font, 100, trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Ring with ruby", jeveleryDescription, ruby_ring_icon, font, 60, trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Ring with sapphire", jeveleryDescription, sapphire_ring_icon, font, 70, trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Chalice", jeveleryDescription, chalice_icon, font, 30, trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Ruby chalice", jeveleryDescription, ruby_chalice_icon, font, 50, trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Expensive chalice", jeveleryDescription, expensive_chalice_icon, font, 80, trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Gold dish", jeveleryDescription, gold_dish_icon, font, 20, trade_handler));
-            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Normal dish", jeveleryDescription, normal_dish_icon, font, 5, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Health potion", healthPotionDescription, health_icon, font, 10, health_handler + trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Purse", purseDescription, purse_icon, font, 20, purse_handler + trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Ruby", jeveleryDescription, ruby_icon, font, 50, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Emerald", jeveleryDescription, emerald_icon, font, 70, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Sapphire", jeveleryDescription, sapphire_icon, font, 80, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Small gems", jeveleryDescription, small_gems_icon, font, 40, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Tiny gems", jeveleryDescription, tiny_gems_icon, font, 30, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Silver bracelet", jeveleryDescription, silver_bracelet_icon, font, 20, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Gold bracelet", jeveleryDescription, gold_bracelet_icon, font, 40, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Bracelet with gems", jeveleryDescription, gems_bracelet_icon, font, 60, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Expensive bracelet", jeveleryDescription, expensive_bracelet_icon, font, 100, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Ring with ruby", jeveleryDescription, ruby_ring_icon, font, 60, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Ring with sapphire", jeveleryDescription, sapphire_ring_icon, font, 70, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Chalice", jeveleryDescription, chalice_icon, font, 30, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Ruby chalice", jeveleryDescription, ruby_chalice_icon, font, 50, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Expensive chalice", jeveleryDescription, expensive_chalice_icon, font, 80, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Gold dish", jeveleryDescription, gold_dish_icon, font, 20, trade_handler));
+            ((Character)gameObjects[2]).Inventory.Add(new InventoryItem("Normal dish", jeveleryDescription, normal_dish_icon, font, 5, trade_handler));
         }
     }
 }
