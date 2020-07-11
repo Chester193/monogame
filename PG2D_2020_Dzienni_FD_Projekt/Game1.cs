@@ -116,8 +116,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             List<Character> specialEnemies;
             List<Quest> quests = PrepareQuests(characterSettings, out specialEnemies);
 
-            int tileSpawnPointX = 44;
-            int tielSpawnPointY = 125;
+            int tileSpawnPointX = 160;
+            int tielSpawnPointY = 79;
 
             Player player = new Player(new Vector2(tileSpawnPointX * 32, tielSpawnPointY * 32), scripts, quests, gameHUD);
 
