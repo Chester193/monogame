@@ -44,7 +44,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             Meffect_4 = content.Load<Texture2D>("VisualEffects/Meffect_4");
             Meffect_5 = content.Load<Texture2D>("VisualEffects/Meffect_5");
             Meffect_6 = content.Load<Texture2D>("VisualEffects/Meffect_6");
-            backgroundFT = content.Load<Texture2D>("Other/FT_bg");
+            backgroundFT = content.Load<Texture2D>("Other/background");
         }
         public void Draw(SpriteBatch spriteBatch)
         {
