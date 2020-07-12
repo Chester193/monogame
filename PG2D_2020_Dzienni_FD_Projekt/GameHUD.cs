@@ -9,7 +9,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
     public class GameHUD
     {
         SpriteFont fontArial, fontDiamond, fontCocoonian;
-        Texture2D moneyIcon, expIcon, background, backgroundText;
+        Texture2D moneyIcon, expIcon, background, backgroundText, backgroundFT;
         Player player;
         Enemy enemy;
 
@@ -28,6 +28,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             expIcon = content.Load<Texture2D>("Other/exp");
             background = content.Load<Texture2D>("Other/HUD_bg");
             backgroundText = content.Load<Texture2D>("Other/HUD_text_bg");
+            backgroundFT = content.Load<Texture2D>("Other/FT_bg");
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -44,6 +45,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             if (fastTravel && fastTraveTimer > 0)
             {
+                spriteBatch.Draw(backgroundFT, new Rectangle(475, 80, 360, 330), Color.White);
                 Vector2 v1 = new Vector2(500, 100);
                 spriteBatch.DrawString(fontDiamond, "[Click the number]", v1, Color.White);
                 Vector2 v2 = new Vector2(500, 140);
