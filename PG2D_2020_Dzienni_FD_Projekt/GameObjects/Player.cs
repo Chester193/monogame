@@ -21,6 +21,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         private List<Quest> quests;
         private int currentQuestIndex = 0;
         private GameHUD hud;
+        public Statistics stats = new Statistics();
 
         public bool isRanged = false;
         private int fireDelay;
@@ -315,6 +316,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     try
                     {
                         ManaUse(1);
+                        stats.ManaUsed += 1;
                         isHurting = true;
                         Fire();
                         fireBallSound[new Random().Next(0, 3)].Play();
@@ -336,6 +338,17 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 Heal(15);
             if (Input.KeyPressed(Keys.K) == true)
                 MaxHpAdd(50);
+        }
+
+        public override void DealDamage(int dmg)
+        {
+            stats.DamageDealt += dmg;
+        }
+
+        public override void Damage(int dmg)
+        {
+            stats.DamageTaken += dmg;
+            base.Damage(dmg);
         }
 
         public void ChangeArmour()
@@ -436,6 +449,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public void GainExperience(int amount)
         {
+            stats.GainedExperience += amount;
             Exp += amount;
             characterSettings.maxHp = 80 + Exp / 50;
         }
@@ -451,6 +465,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public override void Die()
         {
+            stats.Deaths += 1;
             if(!isDead)
                 dyingEffect.Play();
             base.Die();
