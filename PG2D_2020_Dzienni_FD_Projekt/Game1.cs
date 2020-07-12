@@ -124,7 +124,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             CharacterSettings characterSettings = new CharacterSettings
             {
                 maxHp = 100,
-                mode = CharcterMode.WaitForPlayer,
+                mode = CharcterMode.Guard,
                 range = 300,
                 rangeOfAttack = 30,
                 weaponAttack = 20,
@@ -210,7 +210,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             triggers.Add(new Trigger(new Vector2(31 * tiledMap.tileSize, 97 * tiledMap.tileSize), new Vector2(64, 48), 31, scriptsList));
 
 
-            characterSettings.mode = CharcterMode.Guard;
             characterSettings.maxHp = 60;
             characterSettings.weaponAttack = 10;
             gameObjects.Add(new Zombie(new Vector2(88 * tiledMap.tileSize, 38 * tiledMap.tileSize), characterSettings));
@@ -495,7 +494,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             string startDialog = "Can you get rid of this annoying wolfs from north?";
             string endDialog = "You killed it, thank you";
             string alternativeDialog = "Did you killed wolfs yet ?";
-            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 100));
+            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 100, 30));
 
             //Quest 2
             objectives = new List<Character>();
@@ -515,7 +514,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             startDialog = "Kill 3 golems";
             endDialog = "You killed this beasts, thank you";
             alternativeDialog = "Did you killed golems yet ?";
-            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 200));
+            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 200, 70));
 
             return quests;
         }

@@ -31,7 +31,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
 
         protected override void UpdateAnimations()
         {
-            if (isAttacking) currentAnimation.animationSpeed = 12;
+            if (isAttacking) currentAnimation.animationSpeed = 13;
             base.UpdateAnimations();
         }
 

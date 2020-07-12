@@ -32,7 +32,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public InventoryItem Armour { get; set; }
 
         SoundEffect slash;
-        SoundEffect inventoryOpen;
+        SoundEffect inventoryOpen, coin;
         SoundEffect dyingEffect;
         SoundEffectInstance step;
         List<SoundEffect> hurtingEffects;
@@ -108,6 +108,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             slash = content.Load<SoundEffect>(@"SoundEffects/swing");
             inventoryOpen = content.Load<SoundEffect>(@"SoundEffects/cloth");
+            coin = content.Load<SoundEffect>(@"SoundEffects/coin");
             hurtingEffects.Add(content.Load<SoundEffect>(@"SoundEffects/damage1"));
             hurtingEffects.Add(content.Load<SoundEffect>(@"SoundEffects/damage2"));
             hurtingEffects.Add(content.Load<SoundEffect>(@"SoundEffects/damage3"));
@@ -420,6 +421,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public void EarnMoney(int amount)
         {
             Money += amount;
+            coin.Play();
         }
 
         public void SpendMoney(int amount)

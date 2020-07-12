@@ -44,6 +44,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
             boundingBoxWidth = 80;
             boundingBoxHeight = 80;
         }
+        protected override void UpdateAnimations()
+        {
+            currentAnimation.animationSpeed = 8;
+            base.UpdateAnimations();
+        }
 
         public override void hurt()
         {
