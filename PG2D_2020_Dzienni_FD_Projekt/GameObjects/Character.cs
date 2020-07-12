@@ -23,6 +23,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public CharcterMode mode;
         public int range;
+        public int spotRange;
         public int rangeOfAttack;
         public int weaponAttack;
 

@@ -212,7 +212,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             if (player.IsDead()) enemyAiMachine.Trigger(ETrigger.STOP);
             else if (distanceToPlayer < characterSettings.rangeOfAttack)
                 enemyAiMachine.Trigger(ETrigger.ATTACK);
-            else if (distanceToPlayer < characterSettings.range)
+            else if (distanceToPlayer < characterSettings.spotRange)
                 enemyAiMachine.Trigger(ETrigger.FOLLOW_PLAYER);
             else if (distanceToPlayer > characterSettings.range * 2)
                 enemyAiMachine.Trigger(ETrigger.GO_PATROL);
@@ -235,7 +235,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 //Console.WriteLine("G  attack");
                 enemyAiMachine.Trigger(ETrigger.ATTACK);
             }
-            else if (distanceToPlayer < range && distanceToGuardPosition <= 2 * range && distancePlayerToGuardPosition <= 2 * range)
+            else if (distanceToPlayer < characterSettings.spotRange && distanceToGuardPosition <= 2 * range && distancePlayerToGuardPosition <= 2 * range)
             {
                 //Console.WriteLine("G  follow");
                 enemyAiMachine.Trigger(ETrigger.FOLLOW_PLAYER);
