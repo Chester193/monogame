@@ -204,8 +204,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             triggers.Add(new Trigger(new Vector2(48 * tiledMap.tileSize, 222 * tiledMap.tileSize), new Vector2(32), 26, scriptsList, false));
             triggers.Add(new Trigger(new Vector2(56 * tiledMap.tileSize, 126 * tiledMap.tileSize), new Vector2(32), 27, scriptsList));
             triggers.Add(new Trigger(new Vector2(56 * tiledMap.tileSize, 126 * tiledMap.tileSize), new Vector2(32), 28, scriptsList, false));
-            triggers.Add(new Trigger(new Vector2(357 * tiledMap.tileSize, 169 * tiledMap.tileSize), new Vector2(32), 29, scriptsList));
-            triggers.Add(new Trigger(new Vector2(357 * tiledMap.tileSize, 169 * tiledMap.tileSize), new Vector2(32), 30, scriptsList, false));
+            triggers.Add(new Trigger(new Vector2(357 * tiledMap.tileSize, 170 * tiledMap.tileSize), new Vector2(32), 29, scriptsList));
+            triggers.Add(new Trigger(new Vector2(357 * tiledMap.tileSize, 170 * tiledMap.tileSize), new Vector2(32), 30, scriptsList, false));
 
             triggers.Add(new Trigger(new Vector2(31 * tiledMap.tileSize, 97 * tiledMap.tileSize), new Vector2(64, 48), 31, scriptsList));
 

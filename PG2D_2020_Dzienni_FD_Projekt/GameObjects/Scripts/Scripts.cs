@@ -155,7 +155,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
 
             if (Input.IsKeyDown(Keys.E))
             {
-                toggleTriggers(28, 27);
+                toggleTriggers(27, 26);
                 game.PauseGame();
             }
         }
@@ -166,7 +166,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
 
             if (Input.IsKeyDown(Keys.E))
             {
-                toggleTriggers(30, 29);
+                toggleTriggers(29, 28);
                 game.PauseGame();
             }
         }
@@ -177,7 +177,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
 
             if (Input.IsKeyDown(Keys.E))
             {
-                toggleTriggers(32, 31);
+                toggleTriggers(31, 30);
                 game.PauseGame();
             }
         }
@@ -210,7 +210,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
             if (Input.IsKeyDown(Keys.Q))
             {
                 hud.PrintMessage2(null);
-                toggleTriggers(27, 28);
+                toggleTriggers(26, 27);
                 game.ContinueGame();
 
                 Quest currentQuest;
@@ -230,7 +230,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
             if (Input.IsKeyDown(Keys.Q))
             {
                 hud.PrintMessage2(null);
-                toggleTriggers(29, 30);
+                toggleTriggers(28, 29);
                 game.ContinueGame();
 
                 Quest currentQuest;
@@ -250,7 +250,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
             if (Input.IsKeyDown(Keys.Q))
             {
                 hud.PrintMessage2(null);
-                toggleTriggers(31, 32);
+                toggleTriggers(30, 31);
                 game.ContinueGame();
 
                 Quest currentQuest;
