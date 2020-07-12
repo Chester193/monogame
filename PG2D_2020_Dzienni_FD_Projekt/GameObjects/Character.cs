@@ -514,6 +514,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             this.characterSettings.spotRange = settings.spotRange;
             this.characterSettings.rangeOfAttack = settings.rangeOfAttack;
             this.characterSettings.weaponAttack = settings.weaponAttack;
+            this.characterSettings.armour = settings.armour;
 
             this.characterSettings.maxMp = settings.maxMp;
             this.characterSettings.mp = settings.mp;
