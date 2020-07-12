@@ -48,6 +48,7 @@
     <Compile Include="Controls\InventoryItem.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameObjects\AnimatedObject.cs" />
+    <Compile Include="GameObjects\BloodShader.cs" />
     <Compile Include="GameObjects\Character.cs" />
     <Compile Include="GameHUD.cs" />
     <Compile Include="GameObjects\Enemies\BigGuy.cs" />
@@ -179,6 +180,7 @@
     <Folder Include="Content\Tilemaps\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\VisualEffects\Blood.fx" />
     <Content Include="Content\VisualEffects\Portal.fx" />
     <Content Include="Content\VisualEffects\Sphere.fx" />
   </ItemGroup>
