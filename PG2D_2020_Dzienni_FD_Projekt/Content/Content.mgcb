@@ -1792,6 +1792,18 @@
 /processorParam:Quality=Best
 /build:SoundEffects/mnstr4.wav
 
+#begin SoundEffects/pirateDie.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/pirateDie.mp3
+
+#begin SoundEffects/pirateTreasure.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/pirateTreasure.mp3
+
 #begin SoundEffects/potion.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -1845,6 +1857,24 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundEffects/sword-unsheathe.wav
+
+#begin SoundEffects/sword-unsheathe.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/sword-unsheathe.wav
+
+#begin SoundEffects/sword-unsheathe2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/sword-unsheathe2.wav
+
+#begin SoundEffects/sword-unsheathe3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/sword-unsheathe3.wav
 
 #begin SoundEffects/zombie.mp3
 /importer:Mp3Importer
