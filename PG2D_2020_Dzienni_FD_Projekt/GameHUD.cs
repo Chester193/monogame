@@ -20,7 +20,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         string message2 = null;
 
         private Texture2D potionEffect;
-        private Texture2D Meffect_1, Meffect_2, Meffect_3;
+        private Texture2D Meffect_1, Meffect_2, Meffect_3, Meffect_4, Meffect_5, Meffect_6;
         Effect hPotion;
         int potionEffectTimer;
         bool hudPotionEffect = false;
@@ -41,6 +41,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             Meffect_1 = content.Load<Texture2D>("VisualEffects/Meffect_1");
             Meffect_2 = content.Load<Texture2D>("VisualEffects/Meffect_2");
             Meffect_3 = content.Load<Texture2D>("VisualEffects/Meffect_3");
+            Meffect_4 = content.Load<Texture2D>("VisualEffects/Meffect_4");
+            Meffect_5 = content.Load<Texture2D>("VisualEffects/Meffect_5");
+            Meffect_6 = content.Load<Texture2D>("VisualEffects/Meffect_6");
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -111,9 +114,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             hPotion.Parameters["Meffect_1"].SetValue(Meffect_1);
             hPotion.Parameters["Meffect_2"].SetValue(Meffect_2);
             hPotion.Parameters["Meffect_3"].SetValue(Meffect_3);
-            hPotion.Parameters["Heffect_1"].SetValue(Meffect_1);
-            hPotion.Parameters["Heffect_2"].SetValue(Meffect_2);
-            hPotion.Parameters["Heffect_3"].SetValue(Meffect_3);
+            hPotion.Parameters["Meffect_4"].SetValue(Meffect_4);
+            hPotion.Parameters["Meffect_5"].SetValue(Meffect_5);
+            hPotion.Parameters["Meffect_6"].SetValue(Meffect_6);
             hPotion.Parameters["Timer"].SetValue((float)(potionEffectTimer / 10));
 
             spriteBatch.Begin(effect: hPotion);
