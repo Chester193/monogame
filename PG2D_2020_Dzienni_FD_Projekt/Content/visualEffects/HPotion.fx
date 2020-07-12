@@ -20,6 +20,20 @@ sampler2D SpriteTextureSampler = sampler_state
 	Texture = <SpriteTexture>;
 };
 
+sampler2D Meffect1Tsampl = sampler_state
+{
+    Texture = <Meffect_1>;
+};
+sampler2D MeffectTsampl2 = sampler_state
+{
+    Texture = <Meffect_2>;
+};
+sampler2D MeffectTsampl3 = sampler_state
+{
+    Texture = <Meffect_3>;
+};
+
+
 struct VertexShaderOutput
 {
 	float4 Position : SV_POSITION;
@@ -31,30 +45,38 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 {
 	float4 color = tex2D(SpriteTextureSampler, input.TextureCoordinates) * input.Color;
 	
+    float4 efect[3];
+    efect[0] = tex2D(Meffect1Tsampl, input.TextureCoordinates);
+    efect[1] = tex2D(MeffectTsampl2, input.TextureCoordinates);
+    efect[2] = tex2D(MeffectTsampl3, input.TextureCoordinates);
+	
 	//float value = color.r * 0.299 + color.g * 0.587 + color.b * 0.114;
 	//color.rgb = value;
 	if (on)
 	{
-		int var = (int)Timer / 40;
+        int var = (int) (Timer % 30);
 		if (mPotion)
 		{
-			switch (var)
-			{
-				case 0:
-					color.r = 1;
-					break;
-				case 1:
-					color.b = 1;
-					break;
-				case 2:
-					color.g = 1;
-					break;
-				default:
-					float value = color.r * 0.299 + color.g * 0.587 + color.b * 0.114;
-					color.rgb = value;
-					break;
-				
-			}
+            color.rgba = efect[var].rgba;
+			
+			/*
+            if (var == 0)
+            {
+				color.rgba = efect[var].rgba;
+            }
+            else
+            {
+				if (var == 1)
+				{
+					color.rgba = efect2.rgba;
+				}
+				else
+				{
+					color.rgba = efect3.rgba;
+				}          
+            }
+				*/   
+
 
 		}
 		else
