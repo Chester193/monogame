@@ -359,6 +359,19 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(new BigGuy(new Vector2(144 * tiledMap.tileSize, 105 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new BigGuy(new Vector2(135 * tiledMap.tileSize, 95 * tiledMap.tileSize), characterSettings));
 
+            characterSettings.maxHp = 450;
+            characterSettings.weaponAttack = 40;
+            gameObjects.Add(new Demon(new Vector2(360 * tiledMap.tileSize, 100 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Demon(new Vector2(351 * tiledMap.tileSize, 111 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Demon(new Vector2(332 * tiledMap.tileSize, 118 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Demon(new Vector2(324 * tiledMap.tileSize, 113 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Demon(new Vector2(433 * tiledMap.tileSize, 34 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Demon(new Vector2(443 * tiledMap.tileSize, 34 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Demon(new Vector2(449 * tiledMap.tileSize, 30 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Demon(new Vector2(451 * tiledMap.tileSize, 23 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Demon(new Vector2(419 * tiledMap.tileSize, 22 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Demon(new Vector2(415 * tiledMap.tileSize, 15 * tiledMap.tileSize), characterSettings));
+
             foreach (Character specEnemy in specialEnemies)
             {
                 gameObjects.Add(specEnemy);
@@ -536,6 +549,58 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             endDialog = "You killed this beasts, thank you";
             alternativeDialog = "Did you killed golems yet ?";
             quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 200, 70));
+
+            //Last Quest
+            objectives = new List<Character>();
+
+            characterSettings.maxHp = 500;
+            characterSettings.weaponAttack = 50;
+
+            specialEnemy = new Demon(new Vector2(353 * tiledMap.tileSize, 85 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new Demon(new Vector2(371 * tiledMap.tileSize, 78 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new Demon(new Vector2(379 * tiledMap.tileSize, 79 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+
+            specialEnemy = new Demon(new Vector2(453 * tiledMap.tileSize, 56 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new Demon(new Vector2(445 * tiledMap.tileSize, 62 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new Demon(new Vector2(444 * tiledMap.tileSize, 49 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new Demon(new Vector2(442 * tiledMap.tileSize, 55 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new Demon(new Vector2(433 * tiledMap.tileSize, 50 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new Demon(new Vector2(447 * tiledMap.tileSize, 15 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new Demon(new Vector2(440 * tiledMap.tileSize, 13 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            startDialog = "Kill Demons in cave";
+            endDialog = "Can't believe it, you did it.";
+            alternativeDialog = "Save us, please";
+            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 1000, 500));
 
             return quests;
         }

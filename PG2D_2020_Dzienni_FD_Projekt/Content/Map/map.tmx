@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" width="460" height="260" tilewidth="32" tileheight="32" infinite="0" nextlayerid="19" nextobjectid="1828">
+<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" width="460" height="260" tilewidth="32" tileheight="32" infinite="0" nextlayerid="19" nextobjectid="1833">
  <tileset firstgid="1" name="tileset_preview" tilewidth="32" tileheight="32" tilecount="432" columns="24">
   <image source="tileset_preview.png" width="768" height="576"/>
  </tileset>
@@ -5512,5 +5512,6 @@
   <object id="1825" x="14227.5" y="641.5" width="126.5" height="24"/>
   <object id="1826" x="14222.5" y="623.5" width="12.5" height="27"/>
   <object id="1827" x="5072.67" y="2593.33" width="31.3333" height="28.6667"/>
+  <object id="1832" x="14715.3" y="1872" width="17.3333" height="122.667"/>
  </objectgroup>
 </map>
