@@ -62,9 +62,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Jhin
             cone.Load(content);
             base.Load(content);
 
-            boundingBoxOffset = new Vector2(40, 95);
+            boundingBoxOffset = new Vector2(60, 95);
             boundingBoxWidth = 26;
-            boundingBoxHeight = 12;
+            boundingBoxHeight = 26;
         }
 
         public override void Attack(Character target, int dmg)
