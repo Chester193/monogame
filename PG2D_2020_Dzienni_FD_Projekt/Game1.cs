@@ -124,7 +124,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             CharacterSettings characterSettings = new CharacterSettings
             {
                 maxHp = 100,
-                mode = characterSettings.mode = CharcterMode.Guard,
+                mode = CharcterMode.Guard,
                 range = 300,
                 rangeOfAttack = 30,
                 weaponAttack = 20,
