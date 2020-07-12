@@ -21,20 +21,21 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         private List<Character> objectives;
 
         private int actionsCount = 0;
-        private int prize;
+        private int prize, money;
 
         public static readonly string defaultDialog = "I'm busy, come back later";
         private string startDialog;
         private string endDialog;
         private string alternativeDialog;
 
-        public Quest(List<Character> objectives, string startDialog, string endDialog, string alternativeDialog, int prize)
+        public Quest(List<Character> objectives, string startDialog, string endDialog, string alternativeDialog, int prize, int money)
         {
             this.objectives = objectives;
             this.startDialog = startDialog;
             this.endDialog = endDialog;
             this.alternativeDialog = alternativeDialog;
             this.prize = prize;
+            this.money = money;
 
             foreach(Character item in objectives)
             {
@@ -84,6 +85,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             {
                 State = QuestState.Done;
                 player.GainExperience(prize);
+                player.EarnMoney(money);
             }
         }
 

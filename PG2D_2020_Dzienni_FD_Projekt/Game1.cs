@@ -495,7 +495,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             string startDialog = "Can you get rid of this annoying wolfs from north?";
             string endDialog = "You killed it, thank you";
             string alternativeDialog = "Did you killed wolfs yet ?";
-            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 100));
+            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 100, 30));
 
             //Quest 2
             objectives = new List<Character>();
@@ -515,7 +515,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             startDialog = "Kill 3 golems";
             endDialog = "You killed this beasts, thank you";
             alternativeDialog = "Did you killed golems yet ?";
-            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 200));
+            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 200, 70));
 
             return quests;
         }
