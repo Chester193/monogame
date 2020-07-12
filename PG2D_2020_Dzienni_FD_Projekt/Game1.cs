@@ -126,8 +126,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 maxHp = 100,
                 mode = CharcterMode.Guard,
                 range = 300,
+                spotRange = 300,
                 rangeOfAttack = 30,
                 weaponAttack = 20,
+                armour = 1.0f,
             };
 
             List<Character> specialEnemies;
@@ -180,7 +182,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             triggers.Add(new Trigger(new Vector2(36 * tiledMap.tileSize, 92 * tiledMap.tileSize), new Vector2(64, 48), 6, scriptsList));
 
             triggers.Add(new Trigger(new Vector2(76 * tiledMap.tileSize, 33 * tiledMap.tileSize), new Vector2(64, 32), 7, scriptsList));
-            
+
             triggers.Add(new Trigger(new Vector2(239 * tiledMap.tileSize, 77 * tiledMap.tileSize), new Vector2(32, 16), 8, scriptsList));
             triggers.Add(new Trigger(new Vector2(354 * tiledMap.tileSize, 175 * tiledMap.tileSize), new Vector2(32), 9, scriptsList));
 
@@ -337,6 +339,29 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             characterSettings.weaponAttack = 30;
             gameObjects.Add(new BigGuy(new Vector2(144 * tiledMap.tileSize, 105 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new BigGuy(new Vector2(135 * tiledMap.tileSize, 95 * tiledMap.tileSize), characterSettings));
+
+            characterSettings.mode = CharcterMode.NPC;
+            characterSettings.armour = 0;
+            characterSettings.spotRange = 0;
+            gameObjects.Add(new Viking1(new Vector2(59 * tiledMap.tileSize, 92 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking2(new Vector2(59 * tiledMap.tileSize, 93 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking3(new Vector2(61 * tiledMap.tileSize, 91 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking1(new Vector2(45 * tiledMap.tileSize, 120 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking2(new Vector2(45 * tiledMap.tileSize, 122 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking3(new Vector2(48 * tiledMap.tileSize, 120 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking1(new Vector2(48 * tiledMap.tileSize, 122 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking2(new Vector2(88 * tiledMap.tileSize, 92 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking3(new Vector2(88 * tiledMap.tileSize, 94 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking1(new Vector2(85 * tiledMap.tileSize, 95 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking2(new Vector2(91 * tiledMap.tileSize, 95 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking3(new Vector2(94 * tiledMap.tileSize, 93 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking3(new Vector2(103 * tiledMap.tileSize, 123 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking3(new Vector2(110 * tiledMap.tileSize, 126 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking2(new Vector2(33 * tiledMap.tileSize, 88 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking3(new Vector2(34 * tiledMap.tileSize, 98 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking1(new Vector2(39 * tiledMap.tileSize, 95 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking2(new Vector2(44 * tiledMap.tileSize, 96 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking3(new Vector2(41 * tiledMap.tileSize, 82 * tiledMap.tileSize), characterSettings));
 
             foreach (Character specEnemy in specialEnemies)
             {
@@ -615,7 +640,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                     player.isRanged = false;
                     player.characterSettings.weaponAttack = 10;
                 }
-            } + change_weapon_handler;
+            }
+            + change_weapon_handler;
 
             EventHandler bloody_dagger_handler = (s, e) =>
             {
@@ -654,7 +680,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                     player.isRanged = false;
                     player.characterSettings.weaponAttack = 40;
                 }
-            } + change_weapon_handler;
+            }
+            + change_weapon_handler;
 
             EventHandler bloody_sword_handler = (s, e) =>
             {
@@ -692,7 +719,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 {
                     player.isRanged = true;
                 }
-            } + change_weapon_handler;
+            }
+            + change_weapon_handler;
 
             EventHandler armour_handler = (s, e) =>
             {
@@ -849,7 +877,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             ////Chest 12
             //((Character)gameObjects[16]).Inventory.Add(new InventoryItem("Purse", purseDescription, purse_icon, font, pursePrice, purse_handler + trade_handler));
             //((Character)gameObjects[16]).Inventory.Add(new InventoryItem("Expensive bracelet", jeveleryDescription, expensive_bracelet_icon, font, 100, trade_handler));
-            
+
             ////Chest 13
             //((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Ring with ruby", jeveleryDescription, ruby_ring_icon, font, 60, trade_handler));
             //((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Purse", purseDescription, purse_icon, font, pursePrice, purse_handler + trade_handler));

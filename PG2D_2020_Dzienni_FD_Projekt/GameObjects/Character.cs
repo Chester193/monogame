@@ -13,7 +13,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
     {
         WaitForPlayer,
         Guard,
-        FollowPlayer
+        FollowPlayer,
+        NPC
     }
 
     public struct CharacterSettings
@@ -23,8 +24,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public CharcterMode mode;
         public int range;
+        public int spotRange;
         public int rangeOfAttack;
         public int weaponAttack;
+        public float armour;
 
         public int maxMp;
         public int mp;
@@ -40,7 +43,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         protected float acceleration = 0.4f;
         protected float deceleration = 0.78f;
         protected float maxSpeed = 4.0f;
-        protected float armour = 1.0f;
+        //protected float armour = 1.0f;
 
         const float gravity = 1.0f;
         const float jumpVelocity = 16.0f;
@@ -360,7 +363,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public void Damage(int dmg)
         {
-            characterSettings.hp -= (int)(dmg * armour);
+            characterSettings.hp -= (int)(dmg * characterSettings.armour);
             if (characterSettings.hp <= 0)
             {
                 characterSettings.hp = 0;
@@ -508,8 +511,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             SetMode(settings.mode);
             SetRange(settings.range);
+            this.characterSettings.spotRange = settings.spotRange;
             this.characterSettings.rangeOfAttack = settings.rangeOfAttack;
             this.characterSettings.weaponAttack = settings.weaponAttack;
+            this.characterSettings.armour = settings.armour;
 
             this.characterSettings.maxMp = settings.maxMp;
             this.characterSettings.mp = settings.mp;

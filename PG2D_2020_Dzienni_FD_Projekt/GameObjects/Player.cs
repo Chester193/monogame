@@ -79,6 +79,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             characterSettings.rangeOfAttack = 30;
             characterSettings.weaponAttack = 10;
 
+            characterSettings.armour = 1;
+
             fireDelay = 0;
             fireBall = new Fireball();
 
@@ -346,13 +348,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             secondAtlas = tmpAtlas;
             LoadAnimations(atlas);
             ChangeAnimation(Animations.IdleFront);
-            if (armour == 1)
+            if (characterSettings.armour == 1)
             {
-                armour = 0.6f;
+                characterSettings.armour = 0.6f;
             }
             else
             {
-                armour = 1f;
+                characterSettings.armour = 1f;
             }
         }
 
