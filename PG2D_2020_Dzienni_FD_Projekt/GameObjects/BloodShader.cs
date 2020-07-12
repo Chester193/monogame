@@ -17,6 +17,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public BloodShader(Vector2 startingPosition, GameObject player) 
             : base(startingPosition)
         {
+            isFullScreen = true;
             this.player = (Player)player;
             scale = 1.0f;
         }
