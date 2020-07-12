@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities.SpriteAtlas;
@@ -12,6 +13,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
 {
     class Finn : Enemy
     {
+
+        SoundEffect sword;
+        SoundEffect die;
+
         public Finn(Vector2 startingPosition, CharacterSettings settings)
         {
             this.position = startingPosition;
@@ -34,6 +39,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
             texture = TextureLoader.Load(@"characters/Finn", content);
             SpriteAtlasData atlas = SpriteAtlasLoader.ParseSpriteAtlas(@"characters/Finn.atlas", texture, content);
 
+            sword = content.Load<SoundEffect>(@"SoundEffects/sword-unsheathe2");
+            die = content.Load<SoundEffect>(@"SoundEffects/pirateTreasure");
+
             LoadAnimations(atlas);
             ChangeAnimation(AnimatedObject.Animations.WalkingRight);
 
@@ -42,6 +50,18 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies
             boundingBoxOffset = new Vector2(90, 100);
             boundingBoxWidth = 35;
             boundingBoxHeight = 35;
+        }
+
+        public override void Attack(Character target, int dmg)
+        {
+            sword.Play();
+            base.Attack(target, dmg);
+        }
+
+        public override void Die()
+        {
+            die.Play();
+            base.Die();
         }
     }
 }
