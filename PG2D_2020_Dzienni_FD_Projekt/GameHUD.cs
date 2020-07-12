@@ -68,7 +68,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             if (message != null && messageTimer > 0)
             {
-                Vector2 v1 = new Vector2(400, 5);
+                Vector2 v1 = new Vector2(250, 5);
                 spriteBatch.DrawString(fontDiamond, message, v1, Color.White);
 
                 if (message2 != null)

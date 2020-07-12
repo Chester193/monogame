@@ -94,7 +94,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
         private void NewGameButton_Click(object sender, EventArgs e)
         {
             _game.Restart();
-            _game.ChangeState(new GameState(_game, _graphicsDevice, _content));
+            _game.ChangeState(new StartGameState(_game, _graphicsDevice, _content));
         }
 
         private void QuitGameButton_Click(object sender, EventArgs e)
