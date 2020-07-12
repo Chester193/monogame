@@ -112,6 +112,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             scriptsList.Add(new ScriptsController(scripts.StartDialog3));
             scriptsList.Add(new ScriptsController(scripts.QuestDialog3));
             scriptsList.Add(new ScriptsController(scripts.StartTradeDialogNo2));
+            scriptsList.Add(new ScriptsController(scripts.OpenChestNo11));
+            scriptsList.Add(new ScriptsController(scripts.OpenChestNo12));
+            scriptsList.Add(new ScriptsController(scripts.OpenChestNo13));
+            scriptsList.Add(new ScriptsController(scripts.OpenChestNo14));
+            scriptsList.Add(new ScriptsController(scripts.OpenChestNo15));
+            scriptsList.Add(new ScriptsController(scripts.EnterCave1));              //37
+            scriptsList.Add(new ScriptsController(scripts.ExitCave1));               //38
 
 
             // TODO: Add your initialization logic here
@@ -157,6 +164,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(new Chest(new Vector2(33 * tiledMap.tileSize, 161 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new Chest(new Vector2(189 * tiledMap.tileSize, 224 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new Chest(new Vector2(114 * tiledMap.tileSize, 111 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Chest(new Vector2(328 * tiledMap.tileSize, 115 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Chest(new Vector2(353 * tiledMap.tileSize, 230 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Chest(new Vector2(445 * tiledMap.tileSize, 50 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Chest(new Vector2(438 * tiledMap.tileSize, 36 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Chest(new Vector2(448 * tiledMap.tileSize, 50 * tiledMap.tileSize), characterSettings));
 
             gameObjects.Add(new PortalFrame(new Vector2(65 * tiledMap.tileSize, 972)));
             gameObjects.Add(new SphereBackground(new Vector2(1730, 2920)));
@@ -166,7 +178,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(new SphereBackground(new Vector2(158 * tiledMap.tileSize, 78 * tiledMap.tileSize)));
 
             triggers.Add(new Trigger(new Vector2(154 * tiledMap.tileSize, 27 * tiledMap.tileSize), new Vector2(32), 14, scriptsList));
-            triggers.Add(new Trigger(new Vector2(418 * tiledMap.tileSize, 44 * tiledMap.tileSize), new Vector2(180, 30), 15, scriptsList));
+            triggers.Add(new Trigger(new Vector2(340 * tiledMap.tileSize, 85 * tiledMap.tileSize), new Vector2(32), 15, scriptsList));
 
             triggers.Add(new Trigger(new Vector2(65 * tiledMap.tileSize, 31 * tiledMap.tileSize), new Vector2(64, 48), 3, scriptsList));
             triggers.Add(new Trigger(new Vector2(157 * tiledMap.tileSize, 80 * tiledMap.tileSize), new Vector2(128), 3, scriptsList));
@@ -208,6 +220,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             triggers.Add(new Trigger(new Vector2(357 * tiledMap.tileSize, 170 * tiledMap.tileSize), new Vector2(32), 30, scriptsList, false));
 
             triggers.Add(new Trigger(new Vector2(31 * tiledMap.tileSize, 97 * tiledMap.tileSize), new Vector2(64, 48), 31, scriptsList));
+
+            triggers.Add(new Trigger(new Vector2(328 * tiledMap.tileSize, 116 * tiledMap.tileSize), new Vector2(64, 32), 32, scriptsList));
+            triggers.Add(new Trigger(new Vector2(353 * tiledMap.tileSize, 231 * tiledMap.tileSize), new Vector2(64, 32), 33, scriptsList));
+            triggers.Add(new Trigger(new Vector2(445 * tiledMap.tileSize, 51 * tiledMap.tileSize), new Vector2(64, 32), 34, scriptsList));
+            triggers.Add(new Trigger(new Vector2(438 * tiledMap.tileSize, 37 * tiledMap.tileSize), new Vector2(64, 32), 35, scriptsList));
+            triggers.Add(new Trigger(new Vector2(448 * tiledMap.tileSize, 51 * tiledMap.tileSize), new Vector2(64, 32), 36, scriptsList));
+
+            triggers.Add(new Trigger(new Vector2(397 * tiledMap.tileSize, 84 * tiledMap.tileSize), new Vector2(32), 37, scriptsList));
+            triggers.Add(new Trigger(new Vector2(407 * tiledMap.tileSize, 16 * tiledMap.tileSize), new Vector2(32), 38, scriptsList));
 
 
             characterSettings.maxHp = 60;
@@ -839,56 +860,56 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             ((Character)gameObjects[14]).Inventory.Add(new InventoryItem("Health potion", healthPotionDescription, health_icon, font, healthPotionPrice, health_handler + trade_handler));
             ((Character)gameObjects[14]).Inventory.Add(new InventoryItem("Mana potion", manaPotionDescription, mana_icon, font, manaPotionPrice, mana_handler + trade_handler));
 
-            ////Chest 11
-            //((Character)gameObjects[15]).Inventory.Add(new InventoryItem("Bracelet with gems", jeveleryDescription, gems_bracelet_icon, font, 60, trade_handler));
-            //for (int i = 0; i < 5; i++)
-            //{
-            //    ((Character)gameObjects[15]).Inventory.Add(new InventoryItem("Mana potion", manaPotionDescription, mana_icon, font, manaPotionPrice, mana_handler + trade_handler));
-            //}
+            //Chest 11
+            ((Character)gameObjects[15]).Inventory.Add(new InventoryItem("Bracelet with gems", jeveleryDescription, gems_bracelet_icon, font, 60, trade_handler));
+            for (int i = 0; i < 5; i++)
+            {
+                ((Character)gameObjects[15]).Inventory.Add(new InventoryItem("Mana potion", manaPotionDescription, mana_icon, font, manaPotionPrice, mana_handler + trade_handler));
+            }
 
-            ////Chest 12
-            //((Character)gameObjects[16]).Inventory.Add(new InventoryItem("Purse", purseDescription, purse_icon, font, pursePrice, purse_handler + trade_handler));
-            //((Character)gameObjects[16]).Inventory.Add(new InventoryItem("Expensive bracelet", jeveleryDescription, expensive_bracelet_icon, font, 100, trade_handler));
-            
-            ////Chest 13
-            //((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Ring with ruby", jeveleryDescription, ruby_ring_icon, font, 60, trade_handler));
-            //((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Purse", purseDescription, purse_icon, font, pursePrice, purse_handler + trade_handler));
-            //((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Purse", purseDescription, purse_icon, font, pursePrice, purse_handler + trade_handler));
-            //for (int i = 0; i < 2; i++)
-            //{
-            //    ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Health potion", healthPotionDescription, health_icon, font, healthPotionPrice, health_handler + trade_handler));
-            //}
-            //for (int i = 0; i < 3; i++)
-            //{
-            //    ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Mana potion", manaPotionDescription, mana_icon, font, manaPotionPrice, mana_handler + trade_handler));
-            //}
+            //Chest 12
+            ((Character)gameObjects[16]).Inventory.Add(new InventoryItem("Purse", purseDescription, purse_icon, font, pursePrice, purse_handler + trade_handler));
+            ((Character)gameObjects[16]).Inventory.Add(new InventoryItem("Expensive bracelet", jeveleryDescription, expensive_bracelet_icon, font, 100, trade_handler));
 
-            ////Chest 14
-            //((Character)gameObjects[18]).Inventory.Add(new InventoryItem("Chalice", jeveleryDescription, chalice_icon, font, 30, trade_handler));
-            //((Character)gameObjects[18]).Inventory.Add(new InventoryItem("Purse", purseDescription, purse_icon, font, pursePrice, purse_handler + trade_handler));
-            //for (int i = 0; i < 4; i++)
-            //{
-            //    ((Character)gameObjects[18]).Inventory.Add(new InventoryItem("Health potion", healthPotionDescription, health_icon, font, healthPotionPrice, health_handler + trade_handler));
-            //}
-            //for (int i = 0; i < 5; i++)
-            //{
-            //    ((Character)gameObjects[18]).Inventory.Add(new InventoryItem("Mana potion", manaPotionDescription, mana_icon, font, manaPotionPrice, mana_handler + trade_handler));
-            //}
+            //Chest 13
+            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Ring with ruby", jeveleryDescription, ruby_ring_icon, font, 60, trade_handler));
+            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Purse", purseDescription, purse_icon, font, pursePrice, purse_handler + trade_handler));
+            ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Purse", purseDescription, purse_icon, font, pursePrice, purse_handler + trade_handler));
+            for (int i = 0; i < 2; i++)
+            {
+                ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Health potion", healthPotionDescription, health_icon, font, healthPotionPrice, health_handler + trade_handler));
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                ((Character)gameObjects[17]).Inventory.Add(new InventoryItem("Mana potion", manaPotionDescription, mana_icon, font, manaPotionPrice, mana_handler + trade_handler));
+            }
 
-            ////Chest 15
-            //((Character)gameObjects[19]).Inventory.Add(new InventoryItem("Ruby chalice", jeveleryDescription, ruby_chalice_icon, font, 50, trade_handler));
-            //for (int i = 0; i < 6; i++)
-            //{
-            //    ((Character)gameObjects[19]).Inventory.Add(new InventoryItem("Purse", purseDescription, purse_icon, font, pursePrice, purse_handler + trade_handler));
-            //}
-            //for (int i = 0; i < 4; i++)
-            //{
-            //    ((Character)gameObjects[19]).Inventory.Add(new InventoryItem("Health potion", healthPotionDescription, health_icon, font, healthPotionPrice, health_handler + trade_handler));
-            //}
-            //for (int i = 0; i < 5; i++)
-            //{
-            //    ((Character)gameObjects[19]).Inventory.Add(new InventoryItem("Mana potion", manaPotionDescription, mana_icon, font, manaPotionPrice, mana_handler + trade_handler));
-            //}
+            //Chest 14
+            ((Character)gameObjects[18]).Inventory.Add(new InventoryItem("Chalice", jeveleryDescription, chalice_icon, font, 30, trade_handler));
+            ((Character)gameObjects[18]).Inventory.Add(new InventoryItem("Purse", purseDescription, purse_icon, font, pursePrice, purse_handler + trade_handler));
+            for (int i = 0; i < 4; i++)
+            {
+                ((Character)gameObjects[18]).Inventory.Add(new InventoryItem("Health potion", healthPotionDescription, health_icon, font, healthPotionPrice, health_handler + trade_handler));
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                ((Character)gameObjects[18]).Inventory.Add(new InventoryItem("Mana potion", manaPotionDescription, mana_icon, font, manaPotionPrice, mana_handler + trade_handler));
+            }
+
+            //Chest 15
+            ((Character)gameObjects[19]).Inventory.Add(new InventoryItem("Ruby chalice", jeveleryDescription, ruby_chalice_icon, font, 50, trade_handler));
+            for (int i = 0; i < 6; i++)
+            {
+                ((Character)gameObjects[19]).Inventory.Add(new InventoryItem("Purse", purseDescription, purse_icon, font, pursePrice, purse_handler + trade_handler));
+            }
+            for (int i = 0; i < 4; i++)
+            {
+                ((Character)gameObjects[19]).Inventory.Add(new InventoryItem("Health potion", healthPotionDescription, health_icon, font, healthPotionPrice, health_handler + trade_handler));
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                ((Character)gameObjects[19]).Inventory.Add(new InventoryItem("Mana potion", manaPotionDescription, mana_icon, font, manaPotionPrice, mana_handler + trade_handler));
+            }
         }
     }
 }
