@@ -153,14 +153,14 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
         public void ManaPotionEffect()
         {
-            potionEffectTimer = 100;
+            potionEffectTimer = 60;
             hudPotionEffect = true;
             manaPotion = true;
         }
 
         public void HelthPotionEffect()
         {
-            potionEffectTimer = 100;
+            potionEffectTimer = 60;
             hudPotionEffect = true;
         }
     }
