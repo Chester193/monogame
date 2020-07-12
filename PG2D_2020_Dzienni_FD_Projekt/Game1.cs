@@ -471,6 +471,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             ChangeState(new ChestState(this, graphics.GraphicsDevice, Content, (Character)this.gameObjects[index]));
         }
 
+        public void GameOver()
+        {
+            ChangeState(new EndGameState(this, graphics.GraphicsDevice, Content));
+        }
+
         public void LoadInitializeGameObjects(List<GameObject> gameObjects)
         {
             foreach (var gameObject in gameObjects)
@@ -529,7 +534,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             objectives.Add(specialEnemy);
             specialEnemies.Add(specialEnemy);
 
-            string startDialog = "The crows on the north keep stealing wheat from the farm, \n can you chase them away ?";
+            string startDialog = "Can you get rid of those annoying wolfs from the north?";
             string endDialog = "You killed them, thank you";
             string alternativeDialog = "Did you kill the wolfs already ?";
             quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 100, 20));
@@ -584,7 +589,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             startDialog = "Kill the Ice golems that conquered ice land";
             alternativeDialog = "Did you kill golems already ?";
-            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 300, 80));
+            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 400, 80));
 
             //Quest 4
             objectives = new List<Character>();
@@ -602,7 +607,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             startDialog = "Ged rid of the piretes who came for us from the east coast";
             alternativeDialog = "Did you kill pirates already ?";
-            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 400, 90));
+            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 500, 90));
 
             //Quest 5
             objectives = new List<Character>();
@@ -634,7 +639,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             startDialog = "Chase away bandits from the road to the west";
             alternativeDialog = "Are they gone already ?";
-            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 500, 100));
+            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 800, 100));
 
             //Quest 6
             objectives = new List<Character>();
@@ -676,7 +681,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             startDialog = "Get rid of ogres from north-west forest";
             alternativeDialog = "Are they still there ?";
-            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 800, 150));
+            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 1000, 150));
 
             //Quest 7
             objectives = new List<Character>();
@@ -694,7 +699,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             startDialog = "Kill gorillas who are threat to the farm nearby";
             alternativeDialog = "Did you kill gorillas already ?";
-            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 1000, 170));
+            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 1500, 170));
 
             //Quest 8
             objectives = new List<Character>();
@@ -712,7 +717,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             startDialog = "Kill the Ice golems that conquered ice land";
             alternativeDialog = "Are they gone already ?";
-            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 1300, 200));
+            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 2000, 200));
 
             //Quest 9
             objectives = new List<Character>();
@@ -769,9 +774,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             objectives.Add(specialEnemy);
             specialEnemies.Add(specialEnemy);
 
-            startDialog = "The crows on the north keep stealing wheat from the farm, can you chase them away ?";
+            startDialog = "The crows on the north keep stealing wheat from the farm, \n can you chase them away ?";
             alternativeDialog = "Crows are still there, will you do something about it ?";
-            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 1500, 200));
+            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 2500, 200));
 
             //Last Quest
             objectives = new List<Character>();
@@ -823,7 +828,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             startDialog = "Kill Demons that absorb power from the cave";
             endDialog = "Can't believe it, you did it. You are our hero";
             alternativeDialog = "Save us, please";
-            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 2000, 500));
+            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 3000, 500));
 
             return quests;
         }

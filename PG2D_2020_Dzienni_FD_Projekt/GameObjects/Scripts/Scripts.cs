@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using PG2D_2020_Dzienni_FD_Projekt.States;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using System;
 using System.Collections.Generic;
@@ -196,7 +197,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
                 Quest currentQuest;
                 if (player.TryGetCurrentQuest(out currentQuest))
                 {
+                    bool over = player.IsGameOver();
                     currentQuest.Confirm(player);
+                    if (over && currentQuest.State == QuestState.Done)
+                        game.GameOver();
                 }
                 ///Console.WriteLine("QD");
             }
