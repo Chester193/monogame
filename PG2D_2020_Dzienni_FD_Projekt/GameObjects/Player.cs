@@ -21,6 +21,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         private List<Quest> quests;
         private int currentQuestIndex = 0;
         private GameHUD hud;
+        public Statistics stats = new Statistics();
 
         public bool isRanged = false;
         private int fireDelay;
@@ -32,7 +33,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public InventoryItem Armour { get; set; }
 
         SoundEffect slash;
-        SoundEffect inventoryOpen;
+        SoundEffect inventoryOpen, coin;
         SoundEffect dyingEffect;
         SoundEffectInstance step;
         List<SoundEffect> hurtingEffects;
@@ -71,13 +72,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public override void Initialize()
         {
-            characterSettings.maxHp = 80;
-            characterSettings.hp = 80;
+            characterSettings.maxHp = 79;
+            characterSettings.hp = 79;
             characterSettings.maxMp = 10;
             characterSettings.mp = 10;
 
             characterSettings.rangeOfAttack = 30;
             characterSettings.weaponAttack = 10;
+
+            characterSettings.armour = 1;
 
             fireDelay = 0;
             fireBall = new Fireball();
@@ -108,6 +111,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             slash = content.Load<SoundEffect>(@"SoundEffects/swing");
             inventoryOpen = content.Load<SoundEffect>(@"SoundEffects/cloth");
+            coin = content.Load<SoundEffect>(@"SoundEffects/coin");
             hurtingEffects.Add(content.Load<SoundEffect>(@"SoundEffects/damage1"));
             hurtingEffects.Add(content.Load<SoundEffect>(@"SoundEffects/damage2"));
             hurtingEffects.Add(content.Load<SoundEffect>(@"SoundEffects/damage3"));
@@ -312,6 +316,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     try
                     {
                         ManaUse(1);
+                        stats.ManaUsed += 1;
                         isHurting = true;
                         Fire();
                         fireBallSound[new Random().Next(0, 3)].Play();
@@ -335,6 +340,22 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 MaxHpAdd(50);
         }
 
+        public bool IsGameOver()
+        {
+            return currentQuestIndex == quests.Count - 1;
+        }
+
+        public override void DealDamage(int dmg)
+        {
+            stats.DamageDealt += dmg;
+        }
+
+        public override void Damage(int dmg)
+        {
+            stats.DamageTaken += dmg;
+            base.Damage(dmg);
+        }
+
         public void ChangeArmour()
         {
             Texture2D tmpTexture = texture;
@@ -345,13 +366,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             secondAtlas = tmpAtlas;
             LoadAnimations(atlas);
             ChangeAnimation(Animations.IdleFront);
-            if (armour == 1)
+            if (characterSettings.armour == 1)
             {
-                armour = 0.6f;
+                characterSettings.armour = 0.6f;
             }
             else
             {
-                armour = 1f;
+                characterSettings.armour = 1f;
             }
         }
 
@@ -420,6 +441,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public void EarnMoney(int amount)
         {
             Money += amount;
+            coin.Play();
         }
 
         public void SpendMoney(int amount)
@@ -432,8 +454,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public void GainExperience(int amount)
         {
+            stats.GainedExperience += amount;
             Exp += amount;
-            characterSettings.maxHp = 80 + Exp / 50;
+            characterSettings.maxHp = 79 + Exp / 100;
         }
 
         public override void hurt()
@@ -448,7 +471,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         public override void Die()
         {
             if(!isDead)
+            {
+                stats.Deaths += 1;
                 dyingEffect.Play();
+            }
             base.Die();
         }
 

@@ -9,7 +9,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
     public class GameHUD
     {
         SpriteFont fontArial, fontDiamond, fontCocoonian;
-        Texture2D moneyIcon, expIcon, background, backgroundText;
+        Texture2D moneyIcon, expIcon, background, backgroundText, backgroundFT;
         Player player;
         Enemy enemy;
 
@@ -44,6 +44,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             Meffect_4 = content.Load<Texture2D>("VisualEffects/Meffect_4");
             Meffect_5 = content.Load<Texture2D>("VisualEffects/Meffect_5");
             Meffect_6 = content.Load<Texture2D>("VisualEffects/Meffect_6");
+            backgroundFT = content.Load<Texture2D>("Other/FT_bg");
         }
         public void Draw(SpriteBatch spriteBatch)
         {
@@ -60,6 +61,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             if (fastTravel && fastTraveTimer > 0)
             {
+                spriteBatch.Draw(backgroundFT, new Rectangle(475, 80, 360, 330), Color.White);
                 Vector2 v1 = new Vector2(500, 100);
                 spriteBatch.DrawString(fontDiamond, "[Click the number]", v1, Color.White);
                 Vector2 v2 = new Vector2(500, 140);
@@ -84,7 +86,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
 
             if (message != null && messageTimer > 0)
             {
-                Vector2 v1 = new Vector2(400, 5);
+                Vector2 v1 = new Vector2(250, 5);
                 spriteBatch.DrawString(fontDiamond, message, v1, Color.White);
 
                 if (message2 != null)

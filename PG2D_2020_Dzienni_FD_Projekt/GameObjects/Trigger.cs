@@ -24,6 +24,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             scripts = scriptsList;
             scriptId = scriptID;
             active = isActive;
+            scale = 1f;
         }
 
         public override void Update(List<GameObject> gameObjects, TiledMap map, GameTime gameTime)

@@ -11,6 +11,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
     public class ShaderObject : GameObject
     {
         protected Effect shader;
+        protected Boolean isFullScreen = false;
 
         public ShaderObject(Vector2 startingPosition)
         {
@@ -19,7 +20,14 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, SamplerState.LinearClamp, null, null, shader, Camera.GetTransformMatrix());
+            if (isFullScreen)
+            {
+                spriteBatch.Begin(blendState: BlendState.AlphaBlend, effect: shader);
+            }
+            else
+            {
+                spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, SamplerState.LinearClamp, null, null, shader, Camera.GetTransformMatrix());
+            }
             base.Draw(spriteBatch);
             spriteBatch.End();
         }

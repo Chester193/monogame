@@ -487,6 +487,30 @@
 /processorParam:TextureFormat=Compressed
 /build:Fonts/diamondfantasy.spritefont
 
+#begin InventoryItems/bloody_dagger.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:InventoryItems/bloody_dagger.png
+
+#begin InventoryItems/bloody_sword.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:InventoryItems/bloody_sword.png
+
 #begin InventoryItems/chalice.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -510,6 +534,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:InventoryItems/emerald.png
+
+#begin InventoryItems/enchanted_dagger.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:InventoryItems/enchanted_dagger.png
+
+#begin InventoryItems/enchanted_sword.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:InventoryItems/enchanted_sword.png
 
 #begin InventoryItems/expensive_bracelet.png
 /importer:TextureImporter
@@ -582,6 +630,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:InventoryItems/normal_dish.png
+
+#begin InventoryItems/poisonous_dagger.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:InventoryItems/poisonous_dagger.png
+
+#begin InventoryItems/poisonous_sword.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:InventoryItems/poisonous_sword.png
 
 #begin InventoryItems/purse.png
 /importer:TextureImporter
@@ -750,6 +822,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Map/buildings3.png
+
+#begin Map/cave.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Map/cave.png
+
+#begin Map/cavelvl2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Map/cavelvl2.png
 
 #begin Map/desert.png
 /importer:TextureImporter
@@ -1348,6 +1444,18 @@
 /processorParam:TextureFormat=Color
 /build:Other/fire_ball.png
 
+#begin Other/FT_bg.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Other/FT_bg.png
+
 #begin Other/health_potion.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1708,6 +1816,18 @@
 /processorParam:Quality=Best
 /build:SoundEffects/mnstr4.wav
 
+#begin SoundEffects/pirateDie.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/pirateDie.mp3
+
+#begin SoundEffects/pirateTreasure.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/pirateTreasure.mp3
+
 #begin SoundEffects/potion.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -1762,6 +1882,18 @@
 /processorParam:Quality=Best
 /build:SoundEffects/sword-unsheathe.wav
 
+#begin SoundEffects/sword-unsheathe2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/sword-unsheathe2.wav
+
+#begin SoundEffects/sword-unsheathe3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/sword-unsheathe3.wav
+
 #begin SoundEffects/zombie.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
@@ -1786,11 +1918,42 @@
 #begin Tilemaps/Terrain.tsx
 /copy:Tilemaps/Terrain.tsx
 
+
 #begin visualEffects/HPotion.fx
 /importer:EffectImporter
 /processor:EffectProcessor
 /processorParam:DebugMode=Auto
 /build:visualEffects/HPotion.fx
+
+#begin visualEffects/Blood.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:visualEffects/Blood.fx
+
+#begin visualEffects/bloodMap.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:visualEffects/bloodMap.png
+
+#begin visualEffects/bloodMap1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:visualEffects/bloodMap1.png
 
 #begin visualEffects/lightmap.jpg
 /importer:TextureImporter
@@ -1804,6 +1967,7 @@
 /processorParam:TextureFormat=Color
 /build:visualEffects/lightmap.jpg
 
+
 #begin visualEffects/Meffect_1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1816,6 +1980,20 @@
 /processorParam:TextureFormat=Color
 /build:visualEffects/Meffect_1.png
 
+#begin visualEffects/lightmapInverted.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:visualEffects/lightmapInverted.png
+
+
+
 #begin visualEffects/Meffect_2.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1827,6 +2005,19 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:visualEffects/Meffect_2.png
+
+
+#begin visualEffects/lightmapRed.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:visualEffects/lightmapRed.png
 
 #begin visualEffects/Meffect_3.png
 /importer:TextureImporter

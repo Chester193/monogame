@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using PG2D_2020_Dzienni_FD_Projekt.States;
 using PG2D_2020_Dzienni_FD_Projekt.Utilities;
 using System;
 using System.Collections.Generic;
@@ -149,6 +150,39 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
             }
         }
 
+        public void StartDialog1()
+        {
+            hud.PrintMessage("Press E to talk");
+
+            if (Input.IsKeyDown(Keys.E))
+            {
+                toggleTriggers(27, 26);
+                game.PauseGame();
+            }
+        }
+
+        public void StartDialog2()
+        {
+            hud.PrintMessage("Press E to talk");
+
+            if (Input.IsKeyDown(Keys.E))
+            {
+                toggleTriggers(29, 28);
+                game.PauseGame();
+            }
+        }
+
+        public void StartDialog3()
+        {
+            hud.PrintMessage("Press E to talk");
+
+            if (Input.IsKeyDown(Keys.E))
+            {
+                toggleTriggers(31, 30);
+                game.PauseGame();
+            }
+        }
+
         public void QuestDialog()
         {
             Player player = (Player)gameObjects[0];
@@ -158,6 +192,69 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
             {
                 hud.PrintMessage2(null);
                 toggleTriggers(7, 8);
+                game.ContinueGame();
+
+                Quest currentQuest;
+                if (player.TryGetCurrentQuest(out currentQuest))
+                {
+                    bool over = player.IsGameOver();
+                    currentQuest.Confirm(player);
+                    if (over && currentQuest.State == QuestState.Done)
+                        game.GameOver();
+                }
+                ///Console.WriteLine("QD");
+            }
+        }
+
+        public void QuestDialog1()
+        {
+            Player player = (Player)gameObjects[0];
+            hud.PrintMessage(player.Interact());
+            hud.PrintMessage2("Press Q to end");
+            if (Input.IsKeyDown(Keys.Q))
+            {
+                hud.PrintMessage2(null);
+                toggleTriggers(26, 27);
+                game.ContinueGame();
+
+                Quest currentQuest;
+                if (player.TryGetCurrentQuest(out currentQuest))
+                {
+                    currentQuest.Confirm(player);
+                }
+                ///Console.WriteLine("QD");
+            }
+        }
+
+        public void QuestDialog2()
+        {
+            Player player = (Player)gameObjects[0];
+            hud.PrintMessage(player.Interact());
+            hud.PrintMessage2("Press Q to end");
+            if (Input.IsKeyDown(Keys.Q))
+            {
+                hud.PrintMessage2(null);
+                toggleTriggers(28, 29);
+                game.ContinueGame();
+
+                Quest currentQuest;
+                if (player.TryGetCurrentQuest(out currentQuest))
+                {
+                    currentQuest.Confirm(player);
+                }
+                ///Console.WriteLine("QD");
+            }
+        }
+
+        public void QuestDialog3()
+        {
+            Player player = (Player)gameObjects[0];
+            hud.PrintMessage(player.Interact());
+            hud.PrintMessage2("Press Q to end");
+            if (Input.IsKeyDown(Keys.Q))
+            {
+                hud.PrintMessage2(null);
+                toggleTriggers(30, 31);
                 game.ContinueGame();
 
                 Quest currentQuest;
@@ -174,9 +271,71 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
             Trade(1);
         }
 
+        public void StartTradeDialogNo2()
+        {
+            Trade(2);
+        }
+
         public void OpenChestNo1()
         {
-            Chest(2);
+            Chest(5);
+        }
+
+        public void OpenChestNo2()
+        {
+            Chest(6);
+        }
+        public void OpenChestNo3()
+        {
+            Chest(7);
+        }
+        public void OpenChestNo4()
+        {
+            Chest(8);
+        }
+        public void OpenChestNo5()
+        {
+            Chest(9);
+        }
+        public void OpenChestNo6()
+        {
+            Chest(10);
+        }
+        public void OpenChestNo7()
+        {
+            Chest(11);
+        }
+        public void OpenChestNo8()
+        {
+            Chest(12);
+        }
+        public void OpenChestNo9()
+        {
+            Chest(13);
+        }
+        public void OpenChestNo10()
+        {
+            Chest(14);
+        }
+        public void OpenChestNo11()
+        {
+            Chest(15);
+        }
+        public void OpenChestNo12()
+        {
+            Chest(16);
+        }
+        public void OpenChestNo13()
+        {
+            Chest(17);
+        }
+        public void OpenChestNo14()
+        {
+            Chest(18);
+        }
+        public void OpenChestNo15()
+        {
+            Chest(19);
         }
 
         public void EnterHomeNo1()
@@ -215,12 +374,22 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
         public void EnterCave()
         {
             Console.WriteLine("enter");
-            Teleport(gameObjects[0], new Vector2(tileSize * 419, tileSize * 42));
+            Teleport(gameObjects[0], new Vector2(tileSize * 338, tileSize * 86));
         }
         public void ExitCave()
         {
             Console.WriteLine("exit");
-            Teleport(gameObjects[0], new Vector2(tileSize * 154, tileSize * 28));
+            Teleport(gameObjects[0], new Vector2(tileSize * 152, tileSize * 28));
+        }
+        public void EnterCave1()
+        {
+            Console.WriteLine("enter1");
+            Teleport(gameObjects[0], new Vector2(tileSize * 405, tileSize * 18));
+        }
+        public void ExitCave1()
+        {
+            Console.WriteLine("exit1");
+            Teleport(gameObjects[0], new Vector2(tileSize * 398, tileSize * 85));
         }
     }
 }
