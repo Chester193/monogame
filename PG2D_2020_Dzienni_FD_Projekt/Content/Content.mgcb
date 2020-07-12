@@ -1444,6 +1444,18 @@
 /processorParam:TextureFormat=Color
 /build:Other/fire_ball.png
 
+#begin Other/FT_bg.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Other/FT_bg.png
+
 #begin Other/health_potion.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1851,12 +1863,6 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:SoundEffects/swing.wav
-
-#begin SoundEffects/sword-unsheathe.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SoundEffects/sword-unsheathe.wav
 
 #begin SoundEffects/sword-unsheathe.wav
 /importer:WavImporter
