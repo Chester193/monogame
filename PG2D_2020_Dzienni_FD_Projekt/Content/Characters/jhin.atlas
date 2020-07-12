@@ -6,11 +6,39 @@ filter: Nearest,Nearest
 repeat: none
 Left - Died
   rotate: false
+  xy: 1034, 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 1
+Left - Died
+  rotate: false
+  xy: 1292, 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 2
+Left - Died
+  rotate: false
   xy: 2, 2
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: 3
+Right - Died
+  rotate: false
+  xy: 1034, 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 1
+Right - Died
+  rotate: false
+  xy: 1292, 2
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: 2
 Right - Died
   rotate: false
   xy: 2, 2
@@ -67,35 +95,7 @@ Left - Hurt
   orig: 128, 128
   offset: 0, 0
   index: 1
-Left - Died
-  rotate: false
-  xy: 1034, 2
-  size: 128, 128
-  orig: 128, 128
-  offset: 0, 0
-  index: 1
-Right - Died
-  rotate: false
-  xy: 1034, 2
-  size: 128, 128
-  orig: 128, 128
-  offset: 0, 0
-  index: 1
 Left - Hurt
-  rotate: false
-  xy: 1292, 2
-  size: 128, 128
-  orig: 128, 128
-  offset: 0, 0
-  index: 2
-Left - Died
-  rotate: false
-  xy: 1292, 2
-  size: 128, 128
-  orig: 128, 128
-  offset: 0, 0
-  index: 2
-Right - Died
   rotate: false
   xy: 1292, 2
   size: 128, 128
