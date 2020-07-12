@@ -12,6 +12,9 @@ bool mPotion;
 
 Texture2D SpriteTexture;
 
+Texture2D Meffect_1, Meffect_2, Meffect_3;
+float Timer;
+
 sampler2D SpriteTextureSampler = sampler_state
 {
 	Texture = <SpriteTexture>;
@@ -32,16 +35,23 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 	//color.rgb = value;
 	if (on)
 	{
+		int var = (int)Timer / 30;
 		if (mPotion)
 		{
-			//efekt dla mikstury many
-			color.rgb = 1;
-			color.a = 1;
+			switch (var)
+			{
+				
+				
+			}
+
 		}
 		else
 		{
 			//efekt dla mikstury życia
-			color.a = 1;
+			
+			color.r = color.b;
+			color.b = 0;
+			//color.a = 0.1;
 		}
 			
 	}
