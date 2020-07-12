@@ -1059,14 +1059,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             //Player
             inventory.Add(new InventoryItem("Dagger", defaultSwordDescription, default_sword, font, defaultSwordPrice, default_sword_handler + trade_handler));
             inventory.Add(new InventoryItem("Leather armour", defaultArmourDescription, default_armour, font, defaultArmourPrice, armour_handler + trade_handler));
-            inventory.Add(new InventoryItem("Warrior armour", betterArmourDescription, better_armour, font, betterArmourPrice, armour_handler + trade_handler));
-            inventory.Add(new InventoryItem("Enchanted sword", enchantedSwordDescription, enchanted_sword_icon, font, enchantedSwordPrice, enchanted_sword_handler + trade_handler));
-            inventory.Add(new InventoryItem("Fire ball", fireBallDescription, fire_ball, font, fireBallPrice, fire_ball_handler + trade_handler));
 
             for (int i = 0; i < 3; i++)
             {
                 inventory.Add(new InventoryItem("Health potion", healthPotionDescription, health_icon, font, healthPotionPrice, health_handler + trade_handler));
-                inventory.Add(new InventoryItem("Mana potion", manaPotionDescription, mana_icon, font, manaPotionPrice, mana_handler + trade_handler));
             }
 
             //Weapon Trader

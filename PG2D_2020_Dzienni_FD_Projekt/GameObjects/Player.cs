@@ -330,14 +330,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             if (Input.KeyPressed(Keys.Tab))
                 inventoryOpen.Play();
-
-            //HUD tests:
-            if (Input.KeyPressed(Keys.H) == true)
-                Heal();
-            if (Input.KeyPressed(Keys.J) == true)
-                Heal(15);
-            if (Input.KeyPressed(Keys.K) == true)
-                MaxHpAdd(50);
         }
 
         public bool IsGameOver()
