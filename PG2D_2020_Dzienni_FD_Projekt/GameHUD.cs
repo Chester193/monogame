@@ -169,5 +169,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             potionEffectTimer = 60;
             hudPotionEffect = true;
         }
+
+        public void HelthPotionEffectSTOP()
+        {
+            hudPotionEffect = false;
+        }
     }
 }
