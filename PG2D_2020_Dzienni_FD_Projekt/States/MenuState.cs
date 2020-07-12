@@ -17,6 +17,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
         private List<Component> _components;
         private SpriteFont font;
         private Texture2D background;
+        private bool isContinuable;
 
         public MenuState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, bool isContinuable)
           : base(game, graphicsDevice, content)
@@ -25,9 +26,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
             var buttonTexture = _content.Load<Texture2D>("Controls/Button");
             font = _content.Load<SpriteFont>("Fonts/diamondfantasy");
             _game.IsMouseVisible = true;
+            this.isContinuable = isContinuable;
 
             int xButtonPosition = ResolutionManager.VirtualWidth / 2 - buttonTexture.Width / 2;
-            int yButtonOffset = (int)(buttonTexture.Height * 1.5);
+            int yButtonOffset = (int)(buttonTexture.Height * 1.2);
             int yButtonPosition = 0;
 
             _components = new List<Component>();
@@ -36,7 +38,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
             {
                 var continueButton = new Button(buttonTexture, font)
                 {
-                    Position = new Vector2(xButtonPosition, ResolutionManager.VirtualHeight / 3 + yButtonOffset * yButtonPosition),
+                    Position = new Vector2(xButtonPosition, ResolutionManager.VirtualHeight / 4 + yButtonOffset * yButtonPosition),
                     Text = "Continue",
                 };
                 yButtonPosition++;
@@ -46,16 +48,25 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
 
             var newGameButton = new Button(buttonTexture, font)
             {
-                Position = new Vector2(xButtonPosition, ResolutionManager.VirtualHeight / 3 + yButtonOffset * yButtonPosition),
+                Position = new Vector2(xButtonPosition, ResolutionManager.VirtualHeight / 4 + yButtonOffset * yButtonPosition),
                 Text = "New Game",
             };
             yButtonPosition++;
             newGameButton.Click += NewGameButton_Click;
             _components.Add(newGameButton);
 
+            var controlsButton = new Button(buttonTexture, font)
+            {
+                Position = new Vector2(xButtonPosition, ResolutionManager.VirtualHeight / 4 + yButtonOffset * yButtonPosition),
+                Text = "Controls",
+            };
+            yButtonPosition++;
+            controlsButton.Click += ControlsButton_Click;
+            _components.Add(controlsButton);
+
             var quitGameButton = new Button(buttonTexture, font)
             {
-                Position = new Vector2(xButtonPosition, ResolutionManager.VirtualHeight / 3 + yButtonOffset * yButtonPosition),
+                Position = new Vector2(xButtonPosition, ResolutionManager.VirtualHeight / 4 + yButtonOffset * yButtonPosition),
                 Text = "Quit Game",
             };
             yButtonPosition++;
@@ -95,6 +106,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
         {
             _game.Restart();
             _game.ChangeState(new StartGameState(_game, _graphicsDevice, _content));
+        }
+
+        private void ControlsButton_Click(object sender, EventArgs e)
+        {
+            _game.ChangeState(new ControlsState(_game, _graphicsDevice, _content, isContinuable));
         }
 
         private void QuitGameButton_Click(object sender, EventArgs e)

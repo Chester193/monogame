@@ -10,30 +10,32 @@ using System.Threading.Tasks;
 
 namespace PG2D_2020_Dzienni_FD_Projekt.States
 {
-    class StartGameState : State
+    class ControlsState : State
     {
         private List<Component> _components;
         private SpriteFont font;
         private Texture2D background;
+        bool isContinuable;
 
-        public StartGameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
+        public ControlsState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, bool isContinuable)
           : base(game, graphicsDevice, content)
         {
             background = _content.Load<Texture2D>("Other/background");
             var buttonTexture = _content.Load<Texture2D>("Controls/Button");
             font = _content.Load<SpriteFont>("Fonts/diamondfantasy");
             _game.IsMouseVisible = true;
+            this.isContinuable = isContinuable;
 
             int xButtonPosition = ResolutionManager.VirtualWidth / 2 - buttonTexture.Width / 2;
             _components = new List<Component>();
 
-            var continueButton = new Button(buttonTexture, font)
+            var backButton = new Button(buttonTexture, font)
             {
                 Position = new Vector2(xButtonPosition, 500),
-                Text = "Continue",
+                Text = "Back",
             };
-            continueButton.Click += ContinueButton_Click;
-            _components.Add(continueButton);
+            backButton.Click += BackButton_Click;
+            _components.Add(backButton);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -41,14 +43,17 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
             spriteBatch.Begin();
 
             spriteBatch.Draw(background, new Rectangle(0, 0, ResolutionManager.VirtualWidth, ResolutionManager.VirtualHeight), Color.White);
-            string text = "Welcome to \"Teralg\" \n" +
-                "Main character is a royal envoy, who is about to help control situation \n" +
-                "on the kingdom's border. It is not a typical place to be at, a land steeped \n" +
-                "in magic, now also invaded by the plague of demons, that nobody ever \n" +
-                "knew of. To avoid discontent and rebellion of villagers you have to \n" +
-                "completely eliminate threat that comes from those beasts. The villagers \n" +
-                "will advise you about their biggest concerns.Take all the measures needed, \n" +
-                "reach the goal with your sword and magic.";
+            string text = "- Explore with buttons W, S, A, D searching for the chests with treasures, \n" +
+                "   and eliminate the obstacles with SPACE button. \n" +
+                "- Under TAB you can view your inventory or change weapons / armor. \n" +
+                "- Always remember to have the healing and mana potions with you! \n" +
+                "- It's worth checking the households, they tend to contain interesting \n" +
+                "   stuff! \n" +
+                "- Keep in mind that you can find new weapons and fill potions on the town \n" +
+                "   market. \n" +
+                "- Don't be afraid to die, if you do, the druid will get you up and running in \n" +
+                "   his tent! \n" +
+                "                                                        Good Luck!";
             spriteBatch.DrawString(font, text, new Vector2(50, 50), Color.White);
 
             foreach (var component in _components)
@@ -63,9 +68,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
                 component.Update(gameTime);
         }
 
-        private void ContinueButton_Click(object sender, EventArgs e)
+        private void BackButton_Click(object sender, EventArgs e)
         {
-            _game.ChangeState(new GameState(_game, _graphicsDevice, _content));
+            _game.ChangeState(new MenuState(_game, _graphicsDevice, _content, isContinuable));
         }
     }
 }
