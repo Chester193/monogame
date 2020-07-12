@@ -37,7 +37,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     .TransitionTo(EState.PATROL).On(ETrigger.GO_PATROL)
                     .Update(args =>
                     {
-                        //if (this is Viking1) Console.WriteLine("FOLLOW " + distanceToPlayer);
+                        //if (this is Wolf) Console.WriteLine("FOLLOW " + distanceToPlayer);
                         Follow(map, gameObjects);
                     })
                 .State(EState.IDLE)
@@ -46,7 +46,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     .TransitionTo(EState.PATROL).On(ETrigger.GO_PATROL)
                     .Update(args =>
                     {
-                        //if (this is Viking1) Console.WriteLine("IDLE " + distanceToPlayer);
+                        //if (this is Wolf) Console.WriteLine("IDLE " + distanceToPlayer);
                     })
                 .State(EState.ATTACK)
                     .TransitionTo(EState.IDLE).On(ETrigger.STOP)
@@ -54,7 +54,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     .TransitionTo(EState.PATROL).On(ETrigger.GO_PATROL)
                     .Update(args =>
                     {
-                        //if (this is Viking1) Console.WriteLine("ATTACK " + distanceToPlayer);
+                        //if (this is Wolf) Console.WriteLine("ATTACK " + distanceToPlayer);
                         AttackPlayer();
                     })
                 .State(EState.PATROL)
@@ -63,7 +63,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                     .TransitionTo(EState.FOLLOW).On(ETrigger.FOLLOW_PLAYER)
                     .Update(args =>
                     {
-                        //if (this is Viking1) Console.WriteLine("PATROL " + distanceToPlayer);
+                        //if (this is Wolf) Console.WriteLine("PATROL " + distanceToPlayer);
                         Patrol();
                     })
             .Build();
@@ -232,20 +232,21 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             float distanceToGuardPosition = Vector2.Distance(originalPosition, realPositon);
             float distancePlayerToGuardPosition = Vector2.Distance(player.position, originalPosition);
 
+            //if (this is Wolf) Console.WriteLine(distanceToPlayer + " / " + characterSettings.spotRange);
             if (player.IsDead()) enemyAiMachine.Trigger(ETrigger.GO_PATROL);
             else if (distanceToPlayer < characterSettings.rangeOfAttack)
             {
-                //Console.WriteLine("G  attack");
+                //if (this is Wolf) Console.WriteLine("G  attack");
                 enemyAiMachine.Trigger(ETrigger.ATTACK);
             }
             else if (distanceToPlayer < characterSettings.spotRange && distanceToGuardPosition <= 2 * range && distancePlayerToGuardPosition <= 2 * range)
             {
-                //Console.WriteLine("G  follow");
+                //if (this is Wolf) Console.WriteLine("G  follow  ");
                 enemyAiMachine.Trigger(ETrigger.FOLLOW_PLAYER);
             }
             else
             {
-                //Console.WriteLine("G  patrol");
+                //if (this is Wolf) Console.WriteLine("G  patrol");
                 enemyAiMachine.Trigger(ETrigger.GO_PATROL);
             }
         }

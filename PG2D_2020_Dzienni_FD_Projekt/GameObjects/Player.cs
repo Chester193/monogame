@@ -54,6 +54,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             this.hud = hud;
 
             target = null;
+
+            characterSettings.armour = 1;
         }
 
         public bool TryGetCurrentQuest(out Quest currentQuest)

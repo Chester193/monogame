@@ -511,6 +511,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
             SetMode(settings.mode);
             SetRange(settings.range);
+            this.characterSettings.spotRange = settings.spotRange;
             this.characterSettings.rangeOfAttack = settings.rangeOfAttack;
             this.characterSettings.weaponAttack = settings.weaponAttack;
 
