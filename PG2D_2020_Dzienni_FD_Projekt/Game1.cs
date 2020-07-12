@@ -129,6 +129,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
                 spotRange = 300,
                 rangeOfAttack = 30,
                 weaponAttack = 20,
+                armour = 1.0f,
             };
 
             List<Character> specialEnemies;
@@ -339,6 +340,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(new BigGuy(new Vector2(144 * tiledMap.tileSize, 105 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new BigGuy(new Vector2(135 * tiledMap.tileSize, 95 * tiledMap.tileSize), characterSettings));
 
+            characterSettings.mode = CharcterMode.NPC;
+            characterSettings.armour = 0;
             characterSettings.spotRange = 0;
             gameObjects.Add(new Viking1(new Vector2(59 * tiledMap.tileSize, 92 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new Viking2(new Vector2(59 * tiledMap.tileSize, 93 * tiledMap.tileSize), characterSettings));

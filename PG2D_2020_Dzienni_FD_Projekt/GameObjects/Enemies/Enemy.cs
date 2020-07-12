@@ -120,6 +120,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                         //if (this is Viking1) Console.WriteLine("FollowPlayer ");
                         FollowPlayer();
                         break;
+                    case CharcterMode.NPC:
+                        Npc();
+                        break;
 
                     default:
                         WaitForPlayer();
@@ -307,6 +310,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             //Console.WriteLine("RP: " + rPoint);
 
             return rPoint;
+        }
+
+        public void Npc()
+        {
+            enemyAiMachine.Trigger(ETrigger.GO_PATROL);
         }
     }
 }
