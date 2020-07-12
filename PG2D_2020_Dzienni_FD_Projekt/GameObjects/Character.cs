@@ -361,7 +361,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         }
 
 
-        public void Damage(int dmg)
+        public virtual void Damage(int dmg)
         {
             characterSettings.hp -= (int)(dmg * characterSettings.armour);
             if (characterSettings.hp <= 0)
@@ -470,9 +470,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
             {
                 target.hurt();
                 target.Damage(dmg);
+                DealDamage(dmg);
             }
         }
 
+        public virtual void DealDamage(int dmg)
+        { 
+        }
 
         public void SetMode(CharcterMode mode)
         {
