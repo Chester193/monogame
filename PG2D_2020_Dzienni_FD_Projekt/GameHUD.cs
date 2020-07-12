@@ -101,7 +101,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             spriteBatch.End();
 
             potionEffectTimer--;
-            if(potionEffectTimer <= 0)
+            if (potionEffectTimer <= 0)
             {
                 hudPotionEffect = false;
                 manaPotion = false;
@@ -161,7 +161,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         public void HelthPotionEffect()
         {
             potionEffectTimer = 100;
-            hudPotionEffect = true;            
+            hudPotionEffect = true;
         }
     }
 }

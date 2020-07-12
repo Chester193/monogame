@@ -35,12 +35,24 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 	//color.rgb = value;
 	if (on)
 	{
-		int var = (int)Timer / 30;
+		int var = (int)Timer / 40;
 		if (mPotion)
 		{
 			switch (var)
 			{
-				
+				case 0:
+					color.r = 1;
+					break;
+				case 1:
+					color.b = 1;
+					break;
+				case 2:
+					color.g = 1;
+					break;
+				default:
+					float value = color.r * 0.299 + color.g * 0.587 + color.b * 0.114;
+					color.rgb = value;
+					break;
 				
 			}
 
