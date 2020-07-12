@@ -38,7 +38,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Enemies.Orc
         {
             attackDelay--;
             axe.Update(gameObjects, map, gameTime);
-            Fire(gameObjects[0]);
+            if (!isAttacking && active)
+            {
+                Fire(gameObjects[0]);
+            }
             base.Update(gameObjects, map, gameTime);
         }
 
