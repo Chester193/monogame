@@ -40,7 +40,7 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 		}
 		else
 		{
-			//efekt dla miksturyy życia
+			//efekt dla mikstury życia
 			color.a = 1;
 		}
 			
