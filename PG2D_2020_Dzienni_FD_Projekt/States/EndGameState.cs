@@ -53,6 +53,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
             spriteBatch.Draw(background, new Rectangle(0, 0, ResolutionManager.VirtualWidth, ResolutionManager.VirtualHeight), Color.White);
             Statistics stats = ((Player)_game.gameObjects[0]).stats;
 
+            Vector2 position = font.MeasureString("Game Completed");
+            position.X = ResolutionManager.VirtualWidth / 2 - position.X;
+
+            spriteBatch.DrawString(font, "Game Completed", position, Color.White, 0f, Vector2.Zero, 2f, SpriteEffects.None, 0.1f);
+
             WriteCenter(spriteBatch, "Deaths :" + stats.Deaths.ToString(), 1);
             WriteCenter(spriteBatch, "Damage taken :" + stats.DamageTaken.ToString(), 2);
             WriteCenter(spriteBatch, "Damage dealt :" + stats.DamageDealt.ToString(), 3);

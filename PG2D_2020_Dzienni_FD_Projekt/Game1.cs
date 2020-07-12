@@ -238,11 +238,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             characterSettings.maxHp = 60;
             characterSettings.weaponAttack = 10;
             gameObjects.Add(new Zombie(new Vector2(88 * tiledMap.tileSize, 38 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Zombie(new Vector2(92 * tiledMap.tileSize, 38 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Zombie(new Vector2(96 * tiledMap.tileSize, 38 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Zombie(new Vector2(100 * tiledMap.tileSize, 38 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Zombie(new Vector2(88 * tiledMap.tileSize, 43 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Zombie(new Vector2(92 * tiledMap.tileSize, 43 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new Zombie(new Vector2(96 * tiledMap.tileSize, 43 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new Zombie(new Vector2(100 * tiledMap.tileSize, 43 * tiledMap.tileSize), characterSettings));
 
@@ -283,10 +278,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(new LavaGolem(new Vector2(85 * tiledMap.tileSize, 70 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new LavaGolem(new Vector2(124 * tiledMap.tileSize, 83 * tiledMap.tileSize), characterSettings));
 
-            gameObjects.Add(new IceGolem(new Vector2(36 * tiledMap.tileSize, 165 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new IceGolem(new Vector2(151 * tiledMap.tileSize, 241 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new IceGolem(new Vector2(140 * tiledMap.tileSize, 220 * tiledMap.tileSize), characterSettings));
-
             gameObjects.Add(new EarthGolem(new Vector2(203 * tiledMap.tileSize, 220 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new EarthGolem(new Vector2(238 * tiledMap.tileSize, 211 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new EarthGolem(new Vector2(242 * tiledMap.tileSize, 173 * tiledMap.tileSize), characterSettings));
@@ -295,8 +286,6 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             characterSettings.rangeOfAttack = 200;
             gameObjects.Add(new Jhin(new Vector2(61 * tiledMap.tileSize, 167 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new Jhin(new Vector2(89 * tiledMap.tileSize, 172 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Jhin(new Vector2(70 * tiledMap.tileSize, 170 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Jhin(new Vector2(91 * tiledMap.tileSize, 198 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new Jhin(new Vector2(101 * tiledMap.tileSize, 203 * tiledMap.tileSize), characterSettings));
 
             characterSettings.maxHp = 80;
@@ -311,22 +300,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(new Goblin(new Vector2(211 * tiledMap.tileSize, 42 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new Goblin(new Vector2(225 * tiledMap.tileSize, 45 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new Goblin(new Vector2(249 * tiledMap.tileSize, 57 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Goblin(new Vector2(220 * tiledMap.tileSize, 67 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Goblin(new Vector2(252 * tiledMap.tileSize, 112 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Goblin(new Vector2(258 * tiledMap.tileSize, 115 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new Ogre(new Vector2(247 * tiledMap.tileSize, 96 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new Ogre(new Vector2(242 * tiledMap.tileSize, 83 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new Ogre(new Vector2(222 * tiledMap.tileSize, 60 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Ogre(new Vector2(226 * tiledMap.tileSize, 29 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Ogre(new Vector2(237 * tiledMap.tileSize, 59 * tiledMap.tileSize), characterSettings));
 
             characterSettings.maxHp = 70;
             characterSettings.weaponAttack = 15;
             characterSettings.mode = CharcterMode.WaitForPlayer;
             gameObjects.Add(new Pirate(new Vector2(216 * tiledMap.tileSize, 122 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new Pirate(new Vector2(216 * tiledMap.tileSize, 124 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Pirate(new Vector2(214 * tiledMap.tileSize, 120 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Pirate(new Vector2(217 * tiledMap.tileSize, 128 * tiledMap.tileSize), characterSettings));
 
             characterSettings.maxHp = 120;
             characterSettings.weaponAttack = 30;
@@ -342,26 +324,21 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             characterSettings.maxHp = 200;
             characterSettings.weaponAttack = 35;
             gameObjects.Add(new Gorilla(new Vector2(183 * tiledMap.tileSize, 211 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Gorilla(new Vector2(169 * tiledMap.tileSize, 196 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Gorilla(new Vector2(167 * tiledMap.tileSize, 219 * tiledMap.tileSize), characterSettings));
 
             characterSettings.maxHp = 50;
             characterSettings.weaponAttack = 10;
             gameObjects.Add(new GingerBandit(new Vector2(141 * tiledMap.tileSize, 99 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new GingerBandit(new Vector2(139 * tiledMap.tileSize, 105 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new GingerBandit(new Vector2(123 * tiledMap.tileSize, 90 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new GingerBandit(new Vector2(133 * tiledMap.tileSize, 90 * tiledMap.tileSize), characterSettings));
 
             characterSettings.maxHp = 80;
             characterSettings.weaponAttack = 20;
             gameObjects.Add(new Finn(new Vector2(146 * tiledMap.tileSize, 99 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new Finn(new Vector2(139 * tiledMap.tileSize, 94 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new Finn(new Vector2(127 * tiledMap.tileSize, 91 * tiledMap.tileSize), characterSettings));
+
 
             characterSettings.maxHp = 120;
             characterSettings.weaponAttack = 30;
             gameObjects.Add(new BigGuy(new Vector2(144 * tiledMap.tileSize, 105 * tiledMap.tileSize), characterSettings));
-            gameObjects.Add(new BigGuy(new Vector2(135 * tiledMap.tileSize, 95 * tiledMap.tileSize), characterSettings));
 
             characterSettings.maxHp = 450;
             characterSettings.weaponAttack = 40;
@@ -494,6 +471,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             ChangeState(new ChestState(this, graphics.GraphicsDevice, Content, (Character)this.gameObjects[index]));
         }
 
+        public void GameOver()
+        {
+            ChangeState(new EndGameState(this, graphics.GraphicsDevice, Content));
+        }
+
         public void LoadInitializeGameObjects(List<GameObject> gameObjects)
         {
             foreach (var gameObject in gameObjects)
@@ -552,30 +534,249 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             objectives.Add(specialEnemy);
             specialEnemies.Add(specialEnemy);
 
-            string startDialog = "Can you get rid of this annoying wolfs from north?";
-            string endDialog = "You killed it, thank you";
-            string alternativeDialog = "Did you killed wolfs yet ?";
-            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 100, 30));
+            string startDialog = "Can you get rid of those annoying wolfs from the north?";
+            string endDialog = "You killed them, thank you";
+            string alternativeDialog = "Did you kill the wolfs already ?";
+            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 100, 20));
 
             //Quest 2
             objectives = new List<Character>();
 
-            specialEnemy = new EarthGolem(new Vector2(2500, 1500), characterSettings);
+            characterSettings.maxHp = 60;
+            characterSettings.weaponAttack = 10;
+
+            specialEnemy = new Zombie(new Vector2(92 * tiledMap.tileSize, 38 * tiledMap.tileSize), characterSettings);
             objectives.Add(specialEnemy);
             specialEnemies.Add(specialEnemy);
 
-            specialEnemy = new IceGolem(new Vector2(1500, 2500), characterSettings);
+            specialEnemy = new Zombie(new Vector2(96 * tiledMap.tileSize, 38 * tiledMap.tileSize), characterSettings);
             objectives.Add(specialEnemy);
             specialEnemies.Add(specialEnemy);
 
-            specialEnemy = new LavaGolem(new Vector2(3500, 1500), characterSettings);
+            specialEnemy = new Zombie(new Vector2(100 * tiledMap.tileSize, 38 * tiledMap.tileSize), characterSettings);
             objectives.Add(specialEnemy);
             specialEnemies.Add(specialEnemy);
 
-            startDialog = "Kill 3 golems";
-            endDialog = "You killed this beasts, thank you";
-            alternativeDialog = "Did you killed golems yet ?";
-            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 200, 70));
+            specialEnemy = new Zombie(new Vector2(88 * tiledMap.tileSize, 43 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new Zombie(new Vector2(92 * tiledMap.tileSize, 43 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            startDialog = "Kill zombies from graveyard, they belong to the underground";
+            alternativeDialog = "Did you kill zombies already ?";
+            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 200, 50));
+
+            //Quest 3
+            objectives = new List<Character>();
+
+            characterSettings.maxHp = 250;
+            characterSettings.weaponAttack = 40;
+
+            specialEnemy = new IceGolem(new Vector2(36 * tiledMap.tileSize, 165 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new IceGolem(new Vector2(151 * tiledMap.tileSize, 241 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new IceGolem(new Vector2(140 * tiledMap.tileSize, 220 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            startDialog = "Kill the Ice golems that conquered ice land";
+            alternativeDialog = "Did you kill golems already ?";
+            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 400, 80));
+
+            //Quest 4
+            objectives = new List<Character>();
+
+            characterSettings.maxHp = 70;
+            characterSettings.weaponAttack = 15;
+
+            specialEnemy = new Pirate(new Vector2(214 * tiledMap.tileSize, 120 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new Pirate(new Vector2(217 * tiledMap.tileSize, 128 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            startDialog = "Ged rid of the piretes who came for us from the east coast";
+            alternativeDialog = "Did you kill pirates already ?";
+            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 500, 90));
+
+            //Quest 5
+            objectives = new List<Character>();
+
+            characterSettings.maxHp = 50;
+            characterSettings.weaponAttack = 10;
+
+            specialEnemy = new GingerBandit(new Vector2(123 * tiledMap.tileSize, 90 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new GingerBandit(new Vector2(133 * tiledMap.tileSize, 90 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            characterSettings.maxHp = 80;
+            characterSettings.weaponAttack = 20;
+
+            specialEnemy = new Finn(new Vector2(127 * tiledMap.tileSize, 91 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            characterSettings.maxHp = 120;
+            characterSettings.weaponAttack = 30;
+
+            specialEnemy = new BigGuy(new Vector2(135 * tiledMap.tileSize, 95 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            startDialog = "Chase away bandits from the road to the west";
+            alternativeDialog = "Are they gone already ?";
+            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 800, 100));
+
+            //Quest 6
+            objectives = new List<Character>();
+
+            characterSettings.maxHp = 80;
+            characterSettings.rangeOfAttack = 200;
+
+            specialEnemy = new Orc(new Vector2(241 * tiledMap.tileSize, 61 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new Orc(new Vector2(233 * tiledMap.tileSize, 33 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            characterSettings.maxHp = 100;
+            characterSettings.weaponAttack = 25;
+            characterSettings.rangeOfAttack = 30;
+
+            specialEnemy = new Goblin(new Vector2(220 * tiledMap.tileSize, 67 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new Goblin(new Vector2(252 * tiledMap.tileSize, 112 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new Goblin(new Vector2(258 * tiledMap.tileSize, 115 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new Ogre(new Vector2(226 * tiledMap.tileSize, 29 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new Ogre(new Vector2(237 * tiledMap.tileSize, 59 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            startDialog = "Get rid of ogres from north-west forest";
+            alternativeDialog = "Are they still there ?";
+            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 1000, 150));
+
+            //Quest 7
+            objectives = new List<Character>();
+
+            characterSettings.maxHp = 200;
+            characterSettings.weaponAttack = 35;
+
+            specialEnemy = new Gorilla(new Vector2(169 * tiledMap.tileSize, 196 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new Gorilla(new Vector2(167 * tiledMap.tileSize, 219 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            startDialog = "Kill gorillas who are threat to the farm nearby";
+            alternativeDialog = "Did you kill gorillas already ?";
+            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 1500, 170));
+
+            //Quest 8
+            objectives = new List<Character>();
+
+            characterSettings.maxHp = 60;
+            characterSettings.rangeOfAttack = 200;
+
+            specialEnemy = new Jhin(new Vector2(70 * tiledMap.tileSize, 170 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new Jhin(new Vector2(91 * tiledMap.tileSize, 198 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            startDialog = "Kill the Ice golems that conquered ice land";
+            alternativeDialog = "Are they gone already ?";
+            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 2000, 200));
+
+            //Quest 9
+            objectives = new List<Character>();
+
+            characterSettings.maxHp = 20;
+            characterSettings.weaponAttack = 5;
+            characterSettings.rangeOfAttack = 30;
+
+            specialEnemy = new Crow(new Vector2(169 * tiledMap.tileSize, 100 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new Crow(new Vector2(169 * tiledMap.tileSize, 108 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new Crow(new Vector2(162 * tiledMap.tileSize, 116 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new Crow(new Vector2(160 * tiledMap.tileSize, 124 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new Crow(new Vector2(181 * tiledMap.tileSize, 102 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new Crow(new Vector2(194 * tiledMap.tileSize, 102 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new Crow(new Vector2(188 * tiledMap.tileSize, 110 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new Crow(new Vector2(187 * tiledMap.tileSize, 118 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new Crow(new Vector2(197 * tiledMap.tileSize, 118 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new Crow(new Vector2(190 * tiledMap.tileSize, 126 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new Crow(new Vector2(173 * tiledMap.tileSize, 117 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            specialEnemy = new Crow(new Vector2(174 * tiledMap.tileSize, 125 * tiledMap.tileSize), characterSettings);
+            objectives.Add(specialEnemy);
+            specialEnemies.Add(specialEnemy);
+
+            startDialog = "The crows on the north keep stealing wheat from the farm, \n can you chase them away ?";
+            alternativeDialog = "Crows are still there, will you do something about it ?";
+            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 2500, 200));
 
             //Last Quest
             objectives = new List<Character>();
@@ -624,10 +825,10 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             objectives.Add(specialEnemy);
             specialEnemies.Add(specialEnemy);
 
-            startDialog = "Kill Demons in cave";
-            endDialog = "Can't believe it, you did it.";
+            startDialog = "Kill Demons that absorb power from the cave";
+            endDialog = "Can't believe it, you did it. You are our hero";
             alternativeDialog = "Save us, please";
-            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 1000, 500));
+            quests.Add(new Quest(objectives, startDialog, endDialog, alternativeDialog, 3000, 500));
 
             return quests;
         }

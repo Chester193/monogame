@@ -72,8 +72,8 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public override void Initialize()
         {
-            characterSettings.maxHp = 80;
-            characterSettings.hp = 80;
+            characterSettings.maxHp = 79;
+            characterSettings.hp = 79;
             characterSettings.maxMp = 10;
             characterSettings.mp = 10;
 
@@ -340,6 +340,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
                 MaxHpAdd(50);
         }
 
+        public bool IsGameOver()
+        {
+            return currentQuestIndex == quests.Count - 1;
+        }
+
         public override void DealDamage(int dmg)
         {
             stats.DamageDealt += dmg;
@@ -451,7 +456,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
         {
             stats.GainedExperience += amount;
             Exp += amount;
-            characterSettings.maxHp = 80 + Exp / 50;
+            characterSettings.maxHp = 79 + Exp / 100;
         }
 
         public override void hurt()
@@ -465,9 +470,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects
 
         public override void Die()
         {
-            stats.Deaths += 1;
             if(!isDead)
+            {
+                stats.Deaths += 1;
                 dyingEffect.Play();
+            }
             base.Die();
         }
 
