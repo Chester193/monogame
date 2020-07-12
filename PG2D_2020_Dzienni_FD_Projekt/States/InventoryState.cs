@@ -16,10 +16,11 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
     class InventoryState : State
     {
         private List<Component> _components;
-        private Texture2D background, moneyIcon;
+        private Texture2D background, moneyIcon, potionEffect;
         private Player player;
         private InventoryItem hovered;
         private SpriteFont font;
+
         Effect hPotion;
 
         public InventoryState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
@@ -28,6 +29,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
             background = _content.Load<Texture2D>("Other/inventory");
             font = content.Load<SpriteFont>("Fonts\\diamondfantasy");
             moneyIcon = content.Load<Texture2D>("Other/money");
+
+            potionEffect = _content.Load<Texture2D>("Other/mPotionEff");
+            hPotion = content.Load<Effect>("VisualEffects/HPotion");
 
             _game.IsMouseVisible = true;
             player = (Player)_game.gameObjects[0];
@@ -51,6 +55,9 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
                 if (item.IsHovering)
                     hovered = item;
             }
+
+            hPotion.Parameters["on"].SetValue(true);
+            hPotion.Parameters["mPotion"].SetValue(false);
 
             UpdateComponents();
         }
@@ -85,7 +92,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
             spriteBatch.End();
 
             spriteBatch.Begin(effect: hPotion);
-            spriteBatch.Draw(background, new Rectangle(0, 0, ResolutionManager.VirtualWidth, ResolutionManager.VirtualHeight), Color.White);
+            spriteBatch.Draw(potionEffect, new Rectangle(35, 177, 165, 164), Color.White);
             spriteBatch.End();
 
             _game.gameHUD.Draw(spriteBatch);
