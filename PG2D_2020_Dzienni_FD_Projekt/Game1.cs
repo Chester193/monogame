@@ -343,6 +343,22 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             gameObjects.Add(new Viking1(new Vector2(59 * tiledMap.tileSize, 92 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new Viking2(new Vector2(59 * tiledMap.tileSize, 93 * tiledMap.tileSize), characterSettings));
             gameObjects.Add(new Viking3(new Vector2(61 * tiledMap.tileSize, 91 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking1(new Vector2(45 * tiledMap.tileSize, 120 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking2(new Vector2(45 * tiledMap.tileSize, 122 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking3(new Vector2(48 * tiledMap.tileSize, 120 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking1(new Vector2(48 * tiledMap.tileSize, 122 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking2(new Vector2(88 * tiledMap.tileSize, 92 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking3(new Vector2(88 * tiledMap.tileSize, 94 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking1(new Vector2(85 * tiledMap.tileSize, 95 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking2(new Vector2(91 * tiledMap.tileSize, 95 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking3(new Vector2(94 * tiledMap.tileSize, 93 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking3(new Vector2(103 * tiledMap.tileSize, 123 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking3(new Vector2(110 * tiledMap.tileSize, 126 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking2(new Vector2(33 * tiledMap.tileSize, 88 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking3(new Vector2(34 * tiledMap.tileSize, 98 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking1(new Vector2(39 * tiledMap.tileSize, 95 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking2(new Vector2(44 * tiledMap.tileSize, 96 * tiledMap.tileSize), characterSettings));
+            gameObjects.Add(new Viking3(new Vector2(41 * tiledMap.tileSize, 82 * tiledMap.tileSize), characterSettings));
 
             foreach (Character specEnemy in specialEnemies)
             {
