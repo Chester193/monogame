@@ -313,6 +313,26 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
         {
             Chest(14);
         }
+        public void OpenChestNo11()
+        {
+            Chest(15);
+        }
+        public void OpenChestNo12()
+        {
+            Chest(16);
+        }
+        public void OpenChestNo13()
+        {
+            Chest(17);
+        }
+        public void OpenChestNo14()
+        {
+            Chest(18);
+        }
+        public void OpenChestNo15()
+        {
+            Chest(19);
+        }
 
         public void EnterHomeNo1()
         {
@@ -350,12 +370,22 @@ namespace PG2D_2020_Dzienni_FD_Projekt.GameObjects.Scripts
         public void EnterCave()
         {
             Console.WriteLine("enter");
-            Teleport(gameObjects[0], new Vector2(tileSize * 419, tileSize * 42));
+            Teleport(gameObjects[0], new Vector2(tileSize * 338, tileSize * 86));
         }
         public void ExitCave()
         {
             Console.WriteLine("exit");
-            Teleport(gameObjects[0], new Vector2(tileSize * 154, tileSize * 28));
+            Teleport(gameObjects[0], new Vector2(tileSize * 152, tileSize * 28));
+        }
+        public void EnterCave1()
+        {
+            Console.WriteLine("enter1");
+            Teleport(gameObjects[0], new Vector2(tileSize * 405, tileSize * 18));
+        }
+        public void ExitCave1()
+        {
+            Console.WriteLine("exit1");
+            Teleport(gameObjects[0], new Vector2(tileSize * 398, tileSize * 85));
         }
     }
 }
