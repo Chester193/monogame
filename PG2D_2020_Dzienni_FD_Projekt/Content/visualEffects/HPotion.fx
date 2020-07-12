@@ -54,7 +54,7 @@ float4 MainPS(VertexShaderOutput input) : COLOR
 	//color.rgb = value;
 	if (on)
 	{
-        int var = (int) (Timer % 30);
+        int var = (int) (Timer % 3);
 		if (mPotion)
 		{
             color.rgba = efect[var].rgba;

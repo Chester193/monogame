@@ -111,7 +111,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             hPotion.Parameters["Meffect_1"].SetValue(Meffect_1);
             hPotion.Parameters["Meffect_2"].SetValue(Meffect_2);
             hPotion.Parameters["Meffect_3"].SetValue(Meffect_3);
-            hPotion.Parameters["Timer"].SetValue((float)potionEffectTimer);
+            hPotion.Parameters["Timer"].SetValue((float)(potionEffectTimer / 10));
 
             spriteBatch.Begin(effect: hPotion);
             spriteBatch.Draw(potionEffect, new Rectangle(35, 177, 165, 164), Color.White);
