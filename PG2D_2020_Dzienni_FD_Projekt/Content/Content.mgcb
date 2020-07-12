@@ -1864,6 +1864,12 @@
 /processorParam:Quality=Best
 /build:SoundEffects/swing.wav
 
+#begin soundEffects/sword-unsheathe.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:soundEffects/sword-unsheathe.wav
+
 #begin SoundEffects/sword-unsheathe.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
