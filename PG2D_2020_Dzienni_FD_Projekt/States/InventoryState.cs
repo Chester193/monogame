@@ -21,6 +21,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
         private InventoryItem hovered;
         private SpriteFont font;
 
+        
         public InventoryState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content)
           : base(game, graphicsDevice, content)
         {
@@ -38,6 +39,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt.States
         {
             if (Input.KeyPressed(Keys.Tab))
             {
+                _game.gameHUD.HelthPotionEffectSTOP();
                 _game.ChangeState(new GameState(_game, _graphicsDevice, _content));
             }
             Input.Update();

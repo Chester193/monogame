@@ -19,6 +19,13 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         string message = null;
         string message2 = null;
 
+        private Texture2D potionEffect;
+        private Texture2D Meffect_1, Meffect_2, Meffect_3, Meffect_4, Meffect_5, Meffect_6;
+        Effect hPotion;
+        int potionEffectTimer;
+        bool hudPotionEffect = false;
+        bool manaPotion = false;
+
         public void Load(ContentManager content)
         {
             fontArial = content.Load<SpriteFont>("Fonts\\Arial");
@@ -28,6 +35,15 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             expIcon = content.Load<Texture2D>("Other/exp");
             background = content.Load<Texture2D>("Other/HUD_bg");
             backgroundText = content.Load<Texture2D>("Other/HUD_text_bg");
+
+            potionEffect = content.Load<Texture2D>("Other/mPotionEff");
+            hPotion = content.Load<Effect>("VisualEffects/HPotion");
+            Meffect_1 = content.Load<Texture2D>("VisualEffects/Meffect_1");
+            Meffect_2 = content.Load<Texture2D>("VisualEffects/Meffect_2");
+            Meffect_3 = content.Load<Texture2D>("VisualEffects/Meffect_3");
+            Meffect_4 = content.Load<Texture2D>("VisualEffects/Meffect_4");
+            Meffect_5 = content.Load<Texture2D>("VisualEffects/Meffect_5");
+            Meffect_6 = content.Load<Texture2D>("VisualEffects/Meffect_6");
             backgroundFT = content.Load<Texture2D>("Other/FT_bg");
         }
         public void Draw(SpriteBatch spriteBatch)
@@ -88,6 +104,26 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             }
 
             spriteBatch.End();
+
+            potionEffectTimer--;
+            if (potionEffectTimer <= 0)
+            {
+                hudPotionEffect = false;
+                manaPotion = false;
+            }
+            hPotion.Parameters["on"].SetValue(hudPotionEffect);
+            hPotion.Parameters["mPotion"].SetValue(manaPotion);
+            hPotion.Parameters["Meffect_1"].SetValue(Meffect_1);
+            hPotion.Parameters["Meffect_2"].SetValue(Meffect_2);
+            hPotion.Parameters["Meffect_3"].SetValue(Meffect_3);
+            hPotion.Parameters["Meffect_4"].SetValue(Meffect_4);
+            hPotion.Parameters["Meffect_5"].SetValue(Meffect_5);
+            hPotion.Parameters["Meffect_6"].SetValue(Meffect_6);
+            hPotion.Parameters["Timer"].SetValue((float)(potionEffectTimer / 10));
+
+            spriteBatch.Begin(effect: hPotion);
+            spriteBatch.Draw(potionEffect, new Rectangle(35, 177, 165, 164), Color.White);
+            spriteBatch.End();
         }
 
         internal void Player(Player player)
@@ -121,6 +157,24 @@ namespace PG2D_2020_Dzienni_FD_Projekt
         {
             message2 = msg;
             messageTimer = timer;
+        }
+
+        public void ManaPotionEffect()
+        {
+            potionEffectTimer = 60;
+            hudPotionEffect = true;
+            manaPotion = true;
+        }
+
+        public void HelthPotionEffect()
+        {
+            potionEffectTimer = 60;
+            hudPotionEffect = true;
+        }
+
+        public void HelthPotionEffectSTOP()
+        {
+            hudPotionEffect = false;
         }
     }
 }

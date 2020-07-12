@@ -884,6 +884,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             {
                 if (!player.IsHpFull() && currentState is InventoryState)
                 {
+                    gameHUD.HelthPotionEffect();
                     drink.Play();
                     player.Heal(30);
                     inventory.Remove((InventoryItem)s);
@@ -894,6 +895,7 @@ namespace PG2D_2020_Dzienni_FD_Projekt
             {
                 if (!player.IsMpFull() && currentState is InventoryState)
                 {
+                    gameHUD.ManaPotionEffect();
                     drink.Play();
                     player.ChargeMana(3);
                     inventory.Remove((InventoryItem)s);

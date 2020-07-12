@@ -184,6 +184,7 @@
     <Folder Include="Content\Tilemaps\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\VisualEffects\HPotion.fx" />
     <Content Include="Content\VisualEffects\Blood.fx" />
     <Content Include="Content\VisualEffects\Portal.fx" />
     <Content Include="Content\VisualEffects\Sphere.fx" />

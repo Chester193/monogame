@@ -1528,6 +1528,18 @@
 /processorParam:TextureFormat=Color
 /build:Other/money.png
 
+#begin Other/mPotionEff.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Other/mPotionEff.png
+
 #begin Other/pixel.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1906,6 +1918,13 @@
 #begin Tilemaps/Terrain.tsx
 /copy:Tilemaps/Terrain.tsx
 
+
+#begin visualEffects/HPotion.fx
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/build:visualEffects/HPotion.fx
+
 #begin visualEffects/Blood.fx
 /importer:EffectImporter
 /processor:EffectProcessor
@@ -1948,6 +1967,19 @@
 /processorParam:TextureFormat=Color
 /build:visualEffects/lightmap.jpg
 
+
+#begin visualEffects/Meffect_1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:visualEffects/Meffect_1.png
+
 #begin visualEffects/lightmapInverted.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1960,6 +1992,21 @@
 /processorParam:TextureFormat=Color
 /build:visualEffects/lightmapInverted.png
 
+
+
+#begin visualEffects/Meffect_2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:visualEffects/Meffect_2.png
+
+
 #begin visualEffects/lightmapRed.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1971,6 +2018,54 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:visualEffects/lightmapRed.png
+
+#begin visualEffects/Meffect_3.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:visualEffects/Meffect_3.png
+
+#begin visualEffects/Meffect_4.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:visualEffects/Meffect_4.png
+
+#begin visualEffects/Meffect_5.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:visualEffects/Meffect_5.png
+
+#begin visualEffects/Meffect_6.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:visualEffects/Meffect_6.png
 
 #begin visualEffects/Portal.fx
 /importer:EffectImporter
